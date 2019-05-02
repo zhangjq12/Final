@@ -1,0 +1,83 @@
+<div class="error">
+        <p>{{error}}</p>
+</div>
+<div class="container" id="myInfoDiv">
+    <div id="headerInfo">
+        <h4>My Infomation</h4>
+    </div>
+    <div class="row" id="Infomation">
+        <div class="col-4">
+            <div class="list-group" id="Info-Menu" role="tablist">
+                <a class="list-group-item list-group-item-action active" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Profile</a>
+                <a class="list-group-item list-group-item-action" id="list-myTabs-list" data-toggle="list" href="#list-myTabs" role="tab" aria-controls="myTabs">My Tabs</a>
+                <a class="list-group-item list-group-item-action" id="list-favoriteTabs-list" data-toggle="list" href="#list-favoriteTabs" role="tab" aria-controls="favoriteTabs">Favorite Tabs</a>
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="tab-content" id="Info-Content">
+                <div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                {{#each info}}
+                    <div class="media">
+                        <img class="mr-3 rounded-circle" src="/public/image/portrait/{{portrait}}" width="40" height="40" alt="">
+                        <div class="media-body" id="myProfile">
+                            <h5>Your Name:</h5> <p>{{firstName}} {{lastName}}</p>
+                            <h5>Your Email Address:</h5> <p>{{email}}</p>
+                        </div>
+                    </div>
+                {{/each}}
+                </div>
+                <div class="tab-pane fade" id="list-myTabs" role="tabpanel" aria-labelledby="list-myTabs-list">
+                    <table class="table table-hover" id="MyTabPage">
+                        <thead>
+                            <tr>
+                                <th scope="col" id="headName">Tab Name</th>
+                                <th scope="col" id="headAuthor">Author</th>
+                                <th scope="col" id="operation">Operation</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table table-hover table-borderless">
+                            {{#each data}}
+                            <tr>
+                                <td scope="row" id={{_id}}><a href="/tabs/?tabId={{_id}}">{{tabName}}</a></td>
+                                <td id={{author}}>{{author}}</td>
+                                <td id="operations">
+                                <span id="rename">
+                                    <a href="/tabs/modifytabs/{{_id}}">Rename</a>|
+                                </span>
+                                <span id="delete">
+                                    <a href="javascript:void(0);" onclick='deleteTabs("{{_id}}")'>Delete</a>
+                                </span>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="list-favoriteTabs" role="tabpanel" aria-labelledby="list-favoriteTabs-list">
+                    <table class="table table-hover" id="privateFav">
+                        <tbody class="table table-hover table-borderless">
+                            <thead>
+                                <tr>
+                                    <th scope="col" id="headName">Tab Name</th>
+                                    <th scope="col" id="headAuthor">Author</th>
+                                </tr>
+                            </thead>
+                            {{#each favorite}}
+                            <tr>
+                                <td scope="row" id={{_id}}><a href="/tabs/?tabId={{_id}}">{{tabName}}</a></td>
+                                <td id={{author}}>{{author}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    window.onload = function () {
+        if(document.getElementById("notabs") != undefined)
+            document.getElementById("notabs").innerHTML = "<a href=#>Go to seek your favorite Tabs and thumb them up!</a>";
+    }
+</script>

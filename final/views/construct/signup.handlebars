@@ -1,0 +1,16 @@
+<div class="container" id="signUpDiv">
+    <p id="error">{{error}}</p>
+    <form method="POST" action="/signup" id="signup">
+        <label for="user" class="sr-only">User Name:</label>
+        <input id="user" type="text" name="user" class="form-control" placeholder="Username" /></br>
+        <label for="password" class="sr-only">Password:</label>
+        <input id="password" type="password" name="password" class="form-control" placeholder="Password"/></br>
+        <label for="firstName" class="sr-only">First Name:</label>
+        <input id="first" type="text" name="firstName" class="form-control" placeholder="First Name"/></br>
+        <label for="lastName" class="sr-only">Last Name:</label>
+        <input id="last" type="text" name="lastName" class="form-control" placeholder="Last Name"/></br>
+        <label for="email" class="sr-only">Email:</label>
+        <input id="email" type="email" name="email" class="form-control" placeholder="Email"/></br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

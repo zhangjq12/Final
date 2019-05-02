@@ -1,0 +1,15 @@
+<div class="container" id={{id}}>
+    <p>Your comments has been {{operation}}!</p>
+    <span id="totalSecond">5</span>
+    <span id="second"> Seconds</span>
+    <span id="next"> later to go back to the tab page!</span></br>
+</div>
+ 
+<script language="javascript" src="/public/js/autourl.js"> </script>
+<script language="javascript" type="text/javascript">
+    window.onload = function () {
+        var fun = auto;
+        const ID = document.getElementsByClassName("successPostComments")[0].getAttribute("id");
+        fun("/tabs/?tabId=" + ID);
+    }
+</script>

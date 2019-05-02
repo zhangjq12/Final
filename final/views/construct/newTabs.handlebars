@@ -1,0 +1,28 @@
+<div id="TabModify" class="container">
+    <form method="POST" action="/tabs/{{operation}}">
+        <div class="form-row">
+            <div class="col-md-4 mb-2">
+                <label for="tabName">Tab Name:</label>
+                <input id="tabName" type="text" class="form-control" name="tabName" value={{tab}}></input>
+            </div>
+            <div class="col-md-4 mb-2">
+                <label for="songName">Song Name:</label>
+                <input id="songName" type="text" class="form-control" name="songName" value={{song}}></input>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-2">
+                <label for="artistName">Artist Name:</label>
+                <input id="artistName" type="text" class="form-control" name="artistName" value={{artist}}></input>
+            </div>
+            <div class="col-md-4 mb-2">
+                <label for="authorName">Author Name:</label>
+                <input id="authorName" type="text" class="form-control" readonly="readonly" disabled name="authorName" value={{author}}></input>
+            </div>
+        </div>
+        <div class="form-row">
+            <textarea name="content" rows="10" cols="80" class="form-control" placeholder="Tap your tab here!">{{content}}</textarea>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
