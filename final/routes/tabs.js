@@ -78,7 +78,7 @@ router.post("/search", async (req, res) => {
         const name = request["name"];
         const data = await tabs.getName(name);
         if(data.length != 0) 
-            res.render("construct/search", {title: "Search result", status: Head, data: data});
+            res.render("construct/search", {title: "Search result", status: Head, keyWord: name, data: data});
         else
             res.render("construct/search", {title: "Search result", status: Head, error: "Not found"});
     }

@@ -3,77 +3,72 @@
     <p>{{error}}</p>
 </div>
 <div class="containPage">
-<div class="container" id="TabAll">
-    <div class="currentTab">
-        <div class="tabTitle">
-            <h3><span id="tab">{{tab}}</span></h3>
-            <span id="rename"><a href="/tabs/modifytabs/{{id}}">Rename</a></span>
-            <span id="delete"><a href="javascript:void(0);" onclick={{delete}}>Delete</a></span>
-        
-        
-            <h4><span id="song">Song name : {{song}}</span> by <span id="tabArtist">{{artist}}</span></h4>
-        
-        
-            <span id="tabAuthor">Posted by : {{author}}</span>
-            
-        </div>
-        <div class="guitarTabContent">
-            <div class="line"></div>
-            <span id="tabContent">{{content}}</span>
-            <script language="javascript" src="/public/js/transferChord.js"></script>
-            <script language="javascript" type="text/javascript">
-                $(document).ready(function () {
-                    var fun = rePlace;
-                    fun();
-                    if(document.getElementById("uNameShow") == null || document.getElementById("uNameShow").innerText != document.getElementById("tabAuthor").innerText) {
-                        document.getElementById("rename").innerHTML = "";
-                        document.getElementById("delete").innerHTML = "";
-                    }
-                })
-            </script>
-            <script>
-                window.onload = function(){
-                    $(function () {
-                        $('[data-toggle="tooltip"]').tooltip()
+    <div class="container" id="TabAll">
+        <div class="currentTab">
+            <div class="tabTitle">
+                <h3><span id="tab">{{tab}}</span></h3>
+                <span id="rename"><a href="/tabs/modifytabs/{{id}}">Rename</a></span>
+                <span id="delete"><a href="javascript:void(0);" onclick={{delete}}>Delete</a></span>        
+                <h4><span id="song">Song name : {{song}}</span> by <span id="tabArtist">{{artist}}</span></h4>
+                <span id="tabAuthor">Posted by : {{author}}</span>
+            </div>
+            <div class="guitarTabContent">
+                <div class="line"></div>
+                <span id="tabContent">{{content}}</span>
+                <script language="javascript" src="/public/js/transferChord.js"></script>
+                <script language="javascript" type="text/javascript">
+                    $(document).ready(function () {
+                        var fun = rePlace;
+                        fun();
+                        if(document.getElementById("uNameShow") == null || document.getElementById("uNameShow").innerText != document.getElementById("tabAuthor").innerText) {
+                            document.getElementById("rename").innerHTML = "";
+                            document.getElementById("delete").innerHTML = "";
+                        }
                     })
-                }
-            </script>
+                </script>
+                <script>
+                    window.onload = function(){
+                        $(function () {
+                            $('[data-toggle="tooltip"]').tooltip()
+                        })
+                    }
+                </script>
+            </div>
         </div>
-    </div>
         <div class="rating">
             <span id="thumbsup"><a href="javascript:void(0);" onclick="var s=judge(1);like(s);">{{thumbstatus}}</a>{{thumbsup}}</span>
             <span id="thumbsdown"><a href="javascript:void(0);" onclick="var s=judge(2);thumbsdown(s);">{{badstatus}}</a>{{thumbsdown}}</span>
             <span id="likeByYou">{{likeByUser}}</span>
             <iframe name="iframeStyle" style="display:none;"></iframe>
         </div>
-</div>
+    </div>
 
-<div class="container" id="comments">
-    <table class="table table-hover" id="commentsZone">
-        <tbody class="table table-hover table-borderless">
-            {{#each comments}}
-            <tr>
-                <td scope="row">
-                    <div class="media">
-                        <img class="mr-3 rounded-circle" src="/public/image/portrait/{{portrait}}" width="40" height="40" alt="">
-                        <div class="media-body" id={{commentAuthor}}>
-                            <h5 class="mt-0">{{commentAuthor}}</h5>
-                            {{comment}}
+    <div class="container" id="comments">
+        <table class="table table-hover" id="commentsZone">
+            <tbody class="table table-hover table-borderless">
+                {{#each comments}}
+                <tr>
+                    <td scope="row">
+                        <div class="media">
+                            <img class="mr-3 rounded-circle" src="/public/image/portrait/{{portrait}}" width="40" height="40" alt="">
+                            <div class="media-body" id={{commentAuthor}}>
+                                <h5 class="mt-0">{{commentAuthor}}</h5>
+                                {{comment}}
+                            </div>
                         </div>
-                    </div>
-                </td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
-</div>
-<div class="container" id="commentForm">
-    <form method="POST" action="/comments">
-        <input name="commentAuthor" type="hidden" value={{userName}}>
-        <input name="tabId" type="hidden" value={{id}}>
-        <label for="content">Write your comment:</label>
-        <textarea name="content" rows="5" cols="80" class="form-control" ></textarea></br>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</div>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    <div class="container" id="commentForm">
+        <form method="POST" action="/comments">
+            <input name="commentAuthor" type="hidden" value={{userName}}>
+            <input name="tabId" type="hidden" value={{id}}>
+            <label for="content">Write your comment:</label>
+            <textarea name="content" rows="5" cols="80" class="form-control" ></textarea></br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
 </div>
