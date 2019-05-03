@@ -3,6 +3,9 @@ div.tabTitle {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin-bottom: 20px; 
 }
+.operator {
+    margin-bottom: 20px;
+}
 .containPage {
     width: 75%;
     margin: auto;

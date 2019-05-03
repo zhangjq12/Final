@@ -4,13 +4,36 @@
 </div>
 <div class="containPage">
     <div class="container" id="TabAll">
+        <div id="operator">
+            <button type="button" class="btn btn-outline-success" onclick="window.location.href = '/tabs/modifytabs/{{id}}';">Modify</button>
+            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#deleteDia">
+                Delete
+            </button>
+            <div class="modal fade" id="deleteDia" tabindex="-1" role="dialog" aria-labelledby="deleteDiaTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteDiaTitle">Delete</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Do you want to delete this tab?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                            <button type="button" class="btn btn-primary" onclick={{delete}}>Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
         <div class="currentTab">
             <div class="tabTitle">
                 <h3><span id="tab">{{tab}}</span></h3>
-                <span id="rename"><a href="/tabs/modifytabs/{{id}}">Rename</a></span>
-                <span id="delete"><a href="javascript:void(0);" onclick={{delete}}>Delete</a></span>        
                 <h4><span id="song">Song name : {{song}}</span> by <span id="tabArtist">{{artist}}</span></h4>
-                <span id="tabAuthor">Posted by : {{author}}</span>
+                <span id="authorInfo">Posted by :<span id="tabAuthor">{{author}}</span></span>
             </div>
             <div class="guitarTabContent">
                 <div class="line"></div>
@@ -20,9 +43,9 @@
                     $(document).ready(function () {
                         var fun = rePlace;
                         fun();
+                        console.log(document.getElementById("uNameShow"));
                         if(document.getElementById("uNameShow") == null || document.getElementById("uNameShow").innerText != document.getElementById("tabAuthor").innerText) {
-                            document.getElementById("rename").innerHTML = "";
-                            document.getElementById("delete").innerHTML = "";
+                            document.getElementById("operator").innerHTML = "";
                         }
                     })
                 </script>

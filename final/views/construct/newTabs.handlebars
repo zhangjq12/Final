@@ -1,5 +1,5 @@
 <div id="TabModify" class="container">
-    <form method="POST" action="/tabs/{{operation}}">
+    <form method="POST" action="/tabs/{{operation}}" id="newTabs">
         <div class="form-row">
             <div class="col-md-4 mb-2">
                 <label for="tabName">Tab Name:</label>
@@ -17,12 +17,20 @@
             </div>
             <div class="col-md-4 mb-2">
                 <label for="authorName">Author Name:</label>
-                <input id="authorName" type="text" class="form-control" readonly="readonly" disabled name="authorName" value={{author}}></input>
+                <input id="authorName" type="text" class="form-control" readonly="readonly" name="authorName" value={{author}}></input>
             </div>
         </div>
         <div class="form-row">
             <textarea name="content" rows="10" cols="80" class="form-control" placeholder="Tap your tab here!">{{content}}</textarea>
             <button type="submit" class="btn btn-primary">Submit</button>
+            <script>
+            $('document').ready(function(){
+                $('#newTabs').submit(function(){
+                    $(this).find(':button[type=submit]').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
+                    $(this).find(':button[type=submit]').prop('disabled', true);
+                });
+            })
+        </script>
         </div>
     </form>
 </div>

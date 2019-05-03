@@ -20,11 +20,7 @@ router.post("/", async (req, res) => {
         if(data.length == 0) {
             const result = await users.create(request["user"], request["password"], request["firstName"], request["lastName"], request["email"]);
             const hashedCookie = key.encrypt(request["user"], 'base64');
-            //const usernameStore = request["user"];
-            //userstore.push(usernameStore);
             req.session.user = hashedCookie;
-            //res.clearCookie("user");
-            //res.cookie("user", hashedCookie, {maxAge: 360000, signed: true});
             res.render("construct/user/success", {title: "Sign Up Successful!", status: Head, user: request["user"], operation: ", Welcome the new User!"});
         }
         else

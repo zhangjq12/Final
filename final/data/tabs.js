@@ -104,8 +104,11 @@ async function getByRating() {
         return v2 - v1;
     });
     var result = [];
-    for(let x of res)
+    for(let x of res) {
         result.push(x);
+        if(result.length == 10)
+            break;
+    }
     return result;
 }
 

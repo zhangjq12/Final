@@ -39,5 +39,9 @@
         bootstrapValidate('#email', 'email: Enter a valid E-Mail!');
         bootstrapValidate(['#password', '#conPassword'], 'min:6: Your password should more than 6 charactors!|max:20: Your password should no more than 20 charactors!');
         bootstrapValidate('#conPassword', 'matches: #password: The password is not match!');
+        $('#modifyInfo').submit(function(){
+            $(this).find(':button[type=submit]').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
+            $(this).find(':button[type=submit]').prop('disabled', true);
+        });
     }); 
 </script>
