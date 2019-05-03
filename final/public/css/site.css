@@ -1,8 +1,30 @@
-#tabContent{
+#tabContent {
     white-space: pre;
 }
-#user{width: 500px;}
-#password{width: 500px;}
-#first{width: 500px;}
-#last{width: 500px;}
-#email{width: 500px;}
+#user {width: 500px;}
+#password {width: 500px;}
+#conPassword {width: 500px;}
+#first {width: 500px;}
+#last {width: 500px;}
+#email {width: 500px;}
+html {
+    height: 100%;
+}
+body {
+    height: 100vh;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+main {
+    flex: 1 0 auto;
+    padding: 20px;
+}
+#footer {
+    flex-shrink: 0;
+    padding: 20px;
+}
+footer{
+    background-color: #ffffff;
+    text-align: center;
+}

@@ -1,16 +1,40 @@
 <div class="container" id="signUpDiv">
     <p id="error">{{error}}</p>
     <form method="POST" action="/signup" id="signup">
-        <label for="user" class="sr-only">User Name:</label>
-        <input id="user" type="text" name="user" class="form-control" placeholder="Username" /></br>
-        <label for="password" class="sr-only">Password:</label>
-        <input id="password" type="password" name="password" class="form-control" placeholder="Password"/></br>
-        <label for="firstName" class="sr-only">First Name:</label>
-        <input id="first" type="text" name="firstName" class="form-control" placeholder="First Name"/></br>
-        <label for="lastName" class="sr-only">Last Name:</label>
-        <input id="last" type="text" name="lastName" class="form-control" placeholder="Last Name"/></br>
-        <label for="email" class="sr-only">Email:</label>
-        <input id="email" type="email" name="email" class="form-control" placeholder="Email"/></br>
+        <div class="form-group">
+            <label for="user" class="sr-only">User Name:</label>
+            <input id="user" type="text" name="user" class="form-control" placeholder="Username" />
+        </div>
+        <div class="form-group">
+            <label for="password" class="sr-only">Password:</label>
+            <input id="password" type="password" name="password" class="form-control" placeholder="Password"/>
+        </div>
+        <div class="form-group">
+            <label for="conPassword" class="sr-only">Confirm Password:</label>
+            <input id="conPassword" type="password" name="conPassword" class="form-control" placeholder="Confirm"/>
+        </div>
+        <div class="form-group">
+            <label for="firstName" class="sr-only">First Name:</label>
+            <input id="first" type="text" name="firstName" class="form-control" placeholder="First Name"/>
+        </div>
+        <div class="form-group">
+            <label for="lastName" class="sr-only">Last Name:</label>
+            <input id="last" type="text" name="lastName" class="form-control" placeholder="Last Name"/>
+        </div>
+        <div class="form-group">
+            <label for="email" class="sr-only">Email:</label>
+            <input id="email" type="email" name="email" class="form-control" placeholder="Email"/>
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        bootstrapValidate(['#user', '#password', '#conPassword', '#first', '#last', '#email'], 'required: This can not be empty!');
+        bootstrapValidate('#email', 'email: Enter a valid E-Mail!');
+        bootstrapValidate('#user', 'min:6: Your username should more than 6 charactors!|max:20: Your username should no more than 20 charactors!');
+        bootstrapValidate(['#password', '#conPassword'], 'min:6: Your password should more than 6 charactors!|max:20: Your password should no more than 20 charactors!');
+        bootstrapValidate('#conPassword', 'matches: #password: The password is not match!');
+    }); 
+</script>

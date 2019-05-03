@@ -5,16 +5,39 @@
             <label for="portrait">Your Head Portrait:</label>
             <input type="file" class="form-control-file" id="portrait" name="portrait" accept="image/*" required>
         </div>
-        <label for="userName">User Name:</label>
-        <input id="user" class="form-control" type="text" name="userName" value={{user}} disabled></br>
-        <label for="password">Password:</label>
-        <input id="password" class="form-control" type="password" name="password" required></br>
-        <label for="firstName">First Name:</label>
-        <input id="first" class="form-control" type="text" name="firstName" value={{first}} required></br>
-        <label for="lastName">Last Name:</label>
-        <input id="last" class="form-control" type="text" name="lastName" value={{last}} required></br>
-        <label for="email">Email:</label>
-        <input id="email" class="form-control" type="email" name="email" value={{email}} required></br>
+        <div class="form-group">
+            <label for="userName">User Name:</label>
+            <input id="user" class="form-control" type="text" name="userName" value={{user}} disabled></br>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input id="password" class="form-control" type="password" name="password" required></br>
+        </div>
+        <div class="form-group">
+            <label for="conPassword">Confirm Password:</label>
+            <input id="conPassword" type="password" name="conPassword" class="form-control" placeholder="Confirm"/>
+        </div>
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input id="first" class="form-control" type="text" name="firstName" value={{first}} required></br>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input id="last" class="form-control" type="text" name="lastName" value={{last}} required></br>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input id="email" class="form-control" type="email" name="email" value={{email}} required></br>
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        bootstrapValidate(['#portrait', '#user', '#password', '#conPassword', '#first', '#last', '#email'], 'required: This can not be empty!');
+        bootstrapValidate('#email', 'email: Enter a valid E-Mail!');
+        bootstrapValidate(['#password', '#conPassword'], 'min:6: Your password should more than 6 charactors!|max:20: Your password should no more than 20 charactors!');
+        bootstrapValidate('#conPassword', 'matches: #password: The password is not match!');
+    }); 
+</script>
