@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon app.js"
   },
   "author": "Jiaqian Zhang 10440712",
   "license": "ISC",
@@ -23,5 +23,8 @@
     "node-rsa": "^1.0.5",
     "password-hash": "^1.2.2",
     "popper.js": "^1.15.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.0"
   }
 }
