@@ -28,15 +28,15 @@ router.get("/", async (req, res) => {
         var ifLike = "";
         var ifdisLike = "";
         if(likeThis == true) {
-            ifLike = "Thumbed!!:";
+            ifLike = "likefilled.png";
         }
         else
-            ifLike = "Thumbs up:";
+            ifLike = "like.png";
         if(disLike) {
-            ifdisLike = "It's so bad:";
+            ifdisLike = "dislikefilled.png";
         }
         else
-            ifdisLike = "Thumbs down:";
+            ifdisLike = "dislike.png";
         const commentsData = await comments.getTab(req.query.tabId);
         const deleteId = 'deleteTabs("' + req.query.tabId + '");';
         res.render("construct/tabs/show", {title: data[0]["tabName"], status: Head, tab: data[0]["tabName"], id: req.query.tabId, delete: deleteId, song: data[0]["songName"], artist: data[0]["artistName"], author: data[0]["author"], content: data[0]["Content"], thumbsup: data[0]["Rating"]["thumbsup"], thumbsdown: data[0]["Rating"]["thumbsdown"], thumbstatus: ifLike, badstatus: ifdisLike, userName: auth, comments: commentsData});

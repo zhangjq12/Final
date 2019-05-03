@@ -11,7 +11,6 @@ div.tabTitle {
     margin: auto;
 }
 div.currentTab {
-    
     border: 1px solid #c0c0c0;
     padding: 60px;
     margin-bottom: 30px;
@@ -29,8 +28,15 @@ div.guitarTabContent{
     margin-top: 40px;
     margin-bottom: 40px;
 }
-
+#tabContent {
+    padding: 0;
+}
 .rating {
     float: right;
     margin-bottom: 30px;
+}
+
+#like,#dislike {
+    height: 30px;
+    width: 30px;
 }

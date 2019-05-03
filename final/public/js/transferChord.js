@@ -1,5 +1,5 @@
 function rePlace() {
-    var text = document.getElementById("tabContent").innerText;
+    var text = document.getElementById("tabContent").innerHTML;
     //var newSt = text;
 
     var boo = true;
@@ -88,6 +88,7 @@ function rePlace() {
                     myhtml += '<a href="#" data-toggle="tooltip" data-html="true" title data-original-title="<img src=&quot;/public/image/Gm.png&quot; />">('+ str +')</a>';
                     break;
                 default:
+                    myhtml += '(' + str + ')';
             }
             str = "";
             boo = true;
@@ -95,6 +96,10 @@ function rePlace() {
         }
         if(!boo) {
             str = str + text[i];
+        }
+        else 
+        if(text[i] =='\n') {
+            myhtml += '</br>';
         }
         else {
             myhtml += text[i];

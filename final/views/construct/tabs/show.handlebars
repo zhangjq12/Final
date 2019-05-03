@@ -43,11 +43,10 @@
                     $(document).ready(function () {
                         var fun = rePlace;
                         fun();
-                        console.log(document.getElementById("uNameShow"));
                         if(document.getElementById("uNameShow") == null || document.getElementById("uNameShow").innerText != document.getElementById("tabAuthor").innerText) {
                             document.getElementById("operator").innerHTML = "";
                         }
-                    })
+                    });
                 </script>
                 <script>
                     window.onload = function(){
@@ -59,8 +58,8 @@
             </div>
         </div>
         <div class="rating">
-            <span id="thumbsup"><a href="javascript:void(0);" onclick="var s=judge(1);like(s);">{{thumbstatus}}</a>{{thumbsup}}</span>
-            <span id="thumbsdown"><a href="javascript:void(0);" onclick="var s=judge(2);thumbsdown(s);">{{badstatus}}</a>{{thumbsdown}}</span>
+            <span id="thumbsup"><a href="javascript:void(0);" onclick="var s=judge(1);like(s);"><img id="like" src="/public/image/like/{{thumbstatus}}"></a>{{thumbsup}}</span>
+            <span id="thumbsdown"><a href="javascript:void(0);" onclick="var s=judge(2);thumbsdown(s);"><img id="dislike" src="/public/image/like/{{badstatus}}"></a>{{thumbsdown}}</span>
             <span id="likeByYou">{{likeByUser}}</span>
             <iframe name="iframeStyle" style="display:none;"></iframe>
         </div>

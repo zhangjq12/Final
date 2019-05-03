@@ -24,13 +24,13 @@
             <textarea name="content" rows="10" cols="80" class="form-control" placeholder="Tap your tab here!">{{content}}</textarea>
             <button type="submit" class="btn btn-primary">Submit</button>
             <script>
-            $('document').ready(function(){
-                $('#newTabs').submit(function(){
-                    $(this).find(':button[type=submit]').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
-                    $(this).find(':button[type=submit]').prop('disabled', true);
-                });
-            })
-        </script>
+                $('document').ready(function(){
+                    $('#newTabs').submit(function(){
+                        $(this).find(':button[type=submit]').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
+                        $(this).find(':button[type=submit]').prop('disabled', true);
+                    });
+                })
+            </script>
         </div>
     </form>
 </div>

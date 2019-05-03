@@ -1,15 +1,17 @@
-<div class="container" id={{id}}>   
-    <p>You need to log in first!</p>
-    <span id="totalSecond">5</span>
-    <span id="second"> Seconds</span>
-    <span id="next"> later to go back to the tab page!</span></br>
+<div class="container">   
+    <div class="failedPostComments" id={{id}}>
+        <p>You need to log in first!</p>
+        <span id="totalSecond">5</span>
+        <span id="second"> Seconds</span>
+        <span id="next"> later to go back to the tab page!</span>
+    </div>
 </div>
 
 <script language="javascript" src="/public/js/autourl.js"> </script>
 <script language="javascript" type="text/javascript">
     window.onload = function () {
         var fun = auto;
-        const ID = document.getElementsByClassName("successPostComments")[0].getAttribute("id");
+        const ID = document.getElementsByClassName("failedPostComments")[0].getAttribute("id");
         fun("/tabs/?tabId=" + ID);
     }
 </script>

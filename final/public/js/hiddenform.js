@@ -6,20 +6,18 @@ function deleteTabs(text) {
 function thumbsdown(text) {
     const json = {"name": document.getElementById("tab").innerText, "operation": text};
     const res = document.getElementById("thumbsdown").innerText;
-    var content = res.substring(0, 12);
-    var number = parseInt(res.substring(12));
-    console.log(text);
-    console.log(number);
+    var content = "";
+    var number = res;
     if(text == "bad") {
-        content = "It's so bad:";
+        content = "dislikefilled.png";
         number ++;
-        document.getElementById("thumbsdown").innerHTML = '<a href="javascript:void(0);" onclick="var s=judge(2);thumbsdown(s);">' + content + "</a>" + number.toString();
+        document.getElementById("thumbsdown").innerHTML = '<a href="javascript:void(0);" onclick="var s=judge(2);thumbsdown(s);"><img id="dislike" src="/public/image/like/' + content + '"></a>' + number.toString();
     }
     else
     if(text == "nobad") {
-        content = "Thumbs down:";
+        content = "dislike.png";
         number --;
-        document.getElementById("thumbsdown").innerHTML = '<a href="javascript:void(0);" onclick="var s=judge(2);thumbsdown(s);">' + content + "</a>" + number.toString();
+        document.getElementById("thumbsdown").innerHTML = '<a href="javascript:void(0);" onclick="var s=judge(2);thumbsdown(s);"><img id="dislike" src="/public/image/like/' + content + '"></a>' + number.toString();
     }
     doFormRequest("/tabs/thumbsdown", "post", "iframeStyle", json);
 }
@@ -27,41 +25,40 @@ function thumbsdown(text) {
 function like(text) {
     const json = {"name": document.getElementById("tab").innerText, "operation": text};
     const res = document.getElementById("thumbsup").innerText;
-    var content = res.substring(0, 10);
-    var number = parseInt(res.substring(10));
+    var content = ""
+    var number = res;
     if(text == "good") {
-        content = "Thumbed!!:"
+        content = "likefilled.png"
         number ++;
-        document.getElementById("thumbsup").innerHTML = '<a href="javascript:void(0);" onclick="var s=judge(1);like(s);">' + content + "</a>" + number.toString();
+        document.getElementById("thumbsup").innerHTML = '<a href="javascript:void(0);" onclick="var s=judge(1);like(s);"><img id="like" src="/public/image/like/' + content + '"></a>' + number.toString();
     }
     else
     if(text == "nogood") {
-        content = "Thumbs up:"
+        content = "like.png"
         number --;
-        document.getElementById("thumbsup").innerHTML = '<a href="javascript:void(0);" onclick="var s=judge(1);like(s);">' + content + "</a>" + number.toString();
+        document.getElementById("thumbsup").innerHTML = '<a href="javascript:void(0);" onclick="var s=judge(1);like(s);"><img id="like" src="/public/image/like/' + content + '"></a>' + number.toString();
     }
     doFormRequest("/tabs/like", "post", "iframeStyle", json);
 }
 
 function judge(text) {
     if(text == 1) {
-        const res1 = document.getElementById("thumbsup").innerText;
-        const content1 = res1.substring(0, 9);
-        if(content1 === "Thumbed!!")
+        const res1 = document.getElementById("like").getAttribute("src");
+        const content1 = res1.substring(19);
+        if(content1 === "likefilled.png")
             return "nogood";
         else
-        if(content1 === "Thumbs up")
+        if(content1 === "like.png")
             return "good";
     }
     else 
     if(text == 2) {
-        const res2 = document.getElementById("thumbsdown").innerText;
-        const content2 = res2.substring(0, 12);
-        console.log(content2);
-        if(content2 === "Thumbs down:")
+        const res2 = document.getElementById("dislike").getAttribute("src");
+        const content2 = res2.substring(19);
+        if(content2 === "dislike.png")
             return "bad";
         else
-        if(content2 === "It's so bad:")
+        if(content2 === "dislikefilled.png")
             return "nobad";
     }
 }
