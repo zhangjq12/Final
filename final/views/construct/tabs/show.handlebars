@@ -38,6 +38,7 @@
             <div class="guitarTabContent">
                 <div class="line"></div>
                 <span id="tabContent">{{content}}</span>
+                <div id="shareTab"></div>
                 <script language="javascript" src="/public/js/transferChord.js"></script>
                 <script language="javascript" type="text/javascript">
                     $(document).ready(function () {
@@ -46,6 +47,12 @@
                         if(document.getElementById("uNameShow") == null || document.getElementById("uNameShow").innerText != document.getElementById("tabAuthor").innerText) {
                             document.getElementById("operator").innerHTML = "";
                         }
+                        $("#shareTab").jsSocials({
+                            showLabel: false,
+                            showCount: false,
+                            shareIn: "popup",
+                            shares: ["twitter", "facebook", "googleplus", "whatsapp"]
+                        });
                     });
                 </script>
                 <script>

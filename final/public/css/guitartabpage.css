@@ -40,3 +40,8 @@ div.guitarTabContent{
     height: 30px;
     width: 30px;
 }
+
+#shareTab {
+    text-align: right;
+    padding-top: 20px;
+}
