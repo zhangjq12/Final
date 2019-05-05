@@ -10,6 +10,7 @@
   "author": "Jiaqian Zhang 10440712",
   "license": "ISC",
   "dependencies": {
+    "@khanacademy/tota11y": "^0.2.0",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.3.1",
     "cookie-parser": "^1.4.4",

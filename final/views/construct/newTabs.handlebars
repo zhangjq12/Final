@@ -21,7 +21,8 @@
             </div>
         </div>
         <div class="form-row">
-            <textarea name="content" rows="10" cols="80" class="form-control" placeholder="Tap your tab here!">{{content}}</textarea>
+            <label for="content" class="sr-only">Tab Content:</label>
+            <textarea id="content" name="content" rows="10" cols="80" class="form-control" placeholder="Tap your tab here!">{{content}}</textarea>
             <button type="submit" class="btn btn-primary">Submit</button>
             <script>
                 $('document').ready(function(){

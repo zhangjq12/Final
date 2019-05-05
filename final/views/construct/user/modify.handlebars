@@ -1,33 +1,34 @@
+<h4></h4>
 <div class="container" id="modifyInfoDiv">
     <p id="error">{{error}}</p>
     <form id="modifyInfoForm" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="portrait">Your Head Portrait...</label>
+            <label for="modifyPortrait">Your Head Portrait...</label>
             <input type="file" class="form-control-file" id="modifyPortrait" name="portrait" accept="image/*" required>
             <p id="fileRestrict" style="color:red;">You should upload your portrait</p>
         </div>
         <div class="form-group">
-            <label for="userName">User Name:</label>
+            <label for="modifyUser">User Name:</label>
             <input id="modifyUser" class="form-control" type="text" name="userName" value={{user}} disabled></br>
         </div>
         <div class="form-group">
-            <label for="password">Password:</label>
+            <label for="modifyPassword">Password:</label>
             <input id="modifyPassword" class="form-control" type="password" name="password" required></br>
         </div>
         <div class="form-group">
-            <label for="conPassword">Confirm Password:</label>
+            <label for="modifyConPassword">Confirm Password:</label>
             <input id="modifyConPassword" type="password" name="conPassword" class="form-control" placeholder="Confirm" required>
         </div>
         <div class="form-group">
-            <label for="firstName">First Name:</label>
+            <label for="modifyFirst">First Name:</label>
             <input id="modifyFirst" class="form-control" type="text" name="firstName" value={{first}} required></br>
         </div>
         <div class="form-group">
-            <label for="lastName">Last Name:</label>
+            <label for="modifyLast">Last Name:</label>
             <input id="modifyLast" class="form-control" type="text" name="lastName" value={{last}} required></br>
         </div>
         <div class="form-group">
-            <label for="email">Email:</label>
+            <label for="modifyEmail">Email:</label>
             <input id="modifyEmail" class="form-control" type="email" name="email" value={{email}} required></br>
         </div>
         <button type="submit" id="modifySubmit" data-toggle="modal" data-target="#modifyinfoDia" class="btn btn-primary" disabled="true">Submit</button>

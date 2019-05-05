@@ -37,8 +37,8 @@
         <div class="card-body" id="currentTab">
             <div class="container" id="tabTitle">
                 <h4 class="card-title"><span id="tab">{{tab}}</span></h3>
-                <h5 class="card-subtitle mb-2 text-muted"><span id="song">-Song name : {{song}}</span> by <span id="tabArtist">{{artist}}</span></h4>
-                <p class="card-subtitle mb-2 text-muted"><span id="authorInfo">Posted by :<span id="tabAuthor">{{author}}</span></span></p>
+                <h5 class="card-subtitle mb-2"><span id="song">-Song name : {{song}}</span> by <span id="tabArtist">{{artist}}</span></h4>
+                <p class="card-subtitle mb-2"><span id="authorInfo">Posted by :<span id="tabAuthor">{{author}}</span></span></p>
             </div>
             <div class="container" id="guitarTabContent">
                 <!-- <div id="line"></div> -->
@@ -71,8 +71,8 @@
             </div>
         </div>
         <div class="card-footer" id="rating">
-            <span id="thumbsup"><a href="javascript:void(0);" onclick="var s=judge(1);like(s);"><img id="like" src="/public/image/like/{{thumbstatus}}"></a>{{thumbsup}}</span>
-            <span id="thumbsdown"><a href="javascript:void(0);" onclick="var s=judge(2);thumbsdown(s);"><img id="dislike" src="/public/image/like/{{badstatus}}"></a>{{thumbsdown}}</span>
+            <span id="thumbsup"><a href="javascript:void(0);" onclick="var s=judge(1);like(s);"><img id="like" src="/public/image/like/{{thumbstatus}}" alt="thumbsup"></a>{{thumbsup}}</span>
+            <span id="thumbsdown"><a href="javascript:void(0);" onclick="var s=judge(2);thumbsdown(s);"><img id="dislike" src="/public/image/like/{{badstatus}}" alt="thumbsdown"></a>{{thumbsdown}}</span>
             <span id="likeByYou">{{likeByUser}}</span>
             <iframe name="iframeStyle" style="display:none;"></iframe>
         </div>
@@ -102,7 +102,7 @@
             <input name="commentAuthor" type="hidden" value={{userName}}>
             <input name="tabId" type="hidden" value={{id}}>
             <label for="content">Write your comment:</label>
-            <textarea name="content" rows="5" cols="80" class="form-control" ></textarea></br>
+            <textarea id="content" name="content" rows="5" cols="80" class="form-control" ></textarea></br>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
