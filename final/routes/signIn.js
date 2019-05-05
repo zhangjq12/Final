@@ -31,10 +31,12 @@ router.post("/", async (req, res) => {
                 req.session.cookie.maxAge = 60 * 1000 * 60 * 24 * 7;
                 req.session.user = hashedCookie;
             }
-            res.render("construct/user/success", {title: "Sign In Successful!", status: Head, user: request["user"], operation: ", Welcome Back!"});
+            res.send({"user": request["user"], "status": "success"});
+            //res.render("construct/user/success", {title: "Sign In Successful!", status: Head, user: request["user"], operation: ", Welcome Back!"});
         }
         else {
-            res.render("construct/signin", {title: "Sign In", status: Head, error: "Username or password error!"});
+            res.send({"user": request["user"], "status": "notmatched"});
+            //res.render("construct/signin", {title: "Sign In", status: Head, error: "Username or password error!"});
         }
     }
     catch(e) {

@@ -3,42 +3,69 @@
     <form method="POST" action="/modifyInfo" id="modifyInfo" enctype="multipart/form-data">
         <div class="form-group">
             <label for="portrait">Your Head Portrait:</label>
-            <input type="file" class="form-control-file" id="portrait" name="portrait" accept="image/*" required>
+            <input type="file" class="form-control-file" id="modifyPortrait" name="portrait" accept="image/*" required>
         </div>
         <div class="form-group">
             <label for="userName">User Name:</label>
-            <input id="user" class="form-control" type="text" name="userName" value={{user}} disabled></br>
+            <input id="modifyUser" class="form-control" type="text" name="userName" value={{user}} disabled></br>
         </div>
         <div class="form-group">
             <label for="password">Password:</label>
-            <input id="password" class="form-control" type="password" name="password" required></br>
+            <input id="modifyPassword" class="form-control" type="password" name="password" required></br>
         </div>
         <div class="form-group">
             <label for="conPassword">Confirm Password:</label>
-            <input id="conPassword" type="password" name="conPassword" class="form-control" placeholder="Confirm"/>
+            <input id="modifyConPassword" type="password" name="conPassword" class="form-control" placeholder="Confirm" required>
         </div>
         <div class="form-group">
             <label for="firstName">First Name:</label>
-            <input id="first" class="form-control" type="text" name="firstName" value={{first}} required></br>
+            <input id="modifyFirst" class="form-control" type="text" name="firstName" value={{first}} required></br>
         </div>
         <div class="form-group">
             <label for="lastName">Last Name:</label>
-            <input id="last" class="form-control" type="text" name="lastName" value={{last}} required></br>
+            <input id="modifyLast" class="form-control" type="text" name="lastName" value={{last}} required></br>
         </div>
         <div class="form-group">
             <label for="email">Email:</label>
-            <input id="email" class="form-control" type="email" name="email" value={{email}} required></br>
+            <input id="modifyEmail" class="form-control" type="email" name="email" value={{email}} required></br>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" id="modifySubmit" class="btn btn-primary" disabled="true">Submit</button>
     </form>
 </div>
 
 <script type="text/javascript">
     $(document).ready(function(){
-        bootstrapValidate(['#portrait', '#user', '#password', '#conPassword', '#first', '#last', '#email'], 'required: This can not be empty!');
-        bootstrapValidate('#email', 'email: Enter a valid E-Mail!');
-        bootstrapValidate(['#password', '#conPassword'], 'min:6: Your password should more than 6 charactors!|max:20: Your password should no more than 20 charactors!');
-        bootstrapValidate('#conPassword', 'matches: #password: The password is not match!');
+        var empty = false;
+        var emailValid = true;
+        var passwordMin = false;
+        var passwordMax = false;
+        var conpassMatch = false;
+        bootstrapValidate(['#modifyPassword', '#modifyConPassword', '#modifyFirst', '#modifyLast', '#modifyEmail'], 'required: This can not be empty!', function(isEmpty) {
+            if(isEmpty == true) {
+                empty = true; 
+                if(empty && emailValid && passwordMax && passwordMin && conpassMatch)
+                    $("#modifySubmit").attr('disabled', false);
+                else
+                    $("#modifySubmit").attr('disabled', true);
+            } 
+            else 
+            if(isEmpty == 0) {
+                empty = false;
+                $("#modifySubmit").attr('disabled', true);
+            }
+        });
+        bootstrapValidate('#modifyEmail', 'email: Enter a valid E-Mail!', function(isEmail) { if(isEmail) {emailValid = true; if(empty && emailValid && passwordMax && passwordMin && conpassMatch)
+            $("#modifySubmit").attr('disabled', false); else
+            $("#modifySubmit").attr('disabled', true); } else {emailValid = false; $("#modifySubmit").attr('disabled', "true");}});
+        bootstrapValidate('#modifyPassword', 'min:6: Your password should more than 6 charactors!', function(isPassword) { if(isPassword) {passwordMin = true; if(empty && emailValid && passwordMax && passwordMin && conpassMatch)
+            $("#modifySubmit").attr('disabled', false); else
+            $("#modifySubmit").attr('disabled', true);} else {passwordMin = false; $("#modifySubmit").attr('disabled', "true");}});
+        bootstrapValidate('#modifyPassword', 'max:20: Your password should no more than 20 charactors!', function(isPassword) { if(isPassword) {passwordMax = true; if(empty && emailValid && passwordMax && passwordMin && conpassMatch)
+            $("#modifySubmit").attr('disabled', false); else
+            $("#modifySubmit").attr('disabled', true);} else {passwordMax = false; $("#modifySubmit").attr('disabled', "true");}});
+        bootstrapValidate('#modifyConPassword', 'matches: #modifyPassword: The password is not match!', function(isMatched) { if(isMatched) {conpassMatch = true; if(empty && emailValid && passwordMax && passwordMin && conpassMatch)
+            $("#modifySubmit").attr('disabled', false); else
+            $("#modifySubmit").attr('disabled', true);} else {conpassMatch = false; $("#modifySubmit").attr('disabled', "true");}});
         $('#modifyInfo').submit(function(){
             $(this).find(':button[type=submit]').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
             $(this).find(':button[type=submit]').prop('disabled', true);

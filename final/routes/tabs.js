@@ -183,7 +183,7 @@ router.get("/mytabs", async (req, res) => {
             res.render("construct/tabs/my", {title: "My Tabs", status: Head, data: data, info: info, favorite: favtabs});
         }
         else
-            res.render("construct/tabs/fail", {title: "Error", status: Head, error: "You don't have permission to look his information!"});
+            res.render("construct/tabs/fail", {title: "Error", status: Head, error: "You don't have permission to look its information!"});
     }
     catch(e) {
         res.render("construct/error", {title: "Error!", status: Head});

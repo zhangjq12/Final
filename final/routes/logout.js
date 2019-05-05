@@ -5,9 +5,10 @@ const Logout = require("./middleware/Logout");
 
 router.get("/", Logout, async (req, res) => {
     const Head = await head(req);
-    res.clearCookie("user");
+    //res.clearCookie("user");
     req.session.destroy();
-    res.render("construct/user/logout", {title: "Log Out Successful!", status: Head});
+    res.send({"do": "logout"});
+    //res.render("construct/user/logout", {title: "Log Out Successful!", status: Head});
 });
 
 module.exports = router;

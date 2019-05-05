@@ -24,12 +24,18 @@ router.post("/", upload.single('portrait'), async (req, res) => {
     const fileName = req.file.filename;
     try {
         var res1, res2, res3, res4;
-        if(request["password"] != undefined)
+        if(request["password"] != undefined && request["conPassword"] == request["password"])
             res1 = await users.modifyPassword(auth, request["password"]);
+        else
+            throw "e";
         if(request["email"] != undefined)
             res2 = await users.modifyEmail(auth, request["email"]);
-        if(request["firstName"] != undefined && request["lastName"])
+        else
+            throw "e";
+        if(request["firstName"] != undefined && request["lastName"] != undefined)
             res3 = await users.modifyName(auth, request["firstName"], request["lastName"]);
+        else
+            throw "e";
         res4 = await users.modifyPortrait(auth, fileName);
         res.render("construct/user/success", {title: "Modify Successful!", status: Head, user: auth, operation: "'s Information has been modified!"});
     }

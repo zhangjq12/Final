@@ -17,11 +17,11 @@ function redirect(URL) {
         if (navigator.appName.indexOf("Explorer") > -1) { 
             document.getElementById('totalSecond').innerText = second--; 
             if(second == "0")
-                document.getElementById('second').innerText = "Second";
+                document.getElementById('second').innerText = " Second";
         } else { 
             document.getElementById('totalSecond').textContent = second--; 
             if(second == "0")
-                document.getElementById('second').textContent = "Second";
+                document.getElementById('second').textContent = " Second";
         } 
     } 
 } 
