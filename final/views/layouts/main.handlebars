@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/public/css/site.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../../public/css/jssocials.css" />
     <link rel="stylesheet" type="text/css" href="../../public/css/jssocials-theme-minima.css" />
@@ -67,63 +68,66 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" id="signinBody">
-                    <div class="container" id="signinError">
+                <form id="signinForm">
+                    <div class="modal-body" id="signinBody">
+                        <div class="container" id="signinError">
+                        </div>
+                        <div class="form-group">
+                            <label for="user" class="sr-only">Username:</label>
+                            <input id="signinUser" type="text" name="user" class="form-control" placeholder="Username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="sr-only">Password:</label>
+                            <input id="signinPassword" class="form-control" type="password" name="password" placeholder="Password" required>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="rememberme" name="rememberme" value="" >
+                            <label class="custom-control-label" for="rememberme">Remember me</label>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="user" class="sr-only">Username:</label>
-                        <input id="signinUser" type="text" name="user" class="form-control" placeholder="Username" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password" class="sr-only">Password:</label>
-                        <input id="signinPassword" class="form-control" type="password" name="password" placeholder="Password" required>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="rememberme" name="rememberme" value="" >
-                        <label class="form-check-label" for="rememberme">Remember me</label>
-                    </div>
-                </div>
-                <div class="modal-footer" id="signinFooter">
-                    <button type="button" id="signInSubmit" class="btn btn-primary">Submit</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <script>
-                        $("#signInSubmit").click(function() {
-                            $("#signInSubmit").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
-                            $('#signInSubmit').prop('disabled', true);
+                    <div class="modal-footer" id="signinFooter">
+                        <button type="submit" id="signInSubmit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <script>
+                            $("#signinForm").submit(function(event) {
+                                event.preventDefault();
+                                $("#signInSubmit").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
+                                $('#signInSubmit').prop('disabled', true);
 
-                            $.ajax({
-                                type: "post",
-                                url: "/signin",
-                                dataType: "json",
-                                data: {
-                                    user: $("#signinUser").val(),
-                                    password: $("#signinPassword").val(),
-                                    rememberme: $("#rememberme").val()
-                                },
-                                success: function(res) {
-                                    if(res["status"] == "success") {
-                                        $("#signinFooter").hide();
-                                        $("#signinBody").html('<div class="container"><p>' + res["user"] + ', welcome back!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back homepage!</span></div>');
-                                        jQuery.getScript("/public/js/autourl.js").done(function(){
-                                            var fun = auto;
-                                            fun("/");
-                                        })
+                                $.ajax({
+                                    type: "post",
+                                    url: "/signin",
+                                    dataType: "json",
+                                    data: {
+                                        user: $("#signinUser").val(),
+                                        password: $("#signinPassword").val(),
+                                        rememberme: $("#rememberme").val()
+                                    },
+                                    success: function(res) {
+                                        if(res["status"] == "success") {
+                                            $("#signinFooter").hide();
+                                            $("#signinBody").html('<div class="container"><p>' + res["user"] + ', welcome back!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back homepage!</span></div>');
+                                            jQuery.getScript("/public/js/autourl.js").done(function(){
+                                                var fun = auto;
+                                                fun("/");
+                                            })
+                                        }
+                                        else
+                                        if(res["status"] == "notmatched") {
+                                            $("#signinError").html('<p>Username or password error!</p>');
+                                            $("#signinError").css('color', 'red');
+                                            $("#signInSubmit").html('Submit');
+                                            $('#signInSubmit').prop('disabled', false);
+                                        }
+                                    },
+                                    error: function(err) {
+                                        location.href = "/error";
                                     }
-                                    else
-                                    if(res["status"] == "notmatched") {
-                                        $("#signinError").html('<p>Username or password error!</p>');
-                                        $("#signinError").css('color', 'red');
-                                        $("#signInSubmit").html('Submit');
-                                        $('#signInSubmit').prop('disabled', false);
-                                    }
-                                },
-                                error: function(err) {
-                                    location.href = "/error";
-                                }
-                            });
-                        })
-                    </script>
-                </div>
+                                });
+                            })
+                        </script>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -136,143 +140,146 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" id="signupBody">
-                    <div class="container" id="signupError">
+                <form id="signupForm">
+                    <div class="modal-body" id="signupBody">
+                        <div class="container" id="signupError">
+                        </div>
+                        <div class="form-group">
+                            <label for="user" class="sr-only">User Name:</label>
+                            <input id="user" type="text" name="user" class="form-control" placeholder="Username" />
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="sr-only">Password:</label>
+                            <input id="password" type="password" name="password" class="form-control" placeholder="Password"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="conPassword" class="sr-only">Confirm Password:</label>
+                            <input id="conPassword" type="password" name="conPassword" class="form-control" placeholder="Confirm"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstName" class="sr-only">First Name:</label>
+                            <input id="first" type="text" name="firstName" class="form-control" placeholder="First Name"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName" class="sr-only">Last Name:</label>
+                            <input id="last" type="text" name="lastName" class="form-control" placeholder="Last Name"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="sr-only">Email:</label>
+                            <input id="email" type="email" name="email" class="form-control" placeholder="Email"/>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="user" class="sr-only">User Name:</label>
-                        <input id="user" type="text" name="user" class="form-control" placeholder="Username" />
-                    </div>
-                    <div class="form-group">
-                        <label for="password" class="sr-only">Password:</label>
-                        <input id="password" type="password" name="password" class="form-control" placeholder="Password"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="conPassword" class="sr-only">Confirm Password:</label>
-                        <input id="conPassword" type="password" name="conPassword" class="form-control" placeholder="Confirm"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="firstName" class="sr-only">First Name:</label>
-                        <input id="first" type="text" name="firstName" class="form-control" placeholder="First Name"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName" class="sr-only">Last Name:</label>
-                        <input id="last" type="text" name="lastName" class="form-control" placeholder="Last Name"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="sr-only">Email:</label>
-                        <input id="email" type="email" name="email" class="form-control" placeholder="Email"/>
-                    </div>
-                </div>
-                <div class="modal-footer" id="signupFooter">
-                    <button type="button" id="signUpSubmit" class="btn btn-primary" disabled="true">Submit</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <script>
-                        var empty = false;
-                        var emailValid = false;
-                        var userMin = false;
-                        var userMax = false;
-                        var passwordMin = false;
-                        var passwordMax = false;
-                        var conpassMatch = false;
-                            bootstrapValidate(['#user', '#password', '#conPassword', '#first', '#last', '#email'], 'required: This can not be empty!', function(isEmpty) { 
-                                if(isEmpty) {
-                                    empty = true; 
-                                    if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
-                                        $("#signUpSubmit").attr('disabled', false);
-                                    else
+                    <div class="modal-footer" id="signupFooter">
+                        <button type="submit" id="signUpSubmit" class="btn btn-primary" disabled="true">Submit</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <script>
+                            var empty = false;
+                            var emailValid = false;
+                            var userMin = false;
+                            var userMax = false;
+                            var passwordMin = false;
+                            var passwordMax = false;
+                            var conpassMatch = false;
+                                bootstrapValidate(['#user', '#password', '#conPassword', '#first', '#last', '#email'], 'required: This can not be empty!', function(isEmpty) { 
+                                    if(isEmpty) {
+                                        empty = true; 
+                                        if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
+                                            $("#signUpSubmit").attr('disabled', false);
+                                        else
+                                            $("#signUpSubmit").attr('disabled', true);
+                                    } 
+                                    else {
+                                        empty = false;
                                         $("#signUpSubmit").attr('disabled', true);
-                                } 
-                                else {
-                                    empty = false;
-                                    $("#signUpSubmit").attr('disabled', true);
-                                }
-                            });
-                            bootstrapValidate('#email', 'email: Enter a valid E-Mail!', function(isEmail) { if(isEmail) {emailValid = true; if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
-                                $("#signUpSubmit").attr('disabled', false); else
-                                $("#signUpSubmit").attr('disabled', true); } else {emailValid = false; $("#signUpSubmit").attr('disabled', true);}});
-                            bootstrapValidate('#user', 'min:6: Your username should more than 6 charactors!', function(isUser) { 
-                                if(isUser) {
-                                    userMin = true; 
-                                    if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
-                                        $("#signUpSubmit").attr('disabled', false); 
-                                    else
+                                    }
+                                });
+                                bootstrapValidate('#email', 'email: Enter a valid E-Mail!', function(isEmail) { if(isEmail) {emailValid = true; if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
+                                    $("#signUpSubmit").attr('disabled', false); else
+                                    $("#signUpSubmit").attr('disabled', true); } else {emailValid = false; $("#signUpSubmit").attr('disabled', true);}});
+                                bootstrapValidate('#user', 'min:6: Your username should more than 6 charactors!', function(isUser) { 
+                                    if(isUser) {
+                                        userMin = true; 
+                                        if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
+                                            $("#signUpSubmit").attr('disabled', false); 
+                                        else
+                                            $("#signUpSubmit").attr('disabled', true);
+                                    } 
+                                    else {
+                                        userMin = false; 
                                         $("#signUpSubmit").attr('disabled', true);
-                                } 
-                                else {
-                                    userMin = false; 
-                                    $("#signUpSubmit").attr('disabled', true);
-                                }
-                            });
-                            bootstrapValidate('#user', 'max:20: Your username should no more than 20 charactors!', function(isUser) { 
-                                if(isUser) {
-                                    userMax = true; 
-                                    if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
-                                        $("#signUpSubmit").attr('disabled', false); 
-                                    else
+                                    }
+                                });
+                                bootstrapValidate('#user', 'max:20: Your username should no more than 20 charactors!', function(isUser) { 
+                                    if(isUser) {
+                                        userMax = true; 
+                                        if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
+                                            $("#signUpSubmit").attr('disabled', false); 
+                                        else
+                                            $("#signUpSubmit").attr('disabled', true);
+                                    } 
+                                    else {
+                                        userMax = false; 
                                         $("#signUpSubmit").attr('disabled', true);
-                                } 
-                                else {
-                                    userMax = false; 
-                                    $("#signUpSubmit").attr('disabled', true);
-                                }
-                            });
-                            bootstrapValidate('#conPassword', 'matches: #password: The password is not match!', function(isMatched) { if(isMatched) {conpassMatch = true; if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
-                                $("#signUpSubmit").attr('disabled', false); else
-                                $("#signUpSubmit").attr('disabled', true);} else {conpassMatch = false; $("#signUpSubmit").attr('disabled', true);}});
-                            bootstrapValidate('#password', 'min:6: Your password should more than 6 charactors!', function(isPassword) { if(isPassword) {passwordMin = true; if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
-                                $("#signUpSubmit").attr('disabled', false); else
-                                $("#signUpSubmit").attr('disabled', true);} else {passwordMin = false; $("#signUpSubmit").attr('disabled', true);}});
-                            bootstrapValidate('#password', 'max:20: Your password should no more than 20 charactors!', function(isPassword) { if(isPassword) {passwordMax = true; if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
-                                $("#signUpSubmit").attr('disabled', false); else
-                                $("#signUpSubmit").attr('disabled', true);} else {passwordMax = false; $("#signUpSubmit").attr('disabled', true);}});
-                        $("#signUpSubmit").click(function() {
-                            $("#signUpSubmit").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
-                            $('#signUpSubmit').prop('disabled', true);
+                                    }
+                                });
+                                bootstrapValidate('#conPassword', 'matches: #password: The password is not match!', function(isMatched) { if(isMatched) {conpassMatch = true; if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
+                                    $("#signUpSubmit").attr('disabled', false); else
+                                    $("#signUpSubmit").attr('disabled', true);} else {conpassMatch = false; $("#signUpSubmit").attr('disabled', true);}});
+                                bootstrapValidate('#password', 'min:6: Your password should more than 6 charactors!', function(isPassword) { if(isPassword) {passwordMin = true; if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
+                                    $("#signUpSubmit").attr('disabled', false); else
+                                    $("#signUpSubmit").attr('disabled', true);} else {passwordMin = false; $("#signUpSubmit").attr('disabled', true);}});
+                                bootstrapValidate('#password', 'max:20: Your password should no more than 20 charactors!', function(isPassword) { if(isPassword) {passwordMax = true; if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
+                                    $("#signUpSubmit").attr('disabled', false); else
+                                    $("#signUpSubmit").attr('disabled', true);} else {passwordMax = false; $("#signUpSubmit").attr('disabled', true);}});
+                            $("#signupForm").submit(function(event) {
+                                event.preventDefault();
+                                $("#signUpSubmit").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
+                                $('#signUpSubmit').prop('disabled', true);
 
-                            $.ajax({
-                                type: "post",
-                                url: "/signup",
-                                dataType: "json",
-                                data: {
-                                    user: $("#user").val(),
-                                    password: $("#password").val(),
-                                    conPassword: $("#conPassword").val(), 
-                                    firstName: $("#first").val(),
-                                    lastName: $("#last").val(),
-                                    email: $("#email").val()
-                                },
-                                success: function(res) {
-                                    if(res["status"] == "success") {
-                                        $("#signupFooter").hide();
-                                        $("#signupBody").html('<div class="container"><p>' + res["user"] + ', welcome to Guitab as a member!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back homepage!</span></div>');
-                                        jQuery.getScript("/public/js/autourl.js").done(function(){
-                                            var fun = auto;
-                                            fun("/");
-                                        })
+                                $.ajax({
+                                    type: "post",
+                                    url: "/signup",
+                                    dataType: "json",
+                                    data: {
+                                        user: $("#user").val(),
+                                        password: $("#password").val(),
+                                        conPassword: $("#conPassword").val(), 
+                                        firstName: $("#first").val(),
+                                        lastName: $("#last").val(),
+                                        email: $("#email").val()
+                                    },
+                                    success: function(res) {
+                                        if(res["status"] == "success") {
+                                            $("#signupFooter").hide();
+                                            $("#signupBody").html('<div class="container"><p>' + res["user"] + ', welcome to Guitab as a member!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back homepage!</span></div>');
+                                            jQuery.getScript("/public/js/autourl.js").done(function(){
+                                                var fun = auto;
+                                                fun("/");
+                                            })
+                                        }
+                                        else
+                                        if(res["status"] == "notmatched") {
+                                            $("#signupError").html('<p>Username exists!</p>');
+                                            $("#signupError").css('color', 'red');
+                                            $("#signUpSubmit").html('Submit');
+                                            $('#signUpSubmit').prop('disabled', true);
+                                        }
+                                        else 
+                                        if(res["status"] == "passworderror") {
+                                            $("#signupError").html('<p>Please Confirm your password!</p>');
+                                            $("#signupError").css('color', 'red');
+                                            $("#signUpSubmit").html('Submit');
+                                            $('#signUpSubmit').prop('disabled', true);
+                                        }
+                                    },
+                                    error: function(err) {
+                                        location.href = "/error";
                                     }
-                                    else
-                                    if(res["status"] == "notmatched") {
-                                        $("#signupError").html('<p>Username exists!</p>');
-                                        $("#signupError").css('color', 'red');
-                                        $("#signUpSubmit").html('Submit');
-                                        $('#signUpSubmit').prop('disabled', true);
-                                    }
-                                    else 
-                                    if(res["status"] == "passworderror") {
-                                        $("#signupError").html('<p>Please Confirm your password!</p>');
-                                        $("#signupError").css('color', 'red');
-                                        $("#signUpSubmit").html('Submit');
-                                        $('#signUpSubmit').prop('disabled', true);
-                                    }
-                                },
-                                error: function(err) {
-                                    location.href = "/error";
-                                }
-                            });
-                        })
-                    </script>
-                </div>
+                                });
+                            })
+                        </script>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
