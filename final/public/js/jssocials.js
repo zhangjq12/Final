@@ -400,7 +400,7 @@
 
     var shareStrategies = {
         popup: function(args) {
-            return $("<a>").attr("href", "#")
+            return $("<a>").attr({"href": "#", "data-toggle": "tooltip"})
                 .on("click", function() {
                     window.open(args.shareUrl, null, "width=600, height=400, location=0, menubar=0, resizeable=0, scrollbars=0, status=0, titlebar=0, toolbar=0");
                     return false;
@@ -408,11 +408,11 @@
         },
 
         blank: function(args) {
-            return $("<a>").attr({ target: "_blank", href: args.shareUrl });
+            return $("<a>").attr({ target: "_blank", href: args.shareUrl, "data-toggle": "tooltip"});
         },
 
         self: function(args) {
-            return $("<a>").attr({ target: "_self", href: args.shareUrl });
+            return $("<a>").attr({ target: "_self", href: args.shareUrl, "data-toggle": "tooltip"});
         }
     };
 

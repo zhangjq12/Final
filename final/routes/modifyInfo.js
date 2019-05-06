@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
     const auth = await authentication(req);
     if(auth != null){
         const datas = await users.getName(auth);
-        res.render("construct/user/modify", {title: "New Tabs", status: Head, user: auth, first: datas[0]["firstName"], last: datas[0]["lastName"], email: datas[0]["email"], portrait: datas[0]["portrait"]});
+        res.render("construct/user/modify", {title: "Modify Infomation", status: Head, user: auth, first: datas[0]["firstName"], last: datas[0]["lastName"], email: datas[0]["email"], portrait: datas[0]["portrait"]});
     }
     else
         res.render("construct/index", {title: "Guitar Tabs", status: Head, error: "You should log in first!"});

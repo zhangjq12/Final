@@ -322,7 +322,8 @@
         </div>
     </div>
     <footer id="footer">
-        <small>copyright: Group 8</small>
+        <small>copyright: Group 8</br></small>
+        <small>Share our site by:</small>
         <div id="share"></div>
     </footer>
     <script>
@@ -331,9 +332,20 @@
                 shareIn: "popup",
                 showCount: false,
                 showLabel: false,
-                shares: ["email", "twitter", "facebook", "googleplus", "linkedin", "pinterest", "stumbleupon", "whatsapp"]
+                shares: ["email", "twitter", "facebook", "googleplus", "linkedin", "whatsapp"]
             });
         });
+        window.onload = function() {
+            $(".jssocials-share.jssocials-share-email").find('a[class=jssocials-share-link]').prop('title', 'E-mail');
+            $(".jssocials-share.jssocials-share-twitter").find('a[class=jssocials-share-link]').prop('title', 'Tweet');
+            $(".jssocials-share.jssocials-share-facebook").find('a[class=jssocials-share-link]').prop('title', 'Facebook Like');
+            $(".jssocials-share.jssocials-share-googleplus").find('a[class=jssocials-share-link]').prop('title', 'Google+1');
+            $(".jssocials-share.jssocials-share-linkedin").find('a[class=jssocials-share-link]').prop('title', 'LinkedIn');
+            $(".jssocials-share.jssocials-share-whatsapp").find('a[class=jssocials-share-link]').prop('title', "What'sApp");
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            });
+        }
     </script>
 </body>
 </html>

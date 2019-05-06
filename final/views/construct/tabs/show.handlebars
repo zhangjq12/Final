@@ -61,19 +61,22 @@
                         });
                     });
                 </script>
-                <script>
-                    window.onload = function(){
-                        $(function () {
-                            $('[data-toggle="tooltip"]').tooltip()
-                        })
-                    }
-                </script>
             </div>
         </div>
         <div class="card-footer" id="rating">
-            <span id="thumbsup"><a href="javascript:void(0);" onclick="var s=judge(1);like(s);"><img id="like" src="/public/image/like/{{thumbstatus}}" alt="thumbsup"></a>{{thumbsup}}</span>
-            <span id="thumbsdown"><a href="javascript:void(0);" onclick="var s=judge(2);thumbsdown(s);"><img id="dislike" src="/public/image/like/{{badstatus}}" alt="thumbsdown"></a>{{thumbsdown}}</span>
-            <span id="likeByYou">{{likeByUser}}</span>
+            <span id="thumbsup"><a href="javascript:void(0);" onclick="var s=judge(1);like(s);" data-toggle="tooltip" title="Like!"><img id="like" src="/public/image/like/{{thumbstatus}}" alt="thumbsup"></a>{{thumbsup}}</span>
+            <span id="thumbsdown"><a href="javascript:void(0);" onclick="var s=judge(2);thumbsdown(s);" data-toggle="tooltip" title="Dislike!"><img id="dislike" src="/public/image/like/{{badstatus}}" alt="thumbsdown"></a>{{thumbsdown}}</span>
+            <script>
+                $(document).ready(function () {
+                    if(document.getElementById("uNameShow") == null) {
+                        $('#thumbsup').find('a').removeAttr("onclick");
+                        $('#thumbsup').find('a').attr({"data-toggle": "tooltip", title: "Please log in first!"});
+                        $('#thumbsdown').find('a').removeAttr("onclick");
+                        $('#thumbsdown').find('a').attr({"data-toggle": "tooltip", title: "Please log in first!"});
+                    }
+                })
+            </script>
+            <!--<span id="likeByYou">{{likeByUser}}</span>-->
             <iframe name="iframeStyle" style="display:none;"></iframe>
         </div>
     </div>

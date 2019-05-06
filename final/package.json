@@ -26,7 +26,8 @@
     "password-hash": "^1.2.2",
     "path": "^0.12.7",
     "popper.js": "^1.15.0",
-    "social-share-count-js": "0.0.7"
+    "social-share-count-js": "0.0.7",
+    "xss": "^1.0.6"
   },
   "devDependencies": {
     "nodemon": "^1.19.0"
