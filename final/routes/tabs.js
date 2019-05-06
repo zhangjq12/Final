@@ -6,22 +6,24 @@ const users = data.users;
 const head = require("./head");
 const comments = data.comments;
 const authentication = require("./authentication");
+const xss = require('xss');
 
 router.get("/", async (req, res) => {
     const Head = await head(req);
     const auth = await authentication(req);
+    const tabId = xss(req.query.tabId);
     try {
-        const data = await tabs.getId(req.query.tabId);
+        const data = await tabs.getId(tabId);
         var likeThis = false;
         var disLike = false;
         if(auth != null) {
             const user = await users.getName(auth);
             for(let x in user[0]["favoriteTabs"]) {
-                if(user[0]["favoriteTabs"][x] == req.query.tabId)
+                if(user[0]["favoriteTabs"][x] == tabId)
                     likeThis = true;
             }
             for(let x in user[0]["dislike"]) {
-                if(user[0]["dislike"][x] == req.query.tabId)
+                if(user[0]["dislike"][x] == tabId)
                     disLike = true;
             }
         }
@@ -37,9 +39,9 @@ router.get("/", async (req, res) => {
         }
         else
             ifdisLike = "dislike.png";
-        const commentsData = await comments.getTab(req.query.tabId);
-        const deleteId = 'deleteTabs("' + req.query.tabId + '");';
-        res.render("construct/tabs/show", {title: data[0]["tabName"], status: Head, tab: data[0]["tabName"], id: req.query.tabId, delete: deleteId, song: data[0]["songName"], artist: data[0]["artistName"], author: data[0]["author"], content: data[0]["Content"], thumbsup: data[0]["Rating"]["thumbsup"], thumbsdown: data[0]["Rating"]["thumbsdown"], thumbstatus: ifLike, badstatus: ifdisLike, userName: auth, comments: commentsData});
+        const commentsData = await comments.getTab(tabId);
+        const deleteId = 'deleteTabs("' + tabId + '");';
+        res.render("construct/tabs/show", {title: data[0]["tabName"], status: Head, tab: data[0]["tabName"], id: tabId, delete: deleteId, song: data[0]["songName"], artist: data[0]["artistName"], author: data[0]["author"], content: data[0]["Content"], thumbsup: data[0]["Rating"]["thumbsup"], thumbsdown: data[0]["Rating"]["thumbsdown"], thumbstatus: ifLike, badstatus: ifdisLike, userName: auth, comments: commentsData});
     }
     catch(e) {
         res.render("construct/error", {title: "Error!", status: Head});

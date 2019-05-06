@@ -5,6 +5,7 @@ const head = require("./head");
 const users = data.users;
 const NodeRSA = require('node-rsa');
 const keyArr = require("../data/key/key");
+const xss = require('xss');
 
 router.get("/", async (req, res) => {
     const Head = await head(req);
@@ -13,7 +14,14 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
     const Head = await head(req);
-    const request = req.body
+    const request = {
+        user: xss(req.body.user),
+        password: xss(req.body.password),
+        conPassword: xss(req.body.conPassword),
+        firstName: xss(req.body.firstName),
+        lastName: xss(req.body.lastName),
+        email: xss(req.body.email)
+    }
     try {
         var key = keyArr[0];
         const data = await users.check(request["user"]);
