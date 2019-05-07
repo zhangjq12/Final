@@ -4,13 +4,18 @@ const data = require("../data");
 const comments = data.comments;
 const users = data.users;
 const head = require("./head");
+const xss = require('xss');
 
 /*router.get("/:id", (req, res) => {
 
 });
 */
 router.post("/", async (req, res) => {
-    const data = req.body;
+    const data = {
+        commentAuthor: xss(req.body.commentAuthor),
+        tabId: xss(req.body.tabId),
+        content: xss(req.body.content)
+    }
     const Head = await head(req);
     try {
         if(data["commentAuthor"] != "") {

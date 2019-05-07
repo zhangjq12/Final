@@ -6,6 +6,7 @@ const head = require("./head");
 const authentication = require("./authentication");
 const upload = require("./middleware/multer");
 const deletefile = require("./delete");
+const xss = require('xss');
 
 router.get("/", async (req, res) => {
     const Head = await head(req);
@@ -20,12 +21,18 @@ router.get("/", async (req, res) => {
 
 router.post("/", upload.single('portrait'), async (req, res) => {
     const Head = await head(req);
-    const request = req.body;
+    const request = {
+        user: xss(req.body.user),
+        password: xss(req.body.password),
+        conPassword: xss(req.body.conPassword),
+        firstName: xss(req.body.firstName),
+        lastName: xss(req.body.lastName),
+        email: xss(req.body.email)
+    }
     const auth = await authentication(req);
     const fileName = req.file.filename;
     try {
         var data = await users.getName(auth);
-        console.log(data[0]["portrait"]);
         var res1, res2, res3, res4;
         if(request["password"] != undefined && request["conPassword"] == request["password"])
             res1 = await users.modifyPassword(auth, request["password"]);
