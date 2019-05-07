@@ -11,13 +11,13 @@ function thumbsdown(text) {
     if(text == "bad") {
         content = "dislikefilled.png";
         number ++;
-        document.getElementById("thumbsdown").innerHTML = '<a href="javascript:void(0);" onclick="var s=judge(2);thumbsdown(s);"><img id="dislike" src="/public/image/like/' + content + '"></a>' + number.toString();
+        document.getElementById("thumbsdown").innerHTML = '<a href="javascript:void(0);" onclick="var s=judge(2);thumbsdown(s);" data-toggle="tooltip" title="Dislike!"><img id="dislike" src="/public/image/like/' + content + '" alt="thumbsdown"></a>' + number.toString();
     }
     else
     if(text == "nobad") {
         content = "dislike.png";
         number --;
-        document.getElementById("thumbsdown").innerHTML = '<a href="javascript:void(0);" onclick="var s=judge(2);thumbsdown(s);"><img id="dislike" src="/public/image/like/' + content + '"></a>' + number.toString();
+        document.getElementById("thumbsdown").innerHTML = '<a href="javascript:void(0);" onclick="var s=judge(2);thumbsdown(s);" data-toggle="tooltip" title="Dislike!"><img id="dislike" src="/public/image/like/' + content + '" alt="thumbsdown"></a>' + number.toString();
     }
     doFormRequest("/tabs/thumbsdown", "post", "iframeStyle", json);
 }
@@ -30,13 +30,13 @@ function like(text) {
     if(text == "good") {
         content = "likefilled.png"
         number ++;
-        document.getElementById("thumbsup").innerHTML = '<a href="javascript:void(0);" onclick="var s=judge(1);like(s);"><img id="like" src="/public/image/like/' + content + '"></a>' + number.toString();
+        document.getElementById("thumbsup").innerHTML = '<a href="javascript:void(0);" onclick="var s=judge(1);like(s);" data-toggle="tooltip" title="Like!"><img id="like" src="/public/image/like/' + content + '" alt="thumbsup"></a>' + number.toString();
     }
     else
     if(text == "nogood") {
         content = "like.png"
         number --;
-        document.getElementById("thumbsup").innerHTML = '<a href="javascript:void(0);" onclick="var s=judge(1);like(s);"><img id="like" src="/public/image/like/' + content + '"></a>' + number.toString();
+        document.getElementById("thumbsup").innerHTML = '<a href="javascript:void(0);" onclick="var s=judge(1);like(s);" data-toggle="tooltip" title="Like!"><img id="like" src="/public/image/like/' + content + '" alt="thumbsup"></a>' + number.toString();
     }
     doFormRequest("/tabs/like", "post", "iframeStyle", json);
 }

@@ -8,6 +8,7 @@ const passwordHash = require('password-hash');
 //const userstore = require("../data/userStore");
 const NodeRSA = require('node-rsa');
 const keyArr = require("../data/key/key");
+const xss = require('xss');
 
 router.get("/", Login, async (req, res) => {
     const Head = await head(req);
@@ -16,7 +17,11 @@ router.get("/", Login, async (req, res) => {
 
 router.post("/", async (req, res) => {
     const Head = await head(req);
-    const request = req.body
+    const request = {
+        user: xss(req.body.user),
+        password: xss(req.body.password),
+        rememberme: xss(req.body.rememberme)
+    }
     try {
         var key = keyArr[0];
         const data = await users.getName(request["user"]);

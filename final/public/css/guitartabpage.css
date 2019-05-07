@@ -1,38 +1,50 @@
-div.tabTitle {
+#tabTitle {
     padding-left: 10%;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin-bottom: 20px; 
 }
-.operator {
+#operator {
     margin-bottom: 20px;
 }
-.containPage {
-    width: 75%;
+#containPage {
+    width: 81%;
     margin: auto;
 }
-div.currentTab {
+
+/*#tabTitleInHeader{
+    width: 50%;
+    height:auto; 
+    float:left; 
+    display: inline;
+}
+#operator{
+    width: 50%;
+    height:auto; 
+    float:right;
+    display: inline;
+    text-align: right;
+}*/
+
+/*#currentTab {
     border: 1px solid #c0c0c0;
     padding: 60px;
     margin-bottom: 30px;
-}
+}*/
 
-div.guitarTabContent{
+#guitarTabContent{
     margin: auto;
     padding-left: 10%;
     font-size: 19px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-.line {
+#line {
     border-top: 1px  solid black;
     margin-right: 10%;
     margin-top: 40px;
     margin-bottom: 40px;
 }
-#tabContent {
-    padding: 0;
-}
-.rating {
-    float: right;
+#rating {
+    text-align: right;
     margin-bottom: 30px;
 }
 

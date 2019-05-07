@@ -2,42 +2,48 @@
 <div class="error">
     <p>{{error}}</p>
 </div>
-<div class="containPage">
-    <div class="container" id="TabAll">
-        <div id="operator">
-            <button type="button" class="btn btn-outline-success" onclick="window.location.href = '/tabs/modifytabs/{{id}}';">Modify</button>
-            <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#deleteDia">
-                Delete
-            </button>
-            <div class="modal fade" id="deleteDia" tabindex="-1" role="dialog" aria-labelledby="deleteDiaTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="deleteDiaTitle">Delete</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Do you want to delete this tab?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                            <button type="button" class="btn btn-primary" onclick={{delete}}>Yes</button>
+<div class="container" id="containPage">
+    <div class="card border-light mb-3" id="TabAll">
+        <div class="card-header row align-items-center">
+            <div class="container col-sm-6" id="tabTitleInHeader">
+                <h4>{{tab}}</h4>
+            </div>
+            <div class="container col-sm-6 text-right" id="operator">
+                <button type="button" class="btn btn-outline-success my-2 my-sm-0" onclick="window.location.href = '/tabs/modifytabs/{{id}}';">Modify</button>
+                <button type="button" class="btn btn-outline-success my-2 my-sm-0" data-toggle="modal" data-target="#deleteDia">
+                    Delete
+                </button>
+                <div class="modal fade" id="deleteDia" tabindex="-1" role="dialog" aria-labelledby="deleteDiaTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteDiaTitle">Delete</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Do you want to delete this tab?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                <button type="button" class="btn btn-primary" onclick={{delete}}>Yes</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div> 
-        </div>
-        <div class="currentTab">
-            <div class="tabTitle">
-                <h3><span id="tab">{{tab}}</span></h3>
-                <h4><span id="song">Song name : {{song}}</span> by <span id="tabArtist">{{artist}}</span></h4>
-                <span id="authorInfo">Posted by :<span id="tabAuthor">{{author}}</span></span>
+                </div> 
             </div>
-            <div class="guitarTabContent">
-                <div class="line"></div>
-                <span id="tabContent">{{content}}</span>
+        </div>
+        <div class="card-body" id="currentTab">
+            <div class="container" id="tabTitle">
+                <h4 class="card-title"><span id="tab">{{tab}}</span></h3>
+                <h5 class="card-subtitle mb-2"><span id="song">-Song name : {{song}}</span> by <span id="tabArtist">{{artist}}</span></h4>
+                <p class="card-subtitle mb-2"><span id="authorInfo">Posted by :<span id="tabAuthor">{{author}}</span></span></p>
+            </div>
+            <div class="container" id="guitarTabContent">
+                <!-- <div id="line"></div> -->
+                <hr class="my-4">
+                <p class="card-text"><span id="tabContent">{{content}}</span></p>
                 <div id="shareTab"></div>
                 <script language="javascript" src="/public/js/transferChord.js"></script>
                 <script language="javascript" type="text/javascript">
@@ -55,19 +61,22 @@
                         });
                     });
                 </script>
-                <script>
-                    window.onload = function(){
-                        $(function () {
-                            $('[data-toggle="tooltip"]').tooltip()
-                        })
-                    }
-                </script>
             </div>
         </div>
-        <div class="rating">
-            <span id="thumbsup"><a href="javascript:void(0);" onclick="var s=judge(1);like(s);"><img id="like" src="/public/image/like/{{thumbstatus}}"></a>{{thumbsup}}</span>
-            <span id="thumbsdown"><a href="javascript:void(0);" onclick="var s=judge(2);thumbsdown(s);"><img id="dislike" src="/public/image/like/{{badstatus}}"></a>{{thumbsdown}}</span>
-            <span id="likeByYou">{{likeByUser}}</span>
+        <div class="card-footer" id="rating">
+            <span id="thumbsup"><a href="javascript:void(0);" onclick="var s=judge(1);like(s);" data-toggle="tooltip" title="Like!"><img id="like" src="/public/image/like/{{thumbstatus}}" alt="thumbsup"></a>{{thumbsup}}</span>
+            <span id="thumbsdown"><a href="javascript:void(0);" onclick="var s=judge(2);thumbsdown(s);" data-toggle="tooltip" title="Dislike!"><img id="dislike" src="/public/image/like/{{badstatus}}" alt="thumbsdown"></a>{{thumbsdown}}</span>
+            <script>
+                $(document).ready(function () {
+                    if(document.getElementById("uNameShow") == null) {
+                        $('#thumbsup').find('a').removeAttr("onclick");
+                        $('#thumbsup').find('a').attr({"data-toggle": "tooltip", title: "Please log in first!"});
+                        $('#thumbsdown').find('a').removeAttr("onclick");
+                        $('#thumbsdown').find('a').attr({"data-toggle": "tooltip", title: "Please log in first!"});
+                    }
+                })
+            </script>
+            <!--<span id="likeByYou">{{likeByUser}}</span>-->
             <iframe name="iframeStyle" style="display:none;"></iframe>
         </div>
     </div>
@@ -96,7 +105,7 @@
             <input name="commentAuthor" type="hidden" value={{userName}}>
             <input name="tabId" type="hidden" value={{id}}>
             <label for="content">Write your comment:</label>
-            <textarea name="content" rows="5" cols="80" class="form-control" ></textarea></br>
+            <textarea id="content" name="content" rows="5" cols="80" class="form-control" ></textarea></br>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
