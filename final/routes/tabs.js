@@ -60,11 +60,12 @@ router.get("/newtabs", async (req, res) => {
 router.get("/modifytabs/:id", async (req, res) => {
     const Head = await head(req);
     const auth = await authentication(req);
+    const id = xss(req.params.id);
     try{
-        const data = await tabs.getId(req.params.id);
+        const data = await tabs.getId(id);
         const authorname = data[0]["author"];
         if(auth != null && auth == authorname)
-            res.render("construct/newTabs", {title: "Modify Tabs", status: Head, operation:"modify", tab: data[0]["tabName"], song: data[0]["songName"], artist: data[0]["artistName"], author: auth, content: data[0]["Content"]});
+            res.render("construct/newTabs", {title: "Modify Tabs", status: Head, operation: "modify/?tabId=" + id, tab: data[0]["tabName"], song: data[0]["songName"], artist: data[0]["artistName"], author: auth, content: data[0]["Content"]});
         else
             res.render("construct/tabs/fail", {title: "Error", status: Head, error: "You don't have permission to modify this tab!"});
     }
@@ -75,8 +76,7 @@ router.get("/modifytabs/:id", async (req, res) => {
 
 router.post("/search", async (req, res) => {
     const Head = await head(req);
-    const request = req.body;
-    const name = request["name"];
+    const name = xss(req.body.name);
     res.redirect("/tabs/search?name=" + name +"&page=1");
     /*try {
         const name = request["name"];
@@ -94,10 +94,9 @@ router.post("/search", async (req, res) => {
 
 router.get("/search", async (req, res) => {
     const Head = await head(req);
-    const request = req.query;
     try {
-        const name = request.name;
-        const pagestr = request.page;
+        const name = xss(req.query.name);
+        const pagestr = xss(req.query.page);
         const page = parseInt(pagestr);
         const data = await tabs.getName(name);
         if(data.length != 0) {
@@ -170,10 +169,11 @@ router.get("/search", async (req, res) => {
 router.get("/mytabs", async (req, res) => {
     const Head = await head(req);
     const auth = await authentication(req);
+    const name = xss(req.query.name);
     try {
-        if(auth != null && auth == req.query.name) {
-            const data = await tabs.getAuthor(req.query.name);
-            const info = await users.getName(req.query.name);
+        if(auth != null && auth == name) {
+            const data = await tabs.getAuthor(name);
+            const info = await users.getName(name);
             const favtabs = [];
             for(var i = 0; i < info[0]["favoriteTabs"].length; i++) {
                 var tabdata = await tabs.getId(info[0]["favoriteTabs"][i]);
@@ -194,7 +194,13 @@ router.get("/mytabs", async (req, res) => {
 
 router.post("/upload", async (req, res) => {
     const Head = await head(req);
-    const request = req.body;
+    const request = {
+        tabName: xss(req.body.tabName),
+        songName: xss(req.body.songName),
+        artistName: xss(req.body.artistName),
+        authorName: xss(req.body.authorName),
+        content: xss(req.body.content)
+    }
     try {
         const result = await tabs.create(request["tabName"], request["songName"], request["artistName"], request["authorName"], request["content"]);
         res.render("construct/tabs/success", {title: "Upload Successfully!", status: Head, operation: "uploaded"});
@@ -206,7 +212,9 @@ router.post("/upload", async (req, res) => {
 
 router.post("/delete", async (req, res) => {
     const Head = await head(req);
-    const request = req.body;
+    const request = {
+        id: xss(req.body.id)
+    };
     const auth = await authentication(req);
     try {
         const data = await tabs.getId(request["id"]);
@@ -226,13 +234,19 @@ router.post("/delete", async (req, res) => {
 
 router.post("/modify", async (req, res) => {
     const Head = await head(req);
-    const request = req.body;
+    const id = xss(req.query.id);
+    const request = {
+        tabName: xss(req.body.tabName),
+        artistName: xss(req.body.artistName),
+        content: xss(req.body,content),
+        songName: xss(req.body.songName)
+    };
     try {
-        const data = await tabs.getName(request["tabName"]);
-        const res1 = await tabs.modifyArtistName(data[0]["_id"], request["artistName"]);
-        const res2 = await tabs.modifyContent(data[0]["_id"], request["content"]);
-        const res3 = await tabs.modifySongName(data[0]["_id"], request["songName"]);
-        const res4 = await tabs.modifyTabName(data[0]["_id"], request["tabName"]);
+        const ID = new Object(id);
+        const res1 = await tabs.modifyArtistName(id, request["artistName"]);
+        const res2 = await tabs.modifyContent(id, request["content"]);
+        const res3 = await tabs.modifySongName(id, request["songName"]);
+        const res4 = await tabs.modifyTabName(id, request["tabName"]);
         res.render("construct/tabs/success",  {title: "Delete Successfully!", status: Head, operation: "modified"});
     }
     catch(e) {
@@ -242,7 +256,10 @@ router.post("/modify", async (req, res) => {
 
 router.post("/like", async (req, res) => {
     const Head = await head(req);
-    const request = req.body;
+    const request = {
+        operation: xss(req.body.operation),
+        name: xss(req.body,name)
+    }
     const auth = await authentication(req);
     try {
         if(auth == null)
@@ -268,7 +285,10 @@ router.post("/like", async (req, res) => {
 
 router.post("/thumbsdown", async (req, res) => {
     const Head = await head(req);
-    const request = req.body;
+    const request = {
+        operation: xss(req.body.operation),
+        name: xss(req.body,name)
+    }
     const auth = await authentication(req);
     try {
         if(auth == null)
