@@ -8,6 +8,7 @@ const session = require('express-session');
 const NodeRSA = require('node-rsa');
 const key = new NodeRSA({b: 1024});
 const keyFile = require("./data/key/key");
+const authentication = require("./routes/authentication");
 
 keyFile.push(key);
 
@@ -28,6 +29,19 @@ app.use(session({
 
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
+
+var Logging = async (req, res, next) => {
+    const Time = new Date().toUTCString();
+    const method = req.method;
+    const originalUrl = req.originalUrl;
+    var auth = await authentication(req);
+    if(auth == null)
+        auth = "Guest";
+    console.log("[" + Time + "]: " + method + " " + originalUrl + " (" + auth + ")");
+    next();
+}
+
+app.use(Logging);
 
 configRoutes(app);
 

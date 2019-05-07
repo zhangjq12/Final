@@ -18,17 +18,15 @@ router.post("/", async (req, res) => {
     }
     const Head = await head(req);
     try {
-        if(data["commentAuthor"] != "") {
-            const userInfo = await users.getName(data["commentAuthor"]);
-            const userId = userInfo[0]["_id"].toString();
-            const result = await comments.create(data["tabId"], data["commentAuthor"], userId, data["content"]);
-            res.render("construct/comments/success", {title: "Post the Comment Successfully!", status: Head, id: data["tabId"], operation: "posted"});
-        }
-        else
-            throw "e";
+        const userInfo = await users.getName(data["commentAuthor"]);
+        const userId = userInfo[0]["_id"].toString();
+        const result = await comments.create(data["tabId"], data["commentAuthor"], userId, data["content"]);
+        res.status(200).send({"result": "success"});
+            //res.render("construct/comments/success", {title: "Post the Comment Successfully!", status: Head, id: data["tabId"], operation: "posted"});
     }
     catch(e) {
-        res.render("construct/comments/fail", {title: "Post the Comment Failed!", status: Head, id: data["tabId"]});
+        res.status(403).send({"result": "error"});
+        //res.render("construct/comments/fail", {title: "Post the Comment Failed!", status: Head, id: data["tabId"]});
     }
 });
 /*

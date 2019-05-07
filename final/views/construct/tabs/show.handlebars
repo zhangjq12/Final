@@ -66,16 +66,6 @@
         <div class="card-footer" id="rating">
             <span id="thumbsup"><a href="javascript:void(0);" onclick="var s=judge(1);like(s);" data-toggle="tooltip" title="Like!"><img id="like" src="/public/image/like/{{thumbstatus}}" alt="thumbsup"></a>{{thumbsup}}</span>
             <span id="thumbsdown"><a href="javascript:void(0);" onclick="var s=judge(2);thumbsdown(s);" data-toggle="tooltip" title="Dislike!"><img id="dislike" src="/public/image/like/{{badstatus}}" alt="thumbsdown"></a>{{thumbsdown}}</span>
-            <script>
-                $(document).ready(function () {
-                    if(document.getElementById("uNameShow") == null) {
-                        $('#thumbsup').find('a').removeAttr("onclick");
-                        $('#thumbsup').find('a').attr({"data-toggle": "tooltip", title: "Please log in first!"});
-                        $('#thumbsdown').find('a').removeAttr("onclick");
-                        $('#thumbsdown').find('a').attr({"data-toggle": "tooltip", title: "Please log in first!"});
-                    }
-                })
-            </script>
             <!--<span id="likeByYou">{{likeByUser}}</span>-->
             <iframe name="iframeStyle" style="display:none;"></iframe>
         </div>
@@ -100,13 +90,73 @@
             </tbody>
         </table>
     </div>
-    <div class="container" id="commentForm">
-        <form method="POST" action="/comments">
-            <input name="commentAuthor" type="hidden" value={{userName}}>
-            <input name="tabId" type="hidden" value={{id}}>
+    <div class="container" id="commentFormContainer">
+        <form id="commentForm">
+            <input id="commentAuthor" name="commentAuthor" type="hidden" value={{userName}}>
+            <input id="tabId" name="tabId" type="hidden" value={{id}}>
             <label for="content">Write your comment:</label>
-            <textarea id="content" name="content" rows="5" cols="80" class="form-control" ></textarea></br>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <textarea id="content" name="content" rows="5" cols="80" class="form-control" required></textarea></br>
+            <button id="commentSubmit" type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 </div>
+<div class="modal fade" id="commentDia" tabindex="-1" role="dialog" aria-labelledby="commentTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" id="commentDiaHeader">
+                <h5 class="modal-title" id="commentDiaTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="commentDiaBody">
+            </div>
+        </div>
+    </div>
+</div> 
+
+<script>
+    $('#commentForm').submit(function(event) {
+        event.preventDefault();
+        $("#commentSubmit").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
+        $('#commentSubmit').prop('disabled', true);
+        const id = $('#tabId').val();
+
+        $.ajax({
+            type: "post",
+            dataType: "json",
+            url: "/comments",
+            data: {
+                commentAuthor: $('#commentAuthor').val(),
+                tabId: $('#tabId').val(),
+                content: $('#content').val()
+            },
+            success: function(res) {
+                $('#commentDiaTitle').text('Comment posted!');
+                $("#commentDiaBody").html('<div class="container"><p>Your comments have been posted Successfully!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back to the tab page!</span></div>');
+                $('#commentDia').modal("show");
+                jQuery.getScript("/public/js/autourl.js").done(function(){
+                    var fun = auto;
+                    fun("/tabs/?tabId=" + id);
+                });
+            },
+            error: function(err) {
+                $('#commentDiaTitle').text('Comment post failed!');
+                $("#commentDiaBody").html('<div class="container"><p>You need to log in first!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back to the tab page!</span></div>');
+                $('#commentDia').modal("show");
+                jQuery.getScript("/public/js/autourl.js").done(function(){
+                    var fun = auto;
+                    fun("/tabs/?tabId=" + id);
+                });
+            }
+        });
+    })
+    $(document).ready(function () {
+        if(document.getElementById("uNameShow") == null) {
+            $('#thumbsup').find('a').removeAttr("onclick");
+            $('#thumbsup').find('a').attr({"data-toggle": "tooltip", title: "Please log in first!"});
+            $('#thumbsdown').find('a').removeAttr("onclick");
+            $('#thumbsdown').find('a').attr({"data-toggle": "tooltip", title: "Please log in first!"});
+        }
+    })
+</script>

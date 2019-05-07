@@ -7,6 +7,7 @@ const head = require("./head");
 const comments = data.comments;
 const authentication = require("./authentication");
 const xss = require('xss');
+const ObjectID = require('mongodb').ObjectID;
 
 router.get("/", async (req, res) => {
     const Head = await head(req);
@@ -203,10 +204,14 @@ router.post("/upload", async (req, res) => {
     }
     try {
         const result = await tabs.create(request["tabName"], request["songName"], request["artistName"], request["authorName"], request["content"]);
-        res.render("construct/tabs/success", {title: "Upload Successfully!", status: Head, operation: "uploaded"});
+        const data = await tabs.getName(request["tabName"]);
+        const id = data[0]["_id"].toString();
+        res.send({id: id});
+        //res.render("construct/tabs/success", {title: "Upload Successfully!", status: Head, operation: "uploaded"});
     }
     catch(e) {
-        res.render("construct/tabs/fail", {title: "Upload Failed!", status: Head});
+        res.send("error");
+        //res.render("construct/tabs/fail", {title: "Upload Failed!", status: Head});
     }
 });
 
@@ -234,23 +239,25 @@ router.post("/delete", async (req, res) => {
 
 router.post("/modify", async (req, res) => {
     const Head = await head(req);
-    const id = xss(req.query.id);
+    const id = xss(req.query.tabId);
     const request = {
         tabName: xss(req.body.tabName),
         artistName: xss(req.body.artistName),
-        content: xss(req.body,content),
+        content: xss(req.body.content),
         songName: xss(req.body.songName)
     };
     try {
-        const ID = new Object(id);
-        const res1 = await tabs.modifyArtistName(id, request["artistName"]);
-        const res2 = await tabs.modifyContent(id, request["content"]);
-        const res3 = await tabs.modifySongName(id, request["songName"]);
-        const res4 = await tabs.modifyTabName(id, request["tabName"]);
-        res.render("construct/tabs/success",  {title: "Delete Successfully!", status: Head, operation: "modified"});
+        const ID = new ObjectID(id);
+        const res1 = await tabs.modifyArtistName(ID, request["artistName"]);
+        const res2 = await tabs.modifyContent(ID, request["content"]);
+        const res3 = await tabs.modifySongName(ID, request["songName"]);
+        const res4 = await tabs.modifyTabName(ID, request["tabName"]);
+        res.send({id: id});
+        //res.render("construct/tabs/success",  {title: "Delete Successfully!", status: Head, operation: "modified"});
     }
     catch(e) {
-        res.render("construct/tabs/fail", {title: "Delete Failed!", status: Head});
+        res.send({id: id});
+        //res.render("construct/tabs/fail", {title: "Modify Failed!", status: Head});
     }
 });
 
@@ -258,7 +265,7 @@ router.post("/like", async (req, res) => {
     const Head = await head(req);
     const request = {
         operation: xss(req.body.operation),
-        name: xss(req.body,name)
+        name: xss(req.body.name)
     }
     const auth = await authentication(req);
     try {
@@ -287,7 +294,7 @@ router.post("/thumbsdown", async (req, res) => {
     const Head = await head(req);
     const request = {
         operation: xss(req.body.operation),
-        name: xss(req.body,name)
+        name: xss(req.body.name)
     }
     const auth = await authentication(req);
     try {

@@ -1,19 +1,20 @@
 <div id="TabModify" class="container">
-    <form method="POST" action="/tabs/{{operation}}" id="newTabs">
+    <form id="newTabs">
+        <div class="container" id="action" name={{operation}}></div>
         <div class="form-row">
             <div class="col-md-4 mb-2">
                 <label for="tabName">Tab Name:</label>
-                <input id="tabName" type="text" class="form-control" name="tabName" value={{tab}}></input>
+                <input id="tabName" type="text" class="form-control" name="tabName" value="{{tab}}"></input>
             </div>
             <div class="col-md-4 mb-2">
                 <label for="songName">Song Name:</label>
-                <input id="songName" type="text" class="form-control" name="songName" value={{song}}></input>
+                <input id="songName" type="text" class="form-control" name="songName" value="{{song}}"></input>
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-4 mb-2">
                 <label for="artistName">Artist Name:</label>
-                <input id="artistName" type="text" class="form-control" name="artistName" value={{artist}}></input>
+                <input id="artistName" type="text" class="form-control" name="artistName" value="{{artist}}"></input>
             </div>
             <div class="col-md-4 mb-2">
                 <label for="authorName">Author Name:</label>
@@ -23,15 +24,169 @@
         <div class="form-row">
             <label for="content" class="sr-only">Tab Content:</label>
             <textarea id="content" name="content" rows="10" cols="80" class="form-control" placeholder="Tap your tab here!">{{content}}</textarea>
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <script>
-                $('document').ready(function(){
-                    $('#newTabs').submit(function(){
-                        $(this).find(':button[type=submit]').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
-                        $(this).find(':button[type=submit]').prop('disabled', true);
-                    });
-                })
-            </script>
+            <button id="tabSubmit" type="submit" data-toggle="modal" data-target="#modifytabDia" class="btn btn-primary" disabled="true">Submit</button>
         </div>
     </form>
 </div>
+
+<div class="modal fade" id="modifytabDia" tabindex="-1" role="dialog" aria-labelledby="modifytabDiaTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" id="modifytabDiaHeader">
+                <h5 class="modal-title" id="modifytabDiaTitle">Modify Tab</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modifytabDiaBody">
+                Do you want to continue?
+            </div>
+            <div class="modal-footer" id="modifytabDiaFooter">
+                <form></form>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" id="yesmodify" >Yes</button>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<script>
+    var nameEmpty = false;
+    var songEmpty = false;
+    var artistEmpty = false;
+    var contentEmpty = false;
+    const op = $('#action').attr("name");
+    $('#newTabs').submit(function(){
+        window.event.preventDefault();
+        $(this).find(':button[type=submit]').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
+        $(this).find(':button[type=submit]').prop('disabled', true);
+    });
+    bootstrapValidate('#tabName', 'required: This can not be empty!', function(isEmpty) {
+        if(isEmpty == true) {
+            nameEmpty = true; 
+            if(nameEmpty && songEmpty && artistEmpty && contentEmpty)
+                $("#tabSubmit").attr('disabled', false);
+            else
+                $("#tabSubmit").attr('disabled', true);
+        } 
+        else 
+        if(isEmpty == 0) {
+            nameEmpty = false;
+            $("#tabSubmit").attr('disabled', true);
+        }
+    });
+    bootstrapValidate('#songName', 'required: This can not be empty!', function(isEmpty) {
+        if(isEmpty == true) {
+            songEmpty = true; 
+            if(nameEmpty && songEmpty && artistEmpty && contentEmpty)
+                $("#tabSubmit").attr('disabled', false);
+            else
+                $("#tabSubmit").attr('disabled', true);
+        } 
+        else 
+        if(isEmpty == 0) {
+            songEmpty = false;
+            $("#tabSubmit").attr('disabled', true);
+        }
+    });
+    bootstrapValidate('#artistName', 'required: This can not be empty!', function(isEmpty) {
+        if(isEmpty == true) {
+            artistEmpty = true; 
+            if(nameEmpty && songEmpty && artistEmpty && contentEmpty)
+                $("#tabSubmit").attr('disabled', false);
+            else
+                $("#tabSubmit").attr('disabled', true);
+        } 
+        else 
+        if(isEmpty == 0) {
+            artistEmpty = false;
+            $("#tabSubmit").attr('disabled', true);
+        }
+    });
+    bootstrapValidate('#content', 'required: This can not be empty!', function(isEmpty) {
+        if(isEmpty == true) {
+            contentEmpty = true; 
+            if(nameEmpty && songEmpty && artistEmpty && contentEmpty)
+                $("#tabSubmit").attr('disabled', false);
+            else
+                $("#tabSubmit").attr('disabled', true);
+        } 
+        else 
+        if(isEmpty == 0) {
+            contentEmpty = false;
+            $("#tabSubmit").attr('disabled', true);
+        }
+    });
+    $('document').ready(function(){
+        if(op == "upload") {
+            nameEmpty = false;
+            songEmpty = false;
+            artistEmpty = false;
+            contentEmpty = false;
+        }
+        else {
+            nameEmpty = true;
+            songEmpty = true;
+            artistEmpty = true;
+            contentEmpty = true;
+            $("#tabSubmit").attr('disabled', false);
+        }
+    });
+    $("#yesmodify").click(function() {
+        $("#yesmodify").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
+        $('#yesmodify').prop('disabled', true);
+        var formData = new Object();
+        formData["tabName"] = $("#tabName").val();
+        formData["songName"] = $("#songName").val();
+        formData["artistName"] = $("#artistName").val();
+        formData["authorName"] = $("#authorName").val();
+        formData["content"] = $("#content").val();
+        var id = ""
+        if(op.substring(0, 14) == "modify/?tabId=")
+            id = op.substring(14);
+        console.log(op);
+
+        $.ajax({
+            type: "post",
+            url: "/tabs/" + op,
+            dataType: "json",
+            data: formData,
+            success: function(res) {
+                if(id == "") {
+                    $("#modifytabDiaFooter").hide();
+                    $("#modifytabDiaBody").html('<div class="container"><p>Create This Tab Successfully!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back to the tab page!</span></div>');
+                    jQuery.getScript("/public/js/autourl.js").done(function(){
+                        var fun = auto;
+                        fun("/tabs/?tabId=" + res["id"]);
+                    });
+                }
+                else {
+                    $("#modifytabDiaFooter").hide();
+                    $("#modifytabDiaBody").html('<div class="container"><p>Modify This Tab Successfully!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back to the tab page!</span></div>');
+                    jQuery.getScript("/public/js/autourl.js").done(function(){
+                        var fun = auto;
+                        fun("/tabs/?tabId=" + id);
+                    });
+                }
+            },
+            error: function(err) {
+                if(err["id"] != null) {
+                    $("#modifytabDiaFooter").hide();
+                    $("#modifytabDiaBody").html('<div class="container"><p>Modify tab failed!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back to the tab page!</span></div>');
+                    jQuery.getScript("/public/js/autourl.js").done(function(){
+                        var fun = auto;
+                        fun("/tabs/?tabId=" + err["id"]);
+                    });
+                }
+                else {
+                    $("#modifytabDiaFooter").hide();
+                    $("#modifytabDiaBody").html('<div class="container"><p>Create tab failed!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back homepage!</span></div>');
+                    jQuery.getScript("/public/js/autourl.js").done(function(){
+                        var fun = auto;
+                        fun("/");
+                    });
+                }
+            }
+        });
+    });
+</script>
