@@ -6,6 +6,7 @@ const logout = require("./logout");
 const comments = require("./comments");
 const modifyInfo = require("./modifyInfo");
 const tab = require("../data/tabs");
+const xss = require('xss');
 
 const constructorMethod = app =>{
     app.get("/", async (req, res) => {

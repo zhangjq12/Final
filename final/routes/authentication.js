@@ -2,6 +2,7 @@ const passwordHash = require('password-hash');
 const keyArr = require("../data/key/key");
 const NodeRSA = require('node-rsa');
 const user = require("../data/users");
+const xss = require('xss');
 
 async function auth(req) {
     var key = keyArr[0];

@@ -75,7 +75,7 @@ router.get("/modifytabs/:id", async (req, res) => {
 
 router.post("/search", async (req, res) => {
     const Head = await head(req);
-    const request = req.body;
+    const request = xss(req.body);
     const name = request["name"];
     res.redirect("/tabs/search?name=" + name +"&page=1");
     /*try {
@@ -194,7 +194,7 @@ router.get("/mytabs", async (req, res) => {
 
 router.post("/upload", async (req, res) => {
     const Head = await head(req);
-    const request = req.body;
+    const request = xss(req.body);
     try {
         const result = await tabs.create(request["tabName"], request["songName"], request["artistName"], request["authorName"], request["content"]);
         res.render("construct/tabs/success", {title: "Upload Successfully!", status: Head, operation: "uploaded"});
@@ -206,7 +206,7 @@ router.post("/upload", async (req, res) => {
 
 router.post("/delete", async (req, res) => {
     const Head = await head(req);
-    const request = req.body;
+    const request = xss(req.body);
     const auth = await authentication(req);
     try {
         const data = await tabs.getId(request["id"]);
@@ -226,7 +226,7 @@ router.post("/delete", async (req, res) => {
 
 router.post("/modify", async (req, res) => {
     const Head = await head(req);
-    const request = req.body;
+    const request = xss(req.body);
     try {
         const data = await tabs.getName(request["tabName"]);
         const res1 = await tabs.modifyArtistName(data[0]["_id"], request["artistName"]);
@@ -242,7 +242,7 @@ router.post("/modify", async (req, res) => {
 
 router.post("/like", async (req, res) => {
     const Head = await head(req);
-    const request = req.body;
+    const request = xss(req.body);
     const auth = await authentication(req);
     try {
         if(auth == null)
@@ -268,7 +268,7 @@ router.post("/like", async (req, res) => {
 
 router.post("/thumbsdown", async (req, res) => {
     const Head = await head(req);
-    const request = req.body;
+    const request = xss(req.body);
     const auth = await authentication(req);
     try {
         if(auth == null)

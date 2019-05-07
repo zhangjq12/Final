@@ -1,4 +1,5 @@
 const auth = require("./authentication");
+const xss = require('xss');
 
 async function headLink(req) {
     var link = [];

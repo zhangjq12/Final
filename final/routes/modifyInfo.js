@@ -6,6 +6,7 @@ const head = require("./head");
 const authentication = require("./authentication");
 const upload = require("./middleware/multer");
 const deletefile = require("./delete");
+const xss = require('xss');
 
 router.get("/", async (req, res) => {
     const Head = await head(req);
@@ -20,7 +21,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", upload.single('portrait'), async (req, res) => {
     const Head = await head(req);
-    const request = req.body;
+    const request = xss(req.body);
     const auth = await authentication(req);
     const fileName = req.file.filename;
     try {
