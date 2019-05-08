@@ -2,7 +2,7 @@
 
 Build and Start:
 
-npm install
+npm install\n
 npm start
 
 Start on port 3000
