@@ -3,10 +3,14 @@
     <div class="col-6 offset-3">
     <p id="error">{{error}}</p>
     <form id="modifyInfoForm" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="modifyPortrait">Your Head Portrait...</label>
-            <input type="file" class="form-control-file" id="modifyPortrait" name="portrait" accept="image/*" required>
-            <p id="fileRestrict" style="color:red;">You should upload your portrait</p>
+        <div class="input-group">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="modifyPortrait" name="portrait" accept="image/*" required>
+                <label id="fileNameLabel" class="custom-file-label" for="modifyPortrait">Your Head Portrait...</label>
+            </div>
+        </div>
+        <div class="container" id="fileRestrict">
+            <p style="color:red;">You should upload your portrait</p>
         </div>
         <div class="form-group">
             <label for="modifyUser">User Name:</label>
@@ -73,18 +77,23 @@
         var sizeOk = fun(this);
         if($(this).val() !== '') {
             if(!sizeOk) { 
-                $("#fileRestrict").text("The maximum file size is 2M. It's too large!");
-                $("#fileRestrict").css('color', 'red');
+                var fileName = file.name;
+                $('#fileNameLabel').html(fileName);
+                $("#fileRestrict").find('p').text("The maximum file size is 2M. It's too large!");
+                $("#fileRestrict").find('p').css('color', 'red');
                 uploadhead = false;
             }
             else{
-                $("#fileRestrict").text("");
+                var fileName = file.name;
+                $('#fileNameLabel').html(fileName);
+                //$("#fileRestrict").html("");
+                imgPreview(this);
                 uploadhead = true;
             }
         }
         else {
-            $("#fileRestrict").text("You should upload your portrait");
-            $("#fileRestrict").css('color', 'red');
+            $("#fileRestrict").find('p').text("You should upload your portrait");
+            $("#fileRestrict").find('p').css('color', 'red');
             uploadhead = false;
         }
         if(empty && emailValid && uploadhead && passwordMax && passwordMin && conpassMatch)
@@ -92,6 +101,22 @@
         else
             $("#modifySubmit").attr('disabled', true);
     });
+    function imgPreview(fileDom) {
+        var reader;
+        if(window.FileReader) {
+            reader = new FileReader();
+        } else {
+            document.getElementById("fileRestrict").innerHTML = '<div class="alert alert-danger" role="alert">\
+                Your device doesn\'t support the image preview!\
+            </div>'
+            return;
+        }
+        var file = fileDom.files[0];
+        reader.onload = function(e) {
+            document.getElementById("fileRestrict").innerHTML = '<p></p><p>Your preview protrait: <img src="' + e.target.result + '" width="40px" height="40px" /></p>'
+        };
+        reader.readAsDataURL(file);
+    }
     $('#modifyInfoForm').submit(function(){
         window.event.preventDefault();
         $(this).find(':button[type=submit]').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
