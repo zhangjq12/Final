@@ -29,6 +29,12 @@
                     <img src="/public/image/Guitablogo.jpg" width="150" height="60" alt="GuiTabsLogo">
                 </a>
             </span>
+            <button id="addNewNav" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#addNewTabNav" aria-controls="addNewTabNav" aria-expanded="false" aria-label="Add New Tab">
+                <span class="fa fa-plus"></span>
+            </button>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#searchNav" aria-controls="searchNav" aria-expanded="false" aria-label="Search Tab">
+                <span class="fa fa-search"></span>
+            </button>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -40,16 +46,21 @@
                     </li>
                     {{/each}}
                 </ul>
+            </div>
+            <div class="collapse navbar-collapse justify-content-between" id="addNewTabNav">
                 <form class="form-inline" method="GET" action="/tabs/newtabs">
                     <button class="btn btn-outline-success my-2 my-sm-0 btn-lg" type="submit" id="newTabBtn">New Tab</button>
                 </form>
-                <script language="javascript" type="text/javascript">
-                    $(document).ready(function () {
-                        if(document.getElementById("uNameShow") == null) {
-                            document.getElementById("newTabBtn").style.display = "none";
-                        }
-                    })
-                </script>
+            </div>
+            <script language="javascript" type="text/javascript">
+                $(document).ready(function () {
+                    if(document.getElementById("uNameShow") == null) {
+                        document.getElementById("newTabBtn").style.display = "none";
+                        document.getElementById("addNewNav").style.display = "none";
+                    }
+                })
+            </script>
+            <div class="collapse navbar-collapse justify-content-between" id="searchNav">
                 <form class="form-inline" method="POST" action="/tabs/search" id="search">
                     <div class="form-group">
                         <label for="searchText" class="sr-only">Search:</label>
