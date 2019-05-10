@@ -51,7 +51,7 @@
             </div>
             <div class="modal-footer" id="modifyinfoDiaFooter">
                 <form></form>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="nomodify">No</button>
                 <button type="button" class="btn btn-primary" id="yesmodify" >Yes</button>
             </div>
         </div>
@@ -96,6 +96,10 @@
         window.event.preventDefault();
         $(this).find(':button[type=submit]').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
         $(this).find(':button[type=submit]').prop('disabled', true);
+    });
+    $("#nomodify").click(function() {
+        $('#modifySubmit').html('Submit');
+        $('#modifySubmit').attr('disabled', false);
     });
     $(document).ready(function(){
         empty = false;

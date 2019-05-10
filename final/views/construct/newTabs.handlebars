@@ -43,8 +43,7 @@
                 Do you want to continue?
             </div>
             <div class="modal-footer" id="modifytabDiaFooter">
-                <form></form>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="nomodify" >No</button>
                 <button type="button" class="btn btn-primary" id="yesmodify" >Yes</button>
             </div>
         </div>
@@ -118,7 +117,7 @@
             $("#tabSubmit").attr('disabled', true);
         }
     });
-    $('document').ready(function(){
+    $(document).ready(function(){
         if(op == "upload") {
             nameEmpty = false;
             songEmpty = false;
@@ -133,6 +132,10 @@
             $("#tabSubmit").attr('disabled', false);
         }
     });
+    $("#nomodify").click(function() {
+        $('#tabSubmit').html('Submit');
+        $('#tabSubmit').prop('disabled', false);
+    });
     $("#yesmodify").click(function() {
         $("#yesmodify").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
         $('#yesmodify').prop('disabled', true);
@@ -145,7 +148,6 @@
         var id = ""
         if(op.substring(0, 14) == "modify/?tabId=")
             id = op.substring(14);
-        console.log(op);
 
         $.ajax({
             type: "post",
