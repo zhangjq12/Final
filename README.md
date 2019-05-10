@@ -1,8 +1,8 @@
 # GuiTabs source code
 
-User credentials after running the seed file:
-Username: P_hill
-Password: strongpassword
+User credentials after running the seed file: <br />
+Username: P_hill <br />
+Password: strongpassword <br />
 
 Build and Start Instructions:
 
