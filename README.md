@@ -1,8 +1,10 @@
 # GuiTabs source code
 
-Build and Start:
+Build and Start Instructions:
 
 npm install
+
+npm run seed
 
 npm start
 
