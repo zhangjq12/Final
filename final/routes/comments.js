@@ -6,10 +6,7 @@ const users = data.users;
 const head = require("./head");
 const xss = require('xss');
 
-/*router.get("/:id", (req, res) => {
 
-});
-*/
 router.post("/", async (req, res) => {
     const data = {
         commentAuthor: xss(req.body.commentAuthor),
