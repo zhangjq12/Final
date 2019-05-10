@@ -1,10 +1,11 @@
 # GuiTabs source code
 
-User credentials after running the seed file: <br />
-Username: P_hill <br />
-Password: strongpassword <br />
+_User credentials_ after running the seed file: <br />
+<br />
+**Username:** P_hill <br />
+**Password:** strongpassword <br />
 
-Build and Start Instructions:
+**_Build and Start Instructions:_**
 
 npm install
 
