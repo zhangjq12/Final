@@ -64,11 +64,14 @@
             </script>
             <div class="collapse navbar-collapse justify-content-end" id="searchNav">
                 <form class="form-inline" method="POST" action="/tabs/search" id="search">
-                    <div class="form-group">
+                    <div class="input-group">
                         <label for="searchText" class="sr-only">Search:</label>
-                        <input id="searchText" type="text" class="form-control mr-sm-2" placeholder="Search The Name Of Tabs" name="name" required>
-                        <div class="invalid-tooltip">Can't be empty here</div>
-                        <button type="submit" class="btn btn-primary my-2 my-sm-0">Search</button>
+                        <input id="searchText" type="text" class="form-control" placeholder="Search The Name Of Tabs" name="name" required>
+                        <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="fa fa-search"></span>
+                        </button>
+                        </div>
                     </div>
                 </form>
             </div>
