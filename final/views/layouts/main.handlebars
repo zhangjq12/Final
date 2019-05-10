@@ -40,7 +40,7 @@
                     <span class="navbar-toggler-icon" data-toggle="tooltip" title="Menu"></span>
                 </button>
             </div>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+            <div class="collapse navbar-collapse justify-content-start" id="navbarNav">
                 <ul class="navbar-nav">
                     {{#each status}}
                     <li class="nav-item">
@@ -49,7 +49,7 @@
                     {{/each}}
                 </ul>
             </div>
-            <div class="collapse navbar-collapse justify-content-between" id="addNewTabNav">
+            <div class="collapse navbar-collapse justify-content-end" id="addNewTabNav">
                 <form class="form-inline" method="GET" action="/tabs/newtabs">
                     <button class="btn btn-outline-success my-2 my-sm-0 btn-lg" type="submit" id="newTabBtn">New Tab</button>
                 </form>
@@ -62,7 +62,7 @@
                     }
                 })
             </script>
-            <div class="collapse navbar-collapse justify-content-between" id="searchNav">
+            <div class="collapse navbar-collapse justify-content-end" id="searchNav">
                 <form class="form-inline" method="POST" action="/tabs/search" id="search">
                     <div class="form-group">
                         <label for="searchText" class="sr-only">Search:</label>
