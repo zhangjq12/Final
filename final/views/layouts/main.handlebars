@@ -23,25 +23,27 @@
     <h2></h2>
     <h3></h3>
     <div id="navBar" class="container">
-        <nav class="navbar sticky-top navbar-expand-md navbar-light" style="background-color: #f5f5f5;">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #f5f5f5;">
             <span class="navbar-brand mb-0 h1">
                 <a class="navbar-brand" href="/">
                     <img src="/public/image/Guitablogo.jpg" width="150" height="60" alt="GuiTabsLogo">
                 </a>
             </span>
-            <button id="addNewNav" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#addNewTabNav" aria-controls="addNewTabNav" aria-expanded="false" aria-label="Add New Tab">
-                <span class="fa fa-plus"></span>
-            </button>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#searchNav" aria-controls="searchNav" aria-expanded="false" aria-label="Search Tab">
-                <span class="fa fa-search"></span>
-            </button>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <div class="row d-lg-none">
+                <a id="addNewNavBtn" class="nav-link my-2 my-sm-0" role="button" href="#" data-toggle="collapse" data-target="#addNewTabNav" aria-controls="addNewTabNav" aria-expanded="false" aria-label="Add New Tab">
+                    <span class="fa fa-plus" data-toggle="tooltip" title="Add New Tab"></span>
+                </a>
+                <a id="searchNavBtn" class="nav-link my-2 my-sm-0" role="button" href="#" data-toggle="collapse" data-target="#searchNav" aria-controls="searchNav" aria-expanded="false" aria-label="Search Tab">
+                    <span class="fa fa-search" data-toggle="tooltip" title="Search Tabs"></span>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon" data-toggle="tooltip" title="Menu"></span>
+                </button>
+            </div>
             <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
                 <ul class="navbar-nav">
                     {{#each status}}
-                    <li>
+                    <li class="nav-item">
                         {{{content}}}
                     </li>
                     {{/each}}
@@ -56,7 +58,7 @@
                 $(document).ready(function () {
                     if(document.getElementById("uNameShow") == null) {
                         document.getElementById("newTabBtn").style.display = "none";
-                        document.getElementById("addNewNav").style.display = "none";
+                        document.getElementById("addNewNavBtn").style.display = "none";
                     }
                 })
             </script>
@@ -66,8 +68,8 @@
                         <label for="searchText" class="sr-only">Search:</label>
                         <input id="searchText" type="text" class="form-control mr-sm-2" placeholder="Search The Name Of Tabs" name="name" required>
                         <div class="invalid-tooltip">Can't be empty here</div>
+                        <button type="submit" class="btn btn-primary my-2 my-sm-0">Search</button>
                     </div>
-                    <button type="submit" class="btn btn-primary my-2 my-sm-0">Search</button>
                 </form>
             </div>
         </nav>
