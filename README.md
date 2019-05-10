@@ -6,11 +6,8 @@ _User credentials_ after running the seed file: <br />
 **Password:** strongpassword <br />
 
 **_Build and Start Instructions:_**
+npm install<br />
+npm run seed<br />
+npm start<br />
 
-npm install
-
-npm run seed
-
-npm start
-
-Start on port 3000
+Input localhost:3000/ on your explorer.<br />
