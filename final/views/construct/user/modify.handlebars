@@ -88,10 +88,10 @@
                 </button>
             </div>
             <div class="modal-body" id="modifyPortraitDiaBody">
-                <div class="container" id="dragarea">
+                <div class="container" id="avatarArea">
                     <div class="row h-100">
-                        <div class="col align-self-center text-center">
-                            Drag The Avatar Here
+                        <div class="col align-self-center text-center" id="dragarea">
+                            Drag your avatar here...
                         </div>
                     </div>
                 </div>
@@ -158,17 +158,17 @@
         var sizeOk = fun(e.dataTransfer);
         if(!sizeOk) { 
             var fileName = file.name;
-            $('#fileNameLabel').html(fileName);
             $("#fileRestrict").find('p').text("The maximum file size is 2M. It's too large!");
             $("#fileRestrict").find('p').css('color', 'red');
             uploadhead = false;
         }
         else{
             var fileName = file.name;
-            $('#fileNameLabel').html(fileName);
-            $("#fileRestrict").html("");
+            $('#fileNameLabel').text(fileName);
+            $("#fileRestrict").find('p').text("");
             imgPreview();
             uploadhead = true;
+            $('modifyPortrait').val(e.dataTransfer);
         }
         if(uploadhead)
             $("#yesPorMod").attr('disabled', false);
@@ -182,25 +182,21 @@
         if($(this).val() !== '') {
             if(!sizeOk) { 
                 var fileName = file.name;
-                $('#fileNameLabel').html(fileName);
                 $("#fileRestrict").find('p').text("The maximum file size is 2M. It's too large!");
                 $("#fileRestrict").find('p').css('color', 'red');
                 uploadhead = false;
             }
             else{
                 var fileName = file.name;
-                $('#fileNameLabel').html(fileName);
-                $("#fileRestrict").html("");
+                $('#fileNameLabel').text(fileName);
+                $("#fileRestrict").find('p').text("");
                 imgPreview();
                 uploadhead = true;
             }
         }
         else {
-            $('#dragarea').html('<div class="row justify-content-center align-items-center">\
-                        <div class="col">\
-                            Drag The Avatar Here\
-                        </div>\
-                    </div>');
+            $('#dragarea').text("Drag your avatar here...")
+            $('#fileNameLabel').text("Your Avatar...");
             $("#fileRestrict").find('p').text("You should upload your avatar");
             $("#fileRestrict").find('p').css('color', 'red');
             uploadhead = false;
