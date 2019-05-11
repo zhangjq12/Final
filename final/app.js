@@ -16,7 +16,9 @@ app.use("/public", express.static(__dirname + "/public"));
 app.use("/views", express.static(__dirname + "/views"));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({
+    extended : true
+}));
 
 app.use(cookie('JqZhang'));
 app.use(session({

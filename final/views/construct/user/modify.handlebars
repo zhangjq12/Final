@@ -4,9 +4,9 @@
     <p id="error">{{error}}</p>
     <form id="modifyInfoForm" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="changePor">Your Portrait:</label></br>
+            <label for="changePor">Your Avatar:</label></br>
             <img id="PortraitNow" class="mr-3 rounded-circle" src="/public/image/portrait/{{portrait}}" width="100" height="100" alt="headPortrait"></br></br>
-            <button id="changePor" type="button" data-toggle="modal" data-target="#modifyPortraitDia" class="btn btn-primary">Change your Portrait</button>
+            <button id="changePor" type="button" data-toggle="modal" data-target="#modifyPortraitDia" class="btn btn-primary">Change your Avatar:</button>
         </div>
         <div class="form-group">
             <label for="modifyUser">User Name:</label>
@@ -37,13 +37,13 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header" id="modifyinfoDiaHeader">
-                <h5 class="modal-title" id="modifyinfoDiaTitle">Modify Info</h5>
+                <h5 class="modal-title" id="modifyinfoDiaTitle">Change Profile</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body" id="modifyinfoDiaBody">
-                Do you want to modify your information?
+                Do you want to change your profile?
             </div>
             <div class="modal-footer" id="modifyinfoDiaFooter">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" id="nomodify">No</button>
@@ -82,7 +82,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header" id="modifyPortraitDiaHeader">
-                <h5 class="modal-title" id="modifyPortraitDiaTitle">Modify Portrait</h5>
+                <h5 class="modal-title" id="modifyPortraitDiaTitle">Modify Avatar</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -91,18 +91,18 @@
                 <div class="container" id="dragarea">
                     <div class="row h-100">
                         <div class="col align-self-center text-center">
-                            Drag The Portrait Here
+                            Drag The Avatar Here
                         </div>
                     </div>
                 </div>
                 <div class="input-group">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="modifyPortrait" name="portrait" accept="image/*" required>
-                        <label id="fileNameLabel" class="custom-file-label" for="modifyPortrait">Your Head Portrait...</label>
+                        <label id="fileNameLabel" class="custom-file-label" for="modifyPortrait">Your Avatar...</label>
                     </div>
                 </div>
                 <div class="container" id="fileRestrict">
-                    <p style="color:red;">You should upload your portrait</p>
+                    <p style="color:red;">You should upload your avatar</p>
                 </div>
             </div>
             <div class="modal-footer" id="modifyPortraitDiaFooter">
@@ -198,10 +198,10 @@
         else {
             $('#dragarea').html('<div class="row justify-content-center align-items-center">\
                         <div class="col">\
-                            Drag The Portrait Here\
+                            Drag The Avatar Here\
                         </div>\
                     </div>');
-            $("#fileRestrict").find('p').text("You should upload your portrait");
+            $("#fileRestrict").find('p').text("You should upload your avatar");
             $("#fileRestrict").find('p').css('color', 'red');
             uploadhead = false;
         }
@@ -215,7 +215,7 @@
         if(window.FileReader) {
             reader = new FileReader();
         } else {
-            $("#fileRestrict").find('p').text("Your device doesn't support the image preview!");
+            $("#fileRestrict").find('p').text("Your device doesn't support image preview!");
             $("#fileRestrict").find('p').css('color', 'red');
             return;
         }
@@ -316,7 +316,7 @@
             processData: false,
             success: function(res) {
                 $("#modifyinfoDiaFooter").hide();
-                $("#modifyinfoDiaBody").html('<div class="container"><p>Modify Successfully for user ' + res["user"] + '!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back homepage!</span></div>');
+                $("#modifyinfoDiaBody").html('<div class="container"><p>Profile changed for user ' + res["user"] + '!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back homepage!</span></div>');
                 jQuery.getScript("/public/js/autourl.js").done(function(){
                     var fun = auto;
                     fun("/");
@@ -324,7 +324,7 @@
             },
             error: function(err) {
                 $("#modifyinfoDiaFooter").hide();
-                $("#modifyinfoDiaBody").html('<div class="container"><p>Modify failed for user ' + err["user"] + '!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back homepage!</span></div>');
+                $("#modifyinfoDiaBody").html('<div class="container"><p>Profile change failed for user ' + err["user"] + '!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back homepage!</span></div>');
                 jQuery.getScript("/public/js/autourl.js").done(function(){
                     var fun = auto;
                     fun("/");
