@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
     try {
         var key = keyArr[0];
         const data = await users.getName(request["user"]);
-        if(data[0]["userName"] == request["user"] && passwordHash.verify(request["password"], data[0]["hashedPassword"])) {
+        if(data.length != 0 && data[0]["userName"] == request["user"] && passwordHash.verify(request["password"], data[0]["hashedPassword"])) {
             const hashedCookie = key.encrypt(request["user"], 'base64');
             //const usernameStore = request["user"];
             //userstore.push(usernameStore);

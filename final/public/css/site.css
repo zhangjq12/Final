@@ -15,7 +15,12 @@ main {
     flex-shrink: 0;
     padding: 20px;
 }
-footer{
+footer {
     background-color: #ffffff;
     text-align: center;
+}
+
+#dragarea {
+    height: 200px;
+    border: 1px solid black;
 }

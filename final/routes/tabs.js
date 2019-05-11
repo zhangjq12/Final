@@ -41,7 +41,7 @@ router.get("/", async (req, res) => {
         else
             ifdisLike = "dislike.png";
         const commentsData = await comments.getTab(tabId);
-        const deleteId = 'deleteTabs("' + tabId + '");';
+        const deleteId = tabId;
         res.render("construct/tabs/show", {title: data[0]["tabName"], status: Head, tab: data[0]["tabName"], id: tabId, delete: deleteId, song: data[0]["songName"], artist: data[0]["artistName"], author: data[0]["author"], content: data[0]["Content"], thumbsup: data[0]["Rating"]["thumbsup"], thumbsdown: data[0]["Rating"]["thumbsdown"], thumbstatus: ifLike, badstatus: ifdisLike, userName: auth, comments: commentsData});
     }
     catch(e) {
@@ -223,17 +223,21 @@ router.post("/delete", async (req, res) => {
     const auth = await authentication(req);
     try {
         const data = await tabs.getId(request["id"]);
+        const tab = data[0]["tabName"];
         const authorname = data[0]["author"];
         if(auth != null && auth == authorname) {
             const result = await tabs.remove(request["id"]);
-            res.render("construct/tabs/success",  {title: "Delete Successfully!", status: Head, operation: "deleted"});
+            res.send({"status": "success", "tab": tab, "author": authorname});
+            //res.render("construct/tabs/success",  {title: "Delete Successfully!", status: Head, operation: "deleted"});
         }
         else {
-            res.render("construct/tabs/fail", {title: "Error", status: Head, error: "You don't have permission to delete this tab!"});
+            res.send({"status": "nopermission", "tab": tab, "author": authorname});
+            //res.render("construct/tabs/fail", {title: "Error", status: Head, error: "You don't have permission to delete this tab!"});
         }
     }
     catch(e) {
-        res.render("construct/tabs/fail", {title: "Delete Failed!", status: Head});
+        res.send({"status": error});
+        //res.render("construct/tabs/fail", {title: "Delete Failed!", status: Head});
     }
 });
 

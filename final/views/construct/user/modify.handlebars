@@ -3,26 +3,18 @@
     <div class="col-6 offset-3">
     <p id="error">{{error}}</p>
     <form id="modifyInfoForm" enctype="multipart/form-data">
-        <div class="input-group">
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="modifyPortrait" name="portrait" accept="image/*" required>
-                <label id="fileNameLabel" class="custom-file-label" for="modifyPortrait">Your Head Portrait...</label>
-            </div>
-        </div>
-        <div class="container" id="fileRestrict">
-            <p style="color:red;">You should upload your portrait</p>
+        <div class="form-group">
+            <label for="changePor">Your Portrait:</label></br>
+            <img id="PortraitNow" class="mr-3 rounded-circle" src="/public/image/portrait/{{portrait}}" width="100" height="100" alt="headPortrait"></br></br>
+            <button id="changePor" type="button" data-toggle="modal" data-target="#modifyPortraitDia" class="btn btn-primary">Change your Portrait</button>
         </div>
         <div class="form-group">
             <label for="modifyUser">User Name:</label>
             <input id="modifyUser" class="form-control" type="text" name="userName" value={{user}} disabled></br>
         </div>
         <div class="form-group">
-            <label for="modifyPassword">Password:</label>
-            <input id="modifyPassword" class="form-control" type="password" name="password" required></br>
-        </div>
-        <div class="form-group">
-            <label for="modifyConPassword">Confirm Password:</label>
-            <input id="modifyConPassword" type="password" name="conPassword" class="form-control" placeholder="Confirm" required>
+            <label for="changePas">Password:</label></br>
+            <button id="changePas" type="button" data-toggle="modal" data-target="#modifyPasswordDia" class="btn btn-primary">Change your Password</button>
         </div>
         <div class="form-group">
             <label for="modifyFirst">First Name:</label>
@@ -36,7 +28,7 @@
             <label for="modifyEmail">Email:</label>
             <input id="modifyEmail" class="form-control" type="email" name="email" value={{email}} required></br>
         </div>
-        <button type="submit" id="modifySubmit" data-toggle="modal" data-target="#modifyinfoDia" class="btn btn-primary" disabled="true">Submit</button>
+        <button type="submit" id="modifySubmit" data-toggle="modal" data-target="#modifyinfoDia" class="btn btn-primary">Submit</button>
     </form>
     </div>
 </div>
@@ -54,9 +46,68 @@
                 Do you want to modify your information?
             </div>
             <div class="modal-footer" id="modifyinfoDiaFooter">
-                <form></form>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" id="nomodify">No</button>
                 <button type="button" class="btn btn-primary" id="yesmodify" >Yes</button>
+            </div>
+        </div>
+    </div>
+</div> 
+<div class="modal fade" id="modifyPasswordDia" tabindex="-1" role="dialog" aria-labelledby="modifyPasswordDiaTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" id="modifyPasswordDiaHeader">
+                <h5 class="modal-title" id="modifyPasswordDiaTitle">Modify Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modifyPasswordDiaBody">
+                <div class="form-group">
+                    <label for="modifyPassword">Password:</label>
+                    <input id="modifyPassword" class="form-control" type="password" name="password" required></br>
+                </div>
+                <div class="form-group">
+                    <label for="modifyConPassword">Confirm Password:</label>
+                    <input id="modifyConPassword" type="password" name="conPassword" class="form-control" placeholder="Confirm" required>
+                </div>
+            </div>
+            <div class="modal-footer" id="modifyPasswordDiaFooter">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="noPasMod">Close</button>
+                <button type="button" class="btn btn-primary" id="yesPasMod" disabled="true">Modify</button>
+            </div>
+        </div>
+    </div>
+</div> 
+<div class="modal fade" id="modifyPortraitDia" tabindex="-1" role="dialog" aria-labelledby="modifyPortraitDiaTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" id="modifyPortraitDiaHeader">
+                <h5 class="modal-title" id="modifyPortraitDiaTitle">Modify Portrait</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modifyPortraitDiaBody">
+                <div class="container" id="dragarea">
+                    <div class="row h-100">
+                        <div class="col align-self-center text-center">
+                            Drag The Portrait Here
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="modifyPortrait" name="portrait" accept="image/*" required>
+                        <label id="fileNameLabel" class="custom-file-label" for="modifyPortrait">Your Head Portrait...</label>
+                    </div>
+                </div>
+                <div class="container" id="fileRestrict">
+                    <p style="color:red;">You should upload your portrait</p>
+                </div>
+            </div>
+            <div class="modal-footer" id="modifyPortraitDiaFooter">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="noPorMod">Close</button>
+                <button type="button" class="btn btn-primary" id="yesPorMod" disabled="true">Modify</button>
             </div>
         </div>
     </div>
@@ -71,6 +122,59 @@
     var passwordMax = false;
     var conpassMatch = false;
     var file;
+    var portraitModified = false;
+    var passwordModified = false;
+    var tempFile;
+    $(document).on({
+        dragleave:function(e){
+            e.preventDefault();
+            $('#dragarea').removeClass('over');
+        },
+        drop:function(e){
+            e.preventDefault();
+            //$('#dragarea').removeClass('over');
+        },
+        dragenter:function(e){
+            e.preventDefault();
+            $('#dragarea').addClass('over');
+        },
+        dragover:function(e){
+            e.preventDefault();
+            $('#dragarea').addClass('over');
+        }
+    });
+    document.getElementById('dragarea').addEventListener("drop", function(e) {
+        e.preventDefault();
+        file = e.dataTransfer.files[0];
+        if (file == undefined) {
+            return false;
+        }
+        if (file.type.indexOf('image') === -1) {
+            $("#fileRestrict").find('p').text("You should drag the image to the area!");
+            $("#fileRestrict").find('p').css('color', 'red');
+            return false;
+        }
+        var fun = checkSize;
+        var sizeOk = fun(e.dataTransfer);
+        if(!sizeOk) { 
+            var fileName = file.name;
+            $('#fileNameLabel').html(fileName);
+            $("#fileRestrict").find('p').text("The maximum file size is 2M. It's too large!");
+            $("#fileRestrict").find('p').css('color', 'red');
+            uploadhead = false;
+        }
+        else{
+            var fileName = file.name;
+            $('#fileNameLabel').html(fileName);
+            $("#fileRestrict").html("");
+            imgPreview();
+            uploadhead = true;
+        }
+        if(uploadhead)
+            $("#yesPorMod").attr('disabled', false);
+        else
+            $("#yesPorMod").attr('disabled', true);
+    }, false);
     $("#modifyPortrait").change(function() {
         file = this.files[0];
         var fun = checkSize;
@@ -86,35 +190,39 @@
             else{
                 var fileName = file.name;
                 $('#fileNameLabel').html(fileName);
-                //$("#fileRestrict").html("");
-                imgPreview(this);
+                $("#fileRestrict").html("");
+                imgPreview();
                 uploadhead = true;
             }
         }
         else {
+            $('#dragarea').html('<div class="row justify-content-center align-items-center">\
+                        <div class="col">\
+                            Drag The Portrait Here\
+                        </div>\
+                    </div>');
             $("#fileRestrict").find('p').text("You should upload your portrait");
             $("#fileRestrict").find('p').css('color', 'red');
             uploadhead = false;
         }
-        if(empty && emailValid && uploadhead && passwordMax && passwordMin && conpassMatch)
-            $("#modifySubmit").attr('disabled', false);
+        if(uploadhead)
+            $("#yesPorMod").attr('disabled', false);
         else
-            $("#modifySubmit").attr('disabled', true);
+            $("#yesPorMod").attr('disabled', true);
     });
-    function imgPreview(fileDom) {
+    function imgPreview() {
         var reader;
         if(window.FileReader) {
             reader = new FileReader();
         } else {
-            document.getElementById("fileRestrict").innerHTML = '<div class="alert alert-danger" role="alert">\
-                Your device doesn\'t support the image preview!\
-            </div>'
+            $("#fileRestrict").find('p').text("Your device doesn't support the image preview!");
+            $("#fileRestrict").find('p').css('color', 'red');
             return;
         }
-        var file = fileDom.files[0];
         reader.onload = function(e) {
-            document.getElementById("fileRestrict").innerHTML = '<p></p><p>Your preview protrait: <img src="' + e.target.result + '" width="40px" height="40px" /></p>'
-        };
+            document.getElementById("dragarea").innerHTML = '<img src="' + e.target.result + '" width="200px" height="200px" />'
+            tempFile = e.target.result;
+        }
         reader.readAsDataURL(file);
     }
     $('#modifyInfoForm').submit(function(){
@@ -127,16 +235,18 @@
         $('#modifySubmit').attr('disabled', false);
     });
     $(document).ready(function(){
-        empty = false;
+        empty = true;
         emailValid = true;
         passwordMin = false;
         passwordMax = false;
         conpassMatch = false;
+        portraitModified = false;
+        passwordModified = false;
     }); 
-    bootstrapValidate(['#modifyPassword', '#modifyConPassword', '#modifyFirst', '#modifyLast', '#modifyEmail'], 'required: This can not be empty!', function(isEmpty) {
+    bootstrapValidate(['#modifyFirst', '#modifyLast', '#modifyEmail'], 'required: This can not be empty!', function(isEmpty) {
         if(isEmpty == true) {
             empty = true; 
-            if(empty && emailValid && uploadhead && passwordMax && passwordMin && conpassMatch)
+            if(empty && emailValid)
                 $("#modifySubmit").attr('disabled', false);
             else
                 $("#modifySubmit").attr('disabled', true);
@@ -147,26 +257,52 @@
             $("#modifySubmit").attr('disabled', true);
         }
     });
-    bootstrapValidate('#modifyEmail', 'email: Enter a valid E-Mail!', function(isEmail) { if(isEmail) {emailValid = true; if(empty && emailValid && uploadhead && passwordMax && passwordMin && conpassMatch)
+    bootstrapValidate('#modifyEmail', 'email: Enter a valid E-Mail!', function(isEmail) { if(isEmail) {emailValid = true; if(empty && emailValid)
         $("#modifySubmit").attr('disabled', false); else
         $("#modifySubmit").attr('disabled', true); } else {emailValid = false; $("#modifySubmit").attr('disabled', "true");}});
-    bootstrapValidate('#modifyPassword', 'min:6: Your password should more than 6 charactors!', function(isPassword) { if(isPassword) {passwordMin = true; if(empty && emailValid && uploadhead && passwordMax && passwordMin && conpassMatch)
-        $("#modifySubmit").attr('disabled', false); else
-        $("#modifySubmit").attr('disabled', true);} else {passwordMin = false; $("#modifySubmit").attr('disabled', "true");}});
-    bootstrapValidate('#modifyPassword', 'max:20: Your password should no more than 20 charactors!', function(isPassword) { if(isPassword) {passwordMax = true; if(empty && emailValid && uploadhead && passwordMax && passwordMin && conpassMatch)
-        $("#modifySubmit").attr('disabled', false); else
-        $("#modifySubmit").attr('disabled', true);} else {passwordMax = false; $("#modifySubmit").attr('disabled', "true");}});
-    bootstrapValidate('#modifyConPassword', 'matches: #modifyPassword: The password is not match!', function(isMatched) { if(isMatched) {conpassMatch = true; if(empty && emailValid && uploadhead && passwordMax && passwordMin && conpassMatch)
-        $("#modifySubmit").attr('disabled', false); else
-        $("#modifySubmit").attr('disabled', true);} else {conpassMatch = false; $("#modifySubmit").attr('disabled', "true");}});
+    bootstrapValidate('#modifyPassword', 'min:6: Your password should more than 6 charactors!', function(isPassword) { if(isPassword) {passwordMin = true; if(passwordMax && passwordMin && conpassMatch)
+        $("#yesPasMod").attr('disabled', false); else
+        $("#yesPasMod").attr('disabled', true);} else {passwordMin = false; $("#yesPasMod").attr('disabled', "true");}});
+    bootstrapValidate('#modifyPassword', 'max:20: Your password should no more than 20 charactors!', function(isPassword) { if(isPassword) {passwordMax = true; if(passwordMax && passwordMin && conpassMatch)
+        $("#yesPasMod").attr('disabled', false); else
+        $("#yesPasMod").attr('disabled', true);} else {passwordMax = false; $("#yesPasMod").attr('disabled', "true");}});
+    bootstrapValidate('#modifyConPassword', 'matches: #modifyPassword: The password is not match!', function(isMatched) { if(isMatched) {conpassMatch = true; if(passwordMax && passwordMin && conpassMatch)
+        $("#yesPasMod").attr('disabled', false); else
+        $("#yesPasMod").attr('disabled', true);} else {conpassMatch = false; $("#yesPasMod").attr('disabled', "true");}});
+    $("#yesPorMod").click(function() {
+        var reader;
+        if(window.FileReader) {
+            reader = new FileReader();
+        } else {
+            document.getElementById("fileRestrict").innerHTML = '<div class="alert alert-danger" role="alert">\
+                Your device doesn\'t support the image preview!\
+            </div>'
+            return;
+        }
+        reader.onload = function(e) {
+            $('#PortraitNow').attr('src', tempFile);
+        }
+        reader.readAsDataURL(file);
+        portraitModified = true;
+        $('#modifyPortraitDia').modal('hide');
+    });
+
+    $("#yesPasMod").click(function() {
+        passwordModified = true;
+        $('#modifyPasswordDia').modal('hide');
+    });
+    
     $("#yesmodify").click(function() {
         $("#yesmodify").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
         $('#yesmodify').prop('disabled', true);
         var formData = new FormData();
-        formData.append('portrait', file);
+        if(portraitModified)
+            formData.append('portrait', file);
         formData.append('username', $("#modifyUser").val());
-        formData.append('password', $("#modifyPassword").val());
-        formData.append('conPassword', $("#modifyConPassword").val());
+        if(passwordModified) {
+            formData.append('password', $("#modifyPassword").val());
+            formData.append('conPassword', $("#modifyConPassword").val());
+        }
         formData.append('firstName', $("#modifyFirst").val());
         formData.append('lastName', $("#modifyLast").val());
         formData.append('email', $("#modifyEmail").val());
