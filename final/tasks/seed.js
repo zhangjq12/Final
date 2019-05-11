@@ -16,6 +16,16 @@ const main = async () => {
     const tab4 = await tabs.create("Spirit Carries On version 1","The Spirit Carries On","Dream Theater","P_hill",spirit);
     var bloodbrothers = fs.readFileSync('./tasks/BloodBrothers.txt', 'utf8');
     const tab5 = await tabs.create("Blood Brothers Chords","Blood Brothers","Iron Maiden","P_hill",bloodbrothers);
+    var hotelCalifornia = fs.readFileSync('./tasks/HotelCalifornia.txt', 'utf8');
+    const tab6 = await tabs.create("Hotel California Chords","Hotel California","Eagles","P_hill",hotelCalifornia);
+    var Hymn = fs.readFileSync('./tasks/HymnWeekend.txt', 'utf8');
+    const tab7 = await tabs.create("Hymn For The Weekend Chords","Hymn For The Weekend","Coldplay","P_hill",Hymn);
+    var DriveHome = fs.readFileSync('./tasks/DriveHome.txt', 'utf8');
+    const tab8 = await tabs.create("Drive Home Chords","Drive Home","Steven Wilson","P_hill",DriveHome);
+    var TearsInHeaven = fs.readFileSync('./tasks/TearsInHeaven.txt', 'utf8');
+    const tab9 = await tabs.create("Tears In Heaven Chords","Tears In Heaven","Eric Clapton","P_hill",TearsInHeaven);
+    var Summer = fs.readFileSync('./tasks/SummerOf69.txt', 'utf8');
+    const tab10 = await tabs.create("Summer of '69 Version 1","Summer of '69","Bryan Adams","P_hill",Summer);
 }
 
 main().catch(console.log);
