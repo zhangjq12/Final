@@ -31,7 +31,7 @@
                         <thead>
                             <tr>
                                 <th scope="col" id="headName">Tab Name</th>
-                                <th scope="col" id="headAuthor">Author</th>
+                                <th scope="col" id="headArtist">Aritist</th>
                                 <th scope="col" id="operation">Operation</th>
                             </tr>
                         </thead>
@@ -39,7 +39,7 @@
                             {{#each data}}
                             <tr>
                                 <td scope="row" id={{_id}}><a href="/tabs/?tabId={{_id}}">{{tabName}}</a></td>
-                                <td>{{author}}</td>
+                                <td>{{artistName}}</td>
                                 <td name="operations">
                                 <span>
                                     <a class="renameLink" id="rename&{{_id}}" href="/tabs/modifytabs/{{_id}}">Rename</a>|
@@ -78,6 +78,7 @@
                             <tr>
                                 <th scope="col" id="headName">Tab Name</th>
                                 <th scope="col" id="headAuthor">Author</th>
+                                <th scope="col" id="headArtist">Artist</th>
                             </tr>
                         </thead>
                         <tbody class="table table-hover table-borderless">
@@ -85,6 +86,7 @@
                             <tr>
                                 <td scope="row" id={{_id}}><a href="/tabs/?tabId={{_id}}">{{tabName}}</a></td>
                                 <td>{{author}}</td>
+                                <td>{{artistName}}</td>
                             </tr>
                             {{/each}}
                         </tbody>

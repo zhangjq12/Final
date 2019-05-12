@@ -95,8 +95,8 @@ router.post("/search", async (req, res) => {
 
 router.get("/search", async (req, res) => {
     const Head = await head(req);
-    var datas = [];
     try {
+        var datas = [];
         const name = xss(req.query.name);
         const pagestr = xss(req.query.page);
         const page = parseInt(pagestr);
@@ -107,9 +107,12 @@ router.get("/search", async (req, res) => {
         var map = {};
         for(var i = 0; i < 3; i++) {
             for(let j of datas[i]) {
-                if(map[j["_id"]] == undefined) {
+                //console.log(j);
+                if(map[j["_id"].toString()] == undefined) {
                     data.push(j);
-                    map[j["_id"]] == 1;
+                    //console.log(j["_id"].toString());
+                    map[j["_id"].toString()] = 1;
+                    //console.log(map);
                 }
             }
         }
@@ -191,7 +194,7 @@ router.get("/mytabs", async (req, res) => {
             const favtabs = [];
             for(var i = 0; i < info[0]["favoriteTabs"].length; i++) {
                 var tabdata = await tabs.getId(info[0]["favoriteTabs"][i]);
-                var obj = {"_id": tabdata[0]["_id"], "tabName": tabdata[0]["tabName"], "author": tabdata[0]["author"]}
+                var obj = {"_id": tabdata[0]["_id"], "tabName": tabdata[0]["tabName"], "author": tabdata[0]["author"], "artistName": tabdata[0]["artistName"]};
                 favtabs.push(obj);
             }
             if(favtabs.length == 0)
