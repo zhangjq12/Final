@@ -95,11 +95,24 @@ router.post("/search", async (req, res) => {
 
 router.get("/search", async (req, res) => {
     const Head = await head(req);
+    var datas = [];
     try {
         const name = xss(req.query.name);
         const pagestr = xss(req.query.page);
         const page = parseInt(pagestr);
-        const data = await tabs.getName(name);
+        datas[0] = await tabs.getName(name);
+        datas[1] = await tabs.getArtist(name);
+        datas[2] = await tabs.getAuthors(name);
+        var data = [];
+        var map = {};
+        for(var i = 0; i < 3; i++) {
+            for(let j of datas[i]) {
+                if(map[j["_id"]] == undefined) {
+                    data.push(j);
+                    map[j["_id"]] == 1;
+                }
+            }
+        }
         if(data.length != 0) {
             const pagenum = Math.floor((data.length - 1) / 10) + 1;
             if(page <= pagenum) {
