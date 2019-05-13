@@ -1,7 +1,7 @@
 <div id="TabModify" class="container">
     <h4></h4>
     <form id="newTabs">
-        <div class="container" id="action" name={{operation}}></div>
+        <div class="container" id="action" data-name={{operation}}></div>
         <div class="form-row">
             <div class="col-md-4 mb-2">
                 <label for="tabName">Tab Name:</label>
@@ -55,7 +55,7 @@
     var songEmpty = false;
     var artistEmpty = false;
     var contentEmpty = false;
-    const op = $('#action').attr("name");
+    const op = $('#action').attr("data-name");
     $('#newTabs').submit(function(){
         window.event.preventDefault();
         $(this).find(':button[type=submit]').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');

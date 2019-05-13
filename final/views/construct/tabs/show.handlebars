@@ -14,7 +14,7 @@
                     Delete
                 </button>
             </div>
-            <div class="modal fade" id="deleteDia" tabindex="-1" role="dialog" aria-labelledby="deleteDiaTitle" aria-hidden="true" name={{delete}}>
+            <div class="modal fade" id="deleteDia" tabindex="-1" role="dialog" aria-labelledby="deleteDiaTitle" aria-hidden="true" data-name={{delete}}>
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header" id="deleteDiaHeader">
@@ -153,7 +153,7 @@
     })
 
     $('#deleteYes').click(function(event) {
-        var id = $('#deleteDia').attr('name');
+        var id = $('#deleteDia').attr('data-name');
         $.ajax({
             type: "post",
             dataType: "json",

@@ -40,7 +40,7 @@
                             <tr>
                                 <td scope="row" id={{_id}}><a href="/tabs/?tabId={{_id}}">{{tabName}}</a></td>
                                 <td>{{artistName}}</td>
-                                <td name="operations">
+                                <td data-name="operations">
                                 <span>
                                     <a class="renameLink" id="rename&{{_id}}" href="/tabs/modifytabs/{{_id}}">Rename</a>|
                                 </span>
@@ -104,11 +104,11 @@
     $('.deleteLink').click(function(event) {
         event.preventDefault();
         var id = $(this).attr('id').substring(7);
-        $('#deleteDia').attr('name', id);
+        $('#deleteDia').attr('data-name', id);
         $('#deleteDia').modal('show');
     });
     $('#deleteYes').click(function(event) {
-        var id = $('#deleteDia').attr('name');
+        var id = $('#deleteDia').attr('data-name');
         $.ajax({
             type: "post",
             dataType: "json",
