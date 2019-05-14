@@ -15,6 +15,7 @@ Type these commands in the terminal at the project directory : <br/>
 ```npm start```<br/>
 <br/>
 Input _localhost:3000/_ on your browser for the homepage. <br/>
+<br/>
 _User credentials_ after running the seed file: <br />
 **Username:** P_hill <br />
 **Password:** strongpassword <br />
