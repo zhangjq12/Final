@@ -1,0 +1,25 @@
+<p>{{error}}</p>
+
+
+<div id="popular" class="container">
+    <h3></h3>
+    <h4>Most popular vendors</h4>
+    <table class="table table-hover" id="homePage">
+        <thead>
+            <tr>
+            <th scope="col" id="headName">Vendor Name</th>
+            <th scope="col" id="headAuthor">Location</th>
+            <th scope="col" id="headArtist">Category</th>
+            </tr>
+        </thead>
+        <tbody class="table table-hover table-borderless">
+            {{#each data}}
+            <tr>
+                <td scope="row" id={{_id}}><a href="/tabs/?tabId={{_id}}">{{tabName}}</a></td>
+                <td>{{author}}</td>
+                <td>{{artistName}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
