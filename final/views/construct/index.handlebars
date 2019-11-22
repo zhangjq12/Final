@@ -17,7 +17,7 @@
 
     <div class="container-fluid">
         <link rel="stylesheet" type="text/css" href="../../public/css/indexPageStyle.css" />
-        <img src="/public/image/page/guyInJacket.jpg" alt="guyInJacket" style="width:100%; height: 400px">
+        <img src="/public/image/page/guyInJacket.jpg" alt="guyInJacket">
         <div class="text-block">
             <h4>How it works:</h4>
             <p>Step1. Select Vendor Category</p>
@@ -30,24 +30,61 @@
     </div>
 
 
-    <h3></h3>
-    <h4>Explore Vendors</h4>
-    <table class="table table-hover" id="homePage">
-        <thead>
-            <tr>
-                <th scope="col" id="headName">Vendor Name</th>
-                <th scope="col" id="headAuthor">Location</th>
-                <th scope="col" id="headArtist">Category</th>
-            </tr>
-        </thead>
-        <tbody class="table table-hover table-borderless">
-            {{#each data}}
-            <tr>
-                <td scope="row" id={{_id}}><a href="/tabs/?tabId={{_id}}">{{tabName}}</a></td>
-                <td>{{author}}</td>
-                <td>{{artistName}}</td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
+    <div class="container-fluid" style="padding-top: 50px;">
+        <div class="container-fluid">
+            <h4>Location</h4>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <a class="col-lg-3 mb-3 btn btn-light text-dark">
+                    <img src="/public/image/page/vegas.jpg" style="width: 200px; height: 200px" />
+                    <h4>Las Vegas</h4>
+                </a>
+                <a class="col-lg-3 mb-3 btn btn-light text-dark">
+                    <img src="/public/image/page/nyc.jpg" style="width: 200px; height: 200px" />
+                    <h4>New York City</h4>
+                </a>
+                <a class="col-lg-3 mb-3 btn btn-light text-dark">
+                    <img src="/public/image/page/losA.jpg" style="width: 200px; height: 200px" />
+                    <h4>Los Angeles</h4>
+                </a>
+                <a class="col-lg-3 mb-3 btn btn-light text-dark">
+                    <img src="/public/image/page/mirror.png" style="width: 200px; height: 200px" />
+                    <h4>Seattle</h4>
+                </a>
+            </div>
+        </div>
+    </div>
+        
+
+
+
+
+
+
+
+
+
+</div>
+
+<h3></h3>
+<h4>Explore Vendors</h4>
+<table class="table table-hover" id="homePage">
+    <thead>
+        <tr>
+            <th scope="col" id="headName">Vendor Name</th>
+            <th scope="col" id="headAuthor">Location</th>
+            <th scope="col" id="headArtist">Category</th>
+        </tr>
+    </thead>
+    <tbody class="table table-hover table-borderless">
+        {{#each data}}
+        <tr>
+            <td scope="row" id={{_id}}><a href="/tabs/?tabId={{_id}}">{{tabName}}</a></td>
+            <td>{{author}}</td>
+            <td>{{artistName}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
 </div>
