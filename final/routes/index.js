@@ -30,7 +30,7 @@ const constructorMethod = app =>{
         const Head = await head(req);
         try {
             var data = await tab.getByRating();
-            res.render('construct/index', {title: "Guitar Tabs", status: Head, data: data});
+            res.render('construct/popularity', {title: "Guitar Tabs", status: Head, data: data});
         }
         catch(e) {
             res.render('construct/error', {title: "Error!", status: Head});
