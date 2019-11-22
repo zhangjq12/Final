@@ -16,13 +16,15 @@
             <label for="changePas">Password:</label></br>
             <button id="changePas" type="button" data-toggle="modal" data-target="#modifyPasswordDia" class="btn btn-primary">Change your Password</button>
         </div>
-        <div class="form-group">
-            <label for="modifyFirst">First Name:</label>
-            <input id="modifyFirst" class="form-control" type="text" name="firstName" value={{first}} required></br>
-        </div>
-        <div class="form-group">
-            <label for="modifyLast">Last Name:</label>
-            <input id="modifyLast" class="form-control" type="text" name="lastName" value={{last}} required></br>
+        <div class="form-row">
+            <div class="col-md-6 mb-2">
+                <label for="modifyFirst">First Name:</label>
+                <input id="modifyFirst" class="form-control" type="text" name="firstName" value={{first}} required></br>
+            </div>
+            <div class="col-md-6 mb-2">
+                <label for="modifyLast">Last Name:</label>
+                <input id="modifyLast" class="form-control" type="text" name="lastName" value={{last}} required></br>
+            </div>
         </div>
         <div class="form-group">
             <label for="modifyEmail">Email:</label>

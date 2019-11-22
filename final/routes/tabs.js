@@ -78,7 +78,7 @@ router.get("/modifytabs/:id", async (req, res) => {
 router.post("/search", async (req, res) => {
     const Head = await head(req);
     const name = xss(req.body.name);
-    res.redirect("/tabs/search?name=" + name +"&page=1");
+    res.redirect("/tabs/search?name=" + name + "&page=1");
     /*try {
         const name = request["name"];
         const data = await tabs.getName(name);
@@ -173,10 +173,10 @@ router.get("/search", async (req, res) => {
                 res.render("construct/search", {title: "Search result", status: Head, keyWord: name, data: datapage, pages: pagecontrol});
             }
             else
-                res.render("construct/search", {title: "Search result", status: Head, error: "Not found a tab"});
+                res.render("construct/search", {title: "Search result", status: Head, keyWord: name, error: "Not found a tab"});
         }
         else
-            res.render("construct/search", {title: "Search result", status: Head, error: "Not found a tab"});
+            res.render("construct/search", {title: "Search result", status: Head, keyWord: name, error: "Not found a tab"});
     }
     catch(e) {
         res.render("construct/error", {title: "Error!", status: Head});
@@ -221,7 +221,7 @@ router.post("/upload", async (req, res) => {
     try {
         const result = await tabs.create(request["tabName"], request["songName"], request["artistName"], request["authorName"], request["content"]);
         const data = await tabs.getName(request["tabName"]);
-        const id = data[0]["_id"].toString();
+        const id = data[data.length - 1]["_id"].toString();
         res.send({id: id});
         //res.render("construct/tabs/success", {title: "Upload Successfully!", status: Head, operation: "uploaded"});
     }
