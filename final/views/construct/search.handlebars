@@ -7,7 +7,7 @@
         <thead>
             <tr>
             <th scope="col" id="headName">Tab Name</th>
-            <th scope="col" id="headAuthor">Author</th>
+            <th scope="col" id="headAuthor">Location</th>
             <th scope="col" id="headArtist">Category</th>
             </tr>
         </thead>
@@ -15,7 +15,7 @@
             {{#each data}}
             <tr id={{@index}}>
                 <td scope="row"><a href="/tabs/?tabId={{_id}}">{{tabName}}</a></td>
-                <td>{{author}}</td>
+                <td>{{songName}}</td>
                 <td>{{artistName}}</td>
             </tr>
             {{/each}}

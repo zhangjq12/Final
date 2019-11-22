@@ -8,13 +8,22 @@
                 <input id="tabName" type="text" class="form-control" name="tabName" value="{{tab}}"></input>
             </div>
             <div class="col-md-4 mb-2">
-                <label for="songName">Song Name:</label>
-                <input id="songName" type="text" class="form-control" name="songName" value="{{song}}"></input>
+                <label for="songName">Loaction:</label>
+                <select class="form-control" id="songName" name="songName" value="{{song}}">
+                    <option>Las Vegas</option>
+                    <option>New York City</option>
+                    <option>Los Angeles</option>
+                    <option>Seattle</option>
+                    <option>Boston</option>
+                    <option>Chicago</option>
+                    <option>San Jose</option>
+                    <option>San Francisco</option>
+                </select>
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-4 mb-2">
-                <label for="artistName">Artist Name:</label>
+                <label for="artistName">Category:</label>
                 <select class="form-control" id="artistName" name="artistName" value="{{artist}}">
                     <option>Cabin</option>
                     <option>Table</option>
@@ -73,7 +82,7 @@
     bootstrapValidate('#tabName', 'required: This can not be empty!', function(isEmpty) {
         if(isEmpty == true) {
             nameEmpty = true; 
-            if(nameEmpty && songEmpty && artistEmpty && contentEmpty)
+            if(nameEmpty && contentEmpty)
                 $("#tabSubmit").attr('disabled', false);
             else
                 $("#tabSubmit").attr('disabled', true);
@@ -84,7 +93,7 @@
             $("#tabSubmit").attr('disabled', true);
         }
     });
-    bootstrapValidate('#songName', 'required: This can not be empty!', function(isEmpty) {
+    /*bootstrapValidate('#songName', 'required: This can not be empty!', function(isEmpty) {
         if(isEmpty == true) {
             songEmpty = true; 
             if(nameEmpty && songEmpty && artistEmpty && contentEmpty)
@@ -111,11 +120,11 @@
             artistEmpty = false;
             $("#tabSubmit").attr('disabled', true);
         }
-    });
+    });*/
     bootstrapValidate('#content', 'required: This can not be empty!', function(isEmpty) {
         if(isEmpty == true) {
             contentEmpty = true; 
-            if(nameEmpty && songEmpty && artistEmpty && contentEmpty)
+            if(nameEmpty && contentEmpty)
                 $("#tabSubmit").attr('disabled', false);
             else
                 $("#tabSubmit").attr('disabled', true);
@@ -129,14 +138,10 @@
     $(document).ready(function(){
         if(op == "upload") {
             nameEmpty = false;
-            songEmpty = false;
-            artistEmpty = false;
             contentEmpty = false;
         }
         else {
             nameEmpty = true;
-            songEmpty = true;
-            artistEmpty = true;
             contentEmpty = true;
             $("#tabSubmit").attr('disabled', false);
         }

@@ -31,28 +31,54 @@
 
 
     <div class="container-fluid" style="padding-top: 50px;">
-        <div class="container-fluid">
-            <h4>Location</h4>
-        </div>
-        <div class="container-fluid">
-        <div class="row">
-            <a class="col-lg-3 mb-3 btn btn-light text-dark">
-                <img src="/public/image/categoryImage/mirror.png" style="width: 200px; height: 200px"/>
-                <h4>Las Vegas</h4>
-            </a>
-            <a class="col-lg-3 mb-3 btn btn-light text-dark">
-                <img src="/public/image/categoryImage/mirror.png" style="width: 200px; height: 200px"/>
-                <h4>New York City</h4>
-            </a>
-            <a class="col-lg-3 mb-3 btn btn-light text-dark">
-                <img src="/public/image/categoryImage/mirror.png" style="width: 200px; height: 200px"/>
-                <h4>Los Angeles</h4>
-            </a>
-            <a class="col-lg-3 mb-3 btn btn-light text-dark">
-                <img src="/public/image/categoryImage/mirror.png" style="width: 200px; height: 200px"/>
-                <h4>Seattle</h4>
-            </a>
-        </div>
+        <h4>Location</h4>
+    </div>
+    <div id="carousel" class="container-fluid carousel slide" data-ride="carousel" style="padding-top: 50px;">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel" data-slide-to="0" class="active" style="background-color: black;"></li>
+            <li data-target="#carousel" data-slide-to="1" style="background-color: black;"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row">
+                    <a class="col-lg-3 mb-3 btn btn-light text-dark" href="/location/find?location=Las Vegas&page=1">
+                        <img src="/public/image/locationImage/VGS.jpg" style="width: 200px; height: 200px"/>
+                        <h4>Las Vegas</h4>
+                    </a>
+                    <a class="col-lg-3 mb-3 btn btn-light text-dark" href="/location/find?location=New York City&page=1">
+                        <img src="/public/image/locationImage/NYC.jpg" style="width: 200px; height: 200px"/>
+                        <h4>New York City</h4>
+                    </a>
+                    <a class="col-lg-3 mb-3 btn btn-light text-dark" href="/location/find?location=Los Angeles&page=1">
+                        <img src="/public/image/locationImage/LA.jpeg" style="width: 200px; height: 200px"/>
+                        <h4>Los Angeles</h4>
+                    </a>
+                    <a class="col-lg-3 mb-3 btn btn-light text-dark" href="/location/find?location=Seattle&page=1">
+                        <img src="/public/image/locationImage/SEA.jpg" style="width: 200px; height: 200px"/>
+                        <h4>Seattle</h4>
+                    </a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row">
+                    <a class="col-lg-3 mb-3 btn btn-light text-dark" href="/location/find?location=Boston&page=1">
+                        <img src="/public/image/locationImage/BOS.jpg" style="width: 200px; height: 200px"/>
+                        <h4>Boston</h4>
+                    </a>
+                    <a class="col-lg-3 mb-3 btn btn-light text-dark" href="/location/find?location=Chicago&page=1">
+                        <img src="/public/image/locationImage/CHI.jpg" style="width: 200px; height: 200px"/>
+                        <h4>Chicago</h4>
+                    </a>
+                    <a class="col-lg-3 mb-3 btn btn-light text-dark" href="/location/find?location=San Jose&page=1">
+                        <img src="/public/image/locationImage/SJS.jpg" style="width: 200px; height: 200px"/>
+                        <h4>San Jose</h4>
+                    </a>
+                    <a class="col-lg-3 mb-3 btn btn-light text-dark" href="/location/find?location=San Francisco&page=1">
+                        <img src="/public/image/locationImage/SFO.jpg" style="width: 200px; height: 200px"/>
+                        <h4>San Francisco</h4>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -70,7 +96,7 @@
             {{#each data}}
             <tr>
                 <td scope="row" id={{_id}}><a href="/tabs/?tabId={{_id}}">{{tabName}}</a></td>
-                <td>{{author}}</td>
+                <td>{{songName}}</td>
                 <td>{{artistName}}</td>
             </tr>
             {{/each}}

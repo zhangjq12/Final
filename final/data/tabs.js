@@ -191,6 +191,44 @@ async function getName(name) {
     return res;
 }
 
+async function getSongNAME(name) {
+    if(name == undefined)
+        throw "parameter is missing";
+    if(typeof name != 'string')
+        throw "parameter is error format";
+    var res = [];
+    var promise = new Promise(function(resolve) {
+        mongo.connect(url,(err, db) => {
+            if(err) {
+                throw "database connection failed!";
+            }
+            var find = db.collection("tabs").find({songName: {$regex: name, $options: "$i"}});
+            find.each((err, ress) => {
+                if(err) {
+                    db.close();
+                    throw "find error."
+                }
+                if(ress != null) {
+                    res.push(ress);
+                }
+                else {
+                    db.close();
+                    resolve(res);
+                }
+            });
+        });
+    })
+    promise.then(function(value) {
+        return value;
+    })
+    return promise;
+}
+
+async function getSongName(name) {
+    const res = await getSongNAME(name);
+    return res;
+}
+
 async function getAUTHOR(name) {
     if(name == undefined)
         throw "parameter is missing";
@@ -514,5 +552,6 @@ module.exports = {
     getAuthor,
     getArtist,
     getByRating,
-    getAuthors
+    getAuthors,
+    getSongNAME
 }

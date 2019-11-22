@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4 mb-2">
+        <div class="col-lg-3 mb-3">
             <label for="proSize">Size:</label>
             <select class="form-control" id="proSize" name="proSize">
                 <option>10"</option>
@@ -29,7 +29,43 @@
         </div>
     </div>
     <div class="row">
-        
+        <div class="col-lg-3 mb-3">
+            <label for="proMount">Quantity:</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <button id="minusNum" class="btn btn-outline-secondary" type="button">-</button>
+                </div>
+                <input id="count" type="text" class="form-control" value="1" style="text-align: center;" readonly="readonly">
+                <div class="input-group-append">
+                    <button id="plusNum" class="btn btn-outline-secondary" type="button">+</button>
+                </div>
+            </div>
+            <script>
+                $("#plusNum").click(function() {
+                    $("#count").val((parseInt($("#count").val())+ 1).toString());
+                    $("#price").text("$" + (parseFloat($("#count").val()) * 9.99).toString());
+                });
+                $("#minusNum").click(function() {
+                    $("#count").val(parseInt($("#count").val())- 1 > 0 ? (parseInt($("#count").val())- 1).toString() : 1);
+                    $("#price").text("$" + (parseFloat($("#count").val()) * 9.99).toString());
+                });
+            </script>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <p><b>Total Price: </b><span id="price"></span></p>
+        </div>
+        <script>
+            $(document).ready(function(){
+                $("#price").text("$" + (parseFloat($("#count").val()) * 9.99).toString());
+            })
+        </script>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <button class="btn btn-light">Submit</button>
+        </div>
     </div>
 </div>
 </div>
