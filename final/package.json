@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@khanacademy/tota11y": "^0.2.0",
+    "all": "0.0.0",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.3.1",
     "cookie-parser": "^1.4.4",
