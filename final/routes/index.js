@@ -7,6 +7,7 @@ const comments = require("./comments");
 const modifyInfo = require("./modifyInfo");
 const tab = require("../data/tabs");
 const categories = require("./categories");
+const order = require("./order");
 
 const constructorMethod = app =>{
     app.get("/", async (req, res) => {
@@ -26,6 +27,7 @@ const constructorMethod = app =>{
     app.use("/comments", comments);
     app.use("/modifyInfo", modifyInfo);
     app.use("/categories", categories);
+    app.use("/order", order);
     app.get("/popularity", async (req, res) => {
         const Head = await head(req);
         try {
