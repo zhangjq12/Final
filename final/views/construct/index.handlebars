@@ -3,16 +3,6 @@
 
 <div id="popular" class="container-fluid">
     <h3></h3>
-<<<<<<< HEAD
-    <div  style="width: 100%; height: 200px; background-image: url('/public/image/page/guyInJacket.jpg'); background-size: 100% 100%;"></div>
-    <h4>Most popular vendors</h4>
-    <table class="table table-hover" id="homePage">
-        <thead>
-            <tr>
-            <th scope="col" id="headName" style="text-align: center;">Vendor Name</th>
-            <th scope="col" id="headAuthor" style="text-align: center;">Location</th>
-            <th scope="col" id="headArtist" style="text-align: center;">Category</th>
-=======
 
     <div class="container">
         <link rel="stylesheet" type="text/css" href="../../public/css/indexPageStyle.css" />
@@ -44,15 +34,14 @@
                 <th scope="col" id="headName">Vendor Name</th>
                 <th scope="col" id="headAuthor">Location</th>
                 <th scope="col" id="headArtist">Category</th>
->>>>>>> 4955c50f8a8fdc5d35a7912c54e71afcbbe400a3
             </tr>
         </thead>
         <tbody class="table table-hover table-borderless">
             {{#each data}}
             <tr>
-                <td scope="row" style="text-align: center;" id={{_id}}><a href="/tabs/?tabId={{_id}}">{{tabName}}</a></td>
-                <td style="text-align: center;">{{author}}</td>
-                <td style="text-align: center;">{{artistName}}</td>
+                <td scope="row" id={{_id}}><a href="/tabs/?tabId={{_id}}">{{tabName}}</a></td>
+                <td>{{author}}</td>
+                <td>{{artistName}}</td>
             </tr>
             {{/each}}
         </tbody>
