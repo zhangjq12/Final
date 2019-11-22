@@ -45,9 +45,13 @@
 .container-fluid {
     position: relative;
   }
+  .container-fluid img{
+    height: 400px;
+    width: 100%;
+  }
   
   /* Bottom right text */
-  .text-block {
+  .text-block{
     position: absolute;
     top: 30px;
     left: 40px;
