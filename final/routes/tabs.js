@@ -6,6 +6,7 @@ const users = data.users;
 const head = require("./head");
 const comments = data.comments;
 const authentication = require("./authentication");
+const upload2 = require("./middleware/multer2");
 const xss = require('xss');
 const ObjectID = require('mongodb').ObjectID;
 
@@ -15,6 +16,11 @@ router.get("/", async (req, res) => {
     const tabId = xss(req.query.tabId);
     try {
         const data = await tabs.getId(tabId);
+        var minprice = Number.MAX_VALUE;
+        for(let c of data[0]["Perprice"]) {
+            if(parseFloat(c) < minprice)
+                minprice = parseFloat(c);
+        }
         var likeThis = false;
         var disLike = false;
         if(auth != null) {
@@ -42,7 +48,7 @@ router.get("/", async (req, res) => {
             ifdisLike = "dislike.png";
         const commentsData = await comments.getTab(tabId);
         const deleteId = tabId;
-        res.render("construct/tabs/show", {title: data[0]["tabName"], status: Head, tab: data[0]["tabName"], id: tabId, delete: deleteId, song: data[0]["songName"], artist: data[0]["artistName"], author: data[0]["author"], content: data[0]["Content"], thumbsup: data[0]["Rating"]["thumbsup"], thumbsdown: data[0]["Rating"]["thumbsdown"], thumbstatus: ifLike, badstatus: ifdisLike, userName: auth, comments: commentsData});
+        res.render("construct/tabs/show", {title: data[0]["tabName"], status: Head, tab: data[0]["tabName"], id: tabId, delete: deleteId, song: data[0]["songName"], artist: data[0]["artistName"], author: data[0]["author"], content: data[0]["Content"], thumbsup: data[0]["Rating"]["thumbsup"], thumbsdown: data[0]["Rating"]["thumbsdown"], thumbstatus: ifLike, badstatus: ifdisLike, userName: auth, comments: commentsData, price: minprice.toString()});
     }
     catch(e) {
         res.render("construct/error", {title: "Error!", status: Head});
@@ -53,7 +59,7 @@ router.get("/newtabs", async (req, res) => {
     const Head = await head(req);
     const auth = await authentication(req);
     if(auth != null)
-        res.render("construct/newTabs", {title: "New Tabs", status: Head, operation: "upload", author: auth});
+        res.render("construct/newTabs", {title: "New Tabs", status: Head, operation: "upload", author: auth, avatar:"defaultHead.jpg"});
     else
         res.render("construct/index", {title: "Guitar Tabs", status: Head, error: "You should log in first!"});
 });
@@ -65,8 +71,16 @@ router.get("/modifytabs/:id", async (req, res) => {
     try{
         const data = await tabs.getId(id);
         const authorname = data[0]["author"];
+        var sAp = "";
+        var arr = [];
+        for(var i = 0; i < data[0]["Size"].length; i++) {
+            var sss = "";
+            sss += data[0]["Size"][i] + "/" + data[0]["Perprice"][i];
+            arr.push(sss);
+        }
+        sAp = arr.join(",");
         if(auth != null && auth == authorname)
-            res.render("construct/newTabs", {title: "Modify Tabs", status: Head, operation: "modify/?tabId=" + id, tab: data[0]["tabName"], song: data[0]["songName"], artist: data[0]["artistName"], author: auth, content: data[0]["Content"]});
+            res.render("construct/newTabs", {title: "Modify Tabs", status: Head, operation: "modify/?tabId=" + id, tab: data[0]["tabName"], song: data[0]["songName"], artist: data[0]["artistName"], author: auth, content: data[0]["Content"], descript: data[0]["Descript"], avatar: id + "/" + data[0]["Avatar"], sAp: sAp});
         else
             res.render("construct/tabs/fail", {title: "Error", status: Head, error: "You don't have permission to modify this tab!"});
     }
@@ -209,17 +223,30 @@ router.get("/mytabs", async (req, res) => {
     }
 });
 
-router.post("/upload", async (req, res) => {
+router.post("/upload", upload2.single('avatar'), async (req, res) => {
     const Head = await head(req);
     const request = {
         tabName: xss(req.body.tabName),
         songName: xss(req.body.songName),
         artistName: xss(req.body.artistName),
         authorName: xss(req.body.authorName),
-        content: xss(req.body.content)
+        content: xss(req.body.content),
+        descript: xss(req.body.descript),
+        sizeAndPerprice: xss(req.body.sizeAndPerprice)
     }
+    var fileName = "";
+    if(req.file != undefined)
+        fileName = req.file.filename;
     try {
-        const result = await tabs.create(request["tabName"], request["songName"], request["artistName"], request["authorName"], request["content"]);
+        const arr = request["sizeAndPerprice"].split(',');
+        var size = [];
+        var perprice = [];
+        for(let c of arr) {
+            const arr2 = c.split('/');
+            size.push(arr2[0]);
+            perprice.push(arr2[1]);
+        }
+        const result = await tabs.create(request["tabName"], request["songName"], request["artistName"], request["authorName"], request["content"], request["descript"], fileName, perprice, size);
         const data = await tabs.getName(request["tabName"]);
         const id = data[data.length - 1]["_id"].toString();
         res.send({id: id});
@@ -257,21 +284,38 @@ router.post("/delete", async (req, res) => {
     }
 });
 
-router.post("/modify", async (req, res) => {
+router.post("/modify", upload2.single('avatar'), async (req, res) => {
     const Head = await head(req);
     const id = xss(req.query.tabId);
     const request = {
         tabName: xss(req.body.tabName),
+        songName: xss(req.body.songName),
         artistName: xss(req.body.artistName),
         content: xss(req.body.content),
-        songName: xss(req.body.songName)
+        descript: xss(req.body.descript),
+        sizeAndPerprice: xss(req.body.sizeAndPerprice),
     };
+    var fileName = "";
+    if(req.file != undefined)
+        fileName = req.file.filename;
     try {
+        const arr = request["sizeAndPerprice"].split(',');
+        var size = [];
+        var perprice = [];
+        for(let c of arr) {
+            const arr2 = c.split('/');
+            size.push(arr2[0]);
+            perprice.push(arr2[1]);
+        }
         const ID = new ObjectID(id);
         const res1 = await tabs.modifyArtistName(ID, request["artistName"]);
         const res2 = await tabs.modifyContent(ID, request["content"]);
         const res3 = await tabs.modifySongName(ID, request["songName"]);
         const res4 = await tabs.modifyTabName(ID, request["tabName"]);
+        const res5 = await tabs.modifyDescript(ID, request["descript"]);
+        const res6 = await tabs.modifyAvatar(ID, fileName);
+        const res7 = await tabs.modifyPerprice(ID, perprice);
+        const res8 = await tabs.modifySize(ID, size);
         res.send({id: id});
         //res.render("construct/tabs/success",  {title: "Delete Successfully!", status: Head, operation: "modified"});
     }

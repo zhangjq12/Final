@@ -102,7 +102,7 @@
                 $(document).ready(function () {
                     if(document.getElementById("uNameShow") == null) {
                         document.getElementById("newTabBtn").style.display = "none";
-                        document.getElementById("addNewNavBtn").style.display = "none";
+                        //document.getElementById("addNewNavBtn").style.display = "none";
                     }
                 })
             </script>
@@ -304,7 +304,7 @@
                                     success: function(res) {
                                         if(res["status"] == "success") {
                                             $("#signupFooter").hide();
-                                            $("#signupBody").html('<div class="container"><p>' + res["user"] + ', welcome to Guitab as a member!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back homepage!</span></div>');
+                                            $("#signupBody").html('<div class="container"><p>' + res["user"] + ', welcome to EXHIBITOR as a member!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back homepage!</span></div>');
                                             jQuery.getScript("/public/js/autourl.js").done(function(){
                                                 var fun = auto;
                                                 fun("/");

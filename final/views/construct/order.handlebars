@@ -1,30 +1,24 @@
+<script src="/public/js/orderPage.js"></script>
 <div class="container">
 <div class="container">
     <div class="row">
-        <div class="col-md-6 mb-3">
-            <h4>sadafs fa sg asew fas</h4>
+        <div class="col-md-6 mb-3" id="proName" pid={{id}}>
+            <h4>{{tabName}}</h4>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 mb-3">
-            <p>ckjnfas askda asam asn saje nwji ejw niwqh  iwh ljwqh jlhe wqh ioheo wqh owhe woqeh wqheouqwh owqheoiwqhehqwo ko nko qoweqwo oh owh oqw ewohe o b eowqheo hwq owqheowqh qwob eowhe oqwhe oqwh eo hqwo </p>
+        <div class="col-md-6 mb-3" id="proDes">
+            <p>{{descript}}</p>
         </div>
         <div class="col-md-6 mb-3" style="text-align: right;">
-            <img src="/public/image/categoryImage/cabin.png" />
+            <img src="/public/image/vendor/{{avatar}}" />
         </div>
     </div>
     <div class="row">
         <div class="col-lg-3 mb-3">
             <label for="proSize">Size:</label>
             <select class="form-control" id="proSize" name="proSize">
-                <option>10"</option>
-                <option>11"</option>
-                <option>12"</option>
-                <option>13"</option>
-                <option>14"</option>
-                <option>15"</option>
-                <option>15.6"</option>
-                <option>17"</option>
+
             </select>
         </div>
     </div>
@@ -40,27 +34,12 @@
                     <button id="plusNum" class="btn btn-outline-secondary" type="button">+</button>
                 </div>
             </div>
-            <script>
-                $("#plusNum").click(function() {
-                    $("#count").val((parseInt($("#count").val())+ 1).toString());
-                    $("#price").text("$" + (parseFloat($("#count").val()) * 9.99).toString());
-                });
-                $("#minusNum").click(function() {
-                    $("#count").val(parseInt($("#count").val())- 1 > 0 ? (parseInt($("#count").val())- 1).toString() : 1);
-                    $("#price").text("$" + (parseFloat($("#count").val()) * 9.99).toString());
-                });
-            </script>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6 mb-3">
             <p><b>Total Price: </b><span id="price"></span></p>
         </div>
-        <script>
-            $(document).ready(function(){
-                $("#price").text("$" + (parseFloat($("#count").val()) * 9.99).toString());
-            })
-        </script>
     </div>
     <div class="row">
         <div class="col-md-6 mb-3">

@@ -5,8 +5,8 @@ const comments = require("./comments");
 
 const url = "mongodb://127.0.0.1:27017/Final";
 
-async function create(tabName, songName, artist, author, content) {
-    if(tabName == undefined || songName == undefined || artist == undefined || author == undefined || content == undefined)
+async function create(tabName, songName, artist, author, content, descript, avatar, perprice, size) {
+    if(tabName == undefined || songName == undefined || artist == undefined || author == undefined || content == undefined || descript == undefined || avatar == undefined || perprice == undefined || size == undefined)
         throw "parameters are missing.";
     var result = [];
     var promise = new Promise(function(resolve) {
@@ -14,7 +14,7 @@ async function create(tabName, songName, artist, author, content) {
             if(err) {
                 throw "database connection failed!";
             }
-            db.collection('tabs').insert({"tabName": tabName, "songName": songName, "artistName": artist, "author": author, "Content": content, "Rating": {"thumbsup": 0, "thumbsdown": 0}}, (err, res) => {
+            db.collection('tabs').insert({"tabName": tabName, "songName": songName, "artistName": artist, "author": author, "Content": content, "Rating": {"thumbsup": 0, "thumbsdown": 0}, "Descript": descript, "Avatar": avatar, "Perprice": perprice, "Size": size}, (err, res) => {
                 if(err) {
                     db.close();
                     throw "insert error";
@@ -501,6 +501,98 @@ async function modifyContent(id, content) {
     })
     return promise;
 }
+async function modifyDescript(id, descript) {
+    if(id == undefined || descript == undefined)
+        throw "parameter is missing";
+    var promise = new Promise(function(resolve) {
+        mongo.connect(url,(err, db) => {
+            if(err) {
+                throw "database connection failed!";
+            }
+            db.collection("tabs").updateMany({"_id": id}, {$set:{"Descript": descript}}, (err, res) => {
+                if(err) {
+                    db.close();
+                    throw "find error."
+                }
+                db.close();
+                resolve("rename successful");
+            });
+        });
+    })
+    promise.then(function(value) {
+        return value;
+    })
+    return promise;
+}
+async function modifyAvatar(id, avatar) {
+    if(id == undefined || avatar == undefined)
+        throw "parameter is missing";
+    var promise = new Promise(function(resolve) {
+        mongo.connect(url,(err, db) => {
+            if(err) {
+                throw "database connection failed!";
+            }
+            db.collection("tabs").updateMany({"_id": id}, {$set:{"Avatar": avatar}}, (err, res) => {
+                if(err) {
+                    db.close();
+                    throw "find error."
+                }
+                db.close();
+                resolve("rename successful");
+            });
+        });
+    })
+    promise.then(function(value) {
+        return value;
+    })
+    return promise;
+}
+async function modifyPerprice(id, perprice) {
+    if(id == undefined || perprice == undefined)
+        throw "parameter is missing";
+    var promise = new Promise(function(resolve) {
+        mongo.connect(url,(err, db) => {
+            if(err) {
+                throw "database connection failed!";
+            }
+            db.collection("tabs").updateMany({"_id": id}, {$set:{"Perprice": perprice}}, (err, res) => {
+                if(err) {
+                    db.close();
+                    throw "find error."
+                }
+                db.close();
+                resolve("rename successful");
+            });
+        });
+    })
+    promise.then(function(value) {
+        return value;
+    })
+    return promise;
+}
+async function modifySize(id, size) {
+    if(id == undefined || size == undefined)
+        throw "parameter is missing";
+    var promise = new Promise(function(resolve) {
+        mongo.connect(url,(err, db) => {
+            if(err) {
+                throw "database connection failed!";
+            }
+            db.collection("tabs").updateMany({"_id": id}, {$set:{"Size": size}}, (err, res) => {
+                if(err) {
+                    db.close();
+                    throw "find error."
+                }
+                db.close();
+                resolve("rename successful");
+            });
+        });
+    })
+    promise.then(function(value) {
+        return value;
+    })
+    return promise;
+}
 
 async function rate(name, rating) {
     const data = await getName(name);
@@ -553,5 +645,9 @@ module.exports = {
     getArtist,
     getByRating,
     getAuthors,
-    getSongNAME
+    getSongName,
+    modifyAvatar,
+    modifyDescript,
+    modifyPerprice,
+    modifySize
 }

@@ -6,6 +6,7 @@
     <table class="table table-hover" id="searchPage">
         <thead>
             <tr>
+            <th scope="col"></th>
             <th scope="col" id="headName">Tab Name</th>
             <th scope="col" id="headAuthor">Location</th>
             <th scope="col" id="headArtist">Category</th>
@@ -14,6 +15,7 @@
         <tbody class="table table-hover table-borderless">
             {{#each data}}
             <tr id={{@index}}>
+                <td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>
                 <td scope="row"><a href="/tabs/?tabId={{_id}}">{{tabName}}</a></td>
                 <td>{{songName}}</td>
                 <td>{{artistName}}</td>
