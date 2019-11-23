@@ -6,7 +6,7 @@ You need to install Node.js and MongoDB beforehand to run this project.
 Type these commands in the terminal at the project directory : <br/>
 <br/>
 (**Step 1** : Install node modules) <br/>
-```npm install express mongodb password-hash body-parser node-rsa xss multer express-handlebars cookie-parser express-session```<br />
+```npm install all```<br />
 <br/>
 (**Step 2**: Run the project)<br/>
 ```npm start```<br/>
