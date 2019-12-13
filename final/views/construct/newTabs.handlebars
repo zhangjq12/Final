@@ -1,10 +1,15 @@
 <div id="TabModify" class="container">
     <h4></h4>
     <form id="newTabs">
+        <div class="card border-light mb-3">
+        <div class="card-header">
+            <h4>Booth Info</h4>
+        </div>
+        <div class="card-body">
         <div class="container" id="action" data-name={{operation}}></div>
         <div class="form-row">
             <div class="col-md-4 mb-2">
-                <label for="tabName">Tab Name:</label>
+                <label for="tabName">Show Name:</label>
                 <input id="tabName" type="text" class="form-control" name="tabName" value="{{tab}}"></input>
             </div>
             <div class="col-md-4 mb-2">
@@ -57,10 +62,70 @@
                 <input id="sizeAndPerprice" type="text" class="form-control" name="sizeAndPerprice" value="{{sAp}}"></input>
             </div>
         </div>
-        <div class="form-row">
-            <label for="content">Tab Content: </label>
+        </div>
+        
+        </div>
+        <div class="card border-light mb-3">
+
+        </div>
+        <div class="card border-light mb-3">
+            <div class="card-header">
+                <h4>Details</h4>
+            </div>
+            <div class="card-body">
+            <div class="form-row">
+            <div class="col-md-12 mb-2">
+            <label for="content">Details: </label>
+            <div class="btn-toolbar mb-2" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="Bold and Italic">
+                    <button id="boldText" type="button" class="btn btn-light"><span style="font-weight: bold;">B</span></button>
+                    <button id="italicText" type="button" class="btn btn-light"><span style="font-style:italic;">I</span></button>
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="Second group">
+                    <div class="btn-group" role="group">
+                        <button id="colorsGroup" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Black
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="colorsGroup">
+                            <a class="dropdown-item" href="javascript:void(0);">Black</a>
+                            <a class="dropdown-item" href="javascript:void(0);" style="color: red;">Red</a>
+                            <a class="dropdown-item" href="javascript:void(0);" style="color: green;">Green</a>
+                            <a class="dropdown-item" href="javascript:void(0);" style="color: orange;">Orange</a>
+                            <a class="dropdown-item" href="javascript:void(0);" style="color: gray;">Gray</a>
+                            <a class="dropdown-item" href="javascript:void(0);" style="color: blue;">Blue</a>
+                        </div>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button id="sizeGroup" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        12
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="sizeGroup">
+                            <a class="dropdown-item" href="javascript:void(0);">9</a>
+                            <a class="dropdown-item" href="javascript:void(0);">10</a>
+                            <a class="dropdown-item" href="javascript:void(0);">11</a>
+                            <a class="dropdown-item" href="javascript:void(0);">12</a>
+                            <a class="dropdown-item" href="javascript:void(0);">14</a>
+                            <a class="dropdown-item" href="javascript:void(0);">15</a>
+                            <a class="dropdown-item" href="javascript:void(0);">16</a>
+                            <a class="dropdown-item" href="javascript:void(0);">18</a>
+                            <a class="dropdown-item" href="javascript:void(0);">20</a>
+                            <a class="dropdown-item" href="javascript:void(0);">22</a>
+                            <a class="dropdown-item" href="javascript:void(0);">24</a>
+                            <a class="dropdown-item" href="javascript:void(0);">28</a>
+                            <a class="dropdown-item" href="javascript:void(0);">32</a>
+                            <a class="dropdown-item" href="javascript:void(0);">36</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-group" role="group" aria-label="Third group">
+                    <button type="button" class="btn btn-light">Add Images</button>
+                </div>
+            </div>
             <textarea id="content" name="content" rows="10" cols="80" class="form-control" placeholder="Tap your tab here!">{{content}}</textarea>
-            <button id="tabSubmit" type="submit" data-toggle="modal" data-target="#modifytabDia" class="btn btn-primary" disabled="true">Submit</button>
+            </div>
+            </div>
+        </div>
+        <button id="tabSubmit" type="submit" data-toggle="modal" data-target="#modifytabDia" class="btn btn-primary" disabled="true">Submit</button>
         </div>
     </form>
 </div>

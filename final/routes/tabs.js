@@ -208,11 +208,11 @@ router.get("/mytabs", async (req, res) => {
             const favtabs = [];
             for(var i = 0; i < info[0]["favoriteTabs"].length; i++) {
                 var tabdata = await tabs.getId(info[0]["favoriteTabs"][i]);
-                var obj = {"_id": tabdata[0]["_id"], "tabName": tabdata[0]["tabName"], "author": tabdata[0]["author"], "artistName": tabdata[0]["artistName"]};
+                var obj = {"_id": tabdata[0]["_id"], "tabName": tabdata[0]["tabName"], "author": tabdata[0]["author"], "artistName": tabdata[0]["artistName"], "songName": tabdata[0]["songName"]};
                 favtabs.push(obj);
             }
             if(favtabs.length == 0)
-                favtabs.push({"_id":"notabs", "tabName": "notabs"});
+                favtabs.push({"_id":"notabs", "tabName": "notabs", "songName": "notabs"});
             res.render("construct/tabs/my", {title: "My Tabs", status: Head, data: data, info: info, favorite: favtabs});
         }
         else

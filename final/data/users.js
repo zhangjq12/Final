@@ -5,8 +5,8 @@ const passwordHash = require('password-hash');
 
 const url = "mongodb://127.0.0.1:27017/Final";
 
-async function create(userName, password, firstName, lastName, email) {
-    if(userName == undefined || password == undefined || firstName == undefined || lastName == undefined || email == undefined)
+async function create(userName, password, firstName, lastName, email, contactInfo, license, personal, stateId, taxId) {
+    if(userName == undefined || password == undefined || firstName == undefined || lastName == undefined || email == undefined || contactInfo == undefined || license == undefined || personal == undefined)
         throw "parameters are missing.";
     var result = [];
     const hashedPassword = passwordHash.generate(password);
@@ -15,7 +15,7 @@ async function create(userName, password, firstName, lastName, email) {
             if(err) {
                 throw "database connection failed!";
             }
-            db.collection('user').insert({"userName": userName, "hashedPassword": hashedPassword, "firstName": firstName, "lastName": lastName, "email": email, "favoriteTabs":[], "dislike":[], "portrait": "defaultHead.jpg"}, (err, res) => {
+            db.collection('user').insert({"userName": userName, "hashedPassword": hashedPassword, "firstName": firstName, "lastName": lastName, "email": email, "favoriteTabs":[], "dislike":[], "portrait": "defaultHead.jpg", "contactInfo": contactInfo, "license": license, "personal": personal, "stateId": stateId, "taxId": taxId}, (err, res) => {
                 if(err) {
                     db.close();
                     throw "insert error";
@@ -388,6 +388,141 @@ async function modifyPortrait(name, filename) {
     return promise;
 }
 
+async function modifyContact(name, contactInfo) {
+    if(name == undefined || contactInfo == undefined)
+        throw "parameter is missing";
+    const res1 = await getName(name);
+    if(res1.length == 0)
+        throw "no such data";
+    var promise = new Promise(function(resolve) {
+        mongo.connect(url,(err, db) => {
+            if(err) {
+                throw "database connection failed!";
+            }
+            db.collection("user").updateMany({"userName": name}, {$set:{"contactInfo": contactInfo}}, (err, res) => {
+                if(err) {
+                    db.close();
+                    throw "find error."
+                }
+                db.close();
+                resolve("rename successful");
+            });
+        });
+    })
+    promise.then(function(value) {
+        return value;
+    })
+    return promise;
+}
+
+async function modifyLicense(name, license) {
+    if(name == undefined || license == undefined)
+        throw "parameter is missing";
+    const res1 = await getName(name);
+    if(res1.length == 0)
+        throw "no such data";
+    var promise = new Promise(function(resolve) {
+        mongo.connect(url,(err, db) => {
+            if(err) {
+                throw "database connection failed!";
+            }
+            db.collection("user").updateMany({"userName": name}, {$set:{"license": license}}, (err, res) => {
+                if(err) {
+                    db.close();
+                    throw "find error."
+                }
+                db.close();
+                resolve("rename successful");
+            });
+        });
+    })
+    promise.then(function(value) {
+        return value;
+    })
+    return promise;
+}
+
+async function modifyPersonal(name, personal) {
+    if(name == undefined || personal == undefined)
+        throw "parameter is missing";
+    const res1 = await getName(name);
+    if(res1.length == 0)
+        throw "no such data";
+    var promise = new Promise(function(resolve) {
+        mongo.connect(url,(err, db) => {
+            if(err) {
+                throw "database connection failed!";
+            }
+            db.collection("user").updateMany({"userName": name}, {$set:{"personal": personal}}, (err, res) => {
+                if(err) {
+                    db.close();
+                    throw "find error."
+                }
+                db.close();
+                resolve("rename successful");
+            });
+        });
+    })
+    promise.then(function(value) {
+        return value;
+    })
+    return promise;
+}
+
+async function modifyState(name, stateId) {
+    if(name == undefined || stateId == undefined)
+        throw "parameter is missing";
+    const res1 = await getName(name);
+    if(res1.length == 0)
+        throw "no such data";
+    var promise = new Promise(function(resolve) {
+        mongo.connect(url,(err, db) => {
+            if(err) {
+                throw "database connection failed!";
+            }
+            db.collection("user").updateMany({"userName": name}, {$set:{"stateId": stateId}}, (err, res) => {
+                if(err) {
+                    db.close();
+                    throw "find error."
+                }
+                db.close();
+                resolve("rename successful");
+            });
+        });
+    })
+    promise.then(function(value) {
+        return value;
+    })
+    return promise;
+}
+
+async function modifyTax(name, taxId) {
+    if(name == undefined || taxId == undefined)
+        throw "parameter is missing";
+    const res1 = await getName(name);
+    if(res1.length == 0)
+        throw "no such data";
+    var promise = new Promise(function(resolve) {
+        mongo.connect(url,(err, db) => {
+            if(err) {
+                throw "database connection failed!";
+            }
+            db.collection("user").updateMany({"userName": name}, {$set:{"taxId": taxId}}, (err, res) => {
+                if(err) {
+                    db.close();
+                    throw "find error."
+                }
+                db.close();
+                resolve("rename successful");
+            });
+        });
+    })
+    promise.then(function(value) {
+        return value;
+    })
+    return promise;
+}
+
 async function liking(name, likes) {
     if(name == undefined || likes == undefined)
         throw "parameter is missing";
@@ -547,5 +682,10 @@ module.exports = {
     undislike,
     getLike,
     getDislike,
-    modifyPortrait
+    modifyPortrait,
+    modifyContact,
+    modifyLicense,
+    modifyPersonal,
+    modifyState,
+    modifyTax
 }
