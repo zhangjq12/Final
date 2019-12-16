@@ -1,0 +1,109 @@
+<p>{{error}}</p>
+
+
+<div class="container-fluid">
+    <h3></h3>
+
+    <!--<div class="container-fluid"
+        style="width: 100%; height: 350px; background-image: url('/public/image/page/guyInJacket.jpg'); background-size: 100% 100%;">
+        <link rel="stylesheet" type="text/css" href="../../public/css/indexPageStyle.css" />
+        <div class="bottom-left">Bottom Left</div>
+        <div class="top-left">Top Left</div>
+        <div class="top-right">Top Right</div>
+        <div class="bottom-right">Bottom Right</div>
+        <div class="centered">Centered</div>
+    </div>-->
+
+
+    <div class="container-fluid">
+        <link rel="stylesheet" type="text/css" href="../../public/css/indexPageStyle.css" />
+        <img src="/public/image/page/guyInJacket.jpg" alt="guyInJacket">
+        <div class="text-block">
+            <h4>How it works:</h4>
+            <p>Step1. Select Vendor Category</p>
+            <p>Step2. Pick Options</p>
+            <p>Step3. Contact and Pay</p>
+        </div>
+        <div class="text-block-bottom">
+            <h6>About Us</h6>
+        </div>
+    </div>
+
+
+    <div class="container-fluid" style="padding-top: 50px;">
+        <h4>Location</h4>
+    </div>
+    <div id="carousel" class="container-fluid carousel slide" data-ride="carousel" style="padding-top: 50px;">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel" data-slide-to="0" class="active" style="background-color: black;"></li>
+            <li data-target="#carousel" data-slide-to="1" style="background-color: black;"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row">
+                    <a class="col-lg-3 mb-3 btn btn-light text-dark" href="/location/find?location=Las Vegas&page=1">
+                        <img src="/public/image/locationImage/VGS.jpg" style="width: 200px; height: 200px"/>
+                        <h4>Las Vegas</h4>
+                    </a>
+                    <a class="col-lg-3 mb-3 btn btn-light text-dark" href="/location/find?location=New York City&page=1">
+                        <img src="/public/image/locationImage/NYC.jpg" style="width: 200px; height: 200px"/>
+                        <h4>New York City</h4>
+                    </a>
+                    <a class="col-lg-3 mb-3 btn btn-light text-dark" href="/location/find?location=Los Angeles&page=1">
+                        <img src="/public/image/locationImage/LA.jpeg" style="width: 200px; height: 200px"/>
+                        <h4>Los Angeles</h4>
+                    </a>
+                    <a class="col-lg-3 mb-3 btn btn-light text-dark" href="/location/find?location=Seattle&page=1">
+                        <img src="/public/image/locationImage/SEA.jpg" style="width: 200px; height: 200px"/>
+                        <h4>Seattle</h4>
+                    </a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row">
+                    <a class="col-lg-3 mb-3 btn btn-light text-dark" href="/location/find?location=Boston&page=1">
+                        <img src="/public/image/locationImage/BOS.jpg" style="width: 200px; height: 200px"/>
+                        <h4>Boston</h4>
+                    </a>
+                    <a class="col-lg-3 mb-3 btn btn-light text-dark" href="/location/find?location=Chicago&page=1">
+                        <img src="/public/image/locationImage/CHI.jpg" style="width: 200px; height: 200px"/>
+                        <h4>Chicago</h4>
+                    </a>
+                    <a class="col-lg-3 mb-3 btn btn-light text-dark" href="/location/find?location=San Jose&page=1">
+                        <img src="/public/image/locationImage/SJS.jpg" style="width: 200px; height: 200px"/>
+                        <h4>San Jose</h4>
+                    </a>
+                    <a class="col-lg-3 mb-3 btn btn-light text-dark" href="/location/find?location=San Francisco&page=1">
+                        <img src="/public/image/locationImage/SFO.jpg" style="width: 200px; height: 200px"/>
+                        <h4>San Francisco</h4>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3></h3>
+    <div class="container-fluid" style="padding-top: 50px;">
+        <h4>Explore Vendors</h4>
+    </div>
+    <table class="table table-hover" id="homePage">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col" id="headName">Vendor Name</th>
+                <th scope="col" id="headAuthor">Location</th>
+                <th scope="col" id="headArtist">Category</th>
+            </tr>
+        </thead>
+        <tbody class="table table-hover table-borderless">
+            {{#each data}}
+            <tr>
+                <td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>
+                <td scope="row" id={{_id}}><a href="/tabs/?tabId={{_id}}">{{tabName}}</a></td>
+                <td>{{songName}}</td>
+                <td>{{artistName}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

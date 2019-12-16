@@ -5,8 +5,8 @@ const passwordHash = require('password-hash');
 
 const url = "mongodb://127.0.0.1:27017/Final";
 
-async function create(userName, password, firstName, lastName, email, contactInfo, license, personal, stateId, taxId) {
-    if(userName == undefined || password == undefined || firstName == undefined || lastName == undefined || email == undefined || contactInfo == undefined || license == undefined || personal == undefined)
+async function create(userName, password, firstName, lastName, email, contactInfo, license, personal, stateId, taxId, voe) {
+    if(userName == undefined || password == undefined || firstName == undefined || lastName == undefined || email == undefined || contactInfo == undefined || license == undefined || personal == undefined || voe == undefined)
         throw "parameters are missing.";
     var result = [];
     const hashedPassword = passwordHash.generate(password);
@@ -15,7 +15,7 @@ async function create(userName, password, firstName, lastName, email, contactInf
             if(err) {
                 throw "database connection failed!";
             }
-            db.collection('user').insert({"userName": userName, "hashedPassword": hashedPassword, "firstName": firstName, "lastName": lastName, "email": email, "favoriteTabs":[], "dislike":[], "portrait": "defaultHead.jpg", "contactInfo": contactInfo, "license": license, "personal": personal, "stateId": stateId, "taxId": taxId}, (err, res) => {
+            db.collection('user').insert({"userName": userName, "hashedPassword": hashedPassword, "firstName": firstName, "lastName": lastName, "email": email, "favoriteTabs":[], "dislike":[], "portrait": "defaultHead.jpg", "contactInfo": contactInfo, "license": license, "personal": personal, "stateId": stateId, "taxId": taxId, "voe": voe}, (err, res) => {
                 if(err) {
                     db.close();
                     throw "insert error";
@@ -182,6 +182,44 @@ async function getDISLIKE(id) {
 
 async function getDislike(id) {
     const res = await getDISLIKE(id);
+    return res;
+}
+
+async function getEMAIL(email) {
+    if(email == undefined)
+        throw "parameter is missing";
+    if(typeof email != 'string')
+        throw "parameter is error format";
+    var res = [];
+    var promise = new Promise(function(resolve) {
+        mongo.connect(url,(err, db) => {
+            if(err) {
+                throw "database connection failed!";
+            }
+            var find = db.collection("user").find({"email": email});
+            find.each((err, ress) => {
+                if(err) {
+                    db.close();
+                    throw "find error."
+                }
+                if(ress != null) {
+                    res.push(ress);
+                }
+                else {
+                    db.close();
+                    resolve(res);
+                }
+            });
+        });
+    })
+    promise.then(function(value) {
+        return value;
+    })
+    return promise;
+}
+
+async function getEmail(name) {
+    const res = await getEMAIL(name);
     return res;
 }
 
@@ -677,6 +715,7 @@ module.exports = {
     unliking,
     getName,
     check,
+    getEmail,
     modifyName,
     dislike,
     undislike,

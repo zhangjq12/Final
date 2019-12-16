@@ -25,11 +25,12 @@ router.post("/", async (req, res) => {
     try {
         var key = keyArr[0];
         const data = await users.check(request["user"]);
+        const data2 = await users.getEmail(request["email"]);
         if(request["password"] != request["conPassword"]) {
             res.send({"user": request["user"], "status": "passworderror"});
         }
         else
-        if(data.length == 0) {
+        if(data.length == 0 && data2.length == 0) {
             const result = await users.create(request["user"], request["password"], request["firstName"], request["lastName"], request["email"]);
             const hashedCookie = key.encrypt(request["user"], 'base64');
             req.session.user = hashedCookie;
