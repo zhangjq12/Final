@@ -1,34 +1,37 @@
 <div class="container" id="signUpDiv">
     <p id="error">{{error}}</p>
-    <form id="signup">
+    <form id="signUpForm">
         <div class="card border-light mb-3">
             <div class="card-header">
                 <h4>Show Info</h4>
             </div>
             <div class="card-body">
                 <div class="form-row">
+                    <div class="col-md-12 mb-3">
+                        <p id="signUpError"></p>
+                    </div>
                     <div class="col-md-6 mb-3">
-                        <label for="user" class="sr-only">User Name:</label>
+                        <label for="user">User Name:</label>
                         <input id="user" type="text" name="user" class="form-control" placeholder="Username" />
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="company" class="sr-only">Company Info:</label>
+                        <label for="company">Company Info:</label>
                         <input id="company" type="text" name="company" class="form-control" placeholder="CompanyInfo" />
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label for="password" class="sr-only">Password:</label>
+                        <label for="password">Password:</label>
                         <input id="password" type="password" name="password" class="form-control" placeholder="Password"/>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="contact" class="sr-only">Contact Info:</label>
+                        <label for="contact">Contact Info:</label>
                         <input id="contact" type="text" name="contact" class="form-control" placeholder="ContactInfo" />
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label for="conPassword" class="sr-only">Confirm Password:</label>
+                        <label for="conPassword">Confirm Password:</label>
                         <input id="conPassword" type="password" name="conPassword" class="form-control" placeholder="Confirm"/>
                     </div>
                     <div class="col-md-6 mb-2 align-self-center text-center">
@@ -39,7 +42,7 @@
                 </div>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label for="email" class="sr-only">Email:</label>
+                        <label for="email">Email:</label>
                         <input id="email" type="email" name="email" class="form-control" placeholder="Email"/>
                     </div>
                     <div class="col-md-6 mb-2 align-self-center text-center">
@@ -50,17 +53,26 @@
                 </div>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label for="stateId" class="sr-only">State ID:</label>
-                        <input id="stateId" type="text" name="stateId" class="form-control" placeholder="stateId"/>
+                        <label for="voe">State ID:</label>
+                        <select id="voe" name="voe" class="form-control">
+                            <option id="vendorOption" value="vendor">Vendor</option>
+                            <option id="exhibitorOption" value="exhibitor">Exhibitor</option>
+                        </select>
                     </div>
-                     <div class="col-md-6 mb-3">
-                        <label for="taxId" class="sr-only">Tax ID:</label>
+                    <div class="col-md-6 mb-3">
+                        <label for="taxId">Tax ID:</label>
                         <input id="taxId" type="text" name="taxId" class="form-control" placeholder="taxId"/>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="stateId">State ID:</label>
+                        <input id="stateId" type="text" name="stateId" class="form-control" placeholder="stateId"/>
                     </div>
                 </div>
             </div>
         </div>
-        <button id="signUpSubmit" class="btn btn-primary">Submit</button>
+        <button type="submit" id="signUpSubmit" class="btn btn-primary">Submit</button>
     </form>
 </div>
 
@@ -78,10 +90,328 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="selectLicenseDia" tabindex="-1" role="dialog" aria-labelledby="selectLicenseDiaTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" id="selectLicenseDiaHeader">
+                <h5 class="modal-title" id="selectLicenseDiaTitle">Select Image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="selectLicenseDiaBody">
+                <div class="container" id="LicenseArea">
+                    <div class="row h-100">
+                        <div class="col align-self-center text-center" id="licenseDragarea">
+                            Drag your Image here...
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="licenseModify" name="license" accept="image/*" required>
+                        <label id="licenseNameLabel" class="custom-file-label" for="license">Your Image...</label>
+                    </div>
+                </div>
+                <div class="container" id="licenseRestrict">
+                    <p style="color:red;">You should upload your Image</p>
+                </div>
+            </div>
+            <div class="modal-footer" id="selectLicenseDiaFooter">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="yesLicenseMod" disabled="true">Upload</button>
+            </div>
+        </div>
+    </div>
+</div> 
+<div class="modal fade" id="selectPersonalDia" tabindex="-1" role="dialog" aria-labelledby="selectPersonalDiaTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" id="selectPersonalDiaHeader">
+                <h5 class="modal-title" id="selectPersonalDiaTitle">Select Image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="selectPersonalDiaBody">
+                <div class="container" id="PersonalArea">
+                    <div class="row h-100">
+                        <div class="col align-self-center text-center" id="personalDragarea">
+                            Drag your Image here...
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="personalModify" name="personal" accept="image/*" required>
+                        <label id="personalNameLabel" class="custom-file-label" for="personal">Your Image...</label>
+                    </div>
+                </div>
+                <div class="container" id="personalRestrict">
+                    <p style="color:red;">You should upload your Image</p>
+                </div>
+            </div>
+            <div class="modal-footer" id="selectPersonalDiaFooter">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="yesPersonalMod" disabled="true">Upload</button>
+            </div>
+        </div>
+    </div>
+</div> 
 
+<script src="/public/js/filesizelimit.js"></script>
 <script type="text/javascript">
+    var empty = false;
+    var emailValid = false;
+    var userMin = false;
+    var userMax = false;
+    var passwordMin = false;
+    var passwordMax = false;
+    var conpassMatch = false;
+    
+    var licenseUpload = false;
+    var personalUpload = false;
+    var licenseModified = false;
+    var personalModified = false;
+    var licenseTempFile;
+    var personalTempFile;
+    var licensefile;
+    var personalfile;
+    $(document).on({
+        dragleave:function(e){
+            e.preventDefault();
+            $('#licenseDragarea').removeClass('over');
+        },
+        drop:function(e){
+            e.preventDefault();
+            //$('#licenseDragarea').removeClass('over');
+        },
+        dragenter:function(e){
+            e.preventDefault();
+            $('#licenseDragarea').addClass('over');
+        },
+        dragover:function(e){
+            e.preventDefault();
+            $('#licenseDragarea').addClass('over');
+        }
+    });
+    $(document).on({
+        dragleave:function(e){
+            e.preventDefault();
+            $('#personalDragarea').removeClass('over');
+        },
+        drop:function(e){
+            e.preventDefault();
+            //$('#licenseDragarea').removeClass('over');
+        },
+        dragenter:function(e){
+            e.preventDefault();
+            $('#personalDragarea').addClass('over');
+        },
+        dragover:function(e){
+            e.preventDefault();
+            $('#personalDragarea').addClass('over');
+        }
+    });
+    function licenseImgPreview() {
+        var reader;
+        if(window.FileReader) {
+            reader = new FileReader();
+        } else {
+            $("#licenseRestrict").find('p').text("Your device doesn't support image preview!");
+            $("#licenseRestrict").find('p').css('color', 'red');
+            return;
+        }
+        reader.onload = function(e) {
+            document.getElementById("licenseDragarea").innerHTML = '<img src="' + e.target.result + '" width="200px" height="200px" />'
+            licenseTempFile = e.target.result;
+        }
+        reader.readAsDataURL(licensefile);
+    }
+    document.getElementById('licenseDragarea').addEventListener("drop", function(e) {
+        e.preventDefault();
+        licensefile = e.dataTransfer.files[0];
+        if (licensefile == undefined) {
+            return false;
+        }
+        if (licensefile.type.indexOf('image') === -1) {
+            $("#licenseRestrict").find('p').text("You should drag the image to the area!");
+            $("#licenseRestrict").find('p').css('color', 'red');
+            return false;
+        }
+        var fun = checkSize;
+        var sizeOk = fun(e.dataTransfer);
+        if(!sizeOk) { 
+            var fileName = licensefile.name;
+            $("#licenseRestrict").find('p').text("The maximum file size is 2M. It's too large!");
+            $("#licenseRestrict").find('p').css('color', 'red');
+            licenseUpload = false;
+        }
+        else{
+            var fileName = licensefile.name;
+            $('#licenseNameLabel').text(fileName);
+            $("#licenseRestrict").find('p').text("");
+            licenseImgPreview();
+            licenseUpload = true;
+            $('licenseModify').val(e.dataTransfer);
+        }
+        if(licenseUpload)
+            $("#yesLicenseMod").attr('disabled', false);
+        else
+            $("#yesLicenseMod").attr('disabled', true);
+    }, false);
+    $("#licenseModify").change(function() {
+        licensefile = this.files[0];
+        var fun = checkSize;
+        var sizeOk = fun(this);
+        if($(this).val() !== '') {
+            if(!sizeOk) { 
+                var fileName = licensefile.name;
+                $("#licenseRestrict").find('p').text("The maximum file size is 2M. It's too large!");
+                $("#licenseRestrict").find('p').css('color', 'red');
+                licenseUpload = false;
+            }
+            else{
+                var fileName = licensefile.name;
+                $('#licenseNameLabel').text(fileName);
+                $("#licenseRestrict").find('p').text("");
+                licenseImgPreview();
+                licenseUpload = true;
+            }
+        }
+        else {
+            $('#licenseDragarea').text("Drag your avatar here...")
+            $('#licenseNameLabel').text("Your Avatar...");
+            $("#licenseRestrict").find('p').text("You should upload your avatar");
+            $("#licenseRestrict").find('p').css('color', 'red');
+            licenseUpload = false;
+        }
+        if(licenseUpload)
+            $("#yesLicenseMod").attr('disabled', false);
+        else
+            $("#yesLicenseMod").attr('disabled', true);
+    });
+    $("#yesLicenseMod").click(function() {
+        var reader;
+        if(window.FileReader) {
+            reader = new FileReader();
+        } else {
+            document.getElementById("fileRestrict").innerHTML = '<div class="alert alert-danger" role="alert">\
+                Your device doesn\'t support the image preview!\
+            </div>'
+            return;
+        }
+        reader.onload = function(e) {
+            $('#license').attr('src', licenseTempFile);
+        }
+        reader.readAsDataURL(licensefile);
+        licenseModified = true;
+        $('#selectLicenseDia').modal('hide');
+    });
+    document.getElementById('personalDragarea').addEventListener("drop", function(e) {
+        e.preventDefault();
+        personalfile = e.dataTransfer.files[0];
+        if (personalfile == undefined) {
+            return false;
+        }
+        if (personalfile.type.indexOf('image') === -1) {
+            $("#personalRestrict").find('p').text("You should drag the image to the area!");
+            $("#personalRestrict").find('p').css('color', 'red');
+            return false;
+        }
+        var fun = checkSize;
+        var sizeOk = fun(e.dataTransfer);
+        if(!sizeOk) { 
+            var fileName = personalfile.name;
+            $("#personalRestrict").find('p').text("The maximum file size is 2M. It's too large!");
+            $("#personalRestrict").find('p').css('color', 'red');
+            personalUpload = false;
+        }
+        else{
+            var fileName = personalfile.name;
+            $('#personalNameLabel').text(fileName);
+            $("#personalRestrict").find('p').text("");
+            imgPreview();
+            personalUpload = true;
+            $('personalModify').val(e.dataTransfer);
+        }
+        if(personalUpload)
+            $("#yesPersonalMod").attr('disabled', false);
+        else
+            $("#yesPersonalMod").attr('disabled', true);
+    }, false);
+    $("#personalModify").change(function() {
+        personalfile = this.files[0];
+        var fun = checkSize;
+        var sizeOk = fun(this);
+        if($(this).val() !== '') {
+            if(!sizeOk) { 
+                var fileName = personalfile.name;
+                $("#personalRestrict").find('p').text("The maximum file size is 2M. It's too large!");
+                $("#personalRestrict").find('p').css('color', 'red');
+                personalUpload = false;
+            }
+            else{
+                var fileName = personalfile.name;
+                $('#personalNameLabel').text(fileName);
+                $("#personalRestrict").find('p').text("");
+                imgPreview();
+                personalUpload = true;
+            }
+        }
+        else {
+            $('#personalDragarea').text("Drag your avatar here...")
+            $('#personalNameLabel').text("Your Avatar...");
+            $("#personalRestrict").find('p').text("You should upload your avatar");
+            $("#personalRestrict").find('p').css('color', 'red');
+            personalUpload = false;
+        }
+        if(personalUpload)
+            $("#yesPersonalMod").attr('disabled', false);
+        else
+            $("#yesPersonalMod").attr('disabled', true);
+    });
+    function imgPreview() {
+        var reader;
+        if(window.FileReader) {
+            reader = new FileReader();
+        } else {
+            $("#personalRestrict").find('p').text("Your device doesn't support image preview!");
+            $("#personalRestrict").find('p').css('color', 'red');
+            return;
+        }
+        reader.onload = function(e) {
+            document.getElementById("personalDragarea").innerHTML = '<img src="' + e.target.result + '" width="200px" height="200px" />'
+            personalTempFile = e.target.result;
+        }
+        reader.readAsDataURL(personalfile);
+    }
+    $("#yesPersonalMod").click(function() {
+        var reader;
+        if(window.FileReader) {
+            reader = new FileReader();
+        } else {
+            document.getElementById("fileRestrict").innerHTML = '<div class="alert alert-danger" role="alert">\
+                Your device doesn\'t support the image preview!\
+            </div>'
+            return;
+        }
+        reader.onload = function(e) {
+            $('#personal').attr('src', personalTempFile);
+        }
+        reader.readAsDataURL(personalfile);
+        personalModified = true;
+        $('#selectPersonalDia').modal('hide');
+    });
     $(document).ready(function(){
-        bootstrapValidate(['#user', '#password', '#conPassword', '#first', '#last', '#email'], 'required: This can not be empty!');
+        empty = false;
+        emailValid = false;
+        userMin = false;
+        userMax = false;
+        passwordMin = false;
+        passwordMax = false;
+        conpassMatch = false;
+        /*bootstrapValidate(['#user', '#password', '#conPassword', '#first', '#last', '#email'], 'required: This can not be empty!');
         bootstrapValidate('#email', 'email: Enter a valid E-Mail!');
         bootstrapValidate('#user', 'min:6: Your username should more than 6 charactors!|max:20: Your username should no more than 20 charactors!');
         bootstrapValidate(['#password', '#conPassword'], 'min:6: Your password should more than 6 charactors!|max:20: Your password should no more than 20 charactors!');
@@ -89,29 +419,93 @@
         $('#signup').submit(function(){
             $(this).find(':button[type=submit]').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
             $(this).find(':button[type=submit]').prop('disabled', true);
-        });
+        });*/
     });
-    $("#signupForm").submit(function(event) {
+        bootstrapValidate(['#user', '#password', '#conPassword', '#email'], 'required: This can not be empty!', function(isEmpty) { 
+            if(isEmpty) {
+                empty = true; 
+                if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
+                    $("#signUpSubmit").attr('disabled', false);
+                else
+                    $("#signUpSubmit").attr('disabled', true);
+            } 
+            else {
+                empty = false;
+                $("#signUpSubmit").attr('disabled', true);
+            }
+        });
+        bootstrapValidate('#email', 'email: Enter a valid E-Mail!', function(isEmail) { if(isEmail) {emailValid = true; if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
+            $("#signUpSubmit").attr('disabled', false); else
+            $("#signUpSubmit").attr('disabled', true); } else {emailValid = false; $("#signUpSubmit").attr('disabled', true);}});
+        bootstrapValidate('#user', 'min:6: Your username should more than 6 charactors!', function(isUser) { 
+            if(isUser) {
+                userMin = true; 
+                if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
+                    $("#signUpSubmit").attr('disabled', false); 
+                else
+                    $("#signUpSubmit").attr('disabled', true);
+            } 
+            else {
+                userMin = false; 
+                $("#signUpSubmit").attr('disabled', true);
+            }
+        });
+        bootstrapValidate('#user', 'max:20: Your username should no more than 20 charactors!', function(isUser) { 
+            if(isUser) {
+                userMax = true; 
+                if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
+                    $("#signUpSubmit").attr('disabled', false); 
+                else
+                    $("#signUpSubmit").attr('disabled', true);
+            } 
+            else {
+                userMax = false; 
+                $("#signUpSubmit").attr('disabled', true);
+            }
+        });
+        bootstrapValidate('#conPassword', 'matches: #password: The password is not match!', function(isMatched) { if(isMatched) {conpassMatch = true; if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
+            $("#signUpSubmit").attr('disabled', false); else
+            $("#signUpSubmit").attr('disabled', true);} else {conpassMatch = false; $("#signUpSubmit").attr('disabled', true);}});
+        bootstrapValidate('#password', 'min:6: Your password should more than 6 charactors!', function(isPassword) { if(isPassword) {passwordMin = true; if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
+            $("#signUpSubmit").attr('disabled', false); else
+            $("#signUpSubmit").attr('disabled', true);} else {passwordMin = false; $("#signUpSubmit").attr('disabled', true);}});
+        bootstrapValidate('#password', 'max:20: Your password should no more than 20 charactors!', function(isPassword) { if(isPassword) {passwordMax = true; if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
+            $("#signUpSubmit").attr('disabled', false); else
+            $("#signUpSubmit").attr('disabled', true);} else {passwordMax = false; $("#signUpSubmit").attr('disabled', true);}});
+
+    $("#signUpForm").submit(function(event) {
         event.preventDefault();
         $("#signUpSubmit").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
         $('#signUpSubmit').prop('disabled', true);
+        var formData = new FormData();
+        if(licenseModified) {
+            formData.append('license', licensefile);
+        }
+        if(personalModified) {
+            formData.append('personal', personalfile);
+        }
+        formData.append('user', $("#user").val());
+        formData.append('password', $("#password").val());
+        formData.append('conPassword', $("#conPassword").val());
+        formData.append('email', $("#email").val());
+        formData.append('company', $("#company").val());
+        formData.append('contact', $("#contact").val());
+        formData.append('stateId', $("#stateId").val());
+        formData.append('taxId', $("#taxId").val());
+        formData.append('voe', $("#voe").val());
 
         $.ajax({
             type: "post",
             url: "/signup",
             dataType: "json",
-            data: {
-                user: $("#user").val(),
-                password: $("#password").val(),
-                conPassword: $("#conPassword").val(), 
-                firstName: $("#first").val(),
-                lastName: $("#last").val(),
-                email: $("#email").val()
-            },
+            data: formData,
+            contentType: false,
+            processData: false,
             success: function(res) {
                 if(res["status"] == "success") {
-                    $("#signupFooter").hide();
-                    $("#signupBody").html('<div class="container"><p>' + res["user"] + ', welcome to EXHIBITOR as a member!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back homepage!</span></div>');
+                    $("#signUpTitle").text("Welcome to our site!")
+                    $("#signUpBody").html('<div class="container"><p>' + res["user"] + ', welcome to EXHIBITOR as a member!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back homepage!</span></div>');
+                    $("#signUpDia").show();
                     jQuery.getScript("/public/js/autourl.js").done(function(){
                         var fun = auto;
                         fun("/");
@@ -119,15 +513,15 @@
                 }
                 else
                 if(res["status"] == "notmatched") {
-                    $("#signupError").html('<p>Username exists!</p>');
-                    $("#signupError").css('color', 'red');
+                    $("#signUpError").html('<p>Username exists!</p>');
+                    $("#signUpError").css('color', 'red');
                     $("#signUpSubmit").html('Submit');
                     $('#signUpSubmit').prop('disabled', true);
                 }
                 else 
                 if(res["status"] == "passworderror") {
-                    $("#signupError").html('<p>Please Confirm your password!</p>');
-                    $("#signupError").css('color', 'red');
+                    $("#signUpError").html('<p>Please Confirm your password!</p>');
+                    $("#signUpError").css('color', 'red');
                     $("#signUpSubmit").html('Submit');
                     $('#signUpSubmit').prop('disabled', true);
                 }

@@ -26,7 +26,7 @@ const constructorMethod = app =>{
             else {
                 var data = await users.getName(user);
                 const venderOrNot = data[0]["voe"];
-                if(venderOrNot == "v") {
+                if(venderOrNot == "vendor") {
                     res.redirect("/vendor");
                 }
                 else {

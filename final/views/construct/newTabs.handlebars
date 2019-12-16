@@ -190,8 +190,8 @@
     var songEmpty = false;
     var artistEmpty = false;
     var contentEmpty = false;
-    var avatarModified = false;
     const op = $('#action').attr("data-name");
+    var avatarModified = false;
     var tempFile;
     var file;
     $(document).on({
@@ -398,8 +398,6 @@
         formData.append('content', $("#content").val());
         formData.append('descript', $("#descript").val());
         formData.append('sizeAndPerprice', $("#sizeAndPerprice").val());
-        for(var c of formData.values())
-            console.log(c);
         var id = ""
         if(op.substring(0, 14) == "modify/?tabId=")
             id = op.substring(14);

@@ -716,7 +716,6 @@ module.exports = {
     getName,
     check,
     getEmail,
-    modifyName,
     dislike,
     undislike,
     getLike,
