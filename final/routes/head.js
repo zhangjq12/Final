@@ -20,7 +20,7 @@ async function headLink(req) {
         //const obj1 = {"content" : '<a id=SignIn class="nav-link" href="/signin">Sign In</a>'};
         const obj1 = {"content" : '<a id=SignIn class="nav-link" href=# data-toggle="modal" data-target="#signin">Sign In</a>'};
         //const obj2 = {"content" : '<a id=SignUp class="nav-link" href="/signup">Sign Up</a>'};
-        const obj2 = {"content" : '<a id=SignUp class="nav-link" href=# data-toggle="modal" data-target="#signup">Sign Up</a>'};
+        const obj2 = {"content" : '<a id=SignUp class="nav-link" href="/signup">Sign Up</a>'};
         link.push(obj1);
         link.push(obj2);
     }
