@@ -9,6 +9,25 @@ const NodeRSA = require('node-rsa');
 const key = new NodeRSA({b: 1024});
 const keyFile = require("./data/key/key");
 const authentication = require("./routes/authentication");
+const webSocket = require('ws');
+const data = require("./data");
+const progress = data.progress;
+
+var wss = webSocket.Server({port: 8080});
+
+wss.on('connection', async function connection(ws) {
+    //console.log('server: receive connection.');
+    
+    ws.on('message', async function incoming(req) {
+        
+    });
+
+    ws.on('pong', () => {
+        console.log('server: received pong from client');
+    });
+
+    //ws.send('world');
+});
 
 keyFile.push(key);
 

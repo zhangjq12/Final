@@ -1,20 +1,39 @@
 <div id="TabModify" class="container">
     <h4></h4>
     <form id="newTabs">
+        <div class="card border-light mb-3">
+        <div class="card-header">
+            <h4>Show Info</h4>
+        </div>
+        <div class="card-body">
         <div class="container" id="action" data-name={{operation}}></div>
         <div class="form-row">
             <div class="col-md-4 mb-2">
-                <label for="tabName">Tab Name:</label>
+                <label for="tabName">Show Name:</label>
                 <input id="tabName" type="text" class="form-control" name="tabName" value="{{tab}}"></input>
             </div>
             <div class="col-md-4 mb-2">
-                <label for="songName">Song Name:</label>
-                <input id="songName" type="text" class="form-control" name="songName" value="{{song}}"></input>
+                <label for="songName">Loaction:</label>
+                <select class="form-control" id="songName" name="songName" value="{{song}}">
+                    <option>Las Vegas</option>
+                    <option>New York City</option>
+                    <option>Los Angeles</option>
+                    <option>Seattle</option>
+                    <option>Boston</option>
+                    <option>Chicago</option>
+                    <option>San Jose</option>
+                    <option>San Francisco</option>
+                </select>
+            </div>
+            <div class="col-md-4 mb-2 align-self-center text-center">
+                <label for="avatar">Vendor's Avatar:</label></br>
+                <img id="avatar" class="mr-3" src="/public/image/vendor/{{avatar}}" width="100" height="100" alt="vendorAvatar"></br></br>
+                <button id="selectAvatar" type="button" data-toggle="modal" data-target="#selectAvatarDia" class="btn btn-primary">Select Avatar:</button>
             </div>
         </div>
         <div class="form-row">
             <div class="col-md-4 mb-2">
-                <label for="artistName">Artist Name:</label>
+                <label for="artistName">Category:</label>
                 <select class="form-control" id="artistName" name="artistName" value="{{artist}}">
                     <option>Cabin</option>
                     <option>Table</option>
@@ -32,9 +51,81 @@
             </div>
         </div>
         <div class="form-row">
-            <label for="content">Tab Content: <small class="text-muted">If you want to add chords directly, please type the chords with parenthesis, like (G).</small></label>
+            <div class="col-md-12 mb-2">
+                <label for="descript">Description for Vendor:</label>
+                <input id="descript" type="text" class="form-control" name="descript" value="{{descript}}"></input>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-12 mb-2">
+                <label for="sizeAndPerprice">Size and Price: <p class="text-muted">The format of input is: size/price, size/price, ... , size/price</p></label>
+                <input id="sizeAndPerprice" type="text" class="form-control" name="sizeAndPerprice" value="{{sAp}}"></input>
+            </div>
+        </div>
+        </div>
+        
+        </div>
+        <div class="card border-light mb-3">
+
+        </div>
+        <div class="card border-light mb-3">
+            <div class="card-header">
+                <h4>Details</h4>
+            </div>
+            <div class="card-body">
+            <div class="form-row">
+            <div class="col-md-12 mb-2">
+            <label for="content">Details: </label>
+            <div class="btn-toolbar mb-2" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group mr-2" role="group" aria-label="Bold and Italic">
+                    <button id="boldText" type="button" class="btn btn-light"><span style="font-weight: bold;">B</span></button>
+                    <button id="italicText" type="button" class="btn btn-light"><span style="font-style:italic;">I</span></button>
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="Second group">
+                    <div class="btn-group" role="group">
+                        <button id="colorsGroup" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Black
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="colorsGroup">
+                            <a class="dropdown-item" href="javascript:void(0);">Black</a>
+                            <a class="dropdown-item" href="javascript:void(0);" style="color: red;">Red</a>
+                            <a class="dropdown-item" href="javascript:void(0);" style="color: green;">Green</a>
+                            <a class="dropdown-item" href="javascript:void(0);" style="color: orange;">Orange</a>
+                            <a class="dropdown-item" href="javascript:void(0);" style="color: gray;">Gray</a>
+                            <a class="dropdown-item" href="javascript:void(0);" style="color: blue;">Blue</a>
+                        </div>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button id="sizeGroup" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        12
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="sizeGroup">
+                            <a class="dropdown-item" href="javascript:void(0);">9</a>
+                            <a class="dropdown-item" href="javascript:void(0);">10</a>
+                            <a class="dropdown-item" href="javascript:void(0);">11</a>
+                            <a class="dropdown-item" href="javascript:void(0);">12</a>
+                            <a class="dropdown-item" href="javascript:void(0);">14</a>
+                            <a class="dropdown-item" href="javascript:void(0);">15</a>
+                            <a class="dropdown-item" href="javascript:void(0);">16</a>
+                            <a class="dropdown-item" href="javascript:void(0);">18</a>
+                            <a class="dropdown-item" href="javascript:void(0);">20</a>
+                            <a class="dropdown-item" href="javascript:void(0);">22</a>
+                            <a class="dropdown-item" href="javascript:void(0);">24</a>
+                            <a class="dropdown-item" href="javascript:void(0);">28</a>
+                            <a class="dropdown-item" href="javascript:void(0);">32</a>
+                            <a class="dropdown-item" href="javascript:void(0);">36</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-group" role="group" aria-label="Third group">
+                    <button type="button" class="btn btn-light">Add Images</button>
+                </div>
+            </div>
             <textarea id="content" name="content" rows="10" cols="80" class="form-control" placeholder="Tap your tab here!">{{content}}</textarea>
-            <button id="tabSubmit" type="submit" data-toggle="modal" data-target="#modifytabDia" class="btn btn-primary" disabled="true">Submit</button>
+            </div>
+            </div>
+        </div>
+        <button id="tabSubmit" type="submit" data-toggle="modal" data-target="#modifytabDia" class="btn btn-primary" disabled="true">Submit</button>
         </div>
     </form>
 </div>
@@ -58,13 +149,165 @@
         </div>
     </div>
 </div> 
+<div class="modal fade" id="selectAvatarDia" tabindex="-1" role="dialog" aria-labelledby="selectAvatarDiaTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" id="selectAvatarDiaHeader">
+                <h5 class="modal-title" id="selectAvatarDiaTitle">Select Avatar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="selectAvatarDiaBody">
+                <div class="container" id="avatarArea">
+                    <div class="row h-100">
+                        <div class="col align-self-center text-center" id="dragarea">
+                            Drag your avatar here...
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="avatarModify" name="portrait" accept="image/*" required>
+                        <label id="fileNameLabel" class="custom-file-label" for="avatarModify">Your Avatar...</label>
+                    </div>
+                </div>
+                <div class="container" id="fileRestrict">
+                    <p style="color:red;">You should upload your avatar</p>
+                </div>
+            </div>
+            <div class="modal-footer" id="selectAvatarDiaFooter">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="noPorMod">Close</button>
+                <button type="button" class="btn btn-primary" id="yesPorMod" disabled="true">Upload</button>
+            </div>
+        </div>
+    </div>
+</div> 
 
+<script src="/public/js/filesizelimit.js"></script>
 <script>
     var nameEmpty = false;
     var songEmpty = false;
     var artistEmpty = false;
     var contentEmpty = false;
+    var avatarModified = false;
     const op = $('#action').attr("data-name");
+    var tempFile;
+    var file;
+    $(document).on({
+        dragleave:function(e){
+            e.preventDefault();
+            $('#dragarea').removeClass('over');
+        },
+        drop:function(e){
+            e.preventDefault();
+            //$('#dragarea').removeClass('over');
+        },
+        dragenter:function(e){
+            e.preventDefault();
+            $('#dragarea').addClass('over');
+        },
+        dragover:function(e){
+            e.preventDefault();
+            $('#dragarea').addClass('over');
+        }
+    });
+    document.getElementById('dragarea').addEventListener("drop", function(e) {
+        e.preventDefault();
+        file = e.dataTransfer.files[0];
+        if (file == undefined) {
+            return false;
+        }
+        if (file.type.indexOf('image') === -1) {
+            $("#fileRestrict").find('p').text("You should drag the image to the area!");
+            $("#fileRestrict").find('p').css('color', 'red');
+            return false;
+        }
+        var fun = checkSize;
+        var sizeOk = fun(e.dataTransfer);
+        if(!sizeOk) { 
+            var fileName = file.name;
+            $("#fileRestrict").find('p').text("The maximum file size is 2M. It's too large!");
+            $("#fileRestrict").find('p').css('color', 'red');
+            uploadhead = false;
+        }
+        else{
+            var fileName = file.name;
+            $('#fileNameLabel').text(fileName);
+            $("#fileRestrict").find('p').text("");
+            imgPreview();
+            uploadhead = true;
+            $('avatarModify').val(e.dataTransfer);
+        }
+        if(uploadhead)
+            $("#yesPorMod").attr('disabled', false);
+        else
+            $("#yesPorMod").attr('disabled', true);
+    }, false);
+    $("#avatarModify").change(function() {
+        file = this.files[0];
+        var fun = checkSize;
+        var sizeOk = fun(this);
+        if($(this).val() !== '') {
+            if(!sizeOk) { 
+                var fileName = file.name;
+                $("#fileRestrict").find('p').text("The maximum file size is 2M. It's too large!");
+                $("#fileRestrict").find('p').css('color', 'red');
+                uploadhead = false;
+            }
+            else{
+                var fileName = file.name;
+                $('#fileNameLabel').text(fileName);
+                $("#fileRestrict").find('p').text("");
+                imgPreview();
+                uploadhead = true;
+            }
+        }
+        else {
+            $('#dragarea').text("Drag your avatar here...")
+            $('#fileNameLabel').text("Your Avatar...");
+            $("#fileRestrict").find('p').text("You should upload your avatar");
+            $("#fileRestrict").find('p').css('color', 'red');
+            uploadhead = false;
+        }
+        if(uploadhead)
+            $("#yesPorMod").attr('disabled', false);
+        else
+            $("#yesPorMod").attr('disabled', true);
+    });
+    function imgPreview() {
+        var reader;
+        if(window.FileReader) {
+            reader = new FileReader();
+        } else {
+            $("#fileRestrict").find('p').text("Your device doesn't support image preview!");
+            $("#fileRestrict").find('p').css('color', 'red');
+            return;
+        }
+        reader.onload = function(e) {
+            document.getElementById("dragarea").innerHTML = '<img src="' + e.target.result + '" width="200px" height="200px" />'
+            tempFile = e.target.result;
+        }
+        reader.readAsDataURL(file);
+    }
+    $("#yesPorMod").click(function() {
+        var reader;
+        if(window.FileReader) {
+            reader = new FileReader();
+        } else {
+            document.getElementById("fileRestrict").innerHTML = '<div class="alert alert-danger" role="alert">\
+                Your device doesn\'t support the image preview!\
+            </div>'
+            return;
+        }
+        reader.onload = function(e) {
+            $('#avatar').attr('src', tempFile);
+        }
+        reader.readAsDataURL(file);
+        avatarModified = true;
+        $('#selectAvatarDia').modal('hide');
+    });
+
     $('#newTabs').submit(function(){
         window.event.preventDefault();
         $(this).find(':button[type=submit]').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
@@ -73,7 +316,7 @@
     bootstrapValidate('#tabName', 'required: This can not be empty!', function(isEmpty) {
         if(isEmpty == true) {
             nameEmpty = true; 
-            if(nameEmpty && songEmpty && artistEmpty && contentEmpty)
+            if(nameEmpty && contentEmpty)
                 $("#tabSubmit").attr('disabled', false);
             else
                 $("#tabSubmit").attr('disabled', true);
@@ -84,7 +327,7 @@
             $("#tabSubmit").attr('disabled', true);
         }
     });
-    bootstrapValidate('#songName', 'required: This can not be empty!', function(isEmpty) {
+    /*bootstrapValidate('#songName', 'required: This can not be empty!', function(isEmpty) {
         if(isEmpty == true) {
             songEmpty = true; 
             if(nameEmpty && songEmpty && artistEmpty && contentEmpty)
@@ -111,11 +354,11 @@
             artistEmpty = false;
             $("#tabSubmit").attr('disabled', true);
         }
-    });
+    });*/
     bootstrapValidate('#content', 'required: This can not be empty!', function(isEmpty) {
         if(isEmpty == true) {
             contentEmpty = true; 
-            if(nameEmpty && songEmpty && artistEmpty && contentEmpty)
+            if(nameEmpty && contentEmpty)
                 $("#tabSubmit").attr('disabled', false);
             else
                 $("#tabSubmit").attr('disabled', true);
@@ -129,14 +372,10 @@
     $(document).ready(function(){
         if(op == "upload") {
             nameEmpty = false;
-            songEmpty = false;
-            artistEmpty = false;
             contentEmpty = false;
         }
         else {
             nameEmpty = true;
-            songEmpty = true;
-            artistEmpty = true;
             contentEmpty = true;
             $("#tabSubmit").attr('disabled', false);
         }
@@ -148,12 +387,19 @@
     $("#yesmodify").click(function() {
         $("#yesmodify").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
         $('#yesmodify').prop('disabled', true);
-        var formData = new Object();
-        formData["tabName"] = $("#tabName").val();
-        formData["songName"] = $("#songName").val();
-        formData["artistName"] = $("#artistName").val();
-        formData["authorName"] = $("#authorName").val();
-        formData["content"] = $("#content").val();
+        var formData = new FormData();
+        if(avatarModified) {
+            formData.append('avatar', file);
+        }
+        formData.append('tabName', $("#tabName").val());
+        formData.append('songName', $("#songName").val());
+        formData.append('artistName', $("#artistName").val());
+        formData.append('authorName', $("#authorName").val());
+        formData.append('content', $("#content").val());
+        formData.append('descript', $("#descript").val());
+        formData.append('sizeAndPerprice', $("#sizeAndPerprice").val());
+        for(var c of formData.values())
+            console.log(c);
         var id = ""
         if(op.substring(0, 14) == "modify/?tabId=")
             id = op.substring(14);
@@ -163,6 +409,8 @@
             url: "/tabs/" + op,
             dataType: "json",
             data: formData,
+            contentType: false,
+            processData: false,
             success: function(res) {
                 if(id == "") {
                     $("#modifytabDiaFooter").hide();

@@ -37,8 +37,9 @@
         <div class="card-body" id="currentTab">
             <div class="container" id="tabTitle">
                 <h4 class="card-title"><span id="tab">{{tab}}</span></h3>
-                <h5 class="card-subtitle mb-2"><span id="song">-Song name : {{song}}</span> by <span id="tabArtist">{{artist}}</span></h4>
-                <p class="card-subtitle mb-2"><span id="authorInfo">Posted by :<span id="tabAuthor">{{author}}</span></span></p>
+                <p class="card-subtitle mb-2 text-muted"><span id="song">Location :{{song}}</span><br/>
+                <span id="tabArtist">Categroy: {{artist}}</span></p>
+                <p class="card-subtitle mb-2 text-muted"><span id="authorInfo">Posted by :<span id="tabAuthor">{{author}}</span></span></p>
             </div>
             <div class="container" id="guitarTabContent">
                 <!-- <div id="line"></div> -->
@@ -46,7 +47,7 @@
                 <p class="card-text"><span id="tabContent">{{content}}</span></p>
                 <br/>
                 <div id="orderDiv">
-                    <a class="btn btn-primary" href="/order/{{id}}">ORDER</a>
+                    <pre class="tab"><a class="btn btn-primary" href="/order/{{id}}">ORDER</a>  <small class="text-muted">starting from:</small><b>${{price}}</b></pre>
                 </div>
                 <div id="shareTab"></div>
                 <script language="javascript" src="/public/js/transferChord.js"></script>

@@ -5,8 +5,8 @@ const comments = require("./comments");
 
 const url = "mongodb://127.0.0.1:27017/Final";
 
-async function create(tabName, songName, artist, author, content, descript, avatar, perprice, size) {
-    if(tabName == undefined || songName == undefined || artist == undefined || author == undefined || content == undefined || descript == undefined || avatar == undefined || perprice == undefined || size == undefined)
+async function create(boothNum, showName, date, author, size, category, details) {
+    if(boothNum == undefined || showName == undefined || date == undefined || author == undefined || size == undefined || category == undefined || details == undefined)
         throw "parameters are missing.";
     var result = [];
     var promise = new Promise(function(resolve) {
@@ -14,7 +14,7 @@ async function create(tabName, songName, artist, author, content, descript, avat
             if(err) {
                 throw "database connection failed!";
             }
-            db.collection('tabs').insert({"tabName": tabName, "songName": songName, "artistName": artist, "author": author, "Content": content, "Rating": {"thumbsup": 0, "thumbsdown": 0}, "Descript": descript, "Avatar": avatar, "Perprice": perprice, "Size": size}, (err, res) => {
+            db.collection('tab').insert({"boothNum": boothNum, "showName": showName, "date": date, "author": author, "size": size, "category": category, "details": details, "price": 0, "Rating": {"thumbsup": 0, "thumbsdown": 0}}, (err, res) => {
                 if(err) {
                     db.close();
                     throw "insert error";
@@ -31,14 +31,54 @@ async function create(tabName, songName, artist, author, content, descript, avat
     return promise;
 }
 
-async function getALL() {
+async function remove(id) {
+    if(id == undefined)
+        throw "parameter is missing";
+    if(typeof id != 'string')
+        throw "parameter is error format";
+    var ID = new ObjectID(id);
+    var info = await getId(id);
+    var userLike = await user.getLike(id);
+    for(var i = 0; i < userLike.length; i++) {
+        var res1 = await user.unliking(userLike[i]["userName"], id);
+    }
+    var userDislike = await user.getDislike(id);
+    for(var i = 0; i < userDislike.length; i++) {
+        var res2 = await user.unliking(userDislike[i]["userName"], id);
+    }
+    var commentData = await comments.getTab(id);
+    for(var i = 0; i < commentData.length; i++) {
+        var res3 = await comments.remove(commentData[i]["_id"].toString());
+    }
+    var promise = new Promise(function(resolve) {
+        mongo.connect(url,(err, db) => {
+            if(err) {
+                throw "database connection failed!";
+            }
+            db.collection("tab").deleteMany({"_id": ID} , (err, res) => {
+                if(err) {
+                    db.close();
+                    throw "find error."
+                }
+                db.close();
+                resolve(res.result.n);
+            });
+        });
+    })
+    promise.then(function(value) {
+        return value;
+    })
+    return promise;
+}
+
+async function getRating() {
     var res = [];
     var promise = new Promise(function(resolve) {
         mongo.connect(url,(err, db) => {
             if(err) {
                 throw "database connection failed!";
             }
-            var find = db.collection("tabs").find();
+            var find = db.collection("tab").find();
             find.each((err, ress) => {
                 if(err) {
                     db.close();
@@ -61,39 +101,8 @@ async function getALL() {
 }
 
 async function getAll() {
-    const res = await getALL();
-    if(res.length == 0)
-        throw "no such data";
+    const res = await getRating();
     return res;
-}
-
-async function getRating() {
-    var res = [];
-    var promise = new Promise(function(resolve) {
-        mongo.connect(url,(err, db) => {
-            if(err) {
-                throw "database connection failed!";
-            }
-            var find = db.collection("tabs").find();
-            find.each((err, ress) => {
-                if(err) {
-                    db.close();
-                    throw "find error."
-                }
-                if(ress != null) {
-                    res.push(ress);
-                }
-                else {
-                    db.close();
-                    resolve(res);
-                }
-            });
-        });
-    })
-    promise.then(function(value) {
-        return value;
-    })
-    return promise;
 }
 
 async function getByRating() {
@@ -124,7 +133,7 @@ async function getID(id) {
             if(err) {
                 throw "database connection failed!";
             }
-            var find = db.collection("tabs").find({"_id": ID});
+            var find = db.collection("tab").find({"_id": ID});
             find.each((err, ress) => {
                 if(err) {
                     db.close();
@@ -164,7 +173,7 @@ async function getNAME(name) {
             if(err) {
                 throw "database connection failed!";
             }
-            var find = db.collection("tabs").find({tabName: {$regex: name, $options: "$i"}});
+            var find = db.collection("tab").find({"showName": {$regex: name, $options: "$i"}});
             find.each((err, ress) => {
                 if(err) {
                     db.close();
@@ -191,44 +200,6 @@ async function getName(name) {
     return res;
 }
 
-async function getSongNAME(name) {
-    if(name == undefined)
-        throw "parameter is missing";
-    if(typeof name != 'string')
-        throw "parameter is error format";
-    var res = [];
-    var promise = new Promise(function(resolve) {
-        mongo.connect(url,(err, db) => {
-            if(err) {
-                throw "database connection failed!";
-            }
-            var find = db.collection("tabs").find({songName: {$regex: name, $options: "$i"}});
-            find.each((err, ress) => {
-                if(err) {
-                    db.close();
-                    throw "find error."
-                }
-                if(ress != null) {
-                    res.push(ress);
-                }
-                else {
-                    db.close();
-                    resolve(res);
-                }
-            });
-        });
-    })
-    promise.then(function(value) {
-        return value;
-    })
-    return promise;
-}
-
-async function getSongName(name) {
-    const res = await getSongNAME(name);
-    return res;
-}
-
 async function getAUTHOR(name) {
     if(name == undefined)
         throw "parameter is missing";
@@ -240,7 +211,7 @@ async function getAUTHOR(name) {
             if(err) {
                 throw "database connection failed!";
             }
-            var find = db.collection("tabs").find({"author": name});
+            var find = db.collection("tab").find({"author": name});
             find.each((err, ress) => {
                 if(err) {
                     db.close();
@@ -267,10 +238,10 @@ async function getAuthor(name) {
     return res;
 }
 
-async function getAUTHORS(name) {
-    if(name == undefined)
+async function getBoothID(boothId) {
+    if(boothId == undefined)
         throw "parameter is missing";
-    if(typeof name != 'string')
+    if(typeof boothId != 'string')
         throw "parameter is error format";
     var res = [];
     var promise = new Promise(function(resolve) {
@@ -278,7 +249,7 @@ async function getAUTHORS(name) {
             if(err) {
                 throw "database connection failed!";
             }
-            var find = db.collection("tabs").find({"author": {$regex: name, $options: "$i"}});
+            var find = db.collection("tab").find({"boothId": {$regex: boothId, $options: "$i"}});
             find.each((err, ress) => {
                 if(err) {
                     db.close();
@@ -300,121 +271,35 @@ async function getAUTHORS(name) {
     return promise;
 }
 
-async function getAuthors(name) {
-    const res = await getAUTHORS(name);
+async function getBoothId(boothId) {
+    const res = await getBoothID(boothId);
     return res;
 }
 
-
-async function getARTIST(name) {
-    if(name == undefined)
-        throw "parameter is missing";
-    if(typeof name != 'string')
-        throw "parameter is error format";
+async function getCategory(category) {
+    const data = await getRating();
     var res = [];
-    var promise = new Promise(function(resolve) {
-        mongo.connect(url,(err, db) => {
-            if(err) {
-                throw "database connection failed!";
+    for(let tab of data) {
+        for(let t of tab["category"]) {
+            if(category == t) {
+                res.push(tab);
             }
-            var find = db.collection("tabs").find({"artistName": {$regex: name, $options: "$i"}});
-            find.each((err, ress) => {
-                if(err) {
-                    db.close();
-                    throw "find error."
-                }
-                if(ress != null) {
-                    res.push(ress);
-                }
-                else {
-                    db.close();
-                    resolve(res);
-                }
-            });
-        });
-    })
-    promise.then(function(value) {
-        return value;
-    })
-    return promise;
-}
-
-async function getArtist(name) {
-    const res = await getARTIST(name);
+        }
+    }
+    if(res.length == 0)
+        throw "no such data";
     return res;
 }
 
-async function remove(id) {
-    if(id == undefined)
-        throw "parameter is missing";
-    if(typeof id != 'string')
-        throw "parameter is error format";
-    var ID = new ObjectID(id);
-    var info = await getId(id);
-    var userLike = await user.getLike(id);
-    for(var i = 0; i < userLike.length; i++) {
-        var res1 = await user.unliking(userLike[i]["userName"], id);
-    }
-    var userDislike = await user.getDislike(id);
-    for(var i = 0; i < userDislike.length; i++) {
-        var res2 = await user.unliking(userDislike[i]["userName"], id);
-    }
-    var commentData = await comments.getTab(id);
-    for(var i = 0; i < commentData.length; i++) {
-        var res3 = await comments.remove(commentData[i]["_id"].toString());
-    }
-    var promise = new Promise(function(resolve) {
-        mongo.connect(url,(err, db) => {
-            if(err) {
-                throw "database connection failed!";
-            }
-            db.collection("tabs").deleteMany({"_id": ID} , (err, res) => {
-                if(err) {
-                    db.close();
-                    throw "find error."
-                }
-                db.close();
-                resolve(res.result.n);
-            });
-        });
-    })
-    promise.then(function(value) {
-        return value;
-    })
-    return promise;
-}
-
-async function removeAll() {
-    var promise = new Promise(function(resolve) {
-        mongo.connect(url,(err, db) => {
-            if(err) {
-                throw "database connection failed!";
-            }
-            db.collection("tabs").deleteMany({} , (err, res) => {
-                if(err) {
-                    db.close();
-                    throw "find error."
-                }
-                db.close();
-                resolve("true");
-            });
-        });
-    })
-    promise.then(function(value) {
-        return value;
-    })
-    return promise;
-}
-
-async function modifySongName(id, songName) {
-    if(id == undefined || songName == undefined)
+async function modifyShowName(id, showName) {
+    if(id == undefined || showName == undefined)
         throw "parameter is missing";
     var promise = new Promise(function(resolve) {
         mongo.connect(url,(err, db) => {
             if(err) {
                 throw "database connection failed!";
             }
-            db.collection("tabs").updateMany({"_id": id}, {$set:{"songName": songName}}, (err, res) => {
+            db.collection("tab").updateMany({"_id": id}, {$set:{"showName": showName}}, (err, res) => {
                 if(err) {
                     db.close();
                     throw "find error."
@@ -430,15 +315,15 @@ async function modifySongName(id, songName) {
     return promise;
 }
 
-async function modifyTabName(id, tabName) {
-    if(id == undefined || tabName == undefined)
+async function modifyBoothId(id, boothId) {
+    if(id == undefined || boothId == undefined)
         throw "parameter is missing";
     var promise = new Promise(function(resolve) {
         mongo.connect(url,(err, db) => {
             if(err) {
                 throw "database connection failed!";
             }
-            db.collection("tabs").updateMany({"_id": id}, {$set:{"tabName": tabName}}, (err, res) => {
+            db.collection("tab").updateMany({"_id": id}, {$set:{"boothId": boothId}}, (err, res) => {
                 if(err) {
                     db.close();
                     throw "find error."
@@ -454,15 +339,15 @@ async function modifyTabName(id, tabName) {
     return promise;
 }
 
-async function modifyArtistName(id, artist) {
-    if(id == undefined || artist == undefined)
+async function modifyDate(id, date) {
+    if(id == undefined || date == undefined)
         throw "parameter is missing";
     var promise = new Promise(function(resolve) {
         mongo.connect(url,(err, db) => {
             if(err) {
                 throw "database connection failed!";
             }
-            db.collection("tabs").updateMany({"_id": id}, {$set:{"artistName": artist}}, (err, res) => {
+            db.collection("tab").updateMany({"_id": id}, {$set:{"date": date}}, (err, res) => {
                 if(err) {
                     db.close();
                     throw "find error."
@@ -478,15 +363,15 @@ async function modifyArtistName(id, artist) {
     return promise;
 }
 
-async function modifyContent(id, content) {
-    if(id == undefined || content == undefined)
+async function modifyCategory(id, category) {
+    if(id == undefined || showName == undefined)
         throw "parameter is missing";
     var promise = new Promise(function(resolve) {
         mongo.connect(url,(err, db) => {
             if(err) {
                 throw "database connection failed!";
             }
-            db.collection("tabs").updateMany({"_id": id}, {$set:{"Content": content}}, (err, res) => {
+            db.collection("tab").updateMany({"_id": id}, {$set:{"category": category}}, (err, res) => {
                 if(err) {
                     db.close();
                     throw "find error."
@@ -501,15 +386,16 @@ async function modifyContent(id, content) {
     })
     return promise;
 }
-async function modifyDescript(id, descript) {
-    if(id == undefined || descript == undefined)
+
+async function modifyDetails(id, details) {
+    if(id == undefined || details == undefined)
         throw "parameter is missing";
     var promise = new Promise(function(resolve) {
         mongo.connect(url,(err, db) => {
             if(err) {
                 throw "database connection failed!";
             }
-            db.collection("tabs").updateMany({"_id": id}, {$set:{"Descript": descript}}, (err, res) => {
+            db.collection("tab").updateMany({"_id": id}, {$set:{"details": details}}, (err, res) => {
                 if(err) {
                     db.close();
                     throw "find error."
@@ -524,61 +410,16 @@ async function modifyDescript(id, descript) {
     })
     return promise;
 }
-async function modifyAvatar(id, avatar) {
-    if(id == undefined || avatar == undefined)
+
+async function modifyPrice(id, price) {
+    if(id == undefined || price == undefined)
         throw "parameter is missing";
     var promise = new Promise(function(resolve) {
         mongo.connect(url,(err, db) => {
             if(err) {
                 throw "database connection failed!";
             }
-            db.collection("tabs").updateMany({"_id": id}, {$set:{"Avatar": avatar}}, (err, res) => {
-                if(err) {
-                    db.close();
-                    throw "find error."
-                }
-                db.close();
-                resolve("rename successful");
-            });
-        });
-    })
-    promise.then(function(value) {
-        return value;
-    })
-    return promise;
-}
-async function modifyPerprice(id, perprice) {
-    if(id == undefined || perprice == undefined)
-        throw "parameter is missing";
-    var promise = new Promise(function(resolve) {
-        mongo.connect(url,(err, db) => {
-            if(err) {
-                throw "database connection failed!";
-            }
-            db.collection("tabs").updateMany({"_id": id}, {$set:{"Perprice": perprice}}, (err, res) => {
-                if(err) {
-                    db.close();
-                    throw "find error."
-                }
-                db.close();
-                resolve("rename successful");
-            });
-        });
-    })
-    promise.then(function(value) {
-        return value;
-    })
-    return promise;
-}
-async function modifySize(id, size) {
-    if(id == undefined || size == undefined)
-        throw "parameter is missing";
-    var promise = new Promise(function(resolve) {
-        mongo.connect(url,(err, db) => {
-            if(err) {
-                throw "database connection failed!";
-            }
-            db.collection("tabs").updateMany({"_id": id}, {$set:{"Size": size}}, (err, res) => {
+            db.collection("tab").updateMany({"_id": id}, {$set:{"price": price}}, (err, res) => {
                 if(err) {
                     db.close();
                     throw "find error."
@@ -613,7 +454,7 @@ async function rate(name, rating) {
             if(err) {
                 throw "database connection failed!";
             }
-            db.collection("tabs").updateMany({"tabName": name}, {$set:{"Rating": rates}}, (err, res) => {
+            db.collection("tab").updateMany({"tabName": name}, {$set:{"Rating": rates}}, (err, res) => {
                 if(err) {
                     db.close();
                     throw "find error."
@@ -630,24 +471,20 @@ async function rate(name, rating) {
 }
 
 module.exports = {
-    create,
-    getAll,
-    getId,
-    remove,
-    removeAll,
-    modifyTabName,
-    modifySongName,
-    modifyArtistName,
-    modifyContent,
-    rate,
-    getName,
-    getAuthor,
-    getArtist,
+    getBoothId,
     getByRating,
-    getAuthors,
-    getSongName,
-    modifyAvatar,
-    modifyDescript,
-    modifyPerprice,
-    modifySize
+    getCategory,
+    getAuthor,
+    getAll,
+    create,
+    getId,
+    getName,
+    remove,
+    modifyBoothId,
+    modifyCategory,
+    modifyDate,
+    modifyDetails,
+    modifyShowName,
+    modifyPrice,
+    rate
 }

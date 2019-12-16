@@ -30,8 +30,8 @@
                     <table class="table table-hover" id="MyTabPage">
                         <thead>
                             <tr>
-                                <th scope="col" id="headName">Tab Name</th>
-                                <th scope="col" id="headArtist">Aritist</th>
+                                <th scope="col" id="headName">Vendors</th>
+                                <th scope="col" id="headArtist">Category</th>
                                 <th scope="col" id="operation">Operation</th>
                             </tr>
                         </thead>
@@ -76,16 +76,16 @@
                     <table class="table table-hover" id="privateFav">
                         <thead>
                             <tr>
-                                <th scope="col" id="headName">Tab Name</th>
-                                <th scope="col" id="headAuthor">Author</th>
-                                <th scope="col" id="headArtist">Artist</th>
+                                <th scope="col" id="headName">Vendors</th>
+                                <th scope="col" id="headAuthor">Location</th>
+                                <th scope="col" id="headArtist">Category</th>
                             </tr>
                         </thead>
                         <tbody class="table table-hover table-borderless">
                             {{#each favorite}}
                             <tr>
                                 <td scope="row" id={{_id}}><a href="/tabs/?tabId={{_id}}">{{tabName}}</a></td>
-                                <td>{{author}}</td>
+                                <td>{{songName}}</td>
                                 <td>{{artistName}}</td>
                             </tr>
                             {{/each}}

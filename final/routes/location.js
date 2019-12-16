@@ -5,18 +5,16 @@ const tabs = data.tabs;
 const head = require("./head");
 const xss = require('xss');
 
-router.get("/", async (req, res) => {
-    const Head = await head(req);
-    res.render("construct/category", {title: "Categories", status: Head});
-})
-
 router.get("/find", async (req, res) => {
     const Head = await head(req);
     try {
-        const cate = xss(req.query.category);
+        const cate = xss(req.query.location);
+        //console.log(cate);
         const pagestr = xss(req.query.page);
+        //console.log(pagestr);
         const page = parseInt(pagestr);
-        const data = await tabs.getArtist(cate);
+        const data = await tabs.getSongName(cate);
+        //console.log(data);
         if(data.length != 0) {
             const pagenum = Math.floor((data.length - 1) / 10) + 1;
             if(page <= pagenum) {

@@ -8,13 +8,31 @@ const modifyInfo = require("./modifyInfo");
 const tab = require("../data/tabs");
 const categories = require("./categories");
 const order = require("./order");
+const location = require("./location");
+const auth = require("./authentication");
+const users = require("../data/users");
+const vendor = require("./vendor");
+const exhibitor = require("./exhibitor");
+
 
 const constructorMethod = app =>{
     app.get("/", async (req, res) => {
         const Head = await head(req);
         try {
-            var data = await tab.getByRating();
-            res.render('construct/index', {title: "Guitar Tabs", status: Head, data: data});
+            const user = await auth(req);
+            if(user == null) {
+                res.render('construct/index', {title: "EXHIBITOR", status: Head});
+            }
+            else {
+                var data = await users.getName(user);
+                const venderOrNot = data[0]["voe"];
+                if(venderOrNot == "v") {
+                    res.redirect("/vendor");
+                }
+                else {
+                    res.redirect("/exhibitor");
+                }
+            }
         }
         catch(e) {
             res.render('construct/error', {title: "Error!", status: Head});
@@ -28,11 +46,14 @@ const constructorMethod = app =>{
     app.use("/modifyInfo", modifyInfo);
     app.use("/categories", categories);
     app.use("/order", order);
+    app.use("/location", location);
+    app.use("/exhibitor", exhibitor);
+    app.use("/vendor", vendor);
     app.get("/popularity", async (req, res) => {
         const Head = await head(req);
         try {
             var data = await tab.getByRating();
-            res.render('construct/popularity', {title: "Guitar Tabs", status: Head, data: data});
+            res.render('construct/popularity', {title: "EXHIBITOR", status: Head, data: data});
         }
         catch(e) {
             res.render('construct/error', {title: "Error!", status: Head});
