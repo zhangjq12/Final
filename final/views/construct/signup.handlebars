@@ -1,32 +1,82 @@
 <div class="container" id="signUpDiv">
     <p id="error">{{error}}</p>
-    <form method="POST" action="/signup" id="signup">
-        <div class="form-group">
-            <label for="user" class="sr-only">User Name:</label>
-            <input id="user" type="text" name="user" class="form-control" placeholder="Username" />
+    <form id="signup">
+        <div class="card border-light mb-3">
+            <div class="card-header">
+                <h4>Show Info</h4>
+            </div>
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="user" class="sr-only">User Name:</label>
+                        <input id="user" type="text" name="user" class="form-control" placeholder="Username" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="company" class="sr-only">Company Info:</label>
+                        <input id="company" type="text" name="company" class="form-control" placeholder="CompanyInfo" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="password" class="sr-only">Password:</label>
+                        <input id="password" type="password" name="password" class="form-control" placeholder="Password"/>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="contact" class="sr-only">Contact Info:</label>
+                        <input id="contact" type="text" name="contact" class="form-control" placeholder="ContactInfo" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="conPassword" class="sr-only">Confirm Password:</label>
+                        <input id="conPassword" type="password" name="conPassword" class="form-control" placeholder="Confirm"/>
+                    </div>
+                    <div class="col-md-6 mb-2 align-self-center text-center">
+                        <label for="license">License copy:</label></br>
+                        <img id="license" class="mr-3" src="/public/image/license/{{license}}" width="100" height="100" alt="licenseCopy"></br></br>
+                        <button id="selectLicense" type="button" data-toggle="modal" data-target="#selectLicenseDia" class="btn btn-primary">Select Image:</button>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="email" class="sr-only">Email:</label>
+                        <input id="email" type="email" name="email" class="form-control" placeholder="Email"/>
+                    </div>
+                    <div class="col-md-6 mb-2 align-self-center text-center">
+                        <label for="personal">personal copy:</label></br>
+                        <img id="personal" class="mr-3" src="/public/image/personal/{{personal}}" width="100" height="100" alt="Personal"></br></br>
+                        <button id="selectPersonal" type="button" data-toggle="modal" data-target="#selectPersonalDia" class="btn btn-primary">Select Image:</button>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="stateId" class="sr-only">State ID:</label>
+                        <input id="stateId" type="text" name="stateId" class="form-control" placeholder="stateId"/>
+                    </div>
+                     <div class="col-md-6 mb-3">
+                        <label for="taxId" class="sr-only">Tax ID:</label>
+                        <input id="taxId" type="text" name="taxId" class="form-control" placeholder="taxId"/>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="password" class="sr-only">Password:</label>
-            <input id="password" type="password" name="password" class="form-control" placeholder="Password"/>
-        </div>
-        <div class="form-group">
-            <label for="conPassword" class="sr-only">Confirm Password:</label>
-            <input id="conPassword" type="password" name="conPassword" class="form-control" placeholder="Confirm"/>
-        </div>
-        <div class="form-group">
-            <label for="firstName" class="sr-only">First Name:</label>
-            <input id="first" type="text" name="firstName" class="form-control" placeholder="First Name"/>
-        </div>
-        <div class="form-group">
-            <label for="lastName" class="sr-only">Last Name:</label>
-            <input id="last" type="text" name="lastName" class="form-control" placeholder="Last Name"/>
-        </div>
-        <div class="form-group">
-            <label for="email" class="sr-only">Email:</label>
-            <input id="email" type="email" name="email" class="form-control" placeholder="Email"/>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button id="signUpSubmit" class="btn btn-primary">Submit</button>
     </form>
+</div>
+
+<div class="modal fade" id="signUpDia" tabindex="-1" role="dialog" aria-labelledby="signUpTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" id="signUpHeader">
+                <h5 class="modal-title" id="signUpTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="signUpBody">
+            </div>
+        </div>
+    </div>
 </div>
 
 <script type="text/javascript">
@@ -40,5 +90,51 @@
             $(this).find(':button[type=submit]').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
             $(this).find(':button[type=submit]').prop('disabled', true);
         });
-    }); 
+    });
+    $("#signupForm").submit(function(event) {
+        event.preventDefault();
+        $("#signUpSubmit").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
+        $('#signUpSubmit').prop('disabled', true);
+
+        $.ajax({
+            type: "post",
+            url: "/signup",
+            dataType: "json",
+            data: {
+                user: $("#user").val(),
+                password: $("#password").val(),
+                conPassword: $("#conPassword").val(), 
+                firstName: $("#first").val(),
+                lastName: $("#last").val(),
+                email: $("#email").val()
+            },
+            success: function(res) {
+                if(res["status"] == "success") {
+                    $("#signupFooter").hide();
+                    $("#signupBody").html('<div class="container"><p>' + res["user"] + ', welcome to EXHIBITOR as a member!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back homepage!</span></div>');
+                    jQuery.getScript("/public/js/autourl.js").done(function(){
+                        var fun = auto;
+                        fun("/");
+                    })
+                }
+                else
+                if(res["status"] == "notmatched") {
+                    $("#signupError").html('<p>Username exists!</p>');
+                    $("#signupError").css('color', 'red');
+                    $("#signUpSubmit").html('Submit');
+                    $('#signUpSubmit').prop('disabled', true);
+                }
+                else 
+                if(res["status"] == "passworderror") {
+                    $("#signupError").html('<p>Please Confirm your password!</p>');
+                    $("#signupError").css('color', 'red');
+                    $("#signUpSubmit").html('Submit');
+                    $('#signUpSubmit').prop('disabled', true);
+                }
+            },
+            error: function(err) {
+                location.href = "/error";
+            }
+        });
+    })
 </script>

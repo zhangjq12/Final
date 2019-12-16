@@ -5,8 +5,8 @@ const passwordHash = require('password-hash');
 
 const url = "mongodb://127.0.0.1:27017/Final";
 
-async function create(userName, password, firstName, lastName, email, contactInfo, license, personal, stateId, taxId, voe) {
-    if(userName == undefined || password == undefined || firstName == undefined || lastName == undefined || email == undefined || contactInfo == undefined || license == undefined || personal == undefined || voe == undefined)
+async function create(userName, password, email, companyInfo, contactInfo, license, personal, stateId, taxId, voe) {
+    if(userName == undefined || password == undefined || companyInfo == undefined || email == undefined || contactInfo == undefined || license == undefined || personal == undefined || voe == undefined)
         throw "parameters are missing.";
     var result = [];
     const hashedPassword = passwordHash.generate(password);
@@ -15,7 +15,7 @@ async function create(userName, password, firstName, lastName, email, contactInf
             if(err) {
                 throw "database connection failed!";
             }
-            db.collection('user').insert({"userName": userName, "hashedPassword": hashedPassword, "firstName": firstName, "lastName": lastName, "email": email, "favoriteTabs":[], "dislike":[], "portrait": "defaultHead.jpg", "contactInfo": contactInfo, "license": license, "personal": personal, "stateId": stateId, "taxId": taxId, "voe": voe}, (err, res) => {
+            db.collection('user').insert({"userName": userName, "hashedPassword": hashedPassword, "email": email, "favoriteTabs":[], "dislike":[], "portrait": "defaultHead.jpg", "companyInfo": companyInfo, "contactInfo": contactInfo, "license": license, "personal": personal, "stateId": stateId, "taxId": taxId, "voe": voe}, (err, res) => {
                 if(err) {
                     db.close();
                     throw "insert error";
@@ -345,33 +345,6 @@ async function modifyPassword(name, password) {
     return promise;
 }
 
-async function modifyName(name, first, last) {
-    if(name == undefined || first == undefined || last == undefined)
-        throw "parameter is missing";
-    const res1 = await getName(name);
-    if(res1.length == 0)
-        throw "no such data";
-    var promise = new Promise(function(resolve) {
-        mongo.connect(url,(err, db) => {
-            if(err) {
-                throw "database connection failed!";
-            }
-            db.collection("user").updateMany({"userName": name}, {$set:{"firstName": first, "lastName": last}}, (err, res) => {
-                if(err) {
-                    db.close();
-                    throw "find error."
-                }
-                db.close();
-                resolve("rename successful");
-            });
-        });
-    })
-    promise.then(function(value) {
-        return value;
-    })
-    return promise;
-}
-
 async function modifyEmail(name, email) {
     if(name == undefined || email == undefined)
         throw "parameter is missing";
@@ -411,6 +384,33 @@ async function modifyPortrait(name, filename) {
                 throw "database connection failed!";
             }
             db.collection("user").updateMany({"userName": name}, {$set:{"portrait": filename}}, (err, res) => {
+                if(err) {
+                    db.close();
+                    throw "find error."
+                }
+                db.close();
+                resolve("rename successful");
+            });
+        });
+    })
+    promise.then(function(value) {
+        return value;
+    })
+    return promise;
+}
+
+async function modifyCompany(name, company) {
+    if(name == undefined || company == undefined)
+        throw "parameter is missing";
+    const res1 = await getName(name);
+    if(res1.length == 0)
+        throw "no such data";
+    var promise = new Promise(function(resolve) {
+        mongo.connect(url,(err, db) => {
+            if(err) {
+                throw "database connection failed!";
+            }
+            db.collection("user").updateMany({"userName": name}, {$set:{"companyInfo": company}}, (err, res) => {
                 if(err) {
                     db.close();
                     throw "find error."
@@ -726,5 +726,6 @@ module.exports = {
     modifyLicense,
     modifyPersonal,
     modifyState,
-    modifyTax
+    modifyTax,
+    modifyCompany
 }

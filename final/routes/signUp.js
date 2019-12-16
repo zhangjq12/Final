@@ -6,22 +6,27 @@ const users = data.users;
 const NodeRSA = require('node-rsa');
 const keyArr = require("../data/key/key");
 const xss = require('xss');
+const upload = require("../routes/middleware/multer3");
 
 router.get("/", async (req, res) => {
     const Head = await head(req);
     res.render("construct/signup", {title: "Sign Up", status: Head});
 });
 
-router.post("/", async (req, res) => {
+router.post("/", upload.fields([{name: "personal", maxCount: 1}, {name: "license", maxCount: 1}]), async (req, res) => {
     const Head = await head(req);
     const request = {
         user: xss(req.body.user),
         password: xss(req.body.password),
         conPassword: xss(req.body.conPassword),
-        firstName: xss(req.body.firstName),
-        lastName: xss(req.body.lastName),
-        email: xss(req.body.email)
+        email: xss(req.body.email),
+        CompanyInfo: xss(req.body.company),
+        ContactInfo: xss(req.body.contact),
+        StateId: xss(req.body.stateId),
+        TaxId: xss(req.body.taxId)
     }
+    const personal = req.files["personal"][0].filename;
+    const license = req.files["license"][0].filename;
     try {
         var key = keyArr[0];
         const data = await users.check(request["user"]);
@@ -31,7 +36,7 @@ router.post("/", async (req, res) => {
         }
         else
         if(data.length == 0 && data2.length == 0) {
-            const result = await users.create(request["user"], request["password"], request["firstName"], request["lastName"], request["email"]);
+            const result = await users.create(request["user"], request["password"], request["email"], request["CompanyInfo"], request["ContactInfo"], license, personal, request["StateId"], request["TaxId"]);
             const hashedCookie = key.encrypt(request["user"], 'base64');
             req.session.user = hashedCookie;
             res.send({"user": request["user"], "status": "success"});
