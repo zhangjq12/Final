@@ -1,20 +1,24 @@
 html {
     height: 100%;
 }
+
 body {
     height: 100vh;
     min-height: 100%;
     display: flex;
     flex-direction: column;
 }
+
 main {
     flex: 1 0 auto;
     padding: 20px;
 }
+
 #footer {
     flex-shrink: 0;
     padding: 20px;
 }
+
 footer {
     background-color: #ffffff;
     text-align: center;
@@ -34,3 +38,42 @@ footer {
     height: 200px;
     border: 1px solid black;
 }
+
+
+.mainpageImage {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 500px;
+}
+
+#images {
+    text-align: center;
+}
+
+
+/* .block {
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    text-align: center;
+} */
+/* 
+.blockleft {
+    background-image: url('../image/page/exhibitor.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 500px;
+    width: 100%;
+    float: right;
+}
+
+.blockright {
+    background-image: url('../image/page/vendor.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 500px;
+    width: 100%;
+    float: right;
+} */
