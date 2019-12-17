@@ -28,7 +28,6 @@ router.post("/", upload.fields([{name: "personal", maxCount: 1}, {name: "license
     }
     const personal = req.files["personal"][0].filename;
     const license = req.files["license"][0].filename;
-    console.log(request);
     try {
         var key = keyArr[0];
         const data = await users.check(request["user"]);

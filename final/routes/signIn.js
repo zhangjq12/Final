@@ -22,10 +22,13 @@ router.post("/", async (req, res) => {
         password: xss(req.body.password),
         rememberme: xss(req.body.rememberme)
     }
+    console.log(request);
     try {
         var key = keyArr[0];
         const data = await users.getName(request["user"]);
-        const data2 = await users.getEmail(user);
+        console.log(data);
+        const data2 = await users.getEmail(request["user"]);
+        console.log(data2);
         if(data.length != 0 && data[0]["userName"] == request["user"] && passwordHash.verify(request["password"], data[0]["hashedPassword"])) {
             const hashedCookie = key.encrypt(request["user"], 'base64');
             //const usernameStore = request["user"];
