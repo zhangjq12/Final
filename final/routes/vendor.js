@@ -13,9 +13,23 @@ const ObjectID = require('mongodb').ObjectID;
 
 router.get("/", async (req, res) => {
     const Head = await head(req);
+    const auth = await authentication(req);
     try {
         const data = await tab.getAll();
-        res.render("construct/vendor/index", {title: "EXHIBITOR for vendor", status: Head, data: data});
+        const user = await users.getName(auth);
+        var datajobs = [];
+        var dataprogress = [];
+        for(var i = 0; i < data.length; i++) {
+            const iprogress = await progress.getBoothId(data[i]["_id"]);
+            if(iprogress["eprogress"] == "bidding") {
+                datajobs.push(data[i]);
+            }
+            if(data[i]["progress"]["vendorId"] == user["_id"]) {
+                data[i]["prgress"] = iprogress["vprogress"];
+                dataprogress.push(data[i]);
+            }
+        }
+        res.render("construct/vendor/index", {title: "EXHIBITOR for vendor", status: Head, dataprogress: dataprogress, datajobs: datajobs});
     }
     catch (e) {
         res.render("construct/error", {title: "Error!", status: Head});

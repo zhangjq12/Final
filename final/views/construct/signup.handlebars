@@ -53,7 +53,7 @@
                 </div>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label for="voe">State ID:</label>
+                        <label for="voe">Your Role:</label>
                         <select id="voe" name="voe" class="form-control">
                             <option id="vendorOption" value="vendor">Vendor</option>
                             <option id="exhibitorOption" value="exhibitor">Exhibitor</option>
@@ -72,7 +72,7 @@
                 </div>
             </div>
         </div>
-        <button type="submit" id="signUpSubmit" class="btn btn-primary">Submit</button>
+        <button type="submit" id="signUpSubmit" class="btn btn-primary" disabled="true">Submit</button>
     </form>
 </div>
 
@@ -421,7 +421,7 @@
             $(this).find(':button[type=submit]').prop('disabled', true);
         });*/
     });
-        bootstrapValidate(['#user', '#password', '#conPassword', '#email'], 'required: This can not be empty!', function(isEmpty) { 
+        bootstrapValidate(['#user', '#password', '#conPassword', '#email', '#stateId', '#taxId', '#company', '#contact'], 'required: This can not be empty!', function(isEmpty) { 
             if(isEmpty) {
                 empty = true; 
                 if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)

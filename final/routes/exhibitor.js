@@ -17,13 +17,23 @@ router.get("/", async (req, res) => {
         const auth = await authentication(req);
         const data = await tab.getAuthor(auth);
         for(var i = 0; i < data.length; i++) {
-            data[i]["progress"] = await progress.getBoothId(data[i]["_id"]);
+            const iprogress = await progress.getBoothId(data[i]["_id"]);
+            data[i]["progress"] = iprogress["eprogress"];
         }
         res.render("construct/exhibitor/index", {title: "EXHIBITOR for exhibitor", status: Head, data: data});
     }
     catch (e) {
         res.render("construct/error", {title: "Error!", status: Head});
     }
+});
+
+router.get("/newjob", async (req, res) => {
+    const Head = await head(req);
+    res.render("construct/exhibitor/newjob", {title: "New Job", status: Head});
+});
+
+router.post("/newjob", async (req, res) => {
+
 });
 
 router.get("/show", async (req, res) => {

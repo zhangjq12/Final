@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <h4>Jobs Done or In Progress</h4>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <!--<th scope="col"></th>-->
+                        <th scope="col">Show Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Progress</th>
+                    </tr>
+                </thead>
+                <tbody class="table table-hover table-borderless">
+                    {{#each dataprogress}}
+                    <tr>
+                        <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
+                        <td scope="row" id={{_id}}><a href="/exhibitor/?id={{_id}}">{{showName}}</a></td>
+                        <td>{{category}}</td>
+                        <td>{{progress}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6 mb-3">
+            <h4>Existing Jobs</h4>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <!--<th scope="col"></th>-->
+                        <th scope="col">Show Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Estimate Price</th>
+                    </tr>
+                </thead>
+                <tbody class="table table-hover table-borderless">
+                    {{#each datajobs}}
+                    <tr>
+                        <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
+                        <td scope="row"><a href="/exhibitor/?id={{_id}}">{{showName}}</a></td>
+                        <td>{{category}}</td>
+                        <td>
+                            <form id="formid:{{_id}}">
+                                <input class="form-control" type="text" name="price"/>
+                                <button type="submit">Submit</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
