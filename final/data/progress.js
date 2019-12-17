@@ -7,6 +7,7 @@ const tab = require("./tab");
 const url = "mongodb://127.0.0.1:27017/Final";
 
 async function create(progressId, boothId, exhibitorId, vendorId, etime, vtime, eprogress, vprogress) {
+    //console.log({progressId, boothId, exhibitorId, vendorId, etime, vtime, eprogress, vprogress});
     if(progressId == undefined || boothId == undefined || exhibitorId == undefined || vendorId == undefined || etime == undefined || vtime == undefined || eprogress == undefined || vprogress == undefined)
         throw "parameters are missing.";
     var result = [];
@@ -15,7 +16,7 @@ async function create(progressId, boothId, exhibitorId, vendorId, etime, vtime, 
             if(err) {
                 throw "database connection failed!";
             }
-            db.collection('progress').insert({"progressId": progressId, "boothId": boothId, "exhibitorId": exhibitorId, "vendorId": vendorId, "etime": etime, "vtime": vtime, "eprogress": eprogress, "vprogress": vprogress}, (err, res) => {
+            db.collection("progress").insert({"progressId": progressId, "boothId": boothId, "exhibitorId": exhibitorId, "vendorId": vendorId, "etime": etime, "vtime": vtime, "eprogress": eprogress, "vprogress": vprogress}, (err, res) => {
                 if(err) {
                     db.close();
                     throw "insert error";
@@ -183,9 +184,10 @@ async function getBoothId(id) {
 async function getVendorID(id) {
     if(id == undefined)
         throw "parameter is missing";
-    if(typeof id != 'string')
-        throw "parameter is error format";
+    /*if(typeof id != 'string')
+        throw "parameter is error format";*/
     var res = [];
+    //var ID = new ObjectID(id);
     var promise = new Promise(function(resolve) {
         mongo.connect(url,(err, db) => {
             if(err) {
@@ -223,9 +225,10 @@ async function getVendorId(id) {
 async function getExhibitorID(id) {
     if(id == undefined)
         throw "parameter is missing";
-    if(typeof id != 'string')
-        throw "parameter is error format";
+    /*if(typeof id != 'string')
+        throw "parameter is error format";*/
     var res = [];
+    //var ID = new ObjectID(id);
     var promise = new Promise(function(resolve) {
         mongo.connect(url,(err, db) => {
             if(err) {
@@ -260,15 +263,66 @@ async function getExhibitorId(id) {
     return res;
 }
 
-async function modifyEtime(id, etime) {
-    if(id == undefined || etime == undefined)
+async function modifyProgressId(id, progressId) {
+    if(id == undefined || progressId == undefined)
         throw "parameter is missing";
+    var ID = new ObjectID(id);
     var promise = new Promise(function(resolve) {
         mongo.connect(url,(err, db) => {
             if(err) {
                 throw "database connection failed!";
             }
-            db.collection("progress").updateMany({"_id": id}, {$set:{"etime": etime}}, (err, res) => {
+            db.collection("progress").updateMany({"_id": ID}, {$set:{"progressId": progressId}}, (err, res) => {
+                if(err) {
+                    db.close();
+                    throw "find error."
+                }
+                db.close();
+                resolve("rename successful");
+            });
+        });
+    })
+    promise.then(function(value) {
+        return value;
+    })
+    return promise;
+}
+
+async function modifyVendorId(id, vendorId) {
+    if(id == undefined || vendorId == undefined)
+        throw "parameter is missing";
+    var ID = new ObjectID(id);
+    var promise = new Promise(function(resolve) {
+        mongo.connect(url,(err, db) => {
+            if(err) {
+                throw "database connection failed!";
+            }
+            db.collection("progress").updateMany({"_id": ID}, {$set:{"vendorId": vendorId}}, (err, res) => {
+                if(err) {
+                    db.close();
+                    throw "find error."
+                }
+                db.close();
+                resolve("rename successful");
+            });
+        });
+    })
+    promise.then(function(value) {
+        return value;
+    })
+    return promise;
+}
+
+async function modifyEtime(id, etime) {
+    if(id == undefined || etime == undefined)
+        throw "parameter is missing";
+    var ID = new ObjectID(id);
+    var promise = new Promise(function(resolve) {
+        mongo.connect(url,(err, db) => {
+            if(err) {
+                throw "database connection failed!";
+            }
+            db.collection("progress").updateMany({"_id": ID}, {$set:{"etime": etime}}, (err, res) => {
                 if(err) {
                     db.close();
                     throw "find error."
@@ -287,12 +341,13 @@ async function modifyEtime(id, etime) {
 async function modifyVtime(id, vtime) {
     if(id == undefined || vtime == undefined)
         throw "parameter is missing";
+    var ID = new ObjectID(id);
     var promise = new Promise(function(resolve) {
         mongo.connect(url,(err, db) => {
             if(err) {
                 throw "database connection failed!";
             }
-            db.collection("progress").updateMany({"_id": id}, {$set:{"vtime": vtime}}, (err, res) => {
+            db.collection("progress").updateMany({"_id": ID}, {$set:{"vtime": vtime}}, (err, res) => {
                 if(err) {
                     db.close();
                     throw "find error."
@@ -311,12 +366,13 @@ async function modifyVtime(id, vtime) {
 async function modifyEprogress(id, eprogress) {
     if(id == undefined || eprogress == undefined)
         throw "parameter is missing";
+    var ID = new ObjectID(id);
     var promise = new Promise(function(resolve) {
         mongo.connect(url,(err, db) => {
             if(err) {
                 throw "database connection failed!";
             }
-            db.collection("progress").updateMany({"_id": id}, {$set:{"eprogress": eprogress}}, (err, res) => {
+            db.collection("progress").updateMany({"_id": ID}, {$set:{"eprogress": eprogress}}, (err, res) => {
                 if(err) {
                     db.close();
                     throw "find error."
@@ -335,12 +391,13 @@ async function modifyEprogress(id, eprogress) {
 async function modifyVprogress(id, vprogress) {
     if(id == undefined || vprogress == undefined)
         throw "parameter is missing";
+    var ID = new ObjectID(id);
     var promise = new Promise(function(resolve) {
         mongo.connect(url,(err, db) => {
             if(err) {
                 throw "database connection failed!";
             }
-            db.collection("progress").updateMany({"_id": id}, {$set:{"vprogress": vprogress}}, (err, res) => {
+            db.collection("progress").updateMany({"_id": ID}, {$set:{"vprogress": vprogress}}, (err, res) => {
                 if(err) {
                     db.close();
                     throw "find error."
@@ -367,5 +424,7 @@ module.exports = {
     modifyEprogress,
     modifyEtime,
     modifyVprogress,
-    modifyVtime
+    modifyVtime,
+    modifyProgressId,
+    modifyVendorId
 }

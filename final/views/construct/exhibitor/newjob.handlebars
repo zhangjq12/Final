@@ -175,7 +175,7 @@
         $(this).find(':button[type=submit]').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
         $(this).find(':button[type=submit]').prop('disabled', true);
     });
-    bootstrapValidate('#tabName', 'required: This can not be empty!', function(isEmpty) {
+    bootstrapValidate('#showName', 'required: This can not be empty!', function(isEmpty) {
         if(isEmpty == true) {
             nameEmpty = true; 
             if(nameEmpty && contentEmpty)
@@ -217,7 +217,7 @@
             $("#tabSubmit").attr('disabled', true);
         }
     });*/
-    bootstrapValidate('#content', 'required: This can not be empty!', function(isEmpty) {
+    bootstrapValidate('#details', 'required: This can not be empty!', function(isEmpty) {
         if(isEmpty == true) {
             contentEmpty = true; 
             if(nameEmpty && contentEmpty)
@@ -232,15 +232,15 @@
         }
     });
     $(document).ready(function(){
-        if(op == "upload") {
+        //if(op == "upload") {
             nameEmpty = false;
             contentEmpty = false;
-        }
+        /*}
         else {
             nameEmpty = true;
             contentEmpty = true;
             $("#tabSubmit").attr('disabled', false);
-        }
+        }*/
     });
     $("#nomodify").click(function() {
         $('#tabSubmit').html('Submit');
@@ -249,7 +249,7 @@
     $("#yesmodify").click(function() {
         $("#yesmodify").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
         $('#yesmodify').prop('disabled', true);
-        var formData = new FormData();
+        //var formData = new FormData();
         var category = [];
         var size = [];
 
@@ -277,30 +277,50 @@
         size.push($("#size1").val());
         size.push($("#size2").val());
 
-        formData.append('showName', $("#showName").val());
+        /*formData.append('showName', $("#showName").val());
         formData.append('boothId', $("#boothId").val());
         formData.append('date', $("#date").val());
-        formData.append('authorName', $("#author").attr('data-name'));
+        formData.append('author', $("#author").attr('data-name'));
         formData.append('category', category);
         formData.append('details', $("#details").val());
-        formData.append('size', size);
+        formData.append('size', size);*/
+        const formData = {
+            boothId: $("#boothId").val(),
+            showName: $("#showName").val(),
+            date: $("#date").val(),
+            author: $("#author").attr('data-name'),
+            size: size,
+            category: category,
+            details: $("#details").val()
+        }
+        console.log(formData);
 
         $.ajax({
             type: "post",
             url: "/exhibitor/newjob/",
             dataType: "json",
             data: formData,
-            contentType: false,
-            processData: false,
             success: function(res) {
-                if(id == "") {
+                //if(id == "") {
+                if(res["success"] == "success") {
                     $("#modifytabDiaFooter").hide();
-                    $("#modifytabDiaBody").html('<div class="container"><p>Create This Job Successfully!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back to the job page!</span></div>');
+                    $("#modifytabDiaBody").html('<div class="container"><p>Create This Job Successfully!</p></br><span id="totalSecond">3</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back to the job page!</span></div>');
                     jQuery.getScript("/public/js/autourl.js").done(function(){
                         var fun = auto;
-                        fun("/exhibitor/show?id=" + res["id"]);
+                        //fun("/exhibitor/show?id=" + res["id"]);
+                        fun("/")
                     });
                 }
+                else {
+                    $("#modifytabDiaFooter").hide();
+                    $("#modifytabDiaBody").html('<div class="container"><p>Job exists! Create failed!</p></br><span id="totalSecond">3</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back to the job page!</span></div>');
+                    jQuery.getScript("/public/js/autourl.js").done(function(){
+                        var fun = auto;
+                        //fun("/exhibitor/show?id=" + res["id"]);
+                        fun("/")
+                    });
+                }
+                /*}
                 else {
                     $("#modifytabDiaFooter").hide();
                     $("#modifytabDiaBody").html('<div class="container"><p>Modify This Job Successfully!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back to the job page!</span></div>');
@@ -308,10 +328,10 @@
                         var fun = auto;
                         fun("/exhibitor/show?id=" + res["id"]);
                     });
-                }
+                }*/
             },
             error: function(err) {
-                if(err["id"] != null) {
+                /*if(err["id"] != null) {
                     $("#modifytabDiaFooter").hide();
                     $("#modifytabDiaBody").html('<div class="container"><p>Modify job failed!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back to the job page!</span></div>');
                     jQuery.getScript("/public/js/autourl.js").done(function(){
@@ -319,14 +339,14 @@
                         fun("/exhibitor/show?id=" + err["id"]);
                     });
                 }
-                else {
+                else {*/
                     $("#modifytabDiaFooter").hide();
                     $("#modifytabDiaBody").html('<div class="container"><p>Create job failed!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back homepage!</span></div>');
                     jQuery.getScript("/public/js/autourl.js").done(function(){
                         var fun = auto;
                         fun("/");
                     });
-                }
+                //}
             }
         });
     });

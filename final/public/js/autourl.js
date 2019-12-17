@@ -11,7 +11,7 @@ function auto(URL) {
 }
 
 function redirect(URL) { 
-    if (second < 0) { 
+    if (second <= 0) { 
         location.href = URL; 
     } else { 
         if (navigator.appName.indexOf("Explorer") > -1) { 

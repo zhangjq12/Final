@@ -249,7 +249,7 @@ async function getBoothID(boothId) {
             if(err) {
                 throw "database connection failed!";
             }
-            var find = db.collection("tab").find({"boothId": {$regex: boothId, $options: "$i"}});
+            var find = db.collection("tab").find({"boothNum": {$regex: boothId, $options: "$i"}});
             find.each((err, ress) => {
                 if(err) {
                     db.close();
@@ -273,6 +273,44 @@ async function getBoothID(boothId) {
 
 async function getBoothId(boothId) {
     const res = await getBoothID(boothId);
+    return res;
+}
+
+async function getBoothNUM(boothId) {
+    if(boothId == undefined)
+        throw "parameter is missing";
+    if(typeof boothId != 'string')
+        throw "parameter is error format";
+    var res = [];
+    var promise = new Promise(function(resolve) {
+        mongo.connect(url,(err, db) => {
+            if(err) {
+                throw "database connection failed!";
+            }
+            var find = db.collection("tab").find({"boothNum": boothId});
+            find.each((err, ress) => {
+                if(err) {
+                    db.close();
+                    throw "find error."
+                }
+                if(ress != null) {
+                    res.push(ress);
+                }
+                else {
+                    db.close();
+                    resolve(res);
+                }
+            });
+        });
+    })
+    promise.then(function(value) {
+        return value;
+    })
+    return promise;
+}
+
+async function getBoothNum(boothId) {
+    const res = await getBoothNUM(boothId);
     return res;
 }
 
@@ -472,6 +510,7 @@ async function rate(name, rating) {
 
 module.exports = {
     getBoothId,
+    getBoothNum,
     getByRating,
     getCategory,
     getAuthor,

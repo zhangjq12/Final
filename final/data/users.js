@@ -71,8 +71,8 @@ async function getAll() {
 async function getID(id) {
     if(id == undefined)
         throw "parameter is missing";
-    if(typeof id != 'string')
-        throw "parameter is error format";
+    /*if(typeof id != 'string')
+        throw "parameter is error format";*/
     var res = [];
     var ID = new ObjectID(id);
     var promise = new Promise(function(resolve) {
@@ -191,7 +191,6 @@ async function getEMAIL(email) {
     if(typeof email != 'string')
         throw "parameter is error format";
     var res = [];
-    console.log(1);
     var promise = new Promise(function(resolve) {
         mongo.connect(url,(err, db) => {
             if(err) {
@@ -221,7 +220,6 @@ async function getEMAIL(email) {
 
 async function getEmail(name) {
     const res = await getEMAIL(name);
-    console.log(2);
     if(res.length == 0)
         return [];
     return res;

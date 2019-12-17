@@ -4,6 +4,7 @@ const users = require("./users");
 const tab = require("./tab");
 const contact = require("./contact");
 const progress = require("./progress");
+const price = require("./price");
 
 module.exports = {
     comments: comments,
@@ -11,5 +12,6 @@ module.exports = {
     users: users,
     tab: tab,
     contact: contact,
-    progress: progress
+    progress: progress,
+    price: price
 }
