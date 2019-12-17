@@ -59,6 +59,32 @@ async function remove(id) {
     return promise;
 }
 
+async function removeBooth(id) {
+    if(id == undefined)
+        throw "parameter is missing";
+    if(typeof id != 'string')
+        throw "parameter is error format";
+    var promise = new Promise(function(resolve) {
+        mongo.connect(url,(err, db) => {
+            if(err) {
+                throw "database connection failed!";
+            }
+            db.collection("price").deleteMany({"boothId": id} , (err, res) => {
+                if(err) {
+                    db.close();
+                    throw "find error."
+                }
+                db.close();
+                resolve(res.result.n);
+            });
+        });
+    })
+    promise.then(function(value) {
+        return value;
+    })
+    return promise;
+}
+
 async function getID(id) {
     if(id == undefined)
         throw "parameter is missing";
@@ -135,8 +161,6 @@ async function getBoothID(id) {
 
 async function getBoothId(id) {
     const res = await getBoothID(id);
-    if(res.length == 0)
-        throw "no such data";
     return res;
 }
 
@@ -223,12 +247,13 @@ async function getExhibitorId(id) {
 async function modifyPrice(id, price) {
     if(id == undefined || price == undefined)
         throw "parameter is missing";
+    var ID = new ObjectID(id);
     var promise = new Promise(function(resolve) {
         mongo.connect(url,(err, db) => {
             if(err) {
                 throw "database connection failed!";
             }
-            db.collection("price").updateMany({"_id": id}, {$set:{"price": price}}, (err, res) => {
+            db.collection("price").updateMany({"_id": ID}, {$set:{"price": price}}, (err, res) => {
                 if(err) {
                     db.close();
                     throw "find error."
@@ -251,5 +276,6 @@ module.exports = {
     getExhibitorId,
     getId,
     getVendorId,
-    modifyPrice
+    modifyPrice,
+    removeBooth
 }

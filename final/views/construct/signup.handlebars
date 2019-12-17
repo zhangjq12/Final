@@ -76,16 +76,16 @@
     </form>
 </div>
 
-<div class="modal fade" id="signUpDia" tabindex="-1" role="dialog" aria-labelledby="signUpTitle" aria-hidden="true">
+<div class="modal fade" id="signUpDia" tabindex="-1" role="dialog" aria-labelledby="signUpDiaTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header" id="signUpHeader">
-                <h5 class="modal-title" id="signUpTitle"></h5>
+            <div class="modal-header" id="signUpDiaHeader">
+                <h5 class="modal-title" id="signUpDiaTitle"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body" id="signUpBody">
+            <div class="modal-body" id="signUpDiaBody">
             </div>
         </div>
     </div>
@@ -503,9 +503,9 @@
             processData: false,
             success: function(res) {
                 if(res["status"] == "success") {
-                    $("#signUpTitle").text("Welcome to our site!")
-                    $("#signUpBody").html('<div class="container"><p>' + res["user"] + ', welcome to EXHIBITOR as a member!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back homepage!</span></div>');
-                    $("#signUpDia").show();
+                    $("#signUpDiaTitle").text("Welcome to our site!")
+                    $("#signUpDiaBody").html('<div class="container"><p>' + res["user"] + ', welcome to EXHIBITOR as a member!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back homepage!</span></div>');
+                    $("#signUpDia").modal('show');
                     jQuery.getScript("/public/js/autourl.js").done(function(){
                         var fun = auto;
                         fun("/");

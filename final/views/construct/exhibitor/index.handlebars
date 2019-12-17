@@ -19,9 +19,9 @@
                     {{#each data}}
                     <tr>
                         <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
-                        <td scope="row" id={{_id}}><a href="/exhibitor/?id={{_id}}">{{tabName}}</a></td>
-                        <td>{{songName}}</td>
-                        <td>{{artistName}}</td>
+                        <td scope="row"><a href="/exhibitor/show?id={{boothNum}}">{{showName}}</a></td>
+                        <td>{{category}}</td>
+                        <td>{{progress}}</td>
                     </tr>
                     {{/each}}
                 </tbody>

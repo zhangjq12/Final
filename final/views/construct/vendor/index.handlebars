@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-6 mb-3">
             <h4>Jobs Done or In Progress</h4>
@@ -15,7 +15,7 @@
                     {{#each dataprogress}}
                     <tr>
                         <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
-                        <td scope="row" id={{_id}}><a href="/exhibitor/?id={{_id}}">{{showName}}</a></td>
+                        <td scope="row"><a href="/vendor/show?id={{boothNum}}">{{showName}}</a></td>
                         <td>{{category}}</td>
                         <td>{{progress}}</td>
                     </tr>
@@ -38,12 +38,21 @@
                     {{#each datajobs}}
                     <tr>
                         <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
-                        <td scope="row"><a href="/exhibitor/?id={{_id}}">{{showName}}</a></td>
+                        <td scope="row"><a href="/vendor/show?id={{boothNum}}">{{showName}}</a></td>
                         <td>{{category}}</td>
                         <td>
-                            <form id="formid:{{_id}}">
-                                <input class="form-control" type="text" name="price"/>
-                                <button type="submit">Submit</button>
+                            <form method="POST" action="/vendor/estimate">
+                                <input type="hidden" name="id" value="{{boothNum}}"></input>
+                                <label for="price" class="sr-only">price estimate</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
+                                    </div>
+                                    <input class="form-control col-md-3" type="text" name="price"/>
+                                    <div class="input-group-prepend">
+                                        <button type="submit" class="btn btn-light">Submit</button>
+                                    </div>
+                                </div>
                             </form>
                         </td>
                     </tr>
