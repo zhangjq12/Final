@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+
+    </div>
+    <div class="payment-row row" data-name="{{boothNum}}">
+        <form id="paySuccess">
+            <button class="btn btn-light">Back</button>
+            <button class="btn btn-light" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+<script>
+    $("#paySuccess").submit(function() {
+        var id = $(".payment-row").attr("data-name");
+        $.ajax({
+            type: "post",
+            url: "/exhibitor/pay",
+            dataType: "json",
+            data: {
+                id: id,
+                success: "y"
+            },
+            success: function(res) {
+                $(location).attr("href", "/exhibitor/show?id=" + id);
+            },
+            error: function(err) {
+                $(location).attr("href", "error");
+            }
+        });
+    });
+    /*$("#acceptBox").click(function() {
+        if($(this).prop("checked")) {
+            $("button[type=submit]").prop("disabled", false);
+        }
+        else {
+            $("button[type=submit]").prop("disabled", true);
+        }
+    });*/
+</script>

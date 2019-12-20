@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="contractText row" data-name="{{voe}}">
+    <div class="contractText row" data-name="{{boothNum}}" data-link="{{voe}}">
         <p>
             sdadasdd
             dsadfsaf
@@ -23,14 +23,14 @@
 <script>
     $("#acceptContract").submit(function() {
         var accept = $("#acceptBox").val();
-        var voe = $(".contractText").attr("data-name");
-        console.log(accept);
-        console.log(voe);
-        /*$.ajax({
+        var voe = $(".contractText").attr("data-link");
+        var id = $(".contractText").attr("data-name");
+        $.ajax({
             type: "post",
             url: "/" + voe + "/acceptContract",
             dataType: "json",
             data: {
+                id: id,
                 accept: accept
             },
             success: function(res) {
@@ -39,14 +39,14 @@
             error: function(err) {
                 $(location).attr("href", "error");
             }
-        });*/
+        });
     });
-    $("#acceptBox").on("click", function() {
-        if($(this).attr("checked") == "true") {
-            $("button[type=submit]").attr("disabled", "false");
+    $("#acceptBox").click(function() {
+        if($(this).prop("checked")) {
+            $("button[type=submit]").prop("disabled", false);
         }
         else {
-            $("button[type=submit]").attr("disabled", "true");
+            $("button[type=submit]").prop("disabled", true);
         }
     })
 </script>

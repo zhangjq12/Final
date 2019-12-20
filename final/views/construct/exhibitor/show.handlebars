@@ -45,10 +45,41 @@
     $(document).ready(function(){
         if($("div.progress").attr("data-name") != "bidding") {
             if($("div.progress").attr("data-name") == "waitContract") {
-                $(".progress-bar").attr("style", "width: 25%");
-                $(".progress-bar").attr("aria-valuenow", "25");
+                $(".progress-bar").attr("style", "width: 20%");
+                $(".progress-bar").attr("aria-valuenow", "20");
                 $("#priceTable tbody tr td:eq(2)").html("Confirmed");
                 $(".next-step").html('<button class="btn btn-light" id="contractConfirm">Contract</button>');
+                $("#contractConfirm").click(function() {
+                    $(location).attr("href", "/exhibitor/contract?id=" + $("#boothId").attr("data-name"));
+                });
+            }
+            else 
+            if($("div.progress").attr("data-name") == "waitOppoContract") {
+                $(".progress-bar").attr("style", "width: 40%");
+                $(".progress-bar").attr("aria-valuenow", "40");
+                $("#priceTable tbody tr td:eq(2)").html("Confirmed");
+            }
+            else 
+            if($("div.progress").attr("data-name") == "waitPayment") {
+                $(".progress-bar").attr("style", "width: 60%");
+                $(".progress-bar").attr("aria-valuenow", "60");
+                $("#priceTable tbody tr td:eq(2)").html("Confirmed");
+                $(".next-step").html('<button class="btn btn-light" id="paymentBtn">Payment</button>');
+                $("#paymentBtn").click(function() {
+                    $(location).attr("href", "/exhibitor/payment?id=" + $("#boothId").attr("data-name"));
+                });
+            }
+            else 
+            if($("div.progress").attr("data-name") == "paid") {
+                $(".progress-bar").attr("style", "width: 80%");
+                $(".progress-bar").attr("aria-valuenow", "80");
+                $("#priceTable tbody tr td:eq(2)").html("Confirmed");
+            }
+            else 
+            if($("div.progress").attr("data-name") == "done") {
+                $(".progress-bar").attr("style", "width: 100%");
+                $(".progress-bar").attr("aria-valuenow", "100");
+                $("#priceTable tbody tr td:eq(2)").html("Confirmed");
             }
             else {
                 $("#priceTable tbody tr td:eq(2)").html("Confirmed");
@@ -75,5 +106,5 @@
                 });
             });
         });
-    })
+    });
 </script>
