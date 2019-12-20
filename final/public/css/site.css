@@ -148,7 +148,7 @@ footer {
     margin-left: auto;
     margin-right: auto;
     overflow: hidden;
-    animation: slideUp 2s ease-out;
+    /* animation: slideUp 5s ease-out; */
 }
 
 /* Move it (define the animation) */
