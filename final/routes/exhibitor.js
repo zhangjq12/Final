@@ -49,7 +49,7 @@ router.post("/newjob", async (req, res) => {
         details: xss(req.body.details)
     }
     try {
-        const data = await tab.getBoothId(request["boothId"]);
+        const data = await tab.getBoothNum(request["boothId"]);
         if(data.length == 0) {
             const data = await tab.create(request["boothId"], request["showName"], request["date"], request["author"], request["size"], request["category"], request["details"]);
             const author = await users.getName(request["author"]);
@@ -96,10 +96,10 @@ router.post("/jobConfirm", async (req, res) => {
         id: req.body.id,
         vendorId: req.body.vendorId
     }
-    console.log(request);
+    //console.log(request);
     try {
         const data1 = await progress.getBoothId(request["id"]);
-        console.log(data1);
+        //console.log(data1);
         for(var i = 0; i < data1.length; i++) {
             if(data1[i]["vendorId"].toString() != request["vendorId"]) {
                 const res1 = await progress.remove(data1[i]["_id"].toString());
@@ -109,15 +109,15 @@ router.post("/jobConfirm", async (req, res) => {
                 const res3 = await progress.modifyVprogress(data1[i]["_id"].toString(), "waitContract");
             }
         }
-        console.log(data1);
+        //console.log(data1);
         const data2 = await price.getBoothId(request["id"]);
-        console.log(data2);
+        //console.log(data2);
         for(var i = 0; i < data2.length; i++) {
             if(data2[i]["vendorId"].toString() != request["vendorId"]) {
                 const res1 = await price.remove(data2[i]["_id"].toString());
             }
         }
-        console.log(data2);
+        //console.log(data2);
         res.send({success: "success"});
     }
     catch(e) {
@@ -135,6 +135,75 @@ router.get("/jobUpdate", async (req, res) => {
     }
     catch(e) {
         res.render("construct/error", {title: "Error!", status: Head});
+    }
+});
+
+router.get("/contract", async (req, res) => {
+    const Head = await head(req);
+    const id = req.query.id;
+    try {
+        res.render("construct/contract", {title: "Contract of " + id, status: Head, boothNum: id, voe: "exhibitor"});
+    }
+    catch (e) {
+        res.render("construct/error", {title: "Error!", status: Head});
+    }
+});
+
+router.get("/payment", async (req, res) => {
+    const Head = await head(req);
+    const id = req.query.id;
+    try {
+        res.render("construct/exhibitor/payment", {title: "Payment of " + id, status: Head, boothNum: id});
+    }
+    catch (e) {
+        res.render("construct/error", {title: "Error!", status: Head});
+    }
+});
+
+router.post("/acceptContract", async (req, res) => {
+    const request = {
+        id: req.body.id,
+        accept: req.body.accept
+    }
+    //console.log(request);
+    try {
+        if(request["accept"] != "y")
+            throw "error";
+        const data1 = await progress.getBoothId(request["id"]);
+        for(var i = 0; i < data1.length; i++) {
+            const res1 = await progress.modifyEprogress(data1[i]["_id"].toString(), "waitOppoContract");
+            if(data1[i]["vprogress"] == "waitOppoContract") {
+                const res2 = await progress.modifyEprogress(data1[i]["_id"].toString(), "waitPayment");
+                const res3 = await progress.modifyVprogress(data1[i]["_id"].toString(), "waitPayment");
+            }
+            //const res2 = await progress.modifyVprogress(data1[i]["_id"].toString(), "waitPayment");
+        }
+        res.send({success: "success"});
+    }
+    catch(e) {
+        res.send({error: "error"})
+    }
+});
+
+router.post("/pay", async (req, res) => {
+    const request = {
+        id: req.body.id,
+        success: req.body.success
+    }
+    console.log(request);
+    try {
+        if(request["success"] != "y")
+            throw "error";
+        const data1 = await progress.getBoothId(request["id"]);
+        console.log(data1);
+        for(var i = 0; i < data1.length; i++) {
+            const res1 = await progress.modifyEprogress(data1[i]["_id"].toString(), "paid");
+            const res2 = await progress.modifyVprogress(data1[i]["_id"].toString(), "paid");
+        }
+        res.send({success: "success"});
+    }
+    catch(e) {
+        res.send({error: "error"})
     }
 });
 

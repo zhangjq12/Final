@@ -2,13 +2,14 @@
     <div class="row">
         <div class="col-md-6 mb-3">
             <h4>Jobs Done or In Progress</h4>
-            <table class="table table-hover">
+            <table id="jobProgressTable" class="table table-hover">
                 <thead>
                     <tr>
                         <!--<th scope="col"></th>-->
                         <th scope="col">Show Name</th>
                         <th scope="col">Category</th>
                         <th scope="col">Progress</th>
+                        <th scope="col">Operation</th>
                     </tr>
                 </thead>
                 <tbody class="table table-hover table-borderless">
@@ -17,7 +18,15 @@
                         <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
                         <td scope="row"><a href="/vendor/show?id={{boothNum}}">{{showName}}</a></td>
                         <td>{{category}}</td>
-                        <td>{{progress}}</td>
+                        <td>
+                            <div class="progress">
+                                <div class="progress-bar" data-name="{{progress}}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <button data-name="{{progress}}" data-link="/vendor/contract?id={{boothNum}}" class="contractbtn btn-small btn-light" style="display: none;">Contract</button>
+                            <button data-name="{{progress}}" data-link="{{boothNum}}" class="paidbtn btn-small btn-light" style="display: none;">Confirm</button>
+                        </td>
                     </tr>
                     {{/each}}
                 </tbody>
@@ -25,7 +34,7 @@
         </div>
         <div class="col-md-6 mb-3">
             <h4>Existing Jobs</h4>
-            <table class="table table-hover">
+            <table id="jobExistingTable" class="table table-hover">
                 <thead>
                     <tr>
                         <!--<th scope="col"></th>-->
@@ -44,7 +53,7 @@
                             <form method="POST" action="/vendor/estimate">
                                 <input type="hidden" name="id" value="{{boothNum}}"></input>
                                 <label for="price" class="sr-only">price estimate</label>
-                                <div class="input-group">
+                                <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">$</span>
                                     </div>
@@ -62,3 +71,71 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        //const table = document.getElementsByTagName()
+        $(".contractbtn").each(function() {
+            if($(this).attr("data-name") == "waitContract") {
+                $(this).removeAttr("style");
+            }
+            $(this).bind("click", function() {
+                var link = $(this).attr("data-link");
+                $(location).attr("href", link);
+            });
+        });
+        $(".progress-bar").each(function() {
+            if($(this).attr("data-name") == "waitContract") {
+                $(this).attr("style", "width: 20%");
+                $(this).attr("aria-valuenow", "20");
+            }
+            else 
+            if($(this).attr("data-name") == "waitOppoContract") {
+                $(this).attr("style", "width: 40%");
+                $(this).attr("aria-valuenow", "40");
+            }
+            else 
+            if($(this).attr("data-name") == "waitPayment") {
+                $(this).attr("style", "width: 60%");
+                $(this).attr("aria-valuenow", "60");
+            }
+            else 
+            if($(this).attr("data-name") == "paid") {
+                $(this).attr("style", "width: 80%");
+                $(this).attr("aria-valuenow", "80");
+            }
+            else 
+            if($(this).attr("data-name") == "done") {
+                $(this).attr("style", "width: 100%");
+                $(this).attr("aria-valuenow", "100");
+            }
+            else {
+                $(this).attr("style", "width: 100%");
+                $(this).attr("aria-valuenow", "100");
+            }
+        });
+        $(".paidbtn").each(function() {
+            if($(this).attr("data-name") == "paid") {
+                $(this).removeAttr("style");
+            }
+            $(this).bind("click", function() {
+                var boothId = $(this).attr("data-link");
+                $.ajax({
+                    type: "post",
+                    url: "/vendor/jobConfirm",
+                    dataType: "json",
+                    data: {
+                        id: boothId,
+                        success: "y"
+                    },
+                    success: function(res) {
+                        $(location).attr("href", "/exhibitor");
+                    },
+                    error: function(err) {
+                        $(location).attr("href", "error");
+                    }
+                });
+            })
+        });
+    });
+</script>
