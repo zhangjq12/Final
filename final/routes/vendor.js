@@ -25,15 +25,18 @@ router.get("/", async (req, res) => {
         for(var i = 0; i < data.length; i++) {
             const iprogress = await progress.getBoothId(data[i]["boothNum"]);
             var boo = false;
+            var bidding = false;
             for(var j = 0; j < iprogress.length; j++) {
                 if(iprogress[j]["vendorId"].toString() == user[0]["_id"].toString()) {
                     data[i]["progress"] = iprogress[j]["vprogress"];
                     dataprogress.push(data[i]);
                     boo = true;
-                    break;
+                }
+                if(iprogress[j]["eprogress"] == "bidding") {
+                    bidding = true;
                 }
             }
-            if(!boo) {
+            if(!boo && bidding) {
                 datajobs.push(data[i]);
             }
             /*if(iprogress[0]["eprogress"] == 'bidding') {
@@ -93,17 +96,8 @@ router.post("/estimate", async (req, res) => {
     }
 });
 
-router.get("/jobConfirm", async (req, res) => {
-    const Head = await head(req);
-    const id = req.query.id;
-    try {
-        const data = await tab.getId(id);
-        const data2 = await 
-        res.render("construct/vendor/jobConfirm", {title: "Confirm " + data[0]["showName"], status: Head, data: data});
-    }
-    catch(e) {
-        res.render("construct/error", {title: "Error!", status: Head});
-    }
+router.post("/jobConfirm", async (req, res) => {
+    
 });
 
 router.get("/jobUpdate", async (req, res) => {

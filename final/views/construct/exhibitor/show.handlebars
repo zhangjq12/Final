@@ -35,6 +35,11 @@
         </tbody>
     </table>
 </div>
+<div class="container">
+    <div class="next-step">
+        
+    </div>
+</div>
 
 <script>
     $(document).ready(function(){
@@ -43,6 +48,7 @@
                 $(".progress-bar").attr("style", "width: 25%");
                 $(".progress-bar").attr("aria-valuenow", "25");
                 $("#priceTable tbody tr td:eq(2)").html("Confirmed");
+                $(".next-step").html('<button class="btn btn-light" id="contractConfirm">Contract</button>');
             }
             else {
                 $("#priceTable tbody tr td:eq(2)").html("Confirmed");

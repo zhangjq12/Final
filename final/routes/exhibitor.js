@@ -49,7 +49,7 @@ router.post("/newjob", async (req, res) => {
         details: xss(req.body.details)
     }
     try {
-        const data = await tab.getBoothId(request["boothId"]);
+        const data = await tab.getBoothNum(request["boothId"]);
         if(data.length == 0) {
             const data = await tab.create(request["boothId"], request["showName"], request["date"], request["author"], request["size"], request["category"], request["details"]);
             const author = await users.getName(request["author"]);
@@ -134,6 +134,17 @@ router.get("/jobUpdate", async (req, res) => {
         res.render("construct/exhibitor/show", {title: "Confirm " + data[0]["showName"], status: Head, data: data, progress: progressData});
     }
     catch(e) {
+        res.render("construct/error", {title: "Error!", status: Head});
+    }
+});
+
+router.get("/contract", async (req, res) => {
+    const Head = await head(req);
+    const id = req.query.id;
+    try {
+        res.render("construct/contract", {title: "Contract of " + id, status: Head, voe: "exhibitor"});
+    }
+    catch (e) {
         res.render("construct/error", {title: "Error!", status: Head});
     }
 });

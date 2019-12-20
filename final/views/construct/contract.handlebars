@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="contractText row" data-name="{{voe}}">
+        <p>
+            sdadasdd
+            dsadfsaf
+            fsaf
+            ga
+            sggagasg
+            dsa
+        </p>
+    </div>
+    <div class="row">
+        <form id="acceptContract">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="acceptBox" value="y">
+                <label class="form-check-label" for="acceptBox">I will accept and obey this contract.</label>
+            </div>
+            <button class="btn btn-light">Back</button>
+            <button class="btn btn-light" type="submit" disabled="true">Submit</button>
+        </form>
+    </div>
+</div>
+<script>
+    $("#acceptContract").submit(function() {
+        var accept = $("#acceptBox").val();
+        var voe = $(".contractText").attr("data-name");
+        console.log(accept);
+        console.log(voe);
+        /*$.ajax({
+            type: "post",
+            url: "/" + voe + "/acceptContract",
+            dataType: "json",
+            data: {
+                accept: accept
+            },
+            success: function(res) {
+                $(location).attr("href", "/" + voe + "/show?id=" + id);
+            },
+            error: function(err) {
+                $(location).attr("href", "error");
+            }
+        });*/
+    });
+    $("#acceptBox").on("click", function() {
+        if($(this).attr("checked") == "true") {
+            $("button[type=submit]").attr("disabled", "false");
+        }
+        else {
+            $("button[type=submit]").attr("disabled", "true");
+        }
+    })
+</script>
