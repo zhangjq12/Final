@@ -19,19 +19,26 @@
             </div>
         </div>
     </div>
-    
-     <div class="textContainer" id="messenger">
+
+    <div class="textContainer" id="messenger">
         <div class="introText">
             <h1 id="h1"><span id="I">I</span>ntroduction</h1>
             <h4>An exhibition, in the most general sense, is an organised presentation and display of a selection of
                 items. In practice, exhibitions usually occur within a cultural or educational setting such.</h4>
         </div>
         <div class="detailText">
-                <h1 id="h1"><span id="D">D</span>etails</h1>
-                <h4>An exhibition, in the most general sense, is an organised presentation and display of a selection of
+            <h1 id="h1"><span id="D">D</span>etails</h1>
+            <h4>An exhibition, in the most general sense, is an organised presentation and display of a selection of
                 items. In practice, exhibitions usually occur within a cultural or educational setting such.</h4>
-            </div>
+        </div>
     </div>
-
-
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-smoove/0.2.6/jquery.smoove.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.textContainer').smoove({
+                offset: '15%'
+            });
+        })
+    </script>
 </div>
