@@ -10,7 +10,8 @@
     </div>
 </div>
 <script>
-    $("#paySuccess").submit(function() {
+    $("#paySuccess").submit(function(e) {
+        e.preventDefault();
         var id = $(".payment-row").attr("data-name");
         $.ajax({
             type: "post",

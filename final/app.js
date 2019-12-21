@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const server = require('http').Server(app);
 const bodyParser = require("body-parser");
 const configRoutes =require("./routes");
 const exphbs = require('express-handlebars');
@@ -19,11 +20,12 @@ wss.on('connection', async function connection(ws) {
     //console.log('server: receive connection.');
     
     ws.on('message', async function incoming(req) {
-        
-    });
-
-    ws.on('pong', () => {
-        console.log('server: received pong from client');
+        wss.clients.forEach(function each(client) {
+            if (client !== ws && client.readyState === webSocket.OPEN) {
+                console.log(req);
+                client.send(req);
+            }
+        });
     });
 
     //ws.send('world');

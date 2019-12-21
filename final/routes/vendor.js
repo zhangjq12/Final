@@ -113,10 +113,10 @@ router.post("/estimate", async (req, res) => {
         else {
             data4 = await price.modifyPrice(pid, request["price"]);
         }
-        res.redirect("/vendor");
+        res.send({success: "success"});
     }
     catch(e) {
-        res.render("construct/error", {title: "Error!", status: Head});
+        res.send({error: "error"});
     }
 });
 

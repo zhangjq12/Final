@@ -7,7 +7,7 @@ async function headLink(req) {
         /*const obj1 = {"id": "uNameShow", "link": "/tabs/mytabs/?name=" + good, "content": good + "'s Info"};
         const obj2 = {"id": "modifyInfo", "link": "/modifyInfo", "content": "Modify Info"}
         const obj3 = {"id": "logOut", "link": "/logout", "content": "Log Out"};*/
-        const obj1 = {"content" : '<a id=uNameShow class="nav-link" href="/tabs/mytabs/?name=' + good + '" data-toggle="tooltip" title="Your profile" >' + good + '</a>'};
+        const obj1 = {"content" : '<a id=uNameShow class="nav-link" data-name="' + good + '" href="/tabs/mytabs/?name=' + good + '" data-toggle="tooltip" title="Your messages here" >' + good + '</a>'};
         //const obj2 = {"content" : '<a id=modifyInfo class="nav-link" href="/modifyInfo">Modify Info</a>'}
         const obj3 = {"content" : '<a id=logOut class="nav-link" href=# data-toggle="modal" data-target="#logoutDia">Log Out</a>'};
         link.push(obj1);

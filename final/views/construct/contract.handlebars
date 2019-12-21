@@ -21,7 +21,8 @@
     </div>
 </div>
 <script>
-    $("#acceptContract").submit(function() {
+    $("#acceptContract").submit(function(e) {
+        e.preventDefault();
         var accept = $("#acceptBox").val();
         var voe = $(".contractText").attr("data-link");
         var id = $(".contractText").attr("data-name");

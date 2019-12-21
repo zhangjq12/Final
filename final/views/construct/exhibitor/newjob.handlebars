@@ -246,7 +246,8 @@
         $('#tabSubmit').html('Submit');
         $('#tabSubmit').prop('disabled', false);
     });
-    $("#yesmodify").click(function() {
+    $("#yesmodify").click(function(e) {
+        e.preventDefault();
         $("#yesmodify").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
         $('#yesmodify').prop('disabled', true);
         //var formData = new FormData();

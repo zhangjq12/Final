@@ -14,6 +14,7 @@
                 </thead>
                 <tbody class="table table-hover table-borderless">
                     {{#each dataprogress}}
+                    <div class="author" data-name="{{author}}"></div>
                     <tr>
                         <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
                         <td scope="row"><a href="/vendor/show?id={{boothNum}}">{{showName}}</a></td>
@@ -25,7 +26,7 @@
                         </td>
                         <td>
                             <button data-name="{{progress}}" data-link="/vendor/contract?id={{boothNum}}" class="contractbtn btn-small btn-light" style="display: none;">Contract</button>
-                            <button data-name="{{progress}}" data-link="{{boothNum}}" class="paidbtn btn-small btn-light" style="display: none;">Confirm</button>
+                            <button data-name="{{progress}}" data-author="{{author}}" data-link="{{boothNum}}" class="paidbtn btn-small btn-light" style="display: none;">Confirm</button>
                         </td>
                     </tr>
                     {{/each}}
@@ -50,8 +51,9 @@
                         <td scope="row"><a href="/vendor/show?id={{boothNum}}">{{showName}}</a></td>
                         <td>{{category}}</td>
                         <td>
-                            <form method="POST" action="/vendor/estimate">
+                            <form class="estimateForm">
                                 <input type="hidden" name="id" value="{{boothNum}}"></input>
+                                <input type="hidden" name="author" value="{{author}}"></input>
                                 <label for="price" class="sr-only">price estimate</label>
                                 <div class="input-group input-group-sm">
                                     <div class="input-group-prepend">
@@ -110,8 +112,8 @@
                 $(this).attr("aria-valuenow", "100");
             }
             else {
-                $(this).attr("style", "width: 100%");
-                $(this).attr("aria-valuenow", "100");
+                $(this).attr("style", "width: 0%");
+                $(this).attr("aria-valuenow", "0");
             }
         });
         $(".paidbtn").each(function() {
@@ -120,6 +122,8 @@
             }
             $(this).bind("click", function() {
                 var boothId = $(this).attr("data-link");
+                var author = $(this).attr("data-author");
+                var user = $("#uNameShow").attr("data-name");
                 $.ajax({
                     type: "post",
                     url: "/vendor/jobConfirm",
@@ -129,7 +133,46 @@
                         success: "y"
                     },
                     success: function(res) {
-                        $(location).attr("href", "/exhibitor");
+                        var origin = window.location.hostname;
+                        var ws = new WebSocket('ws://' + origin + ':8080');
+                        var message = boothNum + "'s progress is updated! Refresh this page to check you progress!||" + user + "||" + author;
+                        //alert(message);
+                        ws.onopen = function(e) {
+                            ws.send(message);
+                        }
+                        $(location).attr("href", "/vendor");
+                    },
+                    error: function(err) {
+                        $(location).attr("href", "error");
+                    }
+                });
+            })
+        });
+        $(".estimateForm").each(function() {
+            $(this).submit(function(e) {
+                e.preventDefault();
+                var boothNum = $(this).children("input[name='id']").val();
+                var author = $(this).children("input[name='author']").val();
+                var price = $(this).find("div input[type='text']").val();
+                var user = $("#uNameShow").attr("data-name");
+                $.ajax({
+                    type: "post",
+                    url: "/vendor/estimate",
+                    dataType: "json",
+                    data: {
+                        id: boothNum,
+                        price: price
+                    },
+                    success: function(res) {
+                        //alert(res);
+                        var origin = window.location.hostname;
+                        var ws = new WebSocket('ws://' + origin + ':8080');
+                        var message = boothNum + "'s progress is updated! Refresh this page to check you progress!||" + user + "||" + author;
+                        //alert(message);
+                        ws.onopen = function(e) {
+                            ws.send(message);
+                        }
+                        location.href = "/vendor";
                     },
                     error: function(err) {
                         $(location).attr("href", "error");
