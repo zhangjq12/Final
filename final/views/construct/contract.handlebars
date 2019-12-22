@@ -15,7 +15,7 @@
                 <input class="form-check-input" type="checkbox" id="acceptBox" value="y">
                 <label class="form-check-label" for="acceptBox">I will accept and obey this contract.</label>
             </div>
-            <button class="btn btn-light">Back</button>
+            <button class="btn btn-light" type="button" onclick="history.go(-1);">Back</button>
             <button class="btn btn-light" type="submit" disabled="true">Submit</button>
         </form>
     </div>
@@ -35,6 +35,19 @@
                 accept: accept
             },
             success: function(res) {
+                var vendor = res["vendor"];
+                var exhibitor = res["exhibitor"];
+                var showName = res["showName"];
+                var origin = window.location.hostname;
+                var ws = new WebSocket('ws://' + origin + ':8080');
+                var message = "";
+                if(voe == "exhibitor")
+                    message = showName + "'s progress is updated! Refresh this page to check you progress!||" + exhibitor + "||" + vendor;
+                else
+                    message = showName + "'s progress is updated! Refresh this page to check you progress!||" + vendor + "||" + exhibitor;
+                ws.onopen = function(e) {
+                    ws.send(message);
+                }
                 $(location).attr("href", "/" + voe + "/show?id=" + id);
             },
             error: function(err) {

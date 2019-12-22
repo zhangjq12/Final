@@ -6,6 +6,7 @@ const users = data.users;
 const head = require("./head");
 const comments = data.comments;
 const progress = data.progress;
+const contract = data.contract;
 const price = data.price;
 const authentication = require("./authentication");
 const upload2 = require("./middleware/multer2");
@@ -23,6 +24,9 @@ router.get("/", async (req, res) => {
         var datajobs = [];
         var dataprogress = [];
         for(var i = 0; i < data.length; i++) {
+            const size1 = data[i]["size"][0].toString();
+            const size2 = data[i]["size"][1].toString();
+            data[i]["size"] = size1 + "✕" + size2;
             const iprogress = await progress.getBoothId(data[i]["boothNum"]);
             var boo = false;
             var bidding = false;
@@ -134,7 +138,11 @@ router.post("/jobConfirm", async (req, res) => {
             const res1 = await progress.modifyEprogress(data1[i]["_id"].toString(), "done");
             const res2 = await progress.modifyVprogress(data1[i]["_id"].toString(), "done");
         }
-        res.send({success: "success"});
+        const data3 = await price.getBoothId(request["id"]);
+        const data4 = await users.getId(data3[0]["vendorId"].toString());
+        const data5 = await users.getId(data3[0]["exhibitorId"].toString());
+        const booth = await tab.getBoothNum(request["id"]);
+        res.send({success: "success", showName: booth[0]["showName"], vendor: data4[0]["userName"], exhibitor: data5[0]["userName"]});
     }
     catch(e) {
         res.send({error: "error"})
@@ -182,7 +190,11 @@ router.post("/acceptContract", async (req, res) => {
                 const res3 = await progress.modifyVprogress(data1[i]["_id"].toString(), "waitPayment");
             }
         }
-        res.send({success: "success"});
+        const data3 = await price.getBoothId(request["id"]);
+        const data4 = await users.getId(data3[0]["vendorId"].toString());
+        const data5 = await users.getId(data3[0]["exhibitorId"].toString());
+        const booth = await tab.getBoothNum(request["id"]);
+        res.send({success: "success", showName: booth[0]["showName"], vendor: data4[0]["userName"], exhibitor: data5[0]["userName"]});
     }
     catch(e) {
         res.send({error: "error"})

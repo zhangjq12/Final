@@ -98,6 +98,15 @@
                         vendorId: vid
                     },
                     success: function(res) {
+                        var vendor = res["vendor"];
+                        var exhibitor = res["exhibitor"];
+                        var showName = res["showName"];
+                        var origin = window.location.hostname;
+                        var ws = new WebSocket('ws://' + origin + ':8080');
+                        var message = showName + "'s progress is updated! Refresh this page to check you progress!||" + exhibitor + "||" + vendor;
+                        ws.onopen = function(e) {
+                            ws.send(message);
+                        }
                         $(location).attr("href", "/exhibitor/show?id=" + id);
                     },
                     error: function(err) {

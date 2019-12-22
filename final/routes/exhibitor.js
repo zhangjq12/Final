@@ -6,6 +6,7 @@ const users = data.users;
 const head = require("./head");
 const comments = data.comments;
 const progress = data.progress;
+const contract = data.contract;
 const price = data.price;
 const authentication = require("./authentication");
 const upload2 = require("./middleware/multer2");
@@ -117,8 +118,13 @@ router.post("/jobConfirm", async (req, res) => {
                 const res1 = await price.remove(data2[i]["_id"].toString());
             }
         }
+        //const data4 = await contract.create(request["id"], data3[0]["exhibitorId"], data3[0]["vendorId"], "yes");
         //console.log(data2);
-        res.send({success: "success"});
+        const data3 = await price.getBoothId(request["id"]);
+        const data4 = await users.getId(data3[0]["vendorId"].toString());
+        const data5 = await users.getId(data3[0]["exhibitorId"].toString());
+        const booth = await tab.getBoothNum(request["id"]);
+        res.send({success: "success", showName: booth[0]["showName"], vendor: data4[0]["userName"], exhibitor: data5[0]["userName"]});
     }
     catch(e) {
         res.send({error: "error"})
@@ -178,7 +184,11 @@ router.post("/acceptContract", async (req, res) => {
             }
             //const res2 = await progress.modifyVprogress(data1[i]["_id"].toString(), "waitPayment");
         }
-        res.send({success: "success"});
+        const data3 = await price.getBoothId(request["id"]);
+        const data4 = await users.getId(data3[0]["vendorId"].toString());
+        const data5 = await users.getId(data3[0]["exhibitorId"].toString());
+        const booth = await tab.getBoothNum(request["id"]);
+        res.send({success: "success", showName: booth[0]["showName"], vendor: data4[0]["userName"], exhibitor: data5[0]["userName"]});
     }
     catch(e) {
         res.send({error: "error"})
@@ -190,17 +200,21 @@ router.post("/pay", async (req, res) => {
         id: req.body.id,
         success: req.body.success
     }
-    console.log(request);
+    //console.log(request);
     try {
         if(request["success"] != "y")
             throw "error";
         const data1 = await progress.getBoothId(request["id"]);
-        console.log(data1);
+        //console.log(data1);
         for(var i = 0; i < data1.length; i++) {
             const res1 = await progress.modifyEprogress(data1[i]["_id"].toString(), "paid");
             const res2 = await progress.modifyVprogress(data1[i]["_id"].toString(), "paid");
         }
-        res.send({success: "success"});
+        const data3 = await price.getBoothId(request["id"]);
+        const data4 = await users.getId(data3[0]["vendorId"].toString());
+        const data5 = await users.getId(data3[0]["exhibitorId"].toString());
+        const booth = await tab.getBoothNum(request["id"]);
+        res.send({success: "success", showName: booth[0]["showName"], vendor: data4[0]["userName"], exhibitor: data5[0]["userName"]});
     }
     catch(e) {
         res.send({error: "error"})
