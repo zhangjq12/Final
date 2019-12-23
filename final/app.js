@@ -15,17 +15,29 @@ const data = require("./data");
 const progress = data.progress;
 
 var wss = new webSocket.Server({port: 8080});
+var usersSocket = {};
 
 wss.on('connection', async function connection(ws) {
     //console.log('server: receive connection.');
-    
     ws.on('message', async function incoming(req) {
-        wss.clients.forEach(function each(client) {
-            if (client !== ws && client.readyState === webSocket.OPEN) {
-                console.log(req);
-                client.send(req);
-            }
-        });
+        var res = req.split("||");
+        var sender = "";
+        var receiver = "";
+        var message = "";
+        if(res.length == 2) {
+            sender = res[1];
+            usersSocket[sender] = Array.from(wss.clients)[Array.from(wss.clients).length - 1];
+        }
+        else {
+            message = res[0];
+            receiver = res[2];
+            wss.clients.forEach(function each(client) {
+                if (client == usersSocket[receiver]) {
+                    //console.log(req);
+                    client.send(message);
+                }
+            });
+        }
     });
 
     //ws.send('world');

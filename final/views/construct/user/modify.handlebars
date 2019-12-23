@@ -16,7 +16,7 @@
             <label for="changePas">Password:</label></br>
             <button id="changePas" type="button" data-toggle="modal" data-target="#modifyPasswordDia" class="btn btn-primary">Change your Password</button>
         </div>
-        <div class="form-row">
+        <!--<div class="form-row">
             <div class="col-md-6 mb-2">
                 <label for="modifyFirst">First Name:</label>
                 <input id="modifyFirst" class="form-control" type="text" name="firstName" value={{first}} required></br>
@@ -29,7 +29,7 @@
         <div class="form-group">
             <label for="modifyEmail">Email:</label>
             <input id="modifyEmail" class="form-control" type="email" name="email" value={{email}} required></br>
-        </div>
+        </div>-->
         <button type="submit" id="modifySubmit" data-toggle="modal" data-target="#modifyinfoDia" class="btn btn-primary">Submit</button>
     </form>
     </div>
@@ -118,8 +118,8 @@
 <script src="/public/js/filesizelimit.js"></script>
 <script type="text/javascript">
     var uploadhead = false;
-    var empty = false;
-    var emailValid = false;
+    //var empty = false;
+    //var emailValid = false;
     var passwordMin = false;
     var passwordMax = false;
     var conpassMatch = false;
@@ -233,15 +233,15 @@
         $('#modifySubmit').attr('disabled', false);
     });
     $(document).ready(function(){
-        empty = true;
-        emailValid = true;
+        //empty = true;
+        //emailValid = true;
         passwordMin = false;
         passwordMax = false;
         conpassMatch = false;
         portraitModified = false;
         passwordModified = false;
     }); 
-    bootstrapValidate(['#modifyFirst', '#modifyLast', '#modifyEmail'], 'required: This can not be empty!', function(isEmpty) {
+    /*bootstrapValidate(['#modifyFirst', '#modifyLast', '#modifyEmail'], 'required: This can not be empty!', function(isEmpty) {
         if(isEmpty == true) {
             empty = true; 
             if(empty && emailValid)
@@ -257,7 +257,7 @@
     });
     bootstrapValidate('#modifyEmail', 'email: Enter a valid E-Mail!', function(isEmail) { if(isEmail) {emailValid = true; if(empty && emailValid)
         $("#modifySubmit").attr('disabled', false); else
-        $("#modifySubmit").attr('disabled', true); } else {emailValid = false; $("#modifySubmit").attr('disabled', "true");}});
+        $("#modifySubmit").attr('disabled', true); } else {emailValid = false; $("#modifySubmit").attr('disabled', "true");}});*/
     bootstrapValidate('#modifyPassword', 'min:6: Your password should more than 6 charactors!', function(isPassword) { if(isPassword) {passwordMin = true; if(passwordMax && passwordMin && conpassMatch)
         $("#yesPasMod").attr('disabled', false); else
         $("#yesPasMod").attr('disabled', true);} else {passwordMin = false; $("#yesPasMod").attr('disabled', "true");}});
@@ -301,9 +301,9 @@
             formData.append('password', $("#modifyPassword").val());
             formData.append('conPassword', $("#modifyConPassword").val());
         }
-        formData.append('firstName', $("#modifyFirst").val());
+        /*formData.append('firstName', $("#modifyFirst").val());
         formData.append('lastName', $("#modifyLast").val());
-        formData.append('email', $("#modifyEmail").val());
+        formData.append('email', $("#modifyEmail").val());*/
 
         $.ajax({
             type: "post",

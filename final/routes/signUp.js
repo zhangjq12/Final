@@ -10,7 +10,7 @@ const upload = require("../routes/middleware/multer3");
 
 router.get("/", async (req, res) => {
     const Head = await head(req);
-    res.render("construct/signup", {title: "Sign Up", status: Head});
+    res.render("construct/signup", {title: "Sign Up", status: Head, license: "defaultHead.jpg", personal: "defaultHead.jpg"});
 });
 
 router.post("/", upload.fields([{name: "personal", maxCount: 1}, {name: "license", maxCount: 1}]), async (req, res) => {

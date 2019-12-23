@@ -1,11 +1,9 @@
 <div class="container-fluid">
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Paytone+One" />
     <div class="imageContainer1">
         <img class="exhibitorImg" border="0" alt="exhibitorImage" src="/public/image/page/exhibitor.jpg" />
         <div class="overlay">
-            <div class="text">As an exhibitor. <br />Need help to exhibit your idea? <br /><span
-                    style="color:yellow">Sign Up</span> To Explore!<br /><br />
-                <h6>Already a memeber? <span style="color:black">Sign in.</span></h6>
+            <div class="text">As an exhibitor. <br />Need help to exhibit your idea? <br /><a class="signUpLink" href="/signup">Sign Up</a> To Explore!<br /><br />
+                <h6>Already a memeber? <a class="btn btn-warning" href="#" data-toggle="modal" data-target="#signin">Sign in.</a></h6>
             </div>
 
         </div>
@@ -13,9 +11,9 @@
     <div class="imageContainer2">
         <img class="vendorImg" border="0" alt="vendorImage" src="/public/image/page/vendor.jpg" />
         <div class="overlay">
-            <div class="text">As a vendor. <br />Eager to implement people's idea? <br /><span style="color:yellow">Sign
-                    Up</span> To Explore!<br /><br />
-                <h6>Already a memeber? <span style="color:black">Sign in.</span></h6>
+            <div class="text">As a vendor. <br />Eager to implement people's idea? <br /><a class="signUpLink" href="/signup">Sign
+                    Up</a> To Explore!<br /><br />
+                <h6>Already a memeber? <a class="btn btn-warning" href="#" data-toggle="modal" data-target="#signin">Sign in.</a></h6>
             </div>
         </div>
     </div>
@@ -32,8 +30,6 @@
                 items. In practice, exhibitions usually occur within a cultural or educational setting such.</h4>
         </div>
     </div>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-smoove/0.2.6/jquery.smoove.min.js"></script>
     <script>
         $(document).ready(function () {
             $('.textContainer').smoove({

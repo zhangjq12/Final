@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../../public/css/jssocials.css" />
     <link rel="stylesheet" type="text/css" href="../../public/css/jssocials-theme-minima.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Paytone+One" />
     <title>{{title}}</title>
 </head>
 <body>
@@ -17,6 +18,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://rawgit.com/leizongmin/js-xss/master/dist/xss.js"></script>
     <script src="https://cdn.rawgit.com/PascaleBeier/bootstrap-validate/v2.2.0/dist/bootstrap-validate.js" ></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-smoove/0.2.6/jquery.smoove.min.js"></script>
     <script src="../../public/js/jssocials.js"></script>
     <script src="../../public/js/hiddenform.js"></script>
     <!--<script src="/public/js/tota11y.min.js"></script>-->
@@ -110,10 +112,11 @@
                     var origin = window.location.hostname;
                     var ws = new WebSocket('ws://' + origin + ':8080');
                     ws.onopen = function(e) {
-
+                        var user = $("#uNameShow").attr("data-name");
+                        ws.send("connection||" + user);
                     }
                     ws.onmessage = function(e) {
-                        var res = e.data.split("||");
+                        /*var res = e.data.split("||");
                         var message = res[0];
                         var sender = res[1];
                         var receiver = res[2];
@@ -123,14 +126,15 @@
                         console.log(sender);
                         console.log(receiver);
                         console.log(user);
-                        if(receiver == user) {
+                        if(receiver == user) {*/
+                        var message = e.data;
                             $(".alert-show").html('<div class="alert alert-success alert-dismissible fade show" role="alert">\
                             <p>' + message + '</p>\
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">\
                                 <span aria-hidden="true">&times;</span>\
                             </button>\
                             </div>');
-                        }
+                        //}
                     }
                 }
                 else {
