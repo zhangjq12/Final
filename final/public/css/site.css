@@ -191,3 +191,9 @@ footer {
         transform: translateX(0%);
     }
 }
+
+
+/* contract page */
+.form-check{
+    margin-top: 20px;
+}
