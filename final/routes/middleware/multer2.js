@@ -4,7 +4,7 @@ const multer = require('multer');
 var upload = multer({
     storage: multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, __dirname + '../../../public/image/vendor/');
+            cb(null, __dirname + '../../../public/image/exhibitor/');
         },
         filename: function (req, file, cb) {
             var changedName = (new Date().getTime())+'-'+file.originalname;

@@ -118,6 +118,11 @@ footer {
 }
 .signUpLink{
     color: yellow;
+    -webkit-transition: all .3s; 
+    -moz-transition: all .3s; 
+    -ms-transition: all .3s; 
+    -o-transition: all .3s; 
+    transition: all .3s;
 }
 .signUpLink:hover {
     color: rgba(229, 255, 0, 0.692);
@@ -192,8 +197,75 @@ footer {
     }
 }
 
+.tableTitle {
+    border-style: solid;
+    border-width: 1px 0px 3px 0px;
+    border-color: rgba(128, 128, 128, 0.459);
+    height: 50px;
+}
 
-/* contract page */
-.form-check{
-    margin-top: 20px;
+.tableRow {
+    height: 40px;
+}
+.tableRow:hover {
+    background-color: rgb(241, 241, 241);
+}
+
+.container {
+    position: relative;
+}
+.contractText {
+    position: relative;
+    height: 500px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: gray;
+}
+.contractArea {
+    height: 100%;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset outset inset outset;
+    border-width: 1px 3px 1px 3px;
+    overflow: auto;
+    background-color: white;
+}
+#print {
+    height: 100%;
+    width: 100%;
+}
+#print h5 {
+    text-align: center;
+}
+#print p {
+    padding-left: 60px;
+    padding-right: 50px;
+}
+#print ul {
+    padding-left: 80px;
+    padding-right: 70px;
+}
+
+.contractOp {
+    position: relative;
+    height: auto;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#details {
+    width: 100%;
+    height: 300px;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-radius: 0.5%;
+    overflow: auto;
+    border-color: rgb(233, 233, 233);
+}
+#details:hover {
+    box-shadow: 0 0 5px rgb(96, 169, 252);
+    transition: .3s ease;
 }
