@@ -68,6 +68,18 @@ router.post("/newjob", async (req, res) => {
     }
 });
 
+router.post("/imageUpload", upload2.single('img'), async (req, res) => {
+    var fileName = "";
+    if(req.file != undefined)
+        fileName = req.file.filename;
+    try {
+        res.send({des: "/public/image/exhibitor/" + fileName});
+    }
+    catch (e) {
+        res.send({error: "error"});
+    }
+})
+
 router.get("/show", async (req, res) => {
     const Head = await head(req);
     const id = req.query.id;

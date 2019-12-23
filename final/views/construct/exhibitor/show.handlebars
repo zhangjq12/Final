@@ -3,7 +3,9 @@
     <div id="boothId" data-name={{boothNum}}></div>
     <p>{{showName}}</p>
     <p>{{category}}</p>
-    <p>{{details}}</p>
+    <div id="detailsShow" class="container">
+        {{details}}
+    </div>
     <p>{{progress}}</p>
     <div class="progress" data-name="{{progress}}">
         <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
@@ -41,6 +43,7 @@
     </div>
 </div>
 
+<script src="../../../public/js/transferImage.js"></script>
 <script>
     $(document).ready(function(){
         if($("div.progress").attr("data-name") != "bidding") {

@@ -18,7 +18,7 @@
                     </div>
                     <div class="col-md-4 mb-2">
                         <label for="date">Date:</label>
-                        <input id="date" type="text" class="form-control" name="date" value="{{date}}"></input>
+                        <input id="date" type="date" class="form-control" name="date" value="{{date}}"></input>
                     </div>
                 </div>
             </div>
@@ -89,7 +89,7 @@
             <div class="form-row">
             <div class="col-md-12 mb-2">
             <label for="details">Details: </label>
-            <!--<div class="btn-toolbar mb-2" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-toolbar mb-2" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group mr-2" role="group" aria-label="Bold and Italic">
                     <button id="boldText" type="button" class="btn btn-light"><span style="font-weight: bold;">B</span></button>
                     <button id="italicText" type="button" class="btn btn-light"><span style="font-style:italic;">I</span></button>
@@ -100,41 +100,36 @@
                         Black
                         </button>
                         <div class="dropdown-menu" aria-labelledby="colorsGroup">
-                            <a class="dropdown-item" href="javascript:void(0);">Black</a>
-                            <a class="dropdown-item" href="javascript:void(0);" style="color: red;">Red</a>
-                            <a class="dropdown-item" href="javascript:void(0);" style="color: green;">Green</a>
-                            <a class="dropdown-item" href="javascript:void(0);" style="color: orange;">Orange</a>
-                            <a class="dropdown-item" href="javascript:void(0);" style="color: gray;">Gray</a>
-                            <a class="dropdown-item" href="javascript:void(0);" style="color: blue;">Blue</a>
+                            <a id="colorBlack" class="dropdown-item" href="javascript:void(0);">Black</a>
+                            <a id="colorRed" class="dropdown-item" href="javascript:void(0);" style="color: red;">Red</a>
+                            <a id="colorGreen" class="dropdown-item" href="javascript:void(0);" style="color: green;">Green</a>
+                            <a id="colorOrange" class="dropdown-item" href="javascript:void(0);" style="color: orange;">Orange</a>
+                            <a id="colorGray" class="dropdown-item" href="javascript:void(0);" style="color: gray;">Gray</a>
+                            <a id="colorBlue" class="dropdown-item" href="javascript:void(0);" style="color: blue;">Blue</a>
                         </div>
                     </div>
                     <div class="btn-group" role="group">
                         <button id="sizeGroup" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        12
+                        plain
                         </button>
                         <div class="dropdown-menu" aria-labelledby="sizeGroup">
-                            <a class="dropdown-item" href="javascript:void(0);">9</a>
-                            <a class="dropdown-item" href="javascript:void(0);">10</a>
-                            <a class="dropdown-item" href="javascript:void(0);">11</a>
-                            <a class="dropdown-item" href="javascript:void(0);">12</a>
-                            <a class="dropdown-item" href="javascript:void(0);">14</a>
-                            <a class="dropdown-item" href="javascript:void(0);">15</a>
-                            <a class="dropdown-item" href="javascript:void(0);">16</a>
-                            <a class="dropdown-item" href="javascript:void(0);">18</a>
-                            <a class="dropdown-item" href="javascript:void(0);">20</a>
-                            <a class="dropdown-item" href="javascript:void(0);">22</a>
-                            <a class="dropdown-item" href="javascript:void(0);">24</a>
-                            <a class="dropdown-item" href="javascript:void(0);">28</a>
-                            <a class="dropdown-item" href="javascript:void(0);">32</a>
-                            <a class="dropdown-item" href="javascript:void(0);">36</a>
+                            <a id="h1" class="dropdown-item" href="javascript:void(0);"><h1>Heading 1</h1></a>
+                            <a id="h2" class="dropdown-item" href="javascript:void(0);"><h2>Heading 2</h2></a>
+                            <a id="h3" class="dropdown-item" href="javascript:void(0);"><h3>Heading 3</h3></a>
+                            <a id="h4" class="dropdown-item" href="javascript:void(0);"><h4>Heading 4</h4></a>
+                            <a id="h5" class="dropdown-item" href="javascript:void(0);"><h5>Heading 5</h5></a>
+                            <a id="h6" class="dropdown-item" href="javascript:void(0);"><h6>Heading 6</h6></a>
+                            <a id="pl" class="dropdown-item" href="javascript:void(0);"><p>Plain</p></a>
                         </div>
                     </div>
                 </div>
                 <div class="btn-group" role="group" aria-label="Third group">
-                    <button type="button" class="btn btn-light">Add Images</button>
+                    <button id="addImageBtn" type="button" class="btn btn-light">Add Images</button>
                 </div>
-            </div>-->
-            <textarea id="details" name="details" rows="10" cols="80" class="form-control" placeholder="Tap your tab here!">{{details}}</textarea>
+                <input id="addImage" type="file" style="display: none;">
+            </div>
+            <iframe id="details"></iframe>
+            <!--<textarea id="details" name="details" rows="10" cols="80" class="form-control" placeholder="Tap your tab here!">{{details}}</textarea>-->
             </div>
             </div>
         </div>
@@ -166,10 +161,9 @@
 <script src="/public/js/filesizelimit.js"></script>
 <script>
     var nameEmpty = false;
-    var songEmpty = false;
+    var boothIdEmpty = false;
     var artistEmpty = false;
     var contentEmpty = false;
-
     $('#newTabs').submit(function(){
         window.event.preventDefault();
         $(this).find(':button[type=submit]').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
@@ -178,7 +172,7 @@
     bootstrapValidate('#showName', 'required: This can not be empty!', function(isEmpty) {
         if(isEmpty == true) {
             nameEmpty = true; 
-            if(nameEmpty && contentEmpty)
+            if(nameEmpty && boothIdEmpty)
                 $("#tabSubmit").attr('disabled', false);
             else
                 $("#tabSubmit").attr('disabled', true);
@@ -189,21 +183,21 @@
             $("#tabSubmit").attr('disabled', true);
         }
     });
-    /*bootstrapValidate('#songName', 'required: This can not be empty!', function(isEmpty) {
+    bootstrapValidate('#boothId', 'required: This can not be empty!', function(isEmpty) {
         if(isEmpty == true) {
-            songEmpty = true; 
-            if(nameEmpty && songEmpty && artistEmpty && contentEmpty)
+            boothIdEmpty = true; 
+            if(nameEmpty && boothIdEmpty)
                 $("#tabSubmit").attr('disabled', false);
             else
                 $("#tabSubmit").attr('disabled', true);
         } 
         else 
         if(isEmpty == 0) {
-            songEmpty = false;
+            boothIdEmpty = false;
             $("#tabSubmit").attr('disabled', true);
         }
     });
-    bootstrapValidate('#artistName', 'required: This can not be empty!', function(isEmpty) {
+    /*bootstrapValidate('#artistName', 'required: This can not be empty!', function(isEmpty) {
         if(isEmpty == true) {
             artistEmpty = true; 
             if(nameEmpty && songEmpty && artistEmpty && contentEmpty)
@@ -216,7 +210,7 @@
             artistEmpty = false;
             $("#tabSubmit").attr('disabled', true);
         }
-    });*/
+    });
     bootstrapValidate('#details', 'required: This can not be empty!', function(isEmpty) {
         if(isEmpty == true) {
             contentEmpty = true; 
@@ -230,11 +224,122 @@
             contentEmpty = false;
             $("#tabSubmit").attr('disabled', true);
         }
-    });
+    });*/
     $(document).ready(function(){
         //if(op == "upload") {
-            nameEmpty = false;
-            contentEmpty = false;
+        nameEmpty = false;
+        boothIdEmpty = false;
+        $d = $("#details")[0].contentWindow.document; // IE、FF都兼容
+        $d.designMode = "on";
+        $d.contentEditable = true;
+        $d.open();
+        $d.close();
+        function exe(name, args = null) {
+            $d.execCommand(name, false, args);
+        }
+
+        $("#details").bind('keypress', function(e) {
+            if(e.keyCode == 13) {
+                exe('formatBlock', '<p>');
+            }
+        })
+        $("#boldText").click(function() {
+            exe('bold');
+        });
+        $("#italicText").click(function() {
+            exe('italic');
+        });
+        $("#colorBlack").click(function(e) {
+            e.preventDefault();
+            exe('foreColor', 'black');
+            $("#colorsGroup").html($(this).html());
+        });
+        $("#colorRed").click(function(e) {
+            e.preventDefault();
+            exe('foreColor', 'red');
+            $("#colorsGroup").html($(this).html());
+        });
+        $("#colorGreen").click(function(e) {
+            e.preventDefault();
+            exe('foreColor', 'green');
+            $("#colorsGroup").html($(this).html());
+        });
+        $("#colorOrange").click(function(e) {
+            e.preventDefault();
+            exe('foreColor', 'orange');
+            $("#colorsGroup").html($(this).html());
+        });
+        $("#colorGray").click(function(e) {
+            e.preventDefault();
+            exe('foreColor', 'gray');
+            $("#colorsGroup").html($(this).html());
+        });
+        $("#colorBlue").click(function(e) {
+            e.preventDefault();
+            exe('foreColor', 'blue');
+            $("#colorsGroup").html($(this).html());
+        });
+        $("#h1").click(function(e) {
+            e.preventDefault();
+            exe('formatBlock', '<h1>');
+            $("#sizeGroup").html($(this).text());
+        });
+        $("#h2").click(function(e) {
+            e.preventDefault();
+            exe('formatBlock', '<h2>');
+            $("#sizeGroup").html($(this).text());
+        });
+        $("#h3").click(function(e) {
+            e.preventDefault();
+            exe('formatBlock', '<h3>');
+            $("#sizeGroup").html($(this).text());
+        });
+        $("#h4").click(function(e) {
+            e.preventDefault();
+            exe('formatBlock', '<h4>');
+            $("#sizeGroup").html($(this).text());
+        });
+        $("#h5").click(function(e) {
+            e.preventDefault();
+            exe('formatBlock', '<h5>');
+            $("#sizeGroup").html($(this).text());
+        });
+        $("#h6").click(function(e) {
+            e.preventDefault();
+            exe('formatBlock', '<h6>');
+            $("#sizeGroup").html($(this).text());
+        });
+        $("#pl").click(function(e) {
+            e.preventDefault();
+            exe('formatBlock', '<p>');
+            $("#sizeGroup").html($(this).text());
+        });
+        $("#preview").click(function() {
+            alert($("#details").contents().find("body").html());
+        });
+        $("#addImageBtn").click(function() {
+            $("#addImage").click();
+        });
+        $("#addImage").change(function() {
+            var file = this.files[0];
+            var formData = new FormData();
+            formData.append('img', file);
+            $.ajax({
+                type: "post",
+                url: "/exhibitor/imageUpload",
+                dataType: "json",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(res) {
+                    var des = res["des"];
+                    exe('insertImage', des);
+                },
+                error: function(err) {
+                    location.href("/");
+                }
+            });
+        });
         /*}
         else {
             nameEmpty = true;
@@ -292,7 +397,7 @@
             author: $("#author").attr('data-name'),
             size: size,
             category: category,
-            details: $("#details").val()
+            details: $("#details").contents().find("body").html()
         }
         console.log(formData);
 

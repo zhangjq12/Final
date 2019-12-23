@@ -1,6 +1,7 @@
 <div class="container">
-    <div class="contractText mb-3" data-name="{{boothNum}}" data-link="{{voe}}">
+    <div class="contractText mb-3 shadow" data-name="{{boothNum}}" data-link="{{voe}}">
         <div class="contractArea">
+            <div id="print">
             <h5>Contract</h5>
             <p>das add a as fa xasad fas sadd fas fasfag afasdasa cawnu ab wqihy qhu bwjhwqb jfalha bjkagb jaas jashj abkjdaj.</p>
             <p>das add a as fa xasad fas sadd fas fasfag afasdasa cawnu ab wqihy qhu bwjhwqb jfalha bjkagb jaas jashj abkjdaj.</p>
@@ -31,20 +32,39 @@
                 </li>
             </ul>
             <p>fagadfa sa cxnza ior qnh hlan rhqen lkhlqj fsnak.</p>
+            </div>
         </div>
     </div>
-    <div class="contractOp">
+    <div class="contractOp mb-3">
         <form id="acceptContract">
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="acceptBox" value="y">
                 <label class="form-check-label" for="acceptBox">I will accept and obey this contract.</label>
             </div>
+            <button class="btn btn-light" type="button" onclick="exportPDF();">Export PDF</button>
             <button class="btn btn-light" type="button" onclick="history.go(-1);">Back</button>
             <button class="btn btn-light" type="submit" disabled="true">Submit</button>
         </form>
     </div>
 </div>
 <script>
+    function exportPDF() {
+        var doc = new jsPDF({
+            orientation: 'p',
+            unit: 'pt',
+            format: 'a2'
+        });   
+
+        doc.html(document.getElementById("print"), {
+            callback: function(doc) {
+                doc.save("contract.pdf");
+            }
+        });
+
+        /*var title = $(".contractArea").find("h5").text();
+        var content = "";
+        $(".contractArea").find("p+li")*/
+    }
     $("#acceptContract").submit(function(e) {
         e.preventDefault();
         var accept = $("#acceptBox").val();
