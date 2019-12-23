@@ -14,10 +14,13 @@
                 </thead>
                 <tbody class="table table-hover table-borderless">
                     {{#each dataprogress}}
-                        <div class="author" data-name="{{author}}"></div>
+                        <!--<div class="author" data-name="{{author}}"></div>-->
                         <tr>
                             <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
-                            <td scope="row"><a href="javascript:void(0);" data-toggle="popover" data-placement="bottom" data-trigger="focus" title="Details" data-content="{{details}}">{{showName}}</a></td>
+                            <td scope="row">
+                                <!--<a href="/vendor/#acc{{boothNum}}" data-toggle="collapse" data-parent="#accordion">{{showName}}</a>-->
+                                <a href="javascript:void(0);" data-toggle="popover" data-placement="bottom" data-trigger="focus" title="Details" data-content="{{details}}">{{showName}}</a>
+                            </td>
                             <td>{{category}}</td>
                             <td>
                                 <div class="progress">
@@ -29,6 +32,11 @@
                                 <button data-name="{{progress}}" data-author="{{author}}" data-link="{{boothNum}}" data-showName="{{showName}}" class="btn-small btn-light paidbtn" style="display: none;">Confirm</button>
                             </td>
                         </tr>
+                        <!--<div id="acc{{boothNum}}" class="collapse">
+                            <p>
+                                {{details}}
+                            </p>
+                        </div>-->
                     {{/each}}
                 </tbody>
             </table>
@@ -84,6 +92,11 @@
         });
     });
     $(document).ready(function() {
+        /*$("#jobProgressTable").find("a").each(function() {
+            $(this).on("click", function() {
+
+            });
+        });*/
         //const table = document.getElementsByTagName()
         $(".contractbtn").each(function() {
             if($(this).attr("data-name") == "waitContract") {

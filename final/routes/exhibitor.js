@@ -148,7 +148,14 @@ router.get("/contract", async (req, res) => {
     const Head = await head(req);
     const id = req.query.id;
     try {
-        res.render("construct/contract", {title: "Contract of " + id, status: Head, boothNum: id, voe: "exhibitor"});
+        const data1 = await tab.getBoothNum(id);
+        const data2 = await price.getBoothId(id);
+        const data3 = await users.getId(data2[0]["exhibitorId"].toString());
+        const data4 = await users.getId(data2[0]["vendorId"].toString());
+        const size12 = data1[0]["size"].split(",");
+        const size = size12[0] + "✕" + size12[1];
+        var data = {exhibitor: data3[0]["userName"], vendor: data4[0]["userName"], showName: data1[0]["showName"], category: data1[0]["category"], size: size, price: data2[0]["price"], details: data1[0]["details"]};
+        res.render("construct/contract", {title: "Contract of " + id, status: Head, boothNum: id, voe: "exhibitor", data: data});
     }
     catch (e) {
         res.render("construct/error", {title: "Error!", status: Head});
