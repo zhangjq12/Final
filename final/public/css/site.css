@@ -51,6 +51,7 @@ footer {
     margin-right: auto;
     animation: slideLeft 1.5s ease-out;
 }
+
 .imageContainer2 {
     position: relative;
     width: 60%;
@@ -63,14 +64,14 @@ footer {
     display: block;
     width: 100%;
     height: auto;
-    
+
 }
 
 .vendorImg {
     display: block;
     width: 100%;
     height: auto;
-    
+
 }
 
 
@@ -91,6 +92,7 @@ footer {
 .imageContainer1:hover .overlay {
     opacity: 1;
 }
+
 .imageContainer2:hover .overlay {
     opacity: 1;
 }
@@ -116,18 +118,21 @@ footer {
     font-weight: 70;
     /* line-height: 17.6px; */
 }
-.signUpLink{
+
+.signUpLink {
     color: yellow;
-    -webkit-transition: all .3s; 
-    -moz-transition: all .3s; 
-    -ms-transition: all .3s; 
-    -o-transition: all .3s; 
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
     transition: all .3s;
 }
+
 .signUpLink:hover {
     color: rgba(229, 255, 0, 0.692);
     text-decoration: none;
 }
+
 .signUpLink:active {
     color: rgba(229, 255, 0, 0.692);
     text-decoration: none;
@@ -136,6 +141,7 @@ footer {
 #I {
     font-size: 100px;
 }
+
 #D {
     font-size: 100px;
 }
@@ -145,20 +151,22 @@ footer {
 }
 
 /* text animation */
-.introText{
+.introText {
     text-align: left;
     position: relative;
     width: 60%;
     margin-left: auto;
     margin-right: auto;
 }
-.detailText{
+
+.detailText {
     text-align: right;
     position: relative;
     width: 60%;
     margin-left: auto;
     margin-right: auto;
 }
+
 .textContainer {
     position: relative;
     width: auto;
@@ -178,6 +186,7 @@ footer {
         transform: translateY(0%);
     }
 }
+
 @keyframes slideLeft {
     0% {
         transform: translateX(250%);
@@ -187,6 +196,7 @@ footer {
         transform: translateX(0%);
     }
 }
+
 @keyframes slideRight {
     0% {
         transform: translateX(-250%);
@@ -207,6 +217,7 @@ footer {
 .tableRow {
     height: 40px;
 }
+
 .tableRow:hover {
     background-color: rgb(241, 241, 241);
 }
@@ -214,6 +225,7 @@ footer {
 .container {
     position: relative;
 }
+
 .contractText {
     position: relative;
     height: 500px;
@@ -222,6 +234,7 @@ footer {
     margin-right: auto;
     background-color: gray;
 }
+
 .contractArea {
     height: 100%;
     width: 80%;
@@ -232,17 +245,21 @@ footer {
     overflow: auto;
     background-color: white;
 }
+
 #print {
     height: 100%;
     width: 100%;
 }
+
 #print h5 {
     text-align: center;
 }
+
 #print p {
     padding-left: 60px;
     padding-right: 50px;
 }
+
 #print ul {
     padding-left: 80px;
     padding-right: 70px;
@@ -265,12 +282,335 @@ footer {
     overflow: auto;
     border-color: rgb(233, 233, 233);
 }
+
 #details:hover {
     box-shadow: 0 0 5px rgb(96, 169, 252);
     transition: .3s ease;
 }
 
 /* Exhibitor Show Page */
-/* .exhibitorShow{
-    height: 500px;
-} */
+#exhibitorShowPage {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#exhiColumn {
+    width: 80%;
+}
+
+#exhiRow {
+    margin: 0 -100px;
+}
+
+#exhiProgressColumn {
+    padding: 0 10px;
+}
+
+#exhiProgressBar {
+    margin-right: 100px;
+}
+
+#detailCard {
+    padding-top: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* exhibitor payment page */
+@import url(https://fonts.googleapis.com/css?family=Lato:400, 700,300);
+#body {
+  /* background-color: #ffb242; */
+  font-family: lato, 'helvetica-light';
+  position: relative;
+  text-transform: uppercase;
+  padding: 20px 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+}
+#card-btn1 {
+    background-color: rgba(251, 251, 251, 0.8);
+    color: black;
+    position: absolute;
+    bottom: -55px;
+    right: 100px;
+    width: 90px;
+    border-radius: 8px;
+    height: 42px;
+    font-size: 12px;
+    font-family: lato, 'helvetica-light', 'sans-serif';
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
+#card-btn2 {
+    background-color: rgba(251, 251, 251, 0.8);
+    color: black;
+    position: absolute;
+    bottom: -55px;
+    right: 0;
+    width: 90px;
+    border-radius: 8px;
+    height: 42px;
+    font-size: 12px;
+    font-family: lato, 'helvetica-light', 'sans-serif';
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
+
+
+
+
+
+#amount {
+  font-size: 12px;
+}
+
+#amount strong {
+  font-size: 14px;
+}
+
+#card-back {
+  top: 40px;
+  right: 0;
+  z-index: -2;
+}
+
+
+
+#card-btn:hover {
+  background-color: rgba(251, 251, 251, 1);
+}
+
+#card-cvc {
+  width: 60px;
+  margin-bottom: 0;
+}
+
+#card-front,
+#card-back {
+  position: absolute;
+  background-color: #498ee4;
+  width: 390px;
+  height: 250px;
+  border-radius: 6px;
+  padding: 20px 30px 0;
+  box-sizing: border-box;
+  font-size: 10px;
+  letter-spacing: 1px;
+  font-weight: 300;
+  color: white;
+}
+
+#card-image {
+  float: right;
+  height: 120%;
+  width: 20%;
+}
+
+#card-image i {
+  font-size: 40px;
+}
+
+#card-month {
+  width: 45% !important;
+}
+
+#card-number,
+#card-holder {
+  width: 100%;
+}
+
+#card-stripe {
+  width: 100%;
+  height: 55px;
+  background-color: #3d5266;
+  position: absolute;
+  right: 0;
+}
+
+#card-success {
+  color: #00b349;
+}
+
+#card-token {
+  display: none;
+}
+
+#card-year {
+  width: 45%;
+  float: right;
+}
+
+#cardholder-container {
+  width: 60%;
+  display: inline-block;
+}
+
+#cvc-container {
+  position: absolute;
+  width: 110px;
+  right: -115px;
+  bottom: -10px;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+
+#cvc-container label {
+  width: 100%;
+}
+
+#cvc-container p {
+  font-size: 6px;
+  text-transform: uppercase;
+  opacity: 0.6;
+  letter-spacing: .5px;
+}
+
+#form-container {
+  margin: auto;
+  width: 500px;
+  height: 290px;
+  position: relative;
+}
+
+#form-errors {
+  color: #eb0000;
+}
+
+#form-errors,
+#card-success {
+  background-color: white;
+  width: 500px;
+  margin: 0 auto 10px;
+  height: 50px;
+  border-radius: 8px;
+  padding: 0 20px;
+  font-weight: 400;
+  box-sizing: border-box;
+  line-height: 46px;
+  letter-spacing: .5px;
+  text-transform: none;
+}
+
+#form-errors p,
+#card-success p {
+  margin: 0 5px;
+  display: inline-block;
+}
+
+#exp-container {
+  margin-left: 10px;
+  width: 32%;
+  display: inline-block;
+  float: right;
+}
+
+.hidden {
+  display: none;
+}
+
+#image-container {
+  width: 100%;
+  position: relative;
+  height: 55px;
+  margin-bottom: 5px;
+  line-height: 55px;
+}
+
+#image-container img {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+input {
+  border: none;
+  outline: none;
+  background-color: #5a9def;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  margin: 0 0 25px;
+  color: white;
+  font-size: 10px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-family: lato, 'helvetica-light', 'sans-serif';
+  letter-spacing: .7px;
+}
+
+input::-webkit-input-placeholder {
+  color: #fff;
+  opacity: 0.7;
+  font-family: lato, 'helvetica-light', 'sans-serif' letter-spacing: 1px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  font-size: 10px;
+}
+
+input:-moz-placeholder {
+  color: #fff;
+  opacity: 0.7;
+  font-family: lato, 'helvetica-light', 'sans-serif' letter-spacing: 1px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  font-size: 10px;
+}
+
+input::-moz-placeholder {
+  color: #fff;
+  opacity: 0.7;
+  font-family: lato, 'helvetica-light', 'sans-serif' letter-spacing: 1px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  font-size: 10px;
+}
+
+input:-ms-input-placeholder {
+  color: #fff;
+  opacity: 0.7;
+  font-family: lato, 'helvetica-light', 'sans-serif' letter-spacing: 1px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  font-size: 10px;
+}
+
+input.invalid {
+  border: solid 2px #eb0000;
+  height: 34px;
+}
+
+label {
+  display: block;
+  margin: 0 auto 7px;
+}
+
+#shadow {
+  position: absolute;
+  right: 0;
+  width: 284px;
+  height: 214px;
+  top: 36px;
+  background-color: #000;
+  z-index: -1;
+  border-radius: 8px;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+}
