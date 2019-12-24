@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const server = require('http').Server(app);
+//const server = require('http').Server(app);
 const bodyParser = require("body-parser");
 const configRoutes =require("./routes");
 const exphbs = require('express-handlebars');
@@ -13,6 +13,8 @@ const authentication = require("./routes/authentication");
 const webSocket = require('ws');
 const data = require("./data");
 const progress = data.progress;
+const https = require('https');
+const fs = require('fs');
 
 var wss = new webSocket.Server({port: 8080});
 var usersSocket = {};
@@ -78,8 +80,15 @@ var Logging = async (req, res, next) => {
 
 app.use(Logging);
 
+
 configRoutes(app);
 
-app.listen(3000, () => {
-    console.log("The Server Has Been Connected! Port Is 3000");
+https.createServer({
+    key: fs.readFileSync('./data/key/server.key'),
+    cert: fs.readFileSync('./data/key/server.cert')
+}, app).listen(3000, () => {
+    console.log("The HTTPS Server Has Been Connected! Port Is 3000");
+});
+app.listen(3001, () => {
+    console.log("The Server Has Been Connected! Port Is 3001");
 });
