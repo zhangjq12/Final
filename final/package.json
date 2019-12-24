@@ -13,28 +13,28 @@
   "dependencies": {
     "@khanacademy/tota11y": "^0.2.0",
     "all": "0.0.0",
-    "body-parser": "^1.18.3",
-    "bootstrap": "^4.3.1",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.4.1",
     "cookie-parser": "^1.4.4",
-    "express": "^4.16.4",
-    "express-handlebars": "^3.0.2",
-    "express-session": "^1.16.1",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-session": "^1.17.0",
     "file-system": "^2.2.2",
     "fs": "0.0.1-security",
     "html2canvas": "^1.0.0-rc.5",
-    "jquery": "^3.4.0",
+    "jquery": "^3.4.1",
     "jspdf": "^1.5.3",
     "mongodb": "^2.2.36",
-    "multer": "^1.4.1",
-    "node-rsa": "^1.0.5",
+    "multer": "^1.4.2",
+    "node-rsa": "^1.0.7",
     "password-hash": "^1.2.2",
     "path": "^0.12.7",
-    "popper.js": "^1.15.0",
+    "popper.js": "^1.16.0",
     "social-share-count-js": "0.0.7",
     "ws": "^7.2.1",
     "xss": "^1.0.6"
   },
   "devDependencies": {
-    "nodemon": "^1.19.0"
+    "nodemon": "^1.19.4"
   }
 }
