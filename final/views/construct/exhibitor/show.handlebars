@@ -7,14 +7,14 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-8 mb-3">
-                <div id="boothId" data-name={{boothNum}}></div>
-                <h2 class="card-title">Show Name - <span>{{showName}}</span></h2>
-                <p class="card-text"><span>Categories - </span>{{category}}</p>
-                <h4 class="mb-3">Project Details</h4>
-                <div id="detailsShow" class="card-text mb-3">{{details}}</div>
-                <div class="next-step">
-                
-                </div>
+                    <div id="boothId" data-name={{boothNum}}></div>
+                    <h2 class="card-title">Show Name - <span>{{showName}}</span></h2>
+                    <p class="card-text mb-3"><span>Categories - </span>{{category}}</p>
+                    <h4 class="mb-3">Project Details</h4>
+                    <div id="detailsShow" class="card-text mb-3">{{details}}</div>
+                    <div class="next-step">
+                    
+                    </div>
                 </div>
         <!--</div>
 
@@ -52,9 +52,9 @@
                     {{#each price}}
                     <tr>
                         <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
-                        <td scope="row" id={{vendorId}}>{{vendorName}}</td>
-                        <td>{{price}}</td>
-                        <td>
+                        <td class="align-middle" scope="row" id={{vendorId}}>{{vendorName}}</td>
+                        <td class="align-middle">{{price}}</td>
+                        <td class="align-middle">
                             <button id={{vendorId}} class="btn btn-light">Confirm</button>
                         </td>
                     </tr>
