@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-6 mb-3">
+        <div class="col-lg-6 mb-3">
             <h4>Jobs Done or In Progress</h4>
             <table id="jobProgressTable" class="table table-hover">
                 <thead>
@@ -19,7 +19,8 @@
                             <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
                             <td scope="row">
                                 <!--<a href="/vendor/#acc{{boothNum}}" data-toggle="collapse" data-parent="#accordion">{{showName}}</a>-->
-                                <a href="javascript:void(0);" data-toggle="popover" data-placement="bottom" data-trigger="focus" title="Details" data-content="{{details}}">{{showName}}</a>
+                                <button class="btn btn-link showProgressNameBtn" data-name="{{boothNum}}">{{showName}}</button>
+                                <!--<a href="javascript:void(0);" data-toggle="popover" data-html="true" data-placement="bottom" data-trigger="focus" title="Details" data-content='{{details}}'>{{showName}}</a>-->
                             </td>
                             <td>{{category}}</td>
                             <td>
@@ -32,16 +33,18 @@
                                 <button data-name="{{progress}}" data-author="{{author}}" data-link="{{boothNum}}" data-showName="{{showName}}" class="btn-small btn-light paidbtn" style="display: none;">Confirm</button>
                             </td>
                         </tr>
-                        <!--<div id="acc{{boothNum}}" class="collapse">
-                            <p>
+                        <tr>
+                            <td colspan="4">
+                            <div id="acc{{boothNum}}" class="collapse">
                                 {{details}}
-                            </p>
-                        </div>-->
+                            </div>
+                            </td>
+                        </tr>
                     {{/each}}
                 </tbody>
             </table>
         </div>
-        <div class="col-md-6 mb-3">
+        <div class="col-lg-6 mb-3">
             <h4>Existing Jobs</h4>
             <table id="jobExistingTable" class="table table-hover">
                 <thead>
@@ -56,8 +59,11 @@
                 <tbody class="table table-hover table-borderless">
                     {{#each datajobs}}
                     <tr>
-                        <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
-                        <td scope="row"><a href="javascript:void(0);" data-toggle="popover" data-placement="bottom" data-trigger="focus" title="Details" data-content="{{details}}">{{showName}}</a></td>
+                        <td scope="row">
+                            <!--<a href="/vendor/#acc{{boothNum}}" data-toggle="collapse" data-parent="#accordion">{{showName}}</a>-->
+                            <button class="btn btn-link showExistingNameBtn" data-name="{{boothNum}}">{{showName}}</button>
+                            <!--<a href="javascript:void(0);" data-toggle="popover" data-html="true" data-placement="bottom" data-trigger="focus" title="Details" data-content='{{details}}'>{{showName}}</a>-->
+                        </td>
                         <td>{{category}}</td>
                         <td>{{size}}</td>
                         <td>
@@ -76,6 +82,13 @@
                                     </div>
                                 </div>
                             </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                        <div id="existing{{boothNum}}" class="collapse">
+                            {{details}}
+                        </div>
                         </td>
                     </tr>
                     {{/each}}
@@ -98,6 +111,39 @@
             });
         });*/
         //const table = document.getElementsByTagName()
+        $("#jobProgressTable").find(".collapse").each(function() {
+            var data = $(this).html();
+            data = data.replace(/&lt;/g, "<");
+            data = data.replace(/&gt;/g, ">");
+            data = data.replace(/&#x3D;/g, "=");
+            data = data.replace(/&quot;/g, '"');
+            data = data.replace("<script>", "&lt;script&gt;");
+            data = data.replace("<style>", "&lt;style&gt;");
+            $(this).html(data);
+        });
+        $("#jobExistingTable").find(".collapse").each(function() {
+            var data = $(this).html();
+            data = data.replace(/&lt;/g, "<");
+            data = data.replace(/&gt;/g, ">");
+            data = data.replace(/&#x3D;/g, "=");
+            data = data.replace("<script>", "&lt;script&gt;");
+            data = data.replace("<style>", "&lt;style&gt;");
+            $(this).html(data);
+        });
+        $(".showExistingNameBtn").each(function() {
+            var attr = $(this).attr("data-name");
+            attr = "existing" + attr;
+            $(this).click(function() {
+                $("#" + attr).collapse('toggle');
+            });
+        });
+        $(".showProgressNameBtn").each(function() {
+            var attr = $(this).attr("data-name");
+            attr = "acc" + attr;
+            $(this).click(function() {
+                $("#" + attr).collapse('toggle');
+            });
+        });
         $(".contractbtn").each(function() {
             if($(this).attr("data-name") == "waitContract") {
                 $(this).removeAttr("style");
