@@ -7,4 +7,4 @@ $(function(){
     data = data.replace("<style>", "&lt;style&gt;");
 
     document.getElementById('detailsShow').innerHTML = data;
-})();
+});
