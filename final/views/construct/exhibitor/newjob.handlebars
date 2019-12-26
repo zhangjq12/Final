@@ -229,7 +229,7 @@
         //if(op == "upload") {
         nameEmpty = false;
         boothIdEmpty = false;
-        $d = $("#details")[0].contentWindow.document; // IE、FF都兼容
+        $d = $("#details")[0].contentWindow.document;
         $d.designMode = "on";
         $d.contentEditable = true;
         $d.open();
@@ -334,6 +334,7 @@
                 success: function(res) {
                     var des = res["des"];
                     exe('insertImage', des);
+                    $("#details").contents().find("body").html($("#details").contents().find("body").html().replace(/<img src/g, "<img style='max-width:100%;' src"));
                 },
                 error: function(err) {
                     location.href("/");
@@ -390,6 +391,9 @@
         formData.append('category', category);
         formData.append('details', $("#details").val());
         formData.append('size', size);*/
+        $("#details").contents().find("body").html($("#details").contents().find("body").html().replace(/<img src/g, "<img style='max-width:100%;' src"));
+        const details = $("#details").contents().find("body").html();
+        console.log(details);
         const formData = {
             boothId: $("#boothId").val(),
             showName: $("#showName").val(),
@@ -397,9 +401,8 @@
             author: $("#author").attr('data-name'),
             size: size,
             category: category,
-            details: $("#details").contents().find("body").html()
+            details: details
         }
-        console.log(formData);
 
         $.ajax({
             type: "post",
@@ -410,7 +413,7 @@
                 //if(id == "") {
                 if(res["success"] == "success") {
                     $("#modifytabDiaFooter").hide();
-                    $("#modifytabDiaBody").html('<div class="container"><p>Create This Job Successfully!</p></br><span id="totalSecond">3</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back to the job page!</span></div>');
+                    $("#modifytabDiaBody").html('<div class="container"><p>Create This Job Successfully!</p></br><span id="totalSecond">1</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back to the job page!</span></div>');
                     jQuery.getScript("/public/js/autourl.js").done(function(){
                         var fun = auto;
                         //fun("/exhibitor/show?id=" + res["id"]);
@@ -419,7 +422,7 @@
                 }
                 else {
                     $("#modifytabDiaFooter").hide();
-                    $("#modifytabDiaBody").html('<div class="container"><p>Job exists! Create failed!</p></br><span id="totalSecond">3</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back to the job page!</span></div>');
+                    $("#modifytabDiaBody").html('<div class="container"><p>Job exists! Create failed!</p></br><span id="totalSecond">1</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back to the job page!</span></div>');
                     jQuery.getScript("/public/js/autourl.js").done(function(){
                         var fun = auto;
                         //fun("/exhibitor/show?id=" + res["id"]);

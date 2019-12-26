@@ -60,17 +60,17 @@ footer {
     animation: slideRight 1.5s ease-out;
 }
 
-.exhibitorImg {
+#exhibitorImg {
     display: block;
-    width: 100%;
     height: auto;
+    width: 100%;
 
 }
 
-.vendorImg {
+#vendorImg {
     display: block;
-    width: 100%;
     height: auto;
+    width: 100%;
 
 }
 
@@ -112,7 +112,7 @@ footer {
 
 
     font-family: "Paytone One";
-    font-size: 3em;
+    font-size: 3vw;
     font-style: normal;
     font-variant: normal;
     font-weight: 70;

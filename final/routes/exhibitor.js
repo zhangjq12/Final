@@ -49,6 +49,7 @@ router.post("/newjob", async (req, res) => {
         category: xss(req.body.category),
         details: xss(req.body.details)
     }
+    console.log(request["details"]);
     try {
         const data = await tab.getBoothNum(request["boothId"]);
         if(data.length == 0) {

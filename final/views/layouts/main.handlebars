@@ -198,7 +198,7 @@
                                     success: function(res) {
                                         if(res["status"] == "success") {
                                             $("#signinFooter").hide();
-                                            $("#signinBody").html('<div class="container"><p>' + res["user"] + ', welcome back!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back homepage!</span></div>');
+                                            $("#signinBody").html('<div class="container"><p>' + res["user"] + ', welcome back!</p></br><span id="totalSecond">1</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back homepage!</span></div>');
                                             jQuery.getScript("/public/js/autourl.js").done(function(){
                                                 var fun = auto;
                                                 fun("/");
@@ -395,7 +395,7 @@
                                 url: "/logout",
                                 success: function() {
                                     $("#logoutFooter").hide();
-                                    $("#logoutBody").html('<div class="container"><p>Log out successfully! Expecting your back!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back homepage!</span></div>');
+                                    $("#logoutBody").html('<div class="container"><p>Log out successfully! Expecting your back!</p></br><span id="totalSecond">1</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back homepage!</span></div>');
                                     jQuery.getScript("/public/js/autourl.js").done(function(){
                                         var fun = auto;
                                         fun("/");

@@ -504,7 +504,7 @@
             success: function(res) {
                 if(res["status"] == "success") {
                     $("#signUpDiaTitle").text("Welcome to our site!")
-                    $("#signUpDiaBody").html('<div class="container"><p>' + res["user"] + ', welcome to EXHIBITOR as a member!</p></br><span id="totalSecond">5</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back homepage!</span></div>');
+                    $("#signUpDiaBody").html('<div class="container"><p>' + res["user"] + ', welcome to EXHIBITOR as a member!</p></br><span id="totalSecond">1</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back homepage!</span></div>');
                     $("#signUpDia").modal('show');
                     jQuery.getScript("/public/js/autourl.js").done(function(){
                         var fun = auto;
