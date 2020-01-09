@@ -22,10 +22,13 @@
                     Size: {{data.size}};
                 </li>
                 <li>
-                    Category: {{data.category}};
+                    Category: <br/>
+                    {{#each data.price.each}}
+                    {{name}}&nbsp;&nbsp;✕&nbsp;&nbsp;{{num}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{price}}<br/>
+                    {{/each}}
                 </li>
                 <li>
-                    Total Price: ${{data.price}}.
+                    Total Price: {{data.price.total}}.
                 </li>
                 <li>
                     Details: {{data.details}}

@@ -59,12 +59,40 @@
                             <option id="exhibitorOption" value="exhibitor">Exhibitor</option>
                         </select>
                     </div>
+                </div>
+                <!--<div class="from-row">
+                    <div class="col-md-12 mb-3">
+                        <label id="UsCheck" class="btn btn-light" for="isUS">
+                            <input type="checkbox" id="isUS" autocomplete="off">
+                            US Company Only*
+                        </label>
+                    </div>
+                </div>
+                <div id="usOnly" class="form-row">
                     <div class="col-md-6 mb-3">
                         <label for="taxId">Tax ID:</label>
                         <input id="taxId" type="text" name="taxId" class="form-control" placeholder="taxId"/>
                     </div>
-                </div>
-                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="stateId">State ID:</label>
+                        <input id="stateId" type="text" name="stateId" class="form-control" placeholder="stateId"/>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+        <div class="card border-light mb-3">
+            <div class="card-header">
+                <label id="UsCheck" class="btn btn-light" for="isUS">
+                    <input type="checkbox" id="isUS" autocomplete="off">
+                    US Company Only*
+                </label>
+            </div>
+            <div class="card-body">
+                <div id="usOnly" class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="taxId">Tax ID:</label>
+                        <input id="taxId" type="text" name="taxId" class="form-control" placeholder="taxId"/>
+                    </div>
                     <div class="col-md-6 mb-3">
                         <label for="stateId">State ID:</label>
                         <input id="stateId" type="text" name="stateId" class="form-control" placeholder="stateId"/>
@@ -403,6 +431,14 @@
         personalModified = true;
         $('#selectPersonalDia').modal('hide');
     });
+    $("#UsCheck").click(function() {
+        if($("#isUS").is(":checked")) {
+            $("#usOnly").show();
+        }
+        else {
+            $("#usOnly").hide();
+        }
+    });
     $(document).ready(function(){
         empty = false;
         emailValid = false;
@@ -411,6 +447,7 @@
         passwordMin = false;
         passwordMax = false;
         conpassMatch = false;
+        $("#usOnly").hide();
         /*bootstrapValidate(['#user', '#password', '#conPassword', '#first', '#last', '#email'], 'required: This can not be empty!');
         bootstrapValidate('#email', 'email: Enter a valid E-Mail!');
         bootstrapValidate('#user', 'min:6: Your username should more than 6 charactors!|max:20: Your username should no more than 20 charactors!');

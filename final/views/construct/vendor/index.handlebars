@@ -1,13 +1,13 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-xl mb-3">
-            <h4>Jobs Done or In Progress</h4>
+            <h4>Jobs In Progress</h4>
             <table id="jobProgressTable" class="table table-hover">
                 <thead>
                     <tr>
                         <!--<th scope="col"></th>-->
                         <th scope="col">Show Name</th>
-                        <th scope="col">Category</th>
+                        <th scope="col">End Date</th>
                         <th scope="col">Progress</th>
                         <th scope="col">Operation</th>
                     </tr>
@@ -22,7 +22,7 @@
                                 <button class="btn btn-link showProgressNameBtn" data-name="{{boothNum}}">{{showName}}</button>
                                 <!--<a href="javascript:void(0);" data-toggle="popover" data-html="true" data-placement="bottom" data-trigger="focus" title="Details" data-content='{{details}}'>{{showName}}</a>-->
                             </td>
-                            <td class="align-middle">{{category}}</td>
+                            <td class="align-middle">{{date.end}}</td>
                             <td class="align-middle">
                                 <div class="progress">
                                     <div class="progress-bar" data-name="{{progress}}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
@@ -36,6 +36,51 @@
                         <tr>
                             <td colspan="4">
                             <div id="acc{{boothNum}}" class="collapse">
+                                {{#each category}}
+                                <p>{{name}}&nbsp;&nbsp;✕&nbsp;&nbsp;{{num}}</p>
+                                {{/each}}
+                                {{details}}
+                            </div>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <h4>Jobs Done</h4>
+            <table id="jobProgressTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <!--<th scope="col"></th>-->
+                        <th scope="col">Show Name</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Progress</th>
+                    </tr>
+                </thead>
+                <tbody class="table table-hover table-borderless">
+                    {{#each datadone}}
+                        <!--<div class="author" data-name="{{author}}"></div>-->
+                        <tr>
+                            <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
+                            <td scope="row">
+                                <!--<a href="/vendor/#acc{{boothNum}}" data-toggle="collapse" data-parent="#accordion">{{showName}}</a>-->
+                                <button class="btn btn-link showProgressNameBtn" data-name="{{boothNum}}">{{showName}}</button>
+                                <!--<a href="javascript:void(0);" data-toggle="popover" data-html="true" data-placement="bottom" data-trigger="focus" title="Details" data-content='{{details}}'>{{showName}}</a>-->
+                            </td>
+                            <td class="align-middle">{{date.end}}</td>
+                            <td class="align-middle"><a href="/info?name={{author}}">{{author}}</a></td>
+                            <td class="align-middle">
+                                <div class="progress">
+                                    <div class="progress-bar" data-name="{{progress}}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                            <div id="acc{{boothNum}}" class="collapse">
+                                {{#each category}}
+                                <p>{{name}}&nbsp;&nbsp;✕&nbsp;&nbsp;{{num}}</p>
+                                {{/each}}
                                 {{details}}
                             </div>
                             </td>
@@ -51,8 +96,8 @@
                     <tr>
                         <!--<th scope="col"></th>-->
                         <th scope="col">Show Name</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Size</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Author</th>
                         <th scope="col">Estimate Price</th>
                     </tr>
                 </thead>
@@ -64,10 +109,10 @@
                             <button class="btn btn-link showExistingNameBtn" data-name="{{boothNum}}">{{showName}}</button>
                             <!--<a href="javascript:void(0);" data-toggle="popover" data-html="true" data-placement="bottom" data-trigger="focus" title="Details" data-content='{{details}}'>{{showName}}</a>-->
                         </td>
-                        <td class="align-middle">{{category}}</td>
-                        <td class="align-middle">{{size}}</td>
+                        <td class="align-middle">{{date.end}}</td>
+                        <td class="align-middle"><a href="/info?name={{author}}">{{author}}</a></td>
                         <td class="align-middle">
-                            <form class="estimateForm">
+                            <!--<form class="estimateForm">
                                 <input type="hidden" name="id" value="{{boothNum}}"></input>
                                 <input type="hidden" name="author" value="{{author}}"></input>
                                 <input type="hidden" name="showName" value="{{showName}}"></input>
@@ -81,7 +126,47 @@
                                         <button type="submit" class="btn btn-light">Submit</button>
                                     </div>
                                 </div>
-                            </form>
+                            </form>-->
+                            <button class="btn btn-link showPriceDe" data-name="{{boothNum}}">Estimate</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align-middle" colspan="4">
+                            <div id="cat{{boothNum}}" class="collapse">
+                                <form class="estimateForm">
+                                {{#each category}}
+                                <div class="row mb-3">
+                                    <div class="col-sm-8">
+                                        {{name}}&nbsp;&nbsp;✕&nbsp;&nbsp;{{num}}
+                                    </div>
+                                    <div class="input-group input-group-sm col-sm-4">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">$</span>
+                                        </div>
+                                        <input class="form-control col-sm-5" type="text" id="price+{{name}}+{{num}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required/>
+                                    </div>
+                                </div>
+                                {{/each}}
+                                <div class="row mb-3">
+                                    <div class="col-sm-8">
+                                        Total:
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <input type="hidden" name="id" value="{{boothNum}}"></input>
+                                        <input type="hidden" name="author" value="{{author}}"></input>
+                                        <input type="hidden" name="showName" value="{{showName}}"></input>
+                                        <span class="totalPriceSpan">$0.00</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-8">
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button type="submit" class="btn btn-light">Submit</button>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -104,6 +189,14 @@
             trigger: 'focus'
         });
     });
+    /*function OnInput (event) {
+        alert ("The new content: " + event.target.value);
+    }
+    function OnPropChanged (event) {
+        if (event.propertyName.toLowerCase () == "value") {
+            alert ("The new content: " + event.srcElement.value);
+        }
+    }*/
     $(document).ready(function() {
         /*$("#jobProgressTable").find("a").each(function() {
             $(this).on("click", function() {
@@ -119,6 +212,7 @@
             data = data.replace(/&quot;/g, '"');
             data = data.replace("<script>", "&lt;script&gt;");
             data = data.replace("<style>", "&lt;style&gt;");
+            data = data.replace(/<img src/g, "<img style='max-width:100%;' src");
             $(this).html(data);
         });
         $("#jobExistingTable").find(".collapse").each(function() {
@@ -128,6 +222,7 @@
             data = data.replace(/&#x3D;/g, "=");
             data = data.replace("<script>", "&lt;script&gt;");
             data = data.replace("<style>", "&lt;style&gt;");
+            data = data.replace(/<img src/g, "<img style='max-width:100%;' src");
             $(this).html(data);
         });
         $(".showExistingNameBtn").each(function() {
@@ -144,6 +239,14 @@
                 $("#" + attr).collapse('toggle');
             });
         });
+        $(".showPriceDe").each(function() {
+            var attr = $(this).attr("data-name");
+            attr = "cat" + attr;
+            $(this).click(function() {
+                $("#" + attr).collapse('toggle');
+            });
+        });
+
         $(".contractbtn").each(function() {
             if($(this).attr("data-name") == "waitContract") {
                 $(this).removeAttr("style");
@@ -217,12 +320,40 @@
             })
         });
         $(".estimateForm").each(function() {
+            //$(this).find("input[type='text']").bind("input propertychange", function(e) {
+                //var sum = 0;
+                //console.log(sum);
+            $(this).find("input[id^='price']").change(function() {
+                //console.log(1);
+                var sum = 0.00;
+                $(this).parent().parent().parent().find("input[id^='price']").each(function() {
+                    sum += parseFloat($(this).val() == "" ? 0.00 : $(this).val());
+                    //console.log(sum);
+                });
+                sum = sum.toFixed(2);
+                //console.log($(this).val());
+                //console.log(sum);
+                $(this).parent().parent().parent().find(".totalPriceSpan").html("$" + sum.toString());
+            });
+                //$(this).find(".totalPriceSpan").html("$&nbsp;&nbsp;" + sum.toString());
+            //});
             $(this).submit(function(e) {
                 e.preventDefault();
-                var boothNum = $(this).children("input[name='id']").val();
-                var author = $(this).children("input[name='author']").val();
+                var boothNum = $(this).find("input[name='id']").val();
+                var author = $(this).find("input[name='author']").val();
                 var showName = $(this).find("input[name='showName']").val();
-                var price = $(this).find("div input[type='text']").val();
+                var arr = [];
+                $(this).find("input[id^='price']").each(function() {
+                    var name = $(this).attr("id").split("+")[1];
+                    var num = $(this).attr("id").split("+")[2];
+                    var price = parseFloat($(this).val());
+                    price = price.toFixed(2);
+                    var priceStr = "$" + price.toString();
+                    var obj = {"name": name, "num": num, "price": priceStr};
+                    arr.push(obj);
+                }); 
+                var price1 = {"each": arr, "total": $(this).find(".totalPriceSpan").html()};
+                var price = JSON.stringify(price1);
                 var user = $("#uNameShow").attr("data-name");
                 $.ajax({
                     type: "post",

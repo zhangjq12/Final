@@ -1,0 +1,19 @@
+<div class="container">
+    {{#each data}}
+        <div class="media">
+            <img class="mr-3 rounded-circle" src="/public/image/portrait/defaultHead.jpg" width="40" height="40" alt="headPortrait">
+            <div class="media-body" id="myProfile">
+                <h5>User Name:</h5> <p>{{userName}}</p>
+                <h5>Email Address:</h5> <p>{{email}}</p>
+                <h5>Company Info:</h5> <p>{{companyInfo}}</p>
+                <h5>Contact Info:</h5> <p>{{contactInfo}}</p>
+                <h5>License Copy:</h5> <p><img style="width: 200px; height: 100px" src="/public/image/license/{{license}}"></p>
+                <h5>Personal Copy:</h5> <p><img style="width: 200px; height: 100px" src="/public/image/personal/{{personal}}"></p>
+                {{#if stateId}}
+                    <h5>State Id:</h5> <p>{{stateId}}</p>
+                    <h5>Tax Id:</h5> <p>{{taxId}}</p>
+                {{/if}}
+            </div>
+        </div>
+    {{/each}}
+</div>

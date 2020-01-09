@@ -49,11 +49,22 @@ router.post("/newjob", async (req, res) => {
         category: xss(req.body.category),
         details: xss(req.body.details)
     }
-    console.log(request["details"]);
     try {
+        console.log(typeof request["category"]);
+        console.log(request["category"]);
+        var date = JSON.parse(request["date"]);
+        console.log(date);
+        var category = request["category"].split('},');
+        console.log(category);
+        for(var i = 0; i < category.length - 1; i++) {
+            category[i] += "}"
+            category[i] = JSON.parse(category[i]);
+        }
+        category[category.length - 1] = JSON.parse(category[category.length - 1]);
+        console.log(category);
         const data = await tab.getBoothNum(request["boothId"]);
         if(data.length == 0) {
-            const data = await tab.create(request["boothId"], request["showName"], request["date"], request["author"], request["size"], request["category"], request["details"]);
+            const data = await tab.create(request["boothId"], request["showName"], date, request["author"], request["size"], category, request["details"]);
             const author = await users.getName(request["author"]);
             const time = new Date();
             const t = time.toISOString();

@@ -12,7 +12,8 @@
                     <tr>
                         <!--<th scope="col"></th>-->
                         <th scope="col">Show Name</th>
-                        <th scope="col">Category</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">End Date</th>
                         <th scope="col">Progress</th>
                     </tr>
                 </thead>
@@ -21,7 +22,8 @@
                     <tr>
                         <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
                         <td scope="row"><a href="/exhibitor/show?id={{boothNum}}">{{showName}}</a></td>
-                        <td>{{category}}</td>
+                        <td>{{date.start}}</td>
+                        <td>{{date.end}}</td>
                         <td>
                             <div class="progress">
                                 <div class="progress-bar" data-name="{{progress}}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>

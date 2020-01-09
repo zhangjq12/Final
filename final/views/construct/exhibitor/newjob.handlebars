@@ -8,17 +8,23 @@
             <div class="card-body">
                 <div class="container" id="author" data-name={{author}}></div>
                 <div class="form-row">
-                    <div class="col-md-4 mb-2">
-                        <label for="boothId">Booth ID:</label>
+                    <div class="col-md-6 mb-2">
+                        <label for="boothId">Booth Number:</label>
                         <input id="boothId" type="text" class="form-control" name="boothId" value="{{boothId}}"></input>
                     </div>
-                    <div class="col-md-4 mb-2">
+                    <div class="col-md-6 mb-2">
                         <label for="showName">Show Name:</label>
                         <input id="showName" type="text" class="form-control" name="showName" value="{{showName}}"></input>
                     </div>
-                    <div class="col-md-4 mb-2">
-                        <label for="date">Date:</label>
-                        <input id="date" type="date" class="form-control" name="date" value="{{date}}"></input>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-2">
+                        <label for="startDate">Start Date:</label>
+                        <input id="startDate" type="date" class="form-control" name="startDate" value="{{date}}"></input>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                        <label for="endDate">End Date:</label>
+                        <input id="endDate" type="date" class="form-control" name="endDate" value="{{date}}"></input>
                     </div>
                 </div>
             </div>
@@ -45,35 +51,88 @@
                         <div class="card-body">
                             <h5 class="card-title">Categories</h5>
                             <div class="row">
-                                <div class="form-check form-check-inline col-md-2">
-                                    <input class="form-check-input" type="checkbox" id="Furniture" value="furniture">
-                                    <label class="form-check-label" for="Furniture">Furniture</label>
+                                <div class="form-check form-check-inline col-md-6">
+                                    <label id="furBtn" class="btn btn-light" for="Furniture">
+                                        <input type="checkbox" id="Furniture" value="furniture">
+                                        Furniture
+                                    </label>
+                                    <div id="furNumDiv" class="input-group input-group-sm">
+                                        <span class="input-group-prepend">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                        <label for="furNum" class="sr-only">Number:</label>
+                                        <input class="form-control col-md-2" type="text" id="furNum" onkeyup="this.value=this.value.replace(/\D|^0/g,'')" onafterpaste="this.value=this.value.replace(/\D|^0/g,'')"></input>
+                                    </div>
                                 </div>
-                                <div class="form-check form-check-inline col-md-2">
-                                    <input class="form-check-input" type="checkbox" id="Graphic" value="graphic">
-                                    <label class="form-check-label" for="Graphic">Graphic</label>
-                                </div>
-                                <div class="form-check form-check-inline col-md-2">
-                                    <input class="form-check-input" type="checkbox" id="Carpet" value="carpet">
-                                    <label class="form-check-label" for="Carpet">Carpet</label>
-                                </div>
-                                <div class="form-check form-check-inline col-md-3">
-                                    <input class="form-check-input" type="checkbox" id="HangingSign" value="hangingSign">
-                                    <label class="form-check-label" for="HangingSign">Hanging Sign</label>
+                                <div class="form-check form-check-inline col-md-6">
+                                    <label id="graBtn" class="btn btn-light" for="Graphic">
+                                        <input type="checkbox" id="Graphic" value="graphic">
+                                        Graphic
+                                    </label>
+                                    <div id="graNumDiv" class="input-group input-group-sm">
+                                        <span class="input-group-prepend">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                        <label for="graNum" class="sr-only">Number:</label>
+                                        <input class="form-control col-md-2" type="text" id="graNum" onkeyup="this.value=this.value.replace(/\D|^0/g,'')" onafterpaste="this.value=this.value.replace(/\D|^0/g,'')"></input>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="form-check form-check-inline col-md-2">
-                                    <input class="form-check-input" type="checkbox" id="Lighting" value="lighting">
-                                    <label class="form-check-label" for="Lighting">Lighting</label>
+                                <div class="form-check form-check-inline col-md-6">
+                                    <label id="carBtn" class="btn btn-light" for="Carpet">
+                                        <input type="checkbox" id="Carpet" value="carpet">
+                                        Carpet
+                                    </label>
+                                    <div id="carNumDiv" class="input-group input-group-sm">
+                                        <span class="input-group-prepend">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                        <label for="carNum" class="sr-only">Number:</label>
+                                        <input class="form-control col-md-2" type="text" id="carNum" onkeyup="this.value=this.value.replace(/\D|^0/g,'')" onafterpaste="this.value=this.value.replace(/\D|^0/g,'')"></input>
+                                    </div>
                                 </div>
-                                <div class="form-check form-check-inline col-md-2">
-                                    <input class="form-check-input" type="checkbox" id="AV" value="av">
-                                    <label class="form-check-label" for="AV">AV</label>
+                                <div class="form-check form-check-inline col-md-6">
+                                    <label id="hanBtn" class="btn btn-light" for="HangingSign">
+                                        <input type="checkbox" id="HangingSign" value="hangingSign">
+                                        Hanging Sign
+                                    </label>
+                                    <div id="hanNumDiv" class="input-group input-group-sm">
+                                    <span class="input-group-prepend">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                    <label for="hanNum" class="sr-only">Number:</label>
+                                    <input class="form-control col-md-2" type="text" id="hanNum" onkeyup="this.value=this.value.replace(/\D|^0/g,'')" onafterpaste="this.value=this.value.replace(/\D|^0/g,'')"></input>
+                                    </div>
                                 </div>
-                                <div class="form-check form-check-inline col-md-2">
-                                    <input class="form-check-input" type="checkbox" id="Electric" value="electric">
-                                    <label class="form-check-label" for="Electric">Electric</label>
+                            </div>
+                            <div class="row">
+                                <div class="form-check form-check-inline col-md-6">
+                                    <label id="ligBtn" class="btn btn-light" for="Lighting">
+                                        <input type="checkbox" id="Lighting" value="lighting">
+                                        Lighting
+                                    </label>
+                                    <div id="ligNumDiv" class="input-group input-group-sm">
+                                    <span class="input-group-prepend">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                    <label for="ligNum" class="sr-only">Number:</label>
+                                    <input class="form-control col-md-2" type="text" id="ligNum" onkeyup="this.value=this.value.replace(/\D|^0/g,'')" onafterpaste="this.value=this.value.replace(/\D|^0/g,'')"></input>
+                                    </div>
+                                </div>
+                                <div class="form-check form-check-inline col-md-6">
+                                    <label id="avBtn" class="btn btn-light" for="AV">
+                                        <input type="checkbox" id="AV" value="av">
+                                        AV
+                                    </label>
+                                    <div id="avNumDiv" class="input-group input-group-sm">
+                                    <span class="input-group-prepend">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                    <label for="avNum" class="sr-only">Number:</label>
+                                    <input class="form-control col-md-2" type="text" id="avNum" onkeyup="this.value=this.value.replace(/\D|^0/g,'')" onafterpaste="this.value=this.value.replace(/\D|^0/g,'')"></input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-check form-check-inline col-md-6">
+                                    <label id="eleBtn" class="btn btn-light" for="Electric">
+                                        <input class="form-check-input" type="checkbox" id="Electric" value="electric">
+                                        Electric
+                                    </label>
+                                    <div id="eleNumDiv" class="input-group input-group-sm">
+                                    <span class="input-group-prepend">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                    <label for="eleNum" class="sr-only">Number:</label>
+                                    <input class="form-control col-md-2" type="text" id="eleNum" onkeyup="this.value=this.value.replace(/\D|^0/g,'')" onafterpaste="this.value=this.value.replace(/\D|^0/g,'')"></input>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -225,6 +284,62 @@
             $("#tabSubmit").attr('disabled', true);
         }
     });*/
+    $("#furBtn").click(function() {
+        if($("#Furniture").is(":checked")) {
+            $("#furNumDiv").show();
+        }
+        else {
+            $("#furNumDiv").hide();
+        }
+    });
+    $("#graBtn").click(function() {
+        if($("#Graphic").is(":checked")) {
+            $("#graNumDiv").show();
+        }
+        else {
+            $("#graNumDiv").hide();
+        }
+    });
+    $("#carBtn").click(function() {
+        if($("#Carpet").is(":checked")) {
+            $("#carNumDiv").show();
+        }
+        else {
+            $("#carNumDiv").hide();
+        }
+    });
+    $("#hanBtn").click(function() {
+        if($("#HangingSign").is(":checked")) {
+            $("#hanNumDiv").show();
+        }
+        else {
+            $("#hanNumDiv").hide();
+        }
+    });
+    $("#ligBtn").click(function() {
+        if($("#Lighting").is(":checked")) {
+            $("#ligNumDiv").show();
+        }
+        else {
+            $("#ligNumDiv").hide();
+        }
+    });
+    $("#avBtn").click(function() {
+        if($("#AV").is(":checked")) {
+            $("#avNumDiv").show();
+        }
+        else {
+            $("#avNumDiv").hide();
+        }
+    });
+    $("#eleBtn").click(function() {
+        if($("#Electric").is(":checked")) {
+            $("#eleNumDiv").show();
+        }
+        else {
+            $("#eleNumDiv").hide();
+        }
+    });
     $(document).ready(function(){
         //if(op == "upload") {
         nameEmpty = false;
@@ -237,6 +352,15 @@
         function exe(name, args = null) {
             $d.execCommand(name, false, args);
         }
+
+        $("#furNumDiv").hide();
+        $("#graNumDiv").hide();
+        $("#carNumDiv").hide();
+        $("#hanNumDiv").hide();
+        $("#ligNumDiv").hide();
+        $("#avNumDiv").hide();
+        $("#eleNumDiv").hide();
+
 
         $("#details").bind('keypress', function(e) {
             if(e.keyCode == 13) {
@@ -358,32 +482,51 @@
         $('#yesmodify').prop('disabled', true);
         //var formData = new FormData();
         var category = [];
-        var size = [];
+        var size1 = [];
 
         if($("#Furniture").is(":checked")) {
-            category.push("Furniture");
+            var obj = {"name": "Furniture","num": $("#furNum").val() == "" ? 0 : parseInt($("#furNum").val())};
+            var obj1 = JSON.stringify(obj);
+            category.push(obj1);
         }
         if($("#Graphic").is(":checked")) {
-            category.push("Graphic");
+            var obj = {"name": "Graphic", "num": $("#graNum").val() == "" ? 0 : parseInt($("#graNum").val())};
+            var obj1 = JSON.stringify(obj);
+            category.push(obj1);
         }
         if($("#Carpet").is(":checked")) {
-            category.push("Carpet");
+            var obj = {"name": "Carpet", "num": $("#carNum").val() == "" ? 0 : parseInt($("#carNum").val())};
+            var obj1 = JSON.stringify(obj);
+            category.push(obj1);
         }
         if($("#HangingSign").is(":checked")) {
-            category.push("Hanging Sign");
+            var obj = {"name": "Hanging Sign", "num": $("#hanNum").val() == "" ? 0 : parseInt($("#hanNum").val())};
+            var obj1 = JSON.stringify(obj);
+            category.push(obj1);
         }
         if($("#Lighting").is(":checked")) {
-            category.push("Lighting");
+            var obj = {"name": "Lighting", "num": $("#ligNum").val() == "" ? 0 : parseInt($("#ligNum").val())};
+            var obj1 = JSON.stringify(obj);
+            category.push(obj1);
         }
         if($("#AV").is(":checked")) {
-            category.push("AV");
+            var obj = {"name": "AV", "num": $("#avNum").val() == "" ? 0 : parseInt($("#avNum").val())};
+            var obj1 = JSON.stringify(obj);
+            category.push(obj1);
         }
         if($("#Electric").is(":checked")) {
-            category.push("Electric");
+            var obj = {"name": "Electric", "num": $("#eleNum").val() == "" ? 0 : parseInt($("#eleNum").val())};
+            var obj1 = JSON.stringify(obj);
+            category.push(obj1);
         }
-        size.push($("#size1").val());
-        size.push($("#size2").val());
-
+        size1.push($("#size1").val());
+        size1.push($("#size2").val());
+        var size = "";
+        size = size1.join(",");
+        var startDate = $("#startDate").val();
+        var endDate = $("#endDate").val();
+        var date1 = {"start": startDate, "end": endDate};
+        var date = JSON.stringify(date1);
         /*formData.append('showName', $("#showName").val());
         formData.append('boothId', $("#boothId").val());
         formData.append('date', $("#date").val());
@@ -393,11 +536,11 @@
         formData.append('size', size);*/
         $("#details").contents().find("body").html($("#details").contents().find("body").html().replace(/<img src/g, "<img style='max-width:100%;' src"));
         const details = $("#details").contents().find("body").html();
-        console.log(details);
+        //console.log(details);
         const formData = {
             boothId: $("#boothId").val(),
             showName: $("#showName").val(),
-            date: $("#date").val(),
+            date: date,
             author: $("#author").attr('data-name'),
             size: size,
             category: category,
@@ -409,6 +552,7 @@
             url: "/exhibitor/newjob/",
             dataType: "json",
             data: formData,
+            traditional: true,
             success: function(res) {
                 //if(id == "") {
                 if(res["success"] == "success") {

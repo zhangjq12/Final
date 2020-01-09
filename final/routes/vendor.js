@@ -23,6 +23,7 @@ router.get("/", async (req, res) => {
             throw "error";
         var datajobs = [];
         var dataprogress = [];
+        var datadone = [];
         for(var i = 0; i < data.length; i++) {
             const size12 = data[i]["size"].split(",");
             data[i]["size"] = size12[0] + "✕" + size12[1];
@@ -50,7 +51,16 @@ router.get("/", async (req, res) => {
                 dataprogress.push(data[i]);
             }*/
         }
-        res.render("construct/vendor/index", {title: "EXHIBITOR for vendor", status: Head, dataprogress: dataprogress, datajobs: datajobs});
+        var ind = 0;
+        while(ind < dataprogress.length) {
+            if(dataprogress[ind]["progress"] == "done") {
+                datadone.push(dataprogress[ind]);
+                dataprogress.splice(ind, 1);
+                ind --;
+            }
+            ind ++;
+        }
+        res.render("construct/vendor/index", {title: "EXHIBITOR for vendor", status: Head, dataprogress: dataprogress, datajobs: datajobs, datadone: datadone});
     }
     catch (e) {
         res.render("construct/error", {title: "Error!", status: Head});
@@ -90,6 +100,9 @@ router.post("/estimate", async (req, res) => {
     }
     //console.log(request);
     try {
+        console.log(request);
+        var pri = JSON.parse(request["price"]);
+        console.log(pri);
         const data = await price.getBoothId(request["id"]);
         const data1 = await tab.getBoothNum(request["id"]);
         const data2 = await users.getName(data1[0]["author"]);
@@ -111,10 +124,10 @@ router.post("/estimate", async (req, res) => {
         }
         var data4;
         if(!boo) {
-            data4 = await price.create(request["id"], data2[0]["_id"], data3[0]["_id"], request["price"]);
+            data4 = await price.create(request["id"], data2[0]["_id"], data3[0]["_id"], pri);
         }
         else {
-            data4 = await price.modifyPrice(pid, request["price"]);
+            data4 = await price.modifyPrice(pid, pri);
         }
         res.send({success: "success"});
     }
