@@ -17,16 +17,33 @@
                         <input id="showName" type="text" class="form-control" name="showName" value="{{showName}}"></input>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="col-md-6 mb-2">
+                <!--<div class="form-row">-->
+                    <!--<div class="col-md-6 mb-2">
                         <label for="startDate">Start Date:</label>
                         <input id="startDate" type="date" class="form-control" name="startDate" value="{{date}}"></input>
                     </div>
                     <div class="col-md-6 mb-2">
                         <label for="endDate">End Date:</label>
                         <input id="endDate" type="date" class="form-control" name="endDate" value="{{date}}"></input>
+                    </div>-->
+                <!--<div class="form-row">
+                    <div class="col-md-6 mb-2">
+                        <label for="startDate">Start Date:</label>
                     </div>
-                </div>
+                    <div class="col-md-6 mb-2">
+                        <label for="endDate">End Date:</label>
+                    </div>
+                </div>-->
+                    <div class="input-daterange input-group" id="dateStartEnd" data-provide="datepicker">
+                        <label for="startDate">Start Date&nbsp;</label>
+                        <input id="startDate" type="text" class="input-md form-control" name="startDate" data-placement="bottom"/>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">to</span>
+                        </div>
+                        <input id="endDate" type="text" class="input-md form-control" name="endDate" />
+                        <label for="endDate">&nbsp;End Date</label>
+                    </div>
+                <!--</div>-->
             </div>
         </div>
         <div class="card border-light mb-3">
@@ -52,7 +69,7 @@
                             <h5 class="card-title">Categories</h5>
                             <div class="row">
                                 <div class="form-check form-check-inline col-md-6">
-                                    <label id="furBtn" class="btn btn-light" for="Furniture">
+                                    <label id="furBtn" class="btn btn-light" for="Furniture" style="width: 200px;">
                                         <input type="checkbox" id="Furniture" value="furniture">
                                         Furniture
                                     </label>
@@ -63,7 +80,7 @@
                                     </div>
                                 </div>
                                 <div class="form-check form-check-inline col-md-6">
-                                    <label id="graBtn" class="btn btn-light" for="Graphic">
+                                    <label id="graBtn" class="btn btn-light" for="Graphic" style="width: 200px;">
                                         <input type="checkbox" id="Graphic" value="graphic">
                                         Graphic
                                     </label>
@@ -76,7 +93,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-check form-check-inline col-md-6">
-                                    <label id="carBtn" class="btn btn-light" for="Carpet">
+                                    <label id="carBtn" class="btn btn-light" for="Carpet" style="width: 200px;">
                                         <input type="checkbox" id="Carpet" value="carpet">
                                         Carpet
                                     </label>
@@ -87,7 +104,7 @@
                                     </div>
                                 </div>
                                 <div class="form-check form-check-inline col-md-6">
-                                    <label id="hanBtn" class="btn btn-light" for="HangingSign">
+                                    <label id="hanBtn" class="btn btn-light" for="HangingSign" style="width: 200px;">
                                         <input type="checkbox" id="HangingSign" value="hangingSign">
                                         Hanging Sign
                                     </label>
@@ -100,7 +117,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-check form-check-inline col-md-6">
-                                    <label id="ligBtn" class="btn btn-light" for="Lighting">
+                                    <label id="ligBtn" class="btn btn-light" for="Lighting" style="width: 200px;">
                                         <input type="checkbox" id="Lighting" value="lighting">
                                         Lighting
                                     </label>
@@ -111,7 +128,7 @@
                                     </div>
                                 </div>
                                 <div class="form-check form-check-inline col-md-6">
-                                    <label id="avBtn" class="btn btn-light" for="AV">
+                                    <label id="avBtn" class="btn btn-light" for="AV" style="width: 200px;">
                                         <input type="checkbox" id="AV" value="av">
                                         AV
                                     </label>
@@ -124,7 +141,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-check form-check-inline col-md-6">
-                                    <label id="eleBtn" class="btn btn-light" for="Electric">
+                                    <label id="eleBtn" class="btn btn-light" for="Electric" style="width: 200px;">
                                         <input class="form-check-input" type="checkbox" id="Electric" value="electric">
                                         Electric
                                     </label>
@@ -284,6 +301,12 @@
             $("#tabSubmit").attr('disabled', true);
         }
     });*/
+    $(".input-daterange").datepicker({
+        format: 'yyyy-mm-dd',
+        clearBtn: true,
+        todayHighlight: true,
+        orientation: "bottom left"
+    });
     $("#furBtn").click(function() {
         if($("#Furniture").is(":checked")) {
             $("#furNumDiv").show();

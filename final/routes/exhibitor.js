@@ -21,12 +21,31 @@ router.get("/", async (req, res) => {
         if(voe[0]["voe"] == "vendor")
             throw "error";
         const data = await tab.getAuthor(auth);
+        var existdata = [];
+        var invaliddata = [];
         for(var i = 0; i < data.length; i++) {
             const iprogress = await progress.getBoothId(data[i]["boothNum"]);
             data[i]["progress"] = iprogress[0]["eprogress"];
             //console.log(data);
+            var outofdate = false;
+            var date1 = new Date(data[i]["date"]["end"]);
+            var date2 = new Date();
+            var yy = date2.getFullYear();
+            var mm = date2.getMonth() + 1;
+            var dd = date2.getDate();
+            var ddd2 = yy + "-" + mm + "-" + dd;
+            var date3 = new Date(ddd2);
+            if(date1 < date3)
+                outofdate = true;
+
+            if(outofdate) {
+                invaliddata.push(data[i]);
+            }
+            else {
+                existdata.push(data[i]);
+            }
         }
-        res.render("construct/exhibitor/index", {title: "EXHIBITOR for exhibitor", status: Head, data: data});
+        res.render("construct/exhibitor/index", {title: "EXHIBITOR for exhibitor", status: Head, existdata: existdata, invaliddata: invaliddata});
     }
     catch (e) {
         res.render("construct/error", {title: "Error!", status: Head});
@@ -50,12 +69,12 @@ router.post("/newjob", async (req, res) => {
         details: xss(req.body.details)
     }
     try {
-        console.log(typeof request["category"]);
-        console.log(request["category"]);
+        //console.log(typeof request["category"]);
+        //console.log(request["category"]);
         var date = JSON.parse(request["date"]);
-        console.log(date);
+        //console.log(date);
         var category = request["category"].split('},');
-        console.log(category);
+        //console.log(category);
         for(var i = 0; i < category.length - 1; i++) {
             category[i] += "}"
             category[i] = JSON.parse(category[i]);
@@ -190,7 +209,10 @@ router.get("/payment", async (req, res) => {
     const Head = await head(req);
     const id = req.query.id;
     try {
-        res.render("construct/exhibitor/payment", {title: "Payment of " + id, status: Head, boothNum: id});
+        const data = await price.getBoothId(id);
+        const pricedata = data[0]["price"];
+        //console.log(pricedata);
+        res.render("construct/exhibitor/payment", {title: "Payment of " + id, status: Head, boothNum: id, price: pricedata});
     }
     catch (e) {
         res.render("construct/error", {title: "Error!", status: Head});

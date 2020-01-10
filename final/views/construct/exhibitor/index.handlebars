@@ -1,11 +1,42 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-6 mb-3">
-            <h4>New Job</h4>
-            <p>Post your requirements and make your exhibition perfect!</p>
-            <a class="btn btn-light" href="/exhibitor/newjob">Post New Job</a>
+        <div class="col-xl mb-3">
+            <div class="mb-3">
+                <h4>New Job</h4>
+                <p>Post your requirements and make your exhibition perfect!</p>
+                <a class="btn btn-light" href="/exhibitor/newjob">Post New Job</a>
+            </div>
+            <div class="mb-3">
+                <h4>Jobs Out of Date</h4>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <!--<th scope="col"></th>-->
+                            <th scope="col">Show Name</th>
+                            <th scope="col">Start Date</th>
+                            <th scope="col">End Date</th>
+                            <th scope="col">Progress</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table table-hover table-borderless">
+                        {{#each invaliddata}}
+                        <tr>
+                            <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
+                            <td scope="row"><a href="/exhibitor/show?id={{boothNum}}">{{showName}}</a></td>
+                            <td>{{date.start}}</td>
+                            <td>{{date.end}}</td>
+                            <td>
+                                <div class="progress">
+                                    <div class="progress-bar" data-name="{{progress}}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="col-md-6 mb-3">
+        <div class="col-xl mb-3">
             <h4>Existing Jobs</h4>
             <table class="table table-hover">
                 <thead>
@@ -18,7 +49,7 @@
                     </tr>
                 </thead>
                 <tbody class="table table-hover table-borderless">
-                    {{#each data}}
+                    {{#each existdata}}
                     <tr>
                         <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
                         <td scope="row"><a href="/exhibitor/show?id={{boothNum}}">{{showName}}</a></td>

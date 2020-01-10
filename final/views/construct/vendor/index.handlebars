@@ -22,7 +22,7 @@
                                 <button class="btn btn-link showProgressNameBtn" data-name="{{boothNum}}">{{showName}}</button>
                                 <!--<a href="javascript:void(0);" data-toggle="popover" data-html="true" data-placement="bottom" data-trigger="focus" title="Details" data-content='{{details}}'>{{showName}}</a>-->
                             </td>
-                            <td class="align-middle">{{date.end}}</td>
+                            <td class="align-middle endDate">{{date.end}}</td>
                             <td class="align-middle">
                                 <div class="progress">
                                     <div class="progress-bar" data-name="{{progress}}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
@@ -248,7 +248,17 @@
         });
 
         $(".contractbtn").each(function() {
-            if($(this).attr("data-name") == "waitContract") {
+            var outofdate = false;
+            var date1 = new Date($(this).parent().parent().find(".endDate").html());
+            var date2 = new Date();
+            var yy = date2.getFullYear();
+            var mm = date2.getMonth() + 1;
+            var dd = date2.getDate();
+            var ddd2 = yy + "-" + mm + "-" + dd;
+            var date3 = new Date(ddd2);
+            if(date1 < date3)
+                outofdate = true;
+            if($(this).attr("data-name") == "waitContract" && !outofdate) {
                 $(this).removeAttr("style");
             }
             $(this).bind("click", function() {
@@ -287,7 +297,17 @@
             }
         });
         $(".paidbtn").each(function() {
-            if($(this).attr("data-name") == "paid") {
+            var outofdate = false;
+            var date1 = new Date($(this).parent().parent().find(".endDate").html());
+            var date2 = new Date();
+            var yy = date2.getFullYear();
+            var mm = date2.getMonth() + 1;
+            var dd = date2.getDate();
+            var ddd2 = yy + "-" + mm + "-" + dd;
+            var date3 = new Date(ddd2);
+            if(date1 < date3)
+                outofdate = true;
+            if($(this).attr("data-name") == "paid" && !outofdate) {
                 $(this).removeAttr("style");
             }
             $(this).bind("click", function() {

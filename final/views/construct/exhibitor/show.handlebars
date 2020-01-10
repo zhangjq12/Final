@@ -10,6 +10,7 @@
                     <div id="boothId" data-name={{boothNum}}></div>
                     <h2 class="card-title">Show Name - <span>{{showName}}</span></h2>
                     <!--<p class="card-text mb-3"><span>Categories - </span>{{category}}</p>-->
+                    <p class="card-text mb-3"><span>Start Date - </span>{{date.start}}&nbsp;&nbsp;&nbsp;<span id="endDate+{{date.end}}">End Date - </span>{{date.end}}</p>
                     <h4 class="mb-3">Project Details</h4>
                     <h6 class="mb-3">Categories</h6>
                     {{#each category}}
@@ -193,6 +194,16 @@
 <script src="../../../public/js/transferImage.js"></script>
 <script>
     $(document).ready(function () {
+        var date1 = new Date($("span[id^='endDate+']").attr("id"));
+        var date2 = new Date();
+        var yy = date2.getFullYear();
+        var mm = date2.getMonth() + 1;
+        var dd = date2.getDate();
+        var ddd2 = yy + "-" + mm + "-" + dd;
+        var date3 = new Date(ddd2);
+        if(date1 < date3) {
+            $("button").prop("disabled", true);
+        }
         if ($("div.progress").attr("data-name") != "bidding") {
             if ($("div.progress").attr("data-name") == "waitContract") {
                 $(".progress-bar").attr("style", "width: 20%");

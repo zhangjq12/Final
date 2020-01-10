@@ -30,6 +30,7 @@ router.get("/", async (req, res) => {
             const iprogress = await progress.getBoothId(data[i]["boothNum"]);
             var boo = false;
             var bidding = false;
+            var outofdate = false;
             for(var j = 0; j < iprogress.length; j++) {
                 if(iprogress[j]["vendorId"].toString() == user[0]["_id"].toString()) {
                     data[i]["progress"] = iprogress[j]["vprogress"];
@@ -40,7 +41,17 @@ router.get("/", async (req, res) => {
                     bidding = true;
                 }
             }
-            if(!boo && bidding) {
+            var date1 = new Date(data[i]["date"]["end"]);
+            var date2 = new Date();
+            var yy = date2.getFullYear();
+            var mm = date2.getMonth() + 1;
+            var dd = date2.getDate();
+            var ddd2 = yy + "-" + mm + "-" + dd;
+            var date3 = new Date(ddd2);
+            if(date1 < date3)
+                outofdate = true;
+
+            if(!boo && bidding && !outofdate) {
                 datajobs.push(data[i]);
             }
             /*if(iprogress[0]["eprogress"] == 'bidding') {
@@ -100,9 +111,9 @@ router.post("/estimate", async (req, res) => {
     }
     //console.log(request);
     try {
-        console.log(request);
+        //console.log(request);
         var pri = JSON.parse(request["price"]);
-        console.log(pri);
+        //console.log(pri);
         const data = await price.getBoothId(request["id"]);
         const data1 = await tab.getBoothNum(request["id"]);
         const data2 = await users.getName(data1[0]["author"]);
