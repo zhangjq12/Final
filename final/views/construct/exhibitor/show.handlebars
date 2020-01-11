@@ -194,16 +194,6 @@
 <script src="../../../public/js/transferImage.js"></script>
 <script>
     $(document).ready(function () {
-        var date1 = new Date($("span[id^='endDate+']").attr("id"));
-        var date2 = new Date();
-        var yy = date2.getFullYear();
-        var mm = date2.getMonth() + 1;
-        var dd = date2.getDate();
-        var ddd2 = yy + "-" + mm + "-" + dd;
-        var date3 = new Date(ddd2);
-        if(date1 < date3) {
-            $("button").prop("disabled", true);
-        }
         if ($("div.progress").attr("data-name") != "bidding") {
             if ($("div.progress").attr("data-name") == "waitContract") {
                 $(".progress-bar").attr("style", "width: 20%");
@@ -253,6 +243,16 @@
         }
         else {
             $("#statusText").text("Bidding: 0% completed");
+        }
+        var date1 = new Date($("span[id^='endDate+']").attr("id"));
+        var date2 = new Date();
+        var yy = date2.getFullYear();
+        var mm = date2.getMonth() + 1;
+        var dd = date2.getDate();
+        var ddd2 = yy + "-" + mm + "-" + dd;
+        var date3 = new Date(ddd2);
+        if(date1 < date3) {
+            $("button").prop("disabled", true);
         }
         $("#priceTable tbody button").each(function () {
             $(this).bind("click", function () {
