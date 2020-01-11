@@ -39,10 +39,10 @@ router.get("/", async (req, res) => {
                 outofdate = true;
 
             if(outofdate) {
-                invaliddata.push(data[i]);
+                invaliddata.splice(0, 0, data[i]);
             }
             else {
-                existdata.push(data[i]);
+                existdata.splice(0, 0, data[i]);
             }
         }
         res.render("construct/exhibitor/index", {title: "EXHIBITOR for exhibitor", status: Head, existdata: existdata, invaliddata: invaliddata});

@@ -34,7 +34,7 @@ router.get("/", async (req, res) => {
             for(var j = 0; j < iprogress.length; j++) {
                 if(iprogress[j]["vendorId"].toString() == user[0]["_id"].toString()) {
                     data[i]["progress"] = iprogress[j]["vprogress"];
-                    dataprogress.push(data[i]);
+                    dataprogress.splice(0, 0, data[i]);
                     boo = true;
                 }
                 if(iprogress[j]["eprogress"] == "bidding") {
@@ -52,7 +52,7 @@ router.get("/", async (req, res) => {
                 outofdate = true;
 
             if(!boo && bidding && !outofdate) {
-                datajobs.push(data[i]);
+                datajobs.splice(0, 0, data[i]);
             }
             /*if(iprogress[0]["eprogress"] == 'bidding') {
                 datajobs.push(data[i]);
