@@ -7,9 +7,11 @@ const head = require("./head");
 const comments = data.comments;
 const progress = data.progress;
 const contract = data.contract;
+const categories = data.categories;
 const price = data.price;
 const authentication = require("./authentication");
 const upload2 = require("./middleware/multer2");
+const newjobUpload = require("./middleware/newJobMulter");
 const xss = require('xss');
 const ObjectID = require('mongodb').ObjectID;
 
@@ -55,10 +57,16 @@ router.get("/", async (req, res) => {
 router.get("/newjob", async (req, res) => {
     const Head = await head(req);
     const auth = await authentication(req);
-    res.render("construct/exhibitor/newjob", {title: "New Job", status: Head, author: auth});
+    const category = categories;
+    if(auth != null){
+        res.render("construct/exhibitor/newjob", {title: "New Job", status: Head, author: auth, category: category});
+    }
+    else {
+        res.render("construct/error", {title: "Error!", status: Head});
+    }
 });
 
-router.post("/newjob", async (req, res) => {
+router.post("/newjob", newjobUpload.fields([{name: "elec", maxCount: 1}, {name: "dsgn", maxCount: 1}]), async (req, res) => {
     const request = {
         boothId: xss(req.body.boothId),
         showName: xss(req.body.showName),
@@ -71,19 +79,37 @@ router.post("/newjob", async (req, res) => {
     try {
         //console.log(typeof request["category"]);
         //console.log(request["category"]);
+        var elecFile;
+        if(req.files["elec"] != undefined)
+            elecFile = req.files["elec"][0].filename;
+        else
+            elecFile = "";
+        const dsgnFile = req.files["dsgn"][0].filename;
         var date = JSON.parse(request["date"]);
-        //console.log(date);
-        var category = request["category"].split('},');
-        //console.log(category);
-        for(var i = 0; i < category.length - 1; i++) {
-            category[i] += "}"
-            category[i] = JSON.parse(category[i]);
+        var category = JSON.parse(request["category"]);
+        var details = JSON.parse(request["details"]);
+        console.log(details);
+        //console.log(elecFile);
+        if(elecFile == "") {
+            category["electricity"]["nonupload"] = "yes";
+            category["electricity"].filename = "";
         }
-        category[category.length - 1] = JSON.parse(category[category.length - 1]);
-        console.log(category);
+        else
+            category["electricity"].filename = elecFile;
+        details["designFile"].filename = dsgnFile;
+        //console.log(category.electricity);
+        //console.log(date);
+        //var category = request["category"].split('},');
+        //console.log(category);
+        //for(var i = 0; i < category.length - 1; i++) {
+            //category[i] += "}"
+            //category[i] = JSON.parse(category[i]);
+        //}
+        //category[category.length - 1] = JSON.parse(category[category.length - 1]);
+        //console.log(category);
         const data = await tab.getBoothNum(request["boothId"]);
         if(data.length == 0) {
-            const data = await tab.create(request["boothId"], request["showName"], date, request["author"], request["size"], category, request["details"]);
+            const data = await tab.create(request["boothId"], request["showName"], date, request["author"], request["size"], category, details);
             const author = await users.getName(request["author"]);
             const time = new Date();
             const t = time.toISOString();
@@ -116,6 +142,8 @@ router.get("/show", async (req, res) => {
     const id = req.query.id;
     try {
         const data = await tab.getBoothNum(id);
+        const designFileName = data[0]["details"]["designFile"]["filename"].split("_+_")[1];
+        //console.log(designFileName);
         const progressData = await progress.getBoothId(id);
         for(var i = 0; i < data.length; i++) {
             data[i]["progress"] = progressData[0]["eprogress"];
@@ -128,7 +156,7 @@ router.get("/show", async (req, res) => {
             //console.log(usr);
             priceData[i]["vendorName"] = usr[0]["userName"];
         }
-        res.render("construct/exhibitor/show", {title: "Details of " + data[0]["showName"], status: Head, data: data, price: priceData});
+        res.render("construct/exhibitor/show", {title: "Details of " + data[0]["showName"], status: Head, data: data, price: priceData, designFileName: designFileName});
     }
     catch (e) {
         res.render("construct/error", {title: "error", status: Head});

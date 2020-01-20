@@ -6,6 +6,6 @@ $(function(){
     data = data.replace("<script>", "&lt;script&gt;");
     data = data.replace("<style>", "&lt;style&gt;");
     data = data.replace(/<img src/g, "<img style='max-width:100%;' src");
-
+    data = data.replace("&amp;nbsp;", " ");
     document.getElementById('detailsShow').innerHTML = data;
 });

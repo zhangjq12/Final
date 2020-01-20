@@ -6,6 +6,7 @@ const contact = require("./contact");
 const progress = require("./progress");
 const price = require("./price");
 const contract = require("./contract");
+const categories = require("./categories");
 
 module.exports = {
     comments: comments,
@@ -15,5 +16,6 @@ module.exports = {
     contact: contact,
     progress: progress,
     price: price,
-    contract: contract
+    contract: contract,
+    categories: categories
 }

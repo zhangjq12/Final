@@ -13,11 +13,39 @@
                     <p class="card-text mb-3"><span>Start Date - </span>{{date.start}}&nbsp;&nbsp;&nbsp;<span id="endDate+{{date.end}}">End Date - </span>{{date.end}}</p>
                     <h4 class="mb-3">Project Details</h4>
                     <h6 class="mb-3">Categories</h6>
-                    {{#each category}}
-                    <p>{{name}}&nbsp;&nbsp;✕&nbsp;&nbsp;{{num}}</p>
-                    {{/each}}
+                    <p>Carpet:&nbsp;{{category.carpet.name}} - {{category.carpet.color}}</p>
+                    <p>Flooring:&nbsp;{{category.flooring.name}} - {{category.flooring.details}}</p>
+                    <p>Wall Panel:&nbsp;{{category.panel.name}} - {{category.panel.details}}</p>
+                    <p>Recieption:&nbsp;{{category.recieption.name}} 
+                        {{#if category.recieption.details}}- {{category.recieption.details}}&nbsp;&nbsp;Size: {{category.recieption.size}} {{/if}}
+                    </p>
+                    <p>Showcase:&nbsp;{{category.showcase.name}} 
+                        {{#if category.showcase.details}}- {{category.showcase.details}}&nbsp;&nbsp;Size: {{category.showcase.size}} {{/if}}
+                    </p>
+                    <p>Lighting:&nbsp;
+                        {{#each category.lighting.details}}
+                        {{name}}&nbsp;
+                        {{/each}}
+                    </p>
+                    {{#if category.electricity.nonupload}}
+                    {{else}}
+                    <p>Electricity:&nbsp;<a target="_blank" href="/public/image/exhibitor/electricity/{{category.electricity.filename}}"><img src="/public/image/exhibitor/electricity/{{category.electricity.filename}}" width="100px" height="70px"></a></p>
+                    {{/if}}
+                    <p>Graphic:&nbsp;
+                        {{#each category.graphic.details}}
+                        {{name}}&nbsp;
+                        {{/each}}
+                    </p>
+                    <p>Display:&nbsp;{{category.display.name}} - {{category.display.details}}</p>
+                    <p>Furniture:&nbsp;{{category.furniture.name}} - {{category.furniture.details}}</p>
+                    <p>Accessories:&nbsp;
+                        {{#each category.accessories.details}}
+                        {{name}}&nbsp;
+                        {{/each}}
+                    </p>
                     <h6 class="mb-3">Description</h6>
-                    <div id="detailsShow" class="card-text mb-3">{{details}}</div>
+                    <p><a target="_blank" href="/public/image/exhibitor/designPlan/{{details.designFile.filename}}">{{../designFileName}}</a></p>
+                    <div id="detailsShow" class="card-text mb-3">{{details.additionalInfo.details}}</div>
                     <div class="next-step">
                     
                     </div>
@@ -69,15 +97,43 @@
                     <tr>
                         <td colspan="3">
                             <div id="acc{{vendorId}}" class="collapse">
-                                {{#each price.each}}
                                 <div class="row">
-                                    <div class="col-md-8">
-                                        {{name}}&nbsp;&nbsp;✕&nbsp;&nbsp;{{num}}
+                                    <div class="col-md-6">
+                                        <h6>Category</h6>
                                     </div>
                                     <div class="col-md-4">
+                                        <h6>Quantity✕Each Price</h6>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <h6>Price</h6>
+                                    </div>
+                                </div>
+                                {{#each price.each}}
+                                {{#if unit}}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        {{name}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        {{num}}&nbsp;{{unit}}&nbsp;✕&nbsp;{{eachPrice}}
+                                    </div>
+                                    <div class="col-md-2">
                                         {{price}}
                                     </div>
                                 </div>
+                                {{else}}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        {{name}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        
+                                    </div>
+                                    <div class="col-md-2">
+                                        {{price}}
+                                    </div>
+                                </div>
+                                {{/if}}
                                 {{/each}}
                             </div>
                         </td>
@@ -194,6 +250,18 @@
 <script src="../../../public/js/transferImage.js"></script>
 <script>
     $(document).ready(function () {
+        $("#priceTable").find(".collapse").each(function() {
+            var data = $(this).html();
+            data = data.replace(/&lt;/g, "<");
+            data = data.replace(/&gt;/g, ">");
+            data = data.replace(/&#x3D;/g, "=");
+            data = data.replace(/&quot;/g, '"');
+            data = data.replace("<script>", "&lt;script&gt;");
+            data = data.replace("<style>", "&lt;style&gt;");
+            data = data.replace(/<img src/g, "<img style='max-width:100%;' src");
+            data = data.replace("&amp;nbsp;", " ");
+            $(this).html(data);
+        });
         if ($("div.progress").attr("data-name") != "bidding") {
             if ($("div.progress").attr("data-name") == "waitContract") {
                 $(".progress-bar").attr("style", "width: 20%");

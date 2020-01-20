@@ -36,11 +36,11 @@
                 </div>-->
                     <div class="input-daterange input-group" id="dateStartEnd" data-provide="datepicker">
                         <label for="startDate">Start Date&nbsp;</label>
-                        <input id="startDate" type="text" class="input-md form-control" name="startDate" data-placement="bottom"/>
+                        <input id="startDate" type="text" class="input-md form-control" name="startDate" data-placement="bottom" required/>
                         <div class="input-group-prepend">
                             <span class="input-group-text">to</span>
                         </div>
-                        <input id="endDate" type="text" class="input-md form-control" name="endDate" />
+                        <input id="endDate" type="text" class="input-md form-control" name="endDate" required/>
                         <label for="endDate">&nbsp;End Date</label>
                     </div>
                 <!--</div>-->
@@ -56,14 +56,514 @@
                         <label for="size">Booth Size:</label>
                         <div class="form-inline">
                         <label for="size1" class="sr-only">Booth Size left:</label>
-                        <input id="size1" type="text" class="form-control col-md-5" name="size1" placeholder="length"></input>
+                        <input id="size1" type="text" class="form-control col-md-5" name="size1" placeholder="length" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required></input>
                         <span>&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
                         <label for="size2" class="sr-only">Booth Size right:</label>
-                        <input id="size2" type="text" class="form-control col-md-5" name="size2" placeholder="width"></input>
+                        <input id="size2" type="text" class="form-control col-md-5" name="size2" placeholder="width" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required></input>
                         </div>
                     </div>
                 </div>
-                <div class="form-row">
+                <div class="form-row categories">
+                    <div class="card border-light col-xl-12 mb-3">
+                        <div class="card-header">
+                            <h5>Carpet</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row mb-4" id="carpetOptions">
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="carpetOption" id="carpetLight" value="Light+m<sup>2</sup>" required>
+                                    <label class="form-check-label" for="carpetLight">Light</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="carpetOption" id="carpetMiddle" value="Middle+m<sup>2</sup>">
+                                    <label class="form-check-label" for="carpetMiddle">Middle</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="carpetOption" id="carpetHigh" value="High+m<sup>2</sup>">
+                                    <label class="form-check-label" for="carpetHigh">High</label>
+                                </div>                             
+                            </div>
+                            <div class="form-row mb-2">
+                                <h6>Color:</h6>
+                            </div>
+                            <div class="form-row mb-3" id="carpetColor">
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetRed" value="Red" required>
+                                    <label class="form-check-label" for="carpetRed">Red</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetBlue" value="Blue">
+                                    <label class="form-check-label" for="carpetBlue">Blue</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetGreen" value="Green">
+                                    <label class="form-check-label" for="carpetGreen">Green</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border-light col-xl-12 mb-3">
+                        <div class="card-header">
+                            <h5>Flooring</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row mb-3" id="flooringOptions">
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="flooringOption" id="floorWooden" value="Wooden&nbsp;Floor+m<sup>2</sup>" required>
+                                    <label class="form-check-label" for="floorWooden">Wooden Floor</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="flooringOption" id="floorPlatform" value="Platform+m<sup>2</sup>" required>
+                                    <label class="form-check-label" for="floorPlatform">Platform</label>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3" id="flooringDetails">
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="flooringDetail" id="floorTexture" value="Texture">
+                                    <label class="form-check-label" for="floorTexture">Texture</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="flooringDetail" id="floorPlain" value="Plain">
+                                    <label class="form-check-label" for="floorPlain">Plain</label>
+                                </div>
+                                <!--<div class="col-xl-3">
+                                    <label for="floorOther" class="sr-only">Other</label>
+                                    <input class="form-control" id="floorOther" type="text" placeholder="Other...">
+                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border-light col-xl-12 mb-3">
+                        <div class="card-header">
+                            <h5>Wall Panel</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row mb-3" id="panelOptions">
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="panelOption" id="panelOilPaint" value="Oil&nbsp;Paint+m<sup>2</sup>" required>
+                                    <label class="form-check-label" for="panelOilPaint">Oil Paint</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="panelOption" id="panelLatexPaint" value="Latex&nbsp;Paint+m<sup>2</sup>">
+                                    <label class="form-check-label" for="panelLatexPaint">Latex Paint</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="panelOption" id="panelGraphic" value="Graphic+m<sup>2</sup>">
+                                    <label class="form-check-label" for="panelGraphic">Graphic</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="panelOption" id="panelLaminate" value="Laminate+m<sup>2</sup>">
+                                    <label class="form-check-label" for="panelLaminate">Laminate</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="panelOption" id="panelFoamBoard" value="Foam&nbsp;Board+m<sup>2</sup>">
+                                    <label class="form-check-label" for="panelFoamBoard">Foam Board</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="panelOption" id="panelWoodTexture" value="Wood&nbsp;Texture+m<sup>2</sup>">
+                                    <label class="form-check-label" for="panelWoodTexture">Wood Texture</label>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3" id="panelDetails">
+                                <div class="form-check form-check-inline col-xl-3">
+                                    <input class="form-check-input" type="radio" name="panelDetail" id="panelSingle" value="Single&nbsp;Side">
+                                    <label class="form-check-label" for="panelSingle">Single Side</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-3">
+                                    <input class="form-check-input" type="radio" name="panelDetail" id="panelDouble" value="Double&nbsp;Side">
+                                    <label class="form-check-label" for="panelDouble">Double Side</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border-light col-xl-6 mb-3">
+                        <div class="card-header">
+                            <h5>Recieption</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row mb-3" id="recieptionOptions">
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="recieptionOption" id="recieptionYes" value="Yes" required>
+                                    <label class="form-check-label" for="recieptionYes">Yes</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="recieptionOption" id="recieptionNo" value="No">
+                                    <label class="form-check-label" for="recieptionNo">No</label>
+                                </div>
+                            </div>
+                            <div id="recieptionDetails">
+                                <div class="form-row mb-3">
+                                    <div class="form-check form-check-inline col-xl-12">
+                                        <input class="form-check-input" type="radio" name="recieptionDetail" id="recieptionWooden+Graphic" value="Wooden+Graphic--m<sup>2</sup>">
+                                        <label class="form-check-label" for="recieptionWooden+Graphic">Wooden + Graphic</label>
+                                    </div>
+                                    <div class="form-check form-check-inline col-xl-12">
+                                        <input class="form-check-input" type="radio" name="recieptionDetail" id="recieptionPreset" value="Preset--m<sup>2</sup>">
+                                        <label class="form-check-label" for="recieptionPreset">Preset</label>
+                                    </div>
+                                </div>
+                                <div class="form-row mb-3">
+                                    <label>Size:</label>
+                                    <div class="form-inline">
+                                        <label for="recieptionSize1" class="sr-only"></label>
+                                        <input id="recieptionSize1" type="text" class="form-control col-md-3" placeholder="length" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false"></input>
+                                        <span>&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                        <label for="recieptionSize2" class="sr-only"></label>
+                                        <input id="recieptionSize2" type="text" class="form-control col-md-3" placeholder="width" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false"></input>
+                                        <span>&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                        <label for="recieptionSize3" class="sr-only"></label>
+                                        <input id="recieptionSize3" type="text" class="form-control col-md-3" placeholder="height" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false"></input>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border-light col-xl-6 mb-3">
+                        <div class="card-header">
+                            <h5>Show Case</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row mb-3" id="showcaseOptions">
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="showcaseOption" id="showcaseYes" value="Yes" required>
+                                    <label class="form-check-label" for="showcaseYes">Yes</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="showcaseOption" id="showcaseNo" value="No">
+                                    <label class="form-check-label" for="showcaseNo">No</label>
+                                </div>
+                            </div>
+                            <div id="showcaseDetails">
+                                <div class="form-row mb-3">
+                                    <div class="form-check form-check-inline col-xl-12">
+                                        <input class="form-check-input" type="radio" name="showcaseDetail" id="showcaseWooden+Graphic" value="Wooden+Graphic--m<sup>2</sup>">
+                                        <label class="form-check-label" for="showcaseWooden+Graphic">Wooden+Graphic</label>
+                                    </div>
+                                    <div class="form-check form-check-inline col-xl-12">
+                                        <input class="form-check-input" type="radio" name="showcaseDetail" id="showcasePreset" value="Preset--m<sup>2</sup>">
+                                        <label class="form-check-label" for="showcasePreset">Preset</label>
+                                    </div>
+                                </div>
+                                <div class="form-row mb-3">
+                                    <label>Size:</label>
+                                    <div class="form-inline">
+                                        <label for="showcaseSize1" class="sr-only"></label>
+                                        <input id="showcaseSize1" type="text" class="form-control col-md-3" placeholder="length" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false"></input>
+                                        <span>&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                        <label for="showcaseSize2" class="sr-only"></label>
+                                        <input id="showcaseSize2" type="text" class="form-control col-md-3" placeholder="width" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false"></input>
+                                        <span>&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                        <label for="showcaseSize3" class="sr-only"></label>
+                                        <input id="showcaseSize3" type="text" class="form-control col-md-3" placeholder="height" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false"></input>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border-light col-xl-12 mb-3">
+                        <div class="card-header">
+                            <h5>Lighting</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row mb-3" id="lightingOptions">
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" id="lightSpotlight" value="Spotlight+piece">
+                                    <label class="form-check-label" for="lightSpotlight">Spotlight</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" id="lightDownlight" value="Downlight+piece">
+                                    <label class="form-check-label" for="lightDownlight">Downlight</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" id="lightLEDStrip" value="LED&nbsp;Strip+piece">
+                                    <label class="form-check-label" for="lightLEDStrip">LED Strip</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" id="lightLighttube" value="Light&nbsp;Tube+piece">
+                                    <label class="form-check-label" for="lightLighttube">Light Tube</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" id="lightChandelier" value="Chandelier+piece">
+                                    <label class="form-check-label" for="lightChandelier">Chandelier</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" id="lightTracklight" value="Track&nbsp;Light+piece">
+                                    <label class="form-check-label" for="lightTracklight">Track Light</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border-light col-xl-12 mb-3">
+                        <div class="card-header">
+                            <h5>Electricity</h5>
+                        </div>
+                        <div class="card-body">
+                            <fieldset class="form-group">
+                                <div class="row">
+                                    <legend class="col-form-label col-sm-3 pt-0">Upload Electricity Plan:<br/><small>Picture only</small></legend>
+                                    <div class="col-sm-9">
+                                        <div class="form-row mb-3">
+                                            <img id="electricPreview" src="/public/image/exhibitor/electricity/default.jpeg" width="300px" height="200px">
+                                        </div>
+                                        <div class="form-row mb-3">
+                                            <label for="electricUpload" class="sr-only">Upload Electricity Plan:</label>
+                                            <input id="electricUpload" type="file" accept="image/png,image/gif,image/jpg,image/jpeg">
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="card border-light col-xl-12 mb-3">
+                        <div class="card-header">
+                            <h5>Graphic</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row mb-3" id="graphicOptions">
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" id="graphicGraphic" value="Graphic+m<sup>2</sup>">
+                                    <label class="form-check-label" for="graphicGraphic">Graphic</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" id="graphicDecals" value="Decals+m<sup>2</sup>">
+                                    <label class="form-check-label" for="graphicDecals">Decals</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" id="graphic3DLetter" value="3D&nbsp;Letter+m<sup>2</sup>">
+                                    <label class="form-check-label" for="graphic3DLetter">3D Letter</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" id="graphic3DLightingletter" value="3D&nbsp;Lighting&nbsp;Letter+m<sup>2</sup>">
+                                    <label class="form-check-label" for="graphic3DLightingletter">3D Lighting Letter</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" id="graphicAcrylicletter" value="Acrylic&nbsp;Letter+m<sup>2</sup>">
+                                    <label class="form-check-label" for="graphicAcrylicletter">Acrylic Letter</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" id="graphicLightbox" value="Light&nbsp;Box+in.sq">
+                                    <label class="form-check-label" for="graphicLightbox">Light Box</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" id="graphicLightingpanel" value="lighting&nbsp;Panel+in.sq">
+                                    <label class="form-check-label" for="graphicLightingpanel">Lighting Panel</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" id="graphicFrostedglassfilm" value="Frosted&nbsp;Glass&nbsp;Film+in.sq">
+                                    <label class="form-check-label" for="graphicFrostedglassfilm">Frosted Glass Film</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" id="graphicFabric" value="Fabric+in.sq">
+                                    <label class="form-check-label" for="graphicFabric">Fabric</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border-light col-xl-12 mb-3">
+                        <div class="card-header">
+                            <h5>Display</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row mb-3" id="displayOptions">
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="displayOption" id="display1080pTV" value="1080p&nbsp;TV+piece" required>
+                                    <label class="form-check-label" for="display1080pTV">1080p TV</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="displayOption" id="display4KTV" value="4K&nbsp;TV+piece">
+                                    <label class="form-check-label" for="display4KTV">4K TV</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="displayOption" id="displayAV" value="AV+piece">
+                                    <label class="form-check-label" for="displayAV">AV</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="displayOption" id="displaySpeaker&Mic" value="Speaker&Mic+piece">
+                                    <label class="form-check-label" for="displaySpeaker&Mic">Speaker&Mic</label>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3" id="display1080TVOptions">
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="display1080TVOption" id="display1080TV42" value="42'">
+                                    <label class="form-check-label" for="display1080TV42">42'</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="display1080TVOption" id="display1080TV55" value="55'">
+                                    <label class="form-check-label" for="display1080TV55">55'</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="display1080TVOption" id="display1080TV65" value="65'">
+                                    <label class="form-check-label" for="display1080TV65">65'</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="display1080TVOption" id="display1080TV75" value="75'">
+                                    <label class="form-check-label" for="display1080TV75">75'</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="display1080TVOption" id="display1080TV85" value="85'">
+                                    <label class="form-check-label" for="display1080TV85">85'</label>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3" id="display4KTVOptions">
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="display4KTVOption" id="display4KTV42" value="42'">
+                                    <label class="form-check-label" for="display4KTV42">42'</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="display4KTVOption" id="display4KTV55" value="55'">
+                                    <label class="form-check-label" for="display4KTV55">55'</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="display4KTVOption" id="display4KTV65" value="65'">
+                                    <label class="form-check-label" for="display4KTV65">65'</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="display4KTVOption" id="display4KTV75" value="75'">
+                                    <label class="form-check-label" for="display4KTV75">75'</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="display4KTVOption" id="display4KTV85" value="85'">
+                                    <label class="form-check-label" for="display4KTV85">85'</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border-light col-xl-12 mb-3">
+                        <div class="card-header">
+                            <h5>Furniture</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row mb-3" id="furnitureOptions">
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="furnitureOption" id="furnitureSofa" value="Sofa+piece" required>
+                                    <label class="form-check-label" for="furnitureSofa">Sofa</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="furnitureOption" id="furnitureTable" value="Table+piece">
+                                    <label class="form-check-label" for="furnitureTable">Table</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="furnitureOption" id="furnitureChair" value="Chair+piece">
+                                    <label class="form-check-label" for="furnitureChair">Chair</label>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3" id="furnitureSofaOptions">
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="furnitureSofaOption" id="furnitureSofaSingle" value="Single">
+                                    <label class="form-check-label" for="furnitureSofaSingle">Single</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="furnitureSofaOption" id="furnitureSofaDouble" value="Double">
+                                    <label class="form-check-label" for="furnitureSofaDouble">Double</label>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3" id="furnitureTableOptions">
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="furnitureTableOption" id="furnitureTableCoffeeTable" value="Coffee&nbsp;Table">
+                                    <label class="form-check-label" for="furnitureTableCoffeeTable">Coffee Table</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="furnitureTableOption" id="furnitureTableConferenceTable" value="Conference&nbsp;Table">
+                                    <label class="form-check-label" for="furnitureTableConferenceTable">Conference Table</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="furnitureTableOption" id="furnitureTableNegotiatingTable" value="Negotiating&nbsp;Table">
+                                    <label class="form-check-label" for="furnitureTableNegotiatingTable">Negotiating Table</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="furnitureTableOption" id="furnitureTableBarTable" value="Bar&nbsp;Table">
+                                    <label class="form-check-label" for="furnitureTableBarTable">Bar Table</label>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3" id="furnitureChairOptions">
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="furnitureChairOption" id="furnitureChairOfficeChair" value="Office&nbsp;Chair">
+                                    <label class="form-check-label" for="furnitureChairOfficeChair">Office Chair</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="furnitureChairOption" id="furnitureChairNegotiatingChairH" value="Negotiating&nbsp;Chair&nbsp;(H)">
+                                    <label class="form-check-label" for="furnitureChairNegotiatingChairH">Negotiating Chair (H)</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="furnitureChairOption" id="furnitureChairNegotiatingChairL" value="Negotiating&nbsp;Chair&nbsp;(L)">
+                                    <label class="form-check-label" for="furnitureChairNegotiatingChairL">Negotiating Chair (L)</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="radio" name="furnitureChairOption" id="furnitureChairBarStool" value="Bar&nbsp;Stool">
+                                    <label class="form-check-label" for="furnitureChairBarStool">Bar Stool</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card border-light col-xl-12 mb-3">
+                        <div class="card-header">
+                            <h5>Accessories</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row mb-3" id="accessoriesOptions">
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" id="accessoriesFilesRack" value="Files&nbsp;Rack+piece">
+                                    <label class="form-check-label" for="accessoriesFilesRack">Files Rack</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" id="accessoriesBusinessCard" value="Business&nbsp;Card+piece">
+                                    <label class="form-check-label" for="accessoriesBusinessCard">Business Card</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" id="accessoriesHook" value="Hook+piece">
+                                    <label class="form-check-label" for="accessoriesHook">Hook</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" id="accessoriesTrashCan" value="Trash&nbsp;Can+piece">
+                                    <label class="form-check-label" for="accessoriesTrashCan">Trash Can</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" id="accessoriesDrinking" value="Drinking+piece">
+                                    <label class="form-check-label" for="accessoriesDrinking">Drinking</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" id="accessoriesCandy" value="Candy+piece">
+                                    <label class="form-check-label" for="accessoriesCandy">Candy</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" id="accessoriesTissue" value="Tissue+piece">
+                                    <label class="form-check-label" for="accessoriesTissue">Tissue</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="form-row categories">
+                    {{#each category}}
+                    <div class="card border-light col-xl-4 mb-3">
+                        <div class="card-header">
+                            <h5>{{name}}</h5>
+                        </div>
+                        <div class="card-body">
+                            {{#each product}}
+                            <div class="col-xl-6">
+                                <span>{{No}}</span>
+                                <label id="product+{{No}}" class="btn btn-light" for="product+{{No}}+{{name}}+{{units}}" style="width: 300px;">
+                                    <input type="checkbox" id="product+{{No}}+{{name}}+{{units}}" autocomplete="off">
+                                    {{name}}
+                                </label>
+                                <ul>
+                                {{#each children}}
+                                    <li>
+                                        <label class="btn btn-light" for="productChild+{{name}}+{{units}}" style="width: 250px;">
+                                        <input type="checkbox" id="productChild+{{name}}+{{units}}" autocomplete="off">
+                                        {{name}}
+                                    </label>
+                                    </li>
+                                {{/each}}
+                                </ul>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>-->
+                <!--<div class="form-row">
                     <div class="card" style="width:100%">
                         <div class="card-body">
                             <h5 class="card-title">Categories</h5>
@@ -154,7 +654,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
         <div class="card border-light mb-3">
@@ -162,9 +662,20 @@
                 <h4>Details</h4>
             </div>
             <div class="card-body">
+            <fieldset class="form-group">
+                <div class="row">
+                    <legend class="col-form-label col-sm-3 pt-0">Upload Design Plan:<br/><small>Any types of file</small></legend>
+                    <div class="col-sm-9">
+                        <div class="form-row mb-3">
+                            <label for="designUpload" class="sr-only">Upload Design Plan:</label>
+                            <input id="designUpload" type="file" required>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
             <div class="form-row">
             <div class="col-md-12 mb-2">
-            <label for="details">Details: </label>
+            <label for="details">Additional Info: </label>
             <div class="btn-toolbar mb-2" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group mr-2" role="group" aria-label="Bold and Italic">
                     <button id="boldText" type="button" class="btn btn-light"><span style="font-weight: bold;">B</span></button>
@@ -199,20 +710,44 @@
                         </div>
                     </div>
                 </div>
-                <div class="btn-group" role="group" aria-label="Third group">
+                <!--<div class="btn-group" role="group" aria-label="Third group">
                     <button id="addImageBtn" type="button" class="btn btn-light">Add Images</button>
                 </div>
-                <input id="addImage" type="file" style="display: none;">
+                <input id="addImage" type="file" style="display: none;" accept="image/png,image/gif,image/jpg,image/jpeg">-->
             </div>
             <iframe id="details"></iframe>
             <!--<textarea id="details" name="details" rows="10" cols="80" class="form-control" placeholder="Tap your tab here!">{{details}}</textarea>-->
             </div>
             </div>
         </div>
-        <button id="tabSubmit" type="submit" data-toggle="modal" data-target="#modifytabDia" class="btn btn-primary" disabled="true">Submit</button>
+        <div class="form-row form-inline align-self-center">
+            <button id="preView" class="btn btn-primary">Preview</button>
+            <button id="tabSubmit" type="submit" data-toggle="modal" data-target="#modifytabDia" class="btn btn-primary" disabled="true">Submit</button>
+        </div>
         </div>
     </form>
 </div>
+
+<div class="modal fade" id="previewDia" tabindex="-1" role="dialog" aria-labelledby="previewDiaTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" id="previewDiaHeader">
+                <h5 class="modal-title" id="previewDiaTitle">Preview Your Info</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="previewDiaBody">
+                <div class="container">
+
+                </div>
+            </div>
+            <div class="modal-footer" id="previewFooter">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closePreview" >Close</button>
+            </div>
+        </div>
+    </div>
+</div> 
 
 <div class="modal fade" id="modifytabDia" tabindex="-1" role="dialog" aria-labelledby="modifytabDiaTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -240,6 +775,68 @@
     var boothIdEmpty = false;
     var artistEmpty = false;
     var contentEmpty = false;
+    var recieptionSize1 = "";
+    var recieptionSize2 = "";
+    var recieptionSize3 = "";
+    var showcaseSize1 = "";
+    var showcaseSize2 = "";
+    var showcaseSize3 = "";
+    var lighting = {};
+    var graphic = {};
+    var accessories = {};
+    var electricFile;
+    var designFile;
+    var datas = {
+        carpet: {
+            name: "",
+            unit: "",
+            color: ""
+        },
+        flooring: {
+            name: "",
+            unit: "",
+            details: ""
+        },
+        panel: {
+            name: "",
+            unit: "",
+            details: ""
+        },
+        recieption: {
+            name: "",
+            unit: "",
+            details: "",
+            size: ""
+        },
+        showcase: {
+            name: "",
+            unit: "",
+            details: "",
+            size: ""
+        },
+        lighting: {
+            details: []
+        },
+        electricity: {
+            filename: ""
+        },
+        graphic: {
+            details: []
+        },
+        display: {
+            name: "",
+            unit: "",
+            details: ""
+        },
+        furniture: {
+            name: "",
+            unit: "",
+            details: ""
+        },
+        accessories: {
+            details: []
+        }
+    };
     $('#newTabs').submit(function(){
         window.event.preventDefault();
         $(this).find(':button[type=submit]').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
@@ -307,7 +904,7 @@
         todayHighlight: true,
         orientation: "bottom left"
     });
-    $("#furBtn").click(function() {
+    /*$("#furBtn").click(function() {
         if($("#Furniture").is(":checked")) {
             $("#furNumDiv").show();
         }
@@ -363,6 +960,212 @@
             $("#eleNumDiv").hide();
         }
     });
+    $(".categories").find("label[id^='product']").each(function() {
+        $(this).click(function() {
+            if($(this).find("input[type='checkbox']").is(":checked") && $(this).parent().find("ul").find("li").length > 0) {
+                $(this).parent().find("ul").show();
+            }
+            else {
+                $(this).parent().find("ul").hide();
+            }
+        })
+    });*/
+    $("input[type='radio'][name='carpetOption']").change(function() {
+        datas.carpet.name = this.value.split("+")[0];
+        datas.carpet.unit = this.value.split("+")[1];
+    });
+    $("input[type='radio'][name='carpetColorOption']").change(function() {
+        datas.carpet.color = this.value;
+    });
+    $("input[type='radio'][name='flooringOption']").change(function() {
+        datas.flooring.name = this.value.split("+")[0];
+        datas.flooring.unit = this.value.split("+")[1];
+        $("#flooringDetails").show();
+    });
+    $("input[type='radio'][name='flooringDetail']").change(function() {
+        datas.flooring.details = this.value;
+    });
+
+    $("input[type='radio'][name='panelOption']").change(function() {
+        datas.panel.name = this.value.split("+")[0];
+        datas.panel.unit = this.value.split("+")[1];
+        $("#panelDetails").show();
+    });
+    $("input[type='radio'][name='panelDetail']").change(function() {
+        datas.panel.details = this.value;
+    });
+
+    $("input[type='radio'][name='recieptionOption']").change(function() {
+        datas.recieption.name = this.value;
+        if(this.value == "Yes")
+            $("#recieptionDetails").show();
+        else {
+            $("#recieptionDetails").hide();
+            datas.recieption.details = "";
+            datas.recieption.size = "";
+        }
+    });
+    $("input[type='radio'][name='recieptionDetail']").change(function() {
+        datas.recieption.unit = this.value.split("--")[1];
+        datas.recieption.details = this.value.split("--")[0];
+    });
+
+    $("input[id='recieptionSize1']").change(function() {
+        recieptionSize1 = this.value;
+    });
+    $("input[id='recieptionSize2']").change(function() {
+        recieptionSize2 = this.value;
+    });
+    $("input[id='recieptionSize3']").change(function() {
+        recieptionSize3 = this.value;
+    });
+
+    $("input[type='radio'][name='showcaseOption']").change(function() {
+        datas.showcase.name = this.value;
+        if(this.value == "Yes")
+            $("#showcaseDetails").show();
+        else {
+            $("#showcaseDetails").hide();
+            datas.showcase.details = "";
+            datas.showcase.size = "";
+        }
+    });
+    $("input[type='radio'][name='showcaseDetail']").change(function() {
+        datas.showcase.unit = this.value.split("--")[1];
+        datas.showcase.details = this.value.split("--")[0];
+    });
+
+    $("input[id='showcaseSize1']").change(function() {
+        showcaseSize1 = this.value;
+    });
+    $("input[id='showcaseSize2']").change(function() {
+        showcaseSize2 = this.value;
+    });
+    $("input[id='showcaseSize3']").change(function() {
+        showcaseSize3 = this.value;
+    });
+
+    $("input[type='checkbox'][id^='light']").change(function() {
+        var pre = this.value.split("+")[0];
+        var post = this.value.split("+")[1];
+        if(this.checked) {
+            lighting[pre] = post;
+        }
+        else {
+            delete lighting[pre];
+        }
+    });
+
+    $("input[id='electricUpload']").change(function() {
+        var file = this.files[0];
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $("#electricPreview").attr("src", e.target.result);
+        }
+        reader.readAsDataURL(file);
+        electricFile = file;
+    });
+
+    $("input[type='checkbox'][id^='graphic']").change(function() {
+        var pre = this.value.split("+")[0];
+        var post = this.value.split("+")[1];
+        if(this.checked) {
+            graphic[pre] = post;
+        }
+        else {
+            delete graphic[pre];
+        }
+    });
+
+    $("input[type='radio'][name='displayOption']").change(function() {
+        datas.display.name = this.value.split("+")[0];
+        datas.display.unit = this.value.split("+")[1];
+        if(this.id == "display1080pTV") {
+            $("#display1080TVOptions").show();
+            $("#display4KTVOptions").hide();
+            $("input[name='display1080TVOption']").prop("checked", false);
+            $("input[name='display1080TVOption']:eq(0)").prop("checked", true);
+            datas.display.details = "42'";
+        }
+        else 
+        if(this.id == "display4KTV") {
+            $("#display4KTVOptions").show();
+            $("#display1080TVOptions").hide();
+            $("input[name='display4KTVOption']").prop("checked", false);
+            $("input[name='display4KTVOption']:eq(0)").prop("checked", true);
+            datas.display.details = "42'";
+        }
+        else {
+            $("#display1080TVOptions").hide();
+            $("#display4KTVOptions").hide();
+            datas.display.details = "";
+        }
+        //console.log(datas.display);
+    });
+
+    $("input[type='radio'][name='display1080TVOption']").change(function() {
+        datas.display.details = this.value;
+    });
+    $("input[type='radio'][name='display4KTVOption']").change(function() {
+        datas.display.details = this.value;
+    });
+
+    $("input[type='radio'][name='furnitureOption']").change(function() {
+        datas.furniture.name = this.value.split("+")[0];
+        datas.furniture.unit = this.value.split("+")[1];
+        if(this.id == "furnitureSofa") {
+            $("#furnitureSofaOptions").show();
+            $("#furnitureTableOptions").hide();
+            $("#furnitureChairOptions").hide();
+            $("input[name='furnitureSofaOption']").prop("checked", false);
+            $("input[name='furnitureSofaOption']:eq(0)").prop("checked", true);
+            datas.furniture.details = $("input[name='furnitureSofaOption']:eq(0)").val();
+        }
+        else 
+        if(this.id == "furnitureTable") {
+            $("#furnitureSofaOptions").hide();
+            $("#furnitureTableOptions").show();
+            $("#furnitureChairOptions").hide();
+            $("input[name='furnitureTableOption']").prop("checked", false);
+            $("input[name='furnitureTableOption']:eq(0)").prop("checked", true);
+            datas.furniture.details = $("input[name='furnitureTableOption']:eq(0)").val();
+        }
+        else {
+            $("#furnitureSofaOptions").hide();
+            $("#furnitureTableOptions").hide();
+            $("#furnitureChairOptions").show();
+            $("input[name='furnitureChairOption']").prop("checked", false);
+            $("input[name='furnitureChairOption']:eq(0)").prop("checked", true);
+            datas.furniture.details = $("input[name='furnitureChairOption']:eq(0)").val();
+        }
+        //console.log(datas.display);
+    });
+
+    $("input[type='radio'][name='furnitureSofaOption']").change(function() {
+        datas.furniture.details = this.value;
+    });
+    $("input[type='radio'][name='furnitureTableOption']").change(function() {
+        datas.furniture.details = this.value;
+    });
+    $("input[type='radio'][name='furnitureChairOption']").change(function() {
+        datas.furniture.details = this.value;
+    });
+
+    $("input[type='checkbox'][id^='accessories']").change(function() {
+        var pre = this.value.split("+")[0];
+        var post = this.value.split("+")[1];
+        if(this.checked) {
+            accessories[pre] = post;
+        }
+        else {
+            delete accessories[pre];
+        }
+    });
+    $("#designUpload").change(function(e) {
+        var file = this.files[0];
+        designFile = file;
+    })
+
     $(document).ready(function(){
         //if(op == "upload") {
         nameEmpty = false;
@@ -376,6 +1179,16 @@
             $d.execCommand(name, false, args);
         }
 
+        $("#flooringDetails").hide();
+        $("#panelDetails").hide();
+        $("#recieptionDetails").hide();
+        $("#showcaseDetails").hide();
+        $("#display1080TVOptions").hide();
+        $("#display4KTVOptions").hide();
+        $("#furnitureSofaOptions").hide();
+        $("#furnitureTableOptions").hide();
+        $("#furnitureChairOptions").hide();
+
         $("#furNumDiv").hide();
         $("#graNumDiv").hide();
         $("#carNumDiv").hide();
@@ -384,6 +1197,7 @@
         $("#avNumDiv").hide();
         $("#eleNumDiv").hide();
 
+        $(".categories").find("ul").hide();
 
         $("#details").bind('keypress', function(e) {
             if(e.keyCode == 13) {
@@ -499,15 +1313,83 @@
         $('#tabSubmit').html('Submit');
         $('#tabSubmit').prop('disabled', false);
     });
+    //$("#previewDia").modal('toggle');
+    $("#preView").click(function(e) {
+        e.preventDefault();
+        var text = "";
+        text += "<span>Booth No.: " + $("#boothId").val() + "</span><br/>";
+        text += "<span>Show Name: " + $("#showName").val() + "</span><br/>";
+        text += "<span>Start Date: " + $("#startDate").val() + "</span><br/>";
+        text += "<span>End Date: " + $("#endDate").val() + "</span><br/>";
+        text += "<span>Booth Size: " + $("#size1").val() + " ✕ " + $("#size2").val() + "</span><br/>";
+        text += "<span>Carpet: " + datas.carpet.name + "-" + datas.carpet.color + "</span><br/>";
+        text += "<span>Flooring: " + datas.flooring.name + "-" + datas.flooring.details + "</span><br/>";
+        text += "<span>Wall Panel: " + datas.panel.name + "-" + datas.panel.details + "</span><br/>";
+        if(datas.recieption.name == "Yes")
+            text += "<span>Recieption: " + datas.recieption.details + "-" + recieptionSize1.toString() + "✕" + recieptionSize2.toString() + "✕" + recieptionSize3.toString() + "</span><br/>";
+        if(datas.showcase.name == "Yes")
+            text += "<span>Recieption: " + datas.showcase.details + "-" + showcaseSize1.toString() + "✕" + showcaseSize2.toString() + "✕" + showcaseSize3.toString() + "</span><br/>";
+        text += "<span>Lighting: ";
+        for(var key in lighting) {
+            text += key + " ";
+        }
+        text += "</span><br/>";
+        if(electricFile != undefined) {
+            text += "<span>Electricity: ";
+            /*var reader = new FileReader();
+            reader.onload = function(e) {
+                text += "<a target=\"_blank\" href=\"" + e.target.result +"\"><img src=\"" + e.target.result + "\"></a>"
+            }
+            reader.readAsDataURL(electricFile);*/
+            text += "Uploaded!</span><br/>"
+        }
+        text += "<span>Graphic: ";
+        for(var key in graphic) {
+            text += key + " ";
+        }
+        text += "</span><br/>";
+        text += "<span>Display: " + datas.display.name + "-" + datas.display.details + "</span><br/>";
+        text += "<span>Furniture: " + datas.furniture.name + "-" + datas.furniture.details + "</span><br/>";
+        text += "<span>Accessories: ";
+        for(var key in accessories) {
+            text += key + " ";
+        }
+        text += "</span><br/>";
+        if(designFile != undefined) {
+            text += "<span>Design Plan: ";
+            /*var reader = new FileReader();
+            reader.onload = function(e) {
+                text += "<a target=\"_blank\" href=\"" + e.target.result +"\">file</a>"
+            }
+            reader.readAsDataURL(designFile);*/
+            text += "Uploaded</span><br/>"
+        }
+        text += "<span>Additional Info:<br/>" + $("#details").contents().find("body").html() + "</span><br/>";
+        $("#previewDiaBody").find(".container").html(text);
+        $("#previewDia").modal('show');
+    });
     $("#yesmodify").click(function(e) {
         e.preventDefault();
         $("#yesmodify").html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
         $('#yesmodify').prop('disabled', true);
-        //var formData = new FormData();
-        var category = [];
+        var formData = new FormData();
+        var category = datas;
         var size1 = [];
-
-        if($("#Furniture").is(":checked")) {
+        //$(".categories")
+        if(category.recieption.name == "Yes")
+            category.recieption.size = recieptionSize1.toString() + "✕" + recieptionSize2.toString() + "✕" + recieptionSize3.toString();
+        if(category.showcase.name == "Yes")
+            category.showcase.size = showcaseSize1.toString() + "✕" + showcaseSize2.toString() + "✕" + showcaseSize3.toString();
+        for(var key in lighting) {
+            category.lighting.details.push({name: key, unit: lighting[key]});
+        }
+        for(var key in graphic) {
+            category.graphic.details.push({name: key, unit: graphic[key]});
+        }
+        for(var key in accessories) {
+            category.accessories.details.push({name: key, unit: accessories[key]});
+        }
+        /*if($("#Furniture").is(":checked")) {
             var obj = {"name": "Furniture","num": $("#furNum").val() == "" ? 0 : parseInt($("#furNum").val())};
             var obj1 = JSON.stringify(obj);
             category.push(obj1);
@@ -541,7 +1423,7 @@
             var obj = {"name": "Electric", "num": $("#eleNum").val() == "" ? 0 : parseInt($("#eleNum").val())};
             var obj1 = JSON.stringify(obj);
             category.push(obj1);
-        }
+        }*/
         size1.push($("#size1").val());
         size1.push($("#size2").val());
         var size = "";
@@ -550,17 +1432,24 @@
         var endDate = $("#endDate").val();
         var date1 = {"start": startDate, "end": endDate};
         var date = JSON.stringify(date1);
-        /*formData.append('showName', $("#showName").val());
-        formData.append('boothId', $("#boothId").val());
-        formData.append('date', $("#date").val());
-        formData.append('author', $("#author").attr('data-name'));
-        formData.append('category', category);
-        formData.append('details', $("#details").val());
-        formData.append('size', size);*/
-        $("#details").contents().find("body").html($("#details").contents().find("body").html().replace(/<img src/g, "<img style='max-width:100%;' src"));
-        const details = $("#details").contents().find("body").html();
+        //$("#details").contents().find("body").html($("#details").contents().find("body").html().replace("\"", "'"));
+        var detailsContent = $("#details").contents().find("body").html();
+        //console.log(detailsContent);
+        //detailsContent.replace("\"", "'");
+        var details = {
+            designFile: {
+                filename: ""
+            },
+            additionalInfo: {
+                details: detailsContent
+            }
+        }
         //console.log(details);
-        const formData = {
+        var details1 = JSON.stringify(details);
+        //console.log(details1);
+        var category1 = JSON.stringify(category);
+        //console.log(details);
+        /*const formData = {
             boothId: $("#boothId").val(),
             showName: $("#showName").val(),
             date: date,
@@ -568,14 +1457,26 @@
             size: size,
             category: category,
             details: details
-        }
+        }*/
+        formData.append('showName', $("#showName").val());
+        formData.append('boothId', $("#boothId").val());
+        formData.append('date', date);
+        formData.append('author', $("#author").attr('data-name'));
+        formData.append('category', category1);
+        formData.append('details', details1);
+        formData.append('size', size);
+        formData.append('dsgn', designFile);
+        if(electricFile != undefined)
+            formData.append('elec', electricFile);
+        //console.log(electricFile);
 
         $.ajax({
             type: "post",
             url: "/exhibitor/newjob/",
             dataType: "json",
             data: formData,
-            traditional: true,
+            contentType: false,
+            processData: false,
             success: function(res) {
                 //if(id == "") {
                 if(res["success"] == "success") {

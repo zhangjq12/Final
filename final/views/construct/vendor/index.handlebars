@@ -36,10 +36,38 @@
                         <tr>
                             <td colspan="4">
                             <div id="acc{{boothNum}}" class="collapse">
-                                {{#each category}}
-                                <p>{{name}}&nbsp;&nbsp;✕&nbsp;&nbsp;{{num}}</p>
-                                {{/each}}
-                                {{details}}
+                                <p>Carpet:&nbsp;{{category.carpet.name}} - {{category.carpet.color}}</p>
+                                <p>Flooring:&nbsp;{{category.flooring.name}} - {{category.flooring.details}}</p>
+                                <p>Wall Panel:&nbsp;{{category.panel.name}} - {{category.panel.details}}</p>
+                                <p>Recieption:&nbsp;{{category.recieption.name}} 
+                                    {{#if category.recieption.details}}- {{category.recieption.details}}&nbsp;&nbsp;Size: {{category.recieption.size}} {{/if}}
+                                </p>
+                                <p>Showcase:&nbsp;{{category.showcase.name}} 
+                                    {{#if category.showcase.details}}- {{category.showcase.details}}&nbsp;&nbsp;Size: {{category.showcase.size}} {{/if}}
+                                </p>
+                                <p>Lighting:&nbsp;
+                                    {{#each category.lighting.details}}
+                                    {{name}}&nbsp;
+                                    {{/each}}
+                                </p>
+                                {{#if category.electricity.nonupload}}
+                                {{else}}
+                                <p>Electricity:&nbsp;<a target="_blank" href="/public/image/exhibitor/electricity/{{category.electricity.filename}}"><img src="/public/image/exhibitor/electricity/{{category.electricity.filename}}" width="100px" height="70px"></a></p>
+                                {{/if}}
+                                <p>Graphic:&nbsp;
+                                    {{#each category.graphic.details}}
+                                    {{name}}&nbsp;
+                                    {{/each}}
+                                </p>
+                                <p>Display:&nbsp;{{category.display.name}} - {{category.display.details}}</p>
+                                <p>Furniture:&nbsp;{{category.furniture.name}} - {{category.furniture.details}}</p>
+                                <p>Accessories:&nbsp;
+                                    {{#each category.accessories.details}}
+                                    {{name}}&nbsp;
+                                    {{/each}}
+                                </p>
+                                <p><a class="fileReview" target="_blank" href="/public/image/exhibitor/designPlan/{{details.designFile.filename}}">{{../designFileName}}</a></p>
+                                {{details.additionalInfo.details}}
                             </div>
                             </td>
                         </tr>
@@ -47,7 +75,7 @@
                 </tbody>
             </table>
             <h4>Jobs Done</h4>
-            <table id="jobProgressTable" class="table table-hover">
+            <table id="jobDoneTable" class="table table-hover">
                 <thead>
                     <tr>
                         <!--<th scope="col"></th>-->
@@ -78,10 +106,38 @@
                         <tr>
                             <td colspan="4">
                             <div id="acc{{boothNum}}" class="collapse">
-                                {{#each category}}
-                                <p>{{name}}&nbsp;&nbsp;✕&nbsp;&nbsp;{{num}}</p>
-                                {{/each}}
-                                {{details}}
+                                <p>Carpet:&nbsp;{{category.carpet.name}} - {{category.carpet.color}}</p>
+                                <p>Flooring:&nbsp;{{category.flooring.name}} - {{category.flooring.details}}</p>
+                                <p>Wall Panel:&nbsp;{{category.panel.name}} - {{category.panel.details}}</p>
+                                <p>Recieption:&nbsp;{{category.recieption.name}} 
+                                    {{#if category.recieption.details}}- {{category.recieption.details}}&nbsp;&nbsp;Size: {{category.recieption.size}} {{/if}}
+                                </p>
+                                <p>Showcase:&nbsp;{{category.showcase.name}} 
+                                    {{#if category.showcase.details}}- {{category.showcase.details}}&nbsp;&nbsp;Size: {{category.showcase.size}} {{/if}}
+                                </p>
+                                <p>Lighting:&nbsp;
+                                    {{#each category.lighting.details}}
+                                    {{name}}&nbsp;
+                                    {{/each}}
+                                </p>
+                                {{#if category.electricity.nonupload}}
+                                {{else}}
+                                <p>Electricity:&nbsp;<a target="_blank" href="/public/image/exhibitor/electricity/{{category.electricity.filename}}"><img src="/public/image/exhibitor/electricity/{{category.electricity.filename}}" width="100px" height="70px"></a></p>
+                                {{/if}}
+                                <p>Graphic:&nbsp;
+                                    {{#each category.graphic.details}}
+                                    {{name}}&nbsp;
+                                    {{/each}}
+                                </p>
+                                <p>Display:&nbsp;{{category.display.name}} - {{category.display.details}}</p>
+                                <p>Furniture:&nbsp;{{category.furniture.name}} - {{category.furniture.details}}</p>
+                                <p>Accessories:&nbsp;
+                                    {{#each category.accessories.details}}
+                                    {{name}}&nbsp;
+                                    {{/each}}
+                                </p>
+                                <p><a class="fileReview" target="_blank" href="/public/image/exhibitor/designPlan/{{details.designFile.filename}}">{{../designFileName}}</a></p>
+                                {{details.additionalInfo.details}}
                             </div>
                             </td>
                         </tr>
@@ -131,27 +187,292 @@
                         </td>
                     </tr>
                     <tr>
+                        <td colspan="4">
+                        <div id="existing{{boothNum}}" class="collapse">
+                            <p>Carpet:&nbsp;{{category.carpet.name}} - {{category.carpet.color}}</p>
+                            <p>Flooring:&nbsp;{{category.flooring.name}} - {{category.flooring.details}}</p>
+                            <p>Wall Panel:&nbsp;{{category.panel.name}} - {{category.panel.details}}</p>
+                            <p>Recieption:&nbsp;{{category.recieption.name}} 
+                                {{#if category.recieption.details}}- {{category.recieption.details}}&nbsp;&nbsp;Size: {{category.recieption.size}} {{/if}}
+                            </p>
+                            <p>Showcase:&nbsp;{{category.showcase.name}} 
+                                {{#if category.showcase.details}}- {{category.showcase.details}}&nbsp;&nbsp;Size: {{category.showcase.size}} {{/if}}
+                            </p>
+                            <p>Lighting:&nbsp;
+                                {{#each category.lighting.details}}
+                                {{name}}&nbsp;
+                                {{/each}}
+                            </p>
+                            {{#if category.electricity.nonupload}}
+                            {{else}}
+                            <p>Electricity:&nbsp;<a target="_blank" href="/public/image/exhibitor/electricity/{{category.electricity.filename}}"><img src="/public/image/exhibitor/electricity/{{category.electricity.filename}}" width="100px" height="70px"></a></p>
+                            {{/if}}
+                            <p>Graphic:&nbsp;
+                                {{#each category.graphic.details}}
+                                {{name}}&nbsp;
+                                {{/each}}
+                            </p>
+                            <p>Display:&nbsp;{{category.display.name}} - {{category.display.details}}</p>
+                            <p>Furniture:&nbsp;{{category.furniture.name}} - {{category.furniture.details}}</p>
+                            <p>Accessories:&nbsp;
+                                {{#each category.accessories.details}}
+                                {{name}}&nbsp;
+                                {{/each}}
+                            </p>
+                            <p><a class="fileReview" target="_blank" href="/public/image/exhibitor/designPlan/{{details.designFile.filename}}">{{details.designFile.filename}}</a></p>
+                            {{details.additionalInfo.details}}
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
                         <td class="align-middle" colspan="4">
                             <div id="cat{{boothNum}}" class="collapse">
                                 <form class="estimateForm">
-                                {{#each category}}
+                                <!--{{#each category}}
                                 <div class="row mb-3">
-                                    <div class="col-sm-8">
-                                        {{name}}&nbsp;&nbsp;✕&nbsp;&nbsp;{{num}}
+                                    <div class="col-sm-3">
+                                        {{name}}
                                     </div>
-                                    <div class="input-group input-group-sm col-sm-4">
+                                    <div class="input-group input-group-sm col-sm-3">
+                                        <input class="form-control col-md-2" type="text" id="Num+{{name}}" onkeyup="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required />
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text units">{{units}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="input-group input-group-sm col-sm-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">$</span>
                                         </div>
-                                        <input class="form-control col-sm-5" type="text" id="price+{{name}}+{{num}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required/>
+                                        <input class="form-control col-sm-5" type="text" id="price+{{name}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required/>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <span class="subTotal">$0.00</span>
+                                    </div>
+                                </div>
+                                {{/each}}-->
+                                <div class="row mb-3">
+                                    <div class="col-sm-6">
+                                        <h6>Category</h6>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <h6>Quantity/Each Price</h6>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <h6>Price</h6>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-6">
+                                        Carpet-{{category.carpet.name}}-{{category.carpet.color}}
+                                    </div>
+                                    <div class="input-group input-group-sm col-sm-4">
+                                        <input class="form-control num" type="text" id="Carpet--{{boothNum}}--{{category.carpet.name}}-{{category.carpet.color}}" onkeyup="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required />
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text units">{{category.carpet.unit}}</span>
+                                        </div>
+                                        <input class="form-control price" type="text" id="carpetPrice--{{boothNum}}--{{category.carpet.name}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required/>
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">$/ea.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <span class="subTotal">$0.00</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-6">
+                                        Flooring-{{category.flooring.name}}-{{category.flooring.details}}
+                                    </div>
+                                    <div class="input-group input-group-sm col-sm-4">
+                                        <input class="form-control num" type="text" id="Flooring--{{boothNum}}--{{category.flooring.name}}-{{category.flooring.details}}" onkeyup="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required />
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text units">{{category.flooring.unit}}</span>
+                                        </div>
+                                        <input class="form-control price" type="text" id="flooringPrice--{{boothNum}}--{{category.flooring.name}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required/>
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">$/ea.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <span class="subTotal">$0.00</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-6">
+                                        Wall Panel-{{category.panel.name}}-{{category.panel.details}}
+                                    </div>
+                                    <div class="input-group input-group-sm col-sm-4">
+                                        <input class="form-control num" type="text" id="Panel--{{boothNum}}--{{category.panel.name}}-{{category.panel.details}}" onkeyup="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required />
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text units">{{category.panel.unit}}</span>
+                                        </div>
+                                        <input class="form-control price" type="text" id="panelPrice--{{boothNum}}--{{category.panel.name}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required/>
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">$/ea.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <span class="subTotal">$0.00</span>
+                                    </div>
+                                </div>
+                                {{#if category.recieption.details}}
+                                <div class="row mb-3">
+                                    <div class="col-sm-6">
+                                        Recieption-{{category.recieption.details}}-{{category.recieption.size}}
+                                    </div>
+                                    <div class="input-group input-group-sm col-sm-4">
+                                        <input class="form-control num" type="text" id="Recieption--{{boothNum}}--{{category.recieption.details}}-{{category.recieption.size}}" onkeyup="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required />
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text units">{{category.recieption.unit}}</span>
+                                        </div>
+                                        <input class="form-control price" type="text" id="recieptionPrice--{{boothNum}}--{{category.recieption.details}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required/>
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">$/ea.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <span class="subTotal">$0.00</span>
+                                    </div>
+                                </div>
+                                {{/if}}
+                                {{#if category.showcase.details}}
+                                <div class="row mb-3">
+                                    <div class="col-sm-6">
+                                        Show Case-{{category.showcase.details}}-{{category.showcase.size}}
+                                    </div>
+                                    <div class="input-group input-group-sm col-sm-4">
+                                        <input class="form-control num" type="text" id="Showcase--{{boothNum}}--{{category.showcase.details}}-{{category.showcase.size}}" onkeyup="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required />
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text units">{{category.showcase.unit}}</span>
+                                        </div>
+                                        <input class="form-control price" type="text" id="showcasePrice--{{boothNum}}--{{category.showcase.details}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required/>
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">$/ea.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <span class="subTotal">$0.00</span>
+                                    </div>
+                                </div>
+                                {{/if}}
+                                {{#each category.lighting.details}}
+                                <div class="row mb-3">
+                                    <div class="col-sm-6">
+                                        Lighting-{{name}}
+                                    </div>
+                                    <div class="input-group input-group-sm col-sm-4">
+                                        <input class="form-control num" type="text" id="Lighting--{{boothNum}}--{{name}}" onkeyup="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required />
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text units">{{unit}}</span>
+                                        </div>
+                                        <input class="form-control price" type="text" id="lightingPrice--{{boothNum}}--{{name}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required/>
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">$/ea.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <span class="subTotal">$0.00</span>
+                                    </div>
+                                </div>
+                                {{/each}}
+                                {{#if category.electricity.nonupload}}
+                                {{else}}
+                                <div class="row mb-3" id="electricity">
+                                    <div class="col-sm-6">
+                                        Electricity-<a target="_blank" href="/public/image/exhibitor/electricity/{{category.electricity.filename}}"><img src="/public/image/exhibitor/electricity/{{category.electricity.filename}}" width="50px" height="30px"></a>
+                                    </div>
+                                    <div class="input-group input-group-sm col-sm-4">
+                                        <input class="form-control priceElec" type="text" id="electricPrice--{{boothNum}}--{{category.electricity.filename}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required/>
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">$/total</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <span class="subTotal">$0.00</span>
+                                    </div>
+                                </div>
+                                {{/if}}
+                                {{#each category.graphic.details}}
+                                <div class="row mb-3">
+                                    <div class="col-sm-6">
+                                        Graphic-{{name}}
+                                    </div>
+                                    <div class="input-group input-group-sm col-sm-4">
+                                        <input class="form-control num" type="text" id="Graphic--{{boothNum}}--{{name}}" onkeyup="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required />
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text units">{{unit}}</span>
+                                        </div>
+                                        <input class="form-control price" type="text" id="graphicPrice--{{boothNum}}--{{name}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required/>
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">$/ea.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <span class="subTotal">$0.00</span>
                                     </div>
                                 </div>
                                 {{/each}}
                                 <div class="row mb-3">
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-6">
+                                        Display-{{category.display.name}}-{{category.display.details}}
+                                    </div>
+                                    <div class="input-group input-group-sm col-sm-4">
+                                        <input class="form-control num" type="text" id="Display--{{boothNum}}--{{category.display.name}}-{{category.display.details}}" onkeyup="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required />
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text units">{{category.display.unit}}</span>
+                                        </div>
+                                        <input class="form-control price" type="text" id="displayPrice--{{boothNum}}--{{category.display.name}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required/>
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">$/ea.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <span class="subTotal">$0.00</span>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-6">
+                                        Furniture-{{category.furniture.name}}-{{category.furniture.details}}
+                                    </div>
+                                    <div class="input-group input-group-sm col-sm-4">
+                                        <input class="form-control num" type="text" id="Furniture--{{boothNum}}--{{category.furniture.name}}-{{category.furniture.details}}" onkeyup="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required />
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text units">{{category.furniture.unit}}</span>
+                                        </div>
+                                        <input class="form-control price" type="text" id="furniturePrice--{{boothNum}}--{{category.furniture.name}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required/>
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">$/ea.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <span class="subTotal">$0.00</span>
+                                    </div>
+                                </div>
+                                {{#each category.accessories.details}}
+                                <div class="row mb-3">
+                                    <div class="col-sm-6">
+                                        Accessories-{{name}}
+                                    </div>
+                                    <div class="input-group input-group-sm col-sm-4">
+                                        <input class="form-control num" type="text" id="Accessories--{{boothNum}}--{{name}}" onkeyup="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required />
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text units">{{unit}}</span>
+                                        </div>
+                                        <input class="form-control price" type="text" id="accessoriesPrice--{{boothNum}}--{{name}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required/>
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">$/ea.</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <span class="subTotal">$0.00</span>
+                                    </div>
+                                </div>
+                                {{/each}}
+                                <div class="row mb-3">
+                                    <div class="col-sm-10">
                                         Total:
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-2">
                                         <input type="hidden" name="id" value="{{boothNum}}"></input>
                                         <input type="hidden" name="author" value="{{author}}"></input>
                                         <input type="hidden" name="showName" value="{{showName}}"></input>
@@ -159,21 +480,14 @@
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-9">
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <button type="submit" class="btn btn-light">Submit</button>
                                     </div>
                                 </div>
                                 </form>
                             </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                        <div id="existing{{boothNum}}" class="collapse">
-                            {{details}}
-                        </div>
                         </td>
                     </tr>
                     {{/each}}
@@ -204,6 +518,11 @@
             });
         });*/
         //const table = document.getElementsByTagName()
+        $(".fileReview").each(function() {
+            var str = $(this).html();
+            var s = str.split("_+_");
+            $(this).html(s[1]);
+        });
         $("#jobProgressTable").find(".collapse").each(function() {
             var data = $(this).html();
             data = data.replace(/&lt;/g, "<");
@@ -213,6 +532,19 @@
             data = data.replace("<script>", "&lt;script&gt;");
             data = data.replace("<style>", "&lt;style&gt;");
             data = data.replace(/<img src/g, "<img style='max-width:100%;' src");
+            data = data.replace("&amp;nbsp;", " ");
+            $(this).html(data);
+        });
+        $("#jobDoneTable").find(".collapse").each(function() {
+            var data = $(this).html();
+            data = data.replace(/&lt;/g, "<");
+            data = data.replace(/&gt;/g, ">");
+            data = data.replace(/&#x3D;/g, "=");
+            data = data.replace(/&quot;/g, '"');
+            data = data.replace("<script>", "&lt;script&gt;");
+            data = data.replace("<style>", "&lt;style&gt;");
+            data = data.replace(/<img src/g, "<img style='max-width:100%;' src");
+            data = data.replace("&amp;nbsp;", " ");
             $(this).html(data);
         });
         $("#jobExistingTable").find(".collapse").each(function() {
@@ -223,6 +555,7 @@
             data = data.replace("<script>", "&lt;script&gt;");
             data = data.replace("<style>", "&lt;style&gt;");
             data = data.replace(/<img src/g, "<img style='max-width:100%;' src");
+            data = data.replace("&amp;nbsp;", " ");
             $(this).html(data);
         });
         $(".showExistingNameBtn").each(function() {
@@ -340,10 +673,49 @@
             })
         });
         $(".estimateForm").each(function() {
+            $(this).find("input[class='form-control num']").each(function() {
+                $(this).bind('input propertychange', function() {
+                    var eaprice = parseFloat($(this).parent().find("input[class='form-control price']").val() == "" ? 0.00 : $(this).parent().find("input[class='form-control price']").val());
+                    var price = eaprice * parseFloat(this.value == "" ? 0.00 : this.value);
+                    price = price.toFixed(2);
+                    $(this).parent().parent().find(".subTotal").html("$" + price.toString());
+                    var sum = 0;
+                    $(this).parent().parent().parent().find(".subTotal").each(function() {
+                        sum += parseFloat($(this).html().split("$")[1]);
+                    });
+                    sum = sum.toFixed(2);
+                    $(this).parent().parent().parent().find(".totalPriceSpan").html("$" + sum.toString());
+                });
+            });
+            $(this).find("input[class='form-control price']").each(function() {
+                $(this).bind('input propertychange', function() {
+                    var eaprice = parseFloat($(this).parent().find("input[class='form-control num']").val() == "" ? 0.00 : $(this).parent().find("input[class='form-control num']").val());
+                    var price = eaprice * parseFloat(this.value == "" ? 0.00 : this.value);
+                    price = price.toFixed(2);
+                    $(this).parent().parent().find(".subTotal").html("$" + price.toString());
+                    var sum = 0;
+                    $(this).parent().parent().parent().find(".subTotal").each(function() {
+                        sum += parseFloat($(this).html().split("$")[1]);
+                    });
+                    sum = sum.toFixed(2);
+                    $(this).parent().parent().parent().find(".totalPriceSpan").html("$" + sum.toString());
+                });
+            });
+            $(this).find("input[class='form-control priceElec']").bind('input propertychange', function() {
+                var price = parseFloat(this.value == "" ? 0.00 : this.value);
+                price = price.toFixed(2);
+                $(this).parent().parent().find(".subTotal").html("$" + price.toString());
+                var sum = 0;
+                $(this).parent().parent().parent().find(".subTotal").each(function() {
+                    sum += parseFloat($(this).html().split("$")[1]);
+                });
+                sum = sum.toFixed(2);
+                $(this).parent().parent().parent().find(".totalPriceSpan").html("$" + sum.toString());
+            });
             //$(this).find("input[type='text']").bind("input propertychange", function(e) {
                 //var sum = 0;
                 //console.log(sum);
-            $(this).find("input[id^='price']").change(function() {
+            /*$(this).find("input[id^='price']").change(function() {
                 //console.log(1);
                 var sum = 0.00;
                 $(this).parent().parent().parent().find("input[id^='price']").each(function() {
@@ -356,25 +728,46 @@
                 $(this).parent().parent().parent().find(".totalPriceSpan").html("$" + sum.toString());
             });
                 //$(this).find(".totalPriceSpan").html("$&nbsp;&nbsp;" + sum.toString());
-            //});
+            //});*/
             $(this).submit(function(e) {
                 e.preventDefault();
                 var boothNum = $(this).find("input[name='id']").val();
                 var author = $(this).find("input[name='author']").val();
                 var showName = $(this).find("input[name='showName']").val();
                 var arr = [];
-                $(this).find("input[id^='price']").each(function() {
-                    var name = $(this).attr("id").split("+")[1];
-                    var num = $(this).attr("id").split("+")[2];
-                    var price = parseFloat($(this).val());
-                    price = price.toFixed(2);
-                    var priceStr = "$" + price.toString();
-                    var obj = {"name": name, "num": num, "price": priceStr};
+                $(this).find(".subTotal").each(function() {
+                    //var name = $(this).attr("id").split("+")[1];
+                    //var num = $(this).parent().parent().find("input[id^='Num']").val();
+                    //var units = $(this).parent().parent().find(".units").html();
+                    //var num = $(this).attr("id").split("+")[2];
+                    if($(this).parent().parent().attr("id") == "electricity") {
+                        //var names = $(this).parent().parent().find("input[class='form-control priceElec']").attr("id").split("--");
+                        var name = "Electricity";
+                        var num = 1
+                        var unit = ""
+                        var eaprice = parseFloat($(this).parent().parent().find("input[class='form-control priceElec']").val());
+                        eaprice = eaprice.toFixed(2);
+                        var eapriceStr = "$" + eaprice.toString();
+                        var price = $(this).html();
+                        var obj = {"name": name, "num": num, "unit": unit, "eachPrice": eapriceStr, "price": price};
+                        arr.push(obj);
+                        return;
+                    }
+                    var names = $(this).parent().parent().find("input[class='form-control num']").attr("id").split("--");
+                    var name = names[0] + "-" + names[2];
+                    var num = $(this).parent().parent().find("input[class='form-control num']").val();
+                    var unit = $(this).parent().parent().find(".units").html();
+                    var eaprice = parseFloat($(this).parent().parent().find("input[class='form-control price']").val());
+                    eaprice = eaprice.toFixed(2);
+                    var eapriceStr = "$" + eaprice.toString();
+                    var price = $(this).html();
+                    var obj = {"name": name, "num": num, "unit": unit, "eachPrice": eapriceStr, "price": price};
                     arr.push(obj);
                 }); 
                 var price1 = {"each": arr, "total": $(this).find(".totalPriceSpan").html()};
                 var price = JSON.stringify(price1);
                 var user = $("#uNameShow").attr("data-name");
+                //console.log(price);
                 $.ajax({
                     type: "post",
                     url: "/vendor/estimate",

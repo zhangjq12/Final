@@ -24,14 +24,24 @@
                 <li>
                     Category: <br/>
                     {{#each data.price.each}}
-                    {{name}}&nbsp;&nbsp;✕&nbsp;&nbsp;{{num}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{price}}<br/>
+                    <div class="row">
+                        <div class="col-md-7">
+                            {{name}}
+                        </div>
+                        <div class="col-md-4">
+                            {{num}}&nbsp;{{unit}}&nbsp;✕&nbsp;{{eachPrice}}
+                        </div>
+                        <div class="col-md-1">
+                            {{price}}
+                        </div>
+                    </div>
                     {{/each}}
                 </li>
                 <li>
                     Total Price: {{data.price.total}}.
                 </li>
                 <li>
-                    Details: {{data.details}}
+                    Details: <br/>{{data.details.additionalInfo.details}}
                 </li>
             </ul>
             <p>fagadfa sa cxnza ior qnh hlan rhqen lkhlqj fsnak.</p>
@@ -68,6 +78,18 @@
         var content = "";
         $(".contractArea").find("p+li")*/
     }
+    $("#print").find("li").each(function() {
+        var data = $(this).html();
+        data = data.replace(/&lt;/g, "<");
+        data = data.replace(/&gt;/g, ">");
+        data = data.replace(/&#x3D;/g, "=");
+        data = data.replace(/&quot;/g, '"');
+        data = data.replace("<script>", "&lt;script&gt;");
+        data = data.replace("<style>", "&lt;style&gt;");
+        data = data.replace(/<img src/g, "<img style='max-width:100%;' src");
+        data = data.replace("&amp;nbsp;", " ");
+        $(this).html(data);
+    });
     $("#acceptContract").submit(function(e) {
         e.preventDefault();
         var accept = $("#acceptBox").val();
