@@ -1,6 +1,6 @@
 <div id="TabModify" class="container">
     <h4></h4>
-    <form id="newTabs">
+    <form id="newTabs" class="needs-validation" novalidate>
         <div class="card border-light mb-3">
             <div class="card-header">
                 <h4>Show Info</h4>
@@ -10,11 +10,17 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-2">
                         <label for="boothId">Booth Number:</label>
-                        <input id="boothId" type="text" class="form-control" name="boothId" value="{{boothId}}"></input>
+                        <input id="boothId" type="text" class="form-control" name="boothId" value="{{boothId}}" required></input>
+                        <div class="invalid-feedback">
+                            This can't be empty.
+                        </div>
                     </div>
                     <div class="col-md-6 mb-2">
                         <label for="showName">Show Name:</label>
-                        <input id="showName" type="text" class="form-control" name="showName" value="{{showName}}"></input>
+                        <input id="showName" type="text" class="form-control" name="showName" value="{{showName}}" required></input>
+                        <div class="invalid-feedback">
+                            This can't be empty.
+                        </div>
                     </div>
                 </div>
                 <!--<div class="form-row">-->
@@ -42,6 +48,9 @@
                         </div>
                         <input id="endDate" type="text" class="input-md form-control" name="endDate" required/>
                         <label for="endDate">&nbsp;End Date</label>
+                        <div class="invalid-feedback">
+                            This can't be empty.
+                        </div>
                     </div>
                 <!--</div>-->
             </div>
@@ -60,6 +69,9 @@
                         <span>&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
                         <label for="size2" class="sr-only">Booth Size right:</label>
                         <input id="size2" type="text" class="form-control col-md-5" name="size2" placeholder="width" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required></input>
+                        <div class="invalid-feedback">
+                            This can't be empty.
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -81,7 +93,10 @@
                                 <div class="form-check form-check-inline col-xl-2">
                                     <input class="form-check-input" type="radio" name="carpetOption" id="carpetHigh" value="High+m<sup>2</sup>">
                                     <label class="form-check-label" for="carpetHigh">High</label>
-                                </div>                             
+                                    <div class="invalid-tooltip">
+                                        This can't be empty.
+                                    </div>
+                                </div>                       
                             </div>
                             <div class="form-row mb-2">
                                 <h6>Color:</h6>
@@ -98,6 +113,9 @@
                                 <div class="form-check form-check-inline col-xl-2">
                                     <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetGreen" value="Green">
                                     <label class="form-check-label" for="carpetGreen">Green</label>
+                                    <div class="invalid-tooltip">
+                                        This can't be empty.
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -115,6 +133,9 @@
                                 <div class="form-check form-check-inline col-xl-2">
                                     <input class="form-check-input" type="radio" name="flooringOption" id="floorPlatform" value="Platform+m<sup>2</sup>" required>
                                     <label class="form-check-label" for="floorPlatform">Platform</label>
+                                    <div class="invalid-tooltip">
+                                        This can't be empty.
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-row mb-3" id="flooringDetails">
@@ -162,6 +183,9 @@
                                 <div class="form-check form-check-inline col-xl-2">
                                     <input class="form-check-input" type="radio" name="panelOption" id="panelWoodTexture" value="Wood&nbsp;Texture+m<sup>2</sup>">
                                     <label class="form-check-label" for="panelWoodTexture">Wood Texture</label>
+                                    <div class="invalid-tooltip">
+                                        This can't be empty.
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-row mb-3" id="panelDetails">
@@ -189,6 +213,9 @@
                                 <div class="form-check form-check-inline col-xl-2">
                                     <input class="form-check-input" type="radio" name="recieptionOption" id="recieptionNo" value="No">
                                     <label class="form-check-label" for="recieptionNo">No</label>
+                                    <div class="invalid-tooltip">
+                                        This can't be empty.
+                                    </div>
                                 </div>
                             </div>
                             <div id="recieptionDetails">
@@ -213,6 +240,9 @@
                                         <span>&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
                                         <label for="recieptionSize3" class="sr-only"></label>
                                         <input id="recieptionSize3" type="text" class="form-control col-md-3" placeholder="height" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false"></input>
+                                        <div class="invalid-tooltip">
+                                            This can't be empty.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -231,6 +261,9 @@
                                 <div class="form-check form-check-inline col-xl-2">
                                     <input class="form-check-input" type="radio" name="showcaseOption" id="showcaseNo" value="No">
                                     <label class="form-check-label" for="showcaseNo">No</label>
+                                    <div class="invalid-tooltip">
+                                        This can't be empty.
+                                    </div>
                                 </div>
                             </div>
                             <div id="showcaseDetails">
@@ -255,6 +288,9 @@
                                         <span>&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
                                         <label for="showcaseSize3" class="sr-only"></label>
                                         <input id="showcaseSize3" type="text" class="form-control col-md-3" placeholder="height" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false"></input>
+                                        <div class="invalid-tooltip">
+                                            This can't be empty.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -289,6 +325,9 @@
                                 <div class="form-check form-check-inline col-xl-2">
                                     <input class="form-check-input" type="checkbox" id="lightTracklight" value="Track&nbsp;Light+piece">
                                     <label class="form-check-label" for="lightTracklight">Track Light</label>
+                                    <div class="invalid-tooltip">
+                                        This can't be empty.
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -300,14 +339,14 @@
                         <div class="card-body">
                             <fieldset class="form-group">
                                 <div class="row">
-                                    <legend class="col-form-label col-sm-3 pt-0">Upload Electricity Plan:<br/><small>Picture only</small></legend>
+                                    <legend class="col-form-label col-sm-3 pt-0">Upload Electricity Plan:<br/><small>Picture only (Optional)</small></legend>
                                     <div class="col-sm-9">
                                         <div class="form-row mb-3">
                                             <img id="electricPreview" src="/public/image/exhibitor/electricity/default.jpeg" width="300px" height="200px">
                                         </div>
-                                        <div class="form-row mb-3">
-                                            <label for="electricUpload" class="sr-only">Upload Electricity Plan:</label>
-                                            <input id="electricUpload" type="file" accept="image/png,image/gif,image/jpg,image/jpeg">
+                                        <div class="form-row mb-3 custom-file">
+                                            <input class="custom-file-input" id="electricUpload" type="file" accept="image/png,image/gif,image/jpg,image/jpeg">
+                                            <label for="electricUpload" class="custom-file-label">Upload Electricity Plan:</label>
                                         </div>
                                     </div>
                                 </div>
@@ -355,6 +394,9 @@
                                 <div class="form-check form-check-inline col-xl-2">
                                     <input class="form-check-input" type="checkbox" id="graphicFabric" value="Fabric+in.sq">
                                     <label class="form-check-label" for="graphicFabric">Fabric</label>
+                                    <div class="invalid-tooltip">
+                                        This can't be empty.
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -380,6 +422,9 @@
                                 <div class="form-check form-check-inline col-xl-2">
                                     <input class="form-check-input" type="radio" name="displayOption" id="displaySpeaker&Mic" value="Speaker&Mic+piece">
                                     <label class="form-check-label" for="displaySpeaker&Mic">Speaker&Mic</label>
+                                    <div class="invalid-tooltip">
+                                        This can't be empty.
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-row mb-3" id="display1080TVOptions">
@@ -445,6 +490,9 @@
                                 <div class="form-check form-check-inline col-xl-2">
                                     <input class="form-check-input" type="radio" name="furnitureOption" id="furnitureChair" value="Chair+piece">
                                     <label class="form-check-label" for="furnitureChair">Chair</label>
+                                    <div class="invalid-tooltip">
+                                        This can't be empty.
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-row mb-3" id="furnitureSofaOptions">
@@ -666,9 +714,12 @@
                 <div class="row">
                     <legend class="col-form-label col-sm-3 pt-0">Upload Design Plan:<br/><small>Any types of file</small></legend>
                     <div class="col-sm-9">
-                        <div class="form-row mb-3">
-                            <label for="designUpload" class="sr-only">Upload Design Plan:</label>
-                            <input id="designUpload" type="file" required>
+                        <div class="form-row mb-3 custom-file">
+                            <input id="designUpload" type="file" class="custom-file-input" required>
+                            <label for="designUpload" class="custom-file-label">Upload Design Plan:</label>
+                            <div class="invalid-feedback">
+                                This can't be empty.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -722,7 +773,7 @@
         </div>
         <div class="form-row form-inline align-self-center">
             <button id="preView" class="btn btn-primary">Preview</button>
-            <button id="tabSubmit" type="submit" data-toggle="modal" data-target="#modifytabDia" class="btn btn-primary" disabled="true">Submit</button>
+            <button id="tabSubmit" type="submit" class="btn btn-primary">Submit</button>
         </div>
         </div>
     </form>
@@ -839,10 +890,33 @@
     };
     $('#newTabs').submit(function(){
         window.event.preventDefault();
-        $(this).find(':button[type=submit]').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
-        $(this).find(':button[type=submit]').prop('disabled', true);
+        //$(this).find(':button[type=submit]').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
+        //$(this).find(':button[type=submit]').prop('disabled', true);
     });
-    bootstrapValidate('#showName', 'required: This can not be empty!', function(isEmpty) {
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    //$("#tabSubmit").prop('disabled', true);
+                    event.stopPropagation();
+                }
+                else {
+                    event.preventDefault();
+                    $("#modifytabDia").modal('show');
+                }
+                form.classList.add('was-validated');
+            }, false);
+            });
+        }, false);
+    })();
+    //bootstrapValidate("input[type='text']", 'required: This can not be empty!');
+    /*bootstrapValidate('#showName', 'required: This can not be empty!', function(isEmpty) {
         if(isEmpty == true) {
             nameEmpty = true; 
             if(nameEmpty && boothIdEmpty)
@@ -869,7 +943,7 @@
             boothIdEmpty = false;
             $("#tabSubmit").attr('disabled', true);
         }
-    });
+    });*/
     /*bootstrapValidate('#artistName', 'required: This can not be empty!', function(isEmpty) {
         if(isEmpty == true) {
             artistEmpty = true; 
@@ -981,6 +1055,9 @@
         datas.flooring.name = this.value.split("+")[0];
         datas.flooring.unit = this.value.split("+")[1];
         $("#flooringDetails").show();
+        $("input[name='flooringDetail']").prop("checked", false);
+        $("input[name='flooringDetail']:eq(0)").prop("checked", true);
+        datas.flooring.details = $("input[name='flooringDetail']:eq(0)").val();
     });
     $("input[type='radio'][name='flooringDetail']").change(function() {
         datas.flooring.details = this.value;
@@ -990,6 +1067,9 @@
         datas.panel.name = this.value.split("+")[0];
         datas.panel.unit = this.value.split("+")[1];
         $("#panelDetails").show();
+        $("input[name='panelDetail']").prop("checked", false);
+        $("input[name='panelDetail']:eq(0)").prop("checked", true);
+        datas.panel.details = $("input[name='panelDetail']:eq(0)").val();
     });
     $("input[type='radio'][name='panelDetail']").change(function() {
         datas.panel.details = this.value;
@@ -997,8 +1077,13 @@
 
     $("input[type='radio'][name='recieptionOption']").change(function() {
         datas.recieption.name = this.value;
-        if(this.value == "Yes")
+        if(this.value == "Yes") {
             $("#recieptionDetails").show();
+            $("input[name='recieptionDetail']").prop("checked", false);
+            $("input[name='recieptionDetail']:eq(0)").prop("checked", true);
+            $("input[id^='recieptionSize']").prop("required", true);
+            datas.recieption.details = $("input[name='recieptionDetail']:eq(0)").val();
+        }
         else {
             $("#recieptionDetails").hide();
             datas.recieption.details = "";
@@ -1022,8 +1107,13 @@
 
     $("input[type='radio'][name='showcaseOption']").change(function() {
         datas.showcase.name = this.value;
-        if(this.value == "Yes")
+        if(this.value == "Yes") {
             $("#showcaseDetails").show();
+            $("input[name='showcaseDetail']").prop("checked", false);
+            $("input[name='showcaseDetail']:eq(0)").prop("checked", true);
+            $("input[id^='showcaseSize']").prop("required", true);
+            datas.showcase.details = $("input[name='showcaseDetail']:eq(0)").val();
+        }
         else {
             $("#showcaseDetails").hide();
             datas.showcase.details = "";
@@ -1170,6 +1260,7 @@
         //if(op == "upload") {
         nameEmpty = false;
         boothIdEmpty = false;
+
         $d = $("#details")[0].contentWindow.document;
         $d.designMode = "on";
         $d.contentEditable = true;
