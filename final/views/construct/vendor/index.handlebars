@@ -36,7 +36,7 @@
                         <tr>
                             <td colspan="4">
                             <div id="acc{{boothNum}}" class="collapse">
-                                <p>Carpet:&nbsp;{{category.carpet.name}} - {{category.carpet.color}}</p>
+                                <p>Carpet:&nbsp;{{category.carpet.name}} - <a class="colorTooltip" target="_blank" href="/public/image/CarpetColor/{{category.carpet.color}}.jpg" data-toggle="tooltip" title="{{category.carpet.color}}"><img src="/public/image/CarpetColor/{{category.carpet.color}}.jpg" width="40px" height="40px"></a></p>
                                 <p>Flooring:&nbsp;{{category.flooring.name}} - {{category.flooring.details}}</p>
                                 <p>Wall Panel:&nbsp;{{category.panel.name}} - {{category.panel.details}}</p>
                                 <p>Recieption:&nbsp;{{category.recieption.name}} 
@@ -106,7 +106,7 @@
                         <tr>
                             <td colspan="4">
                             <div id="acc{{boothNum}}" class="collapse">
-                                <p>Carpet:&nbsp;{{category.carpet.name}} - {{category.carpet.color}}</p>
+                                <p>Carpet:&nbsp;{{category.carpet.name}} - <a class="colorTooltip" target="_blank" href="/public/image/CarpetColor/{{category.carpet.color}}.jpg" data-toggle="tooltip" title="{{category.carpet.color}}"><img src="/public/image/CarpetColor/{{category.carpet.color}}.jpg" width="40px" height="40px"></a></p>
                                 <p>Flooring:&nbsp;{{category.flooring.name}} - {{category.flooring.details}}</p>
                                 <p>Wall Panel:&nbsp;{{category.panel.name}} - {{category.panel.details}}</p>
                                 <p>Recieption:&nbsp;{{category.recieption.name}} 
@@ -189,7 +189,7 @@
                     <tr>
                         <td colspan="4">
                         <div id="existing{{boothNum}}" class="collapse">
-                            <p>Carpet:&nbsp;{{category.carpet.name}} - {{category.carpet.color}}</p>
+                            <p>Carpet:&nbsp;{{category.carpet.name}} - <a class="colorTooltip" target="_blank" href="/public/image/CarpetColor/{{category.carpet.color}}.jpg" data-toggle="tooltip" title="{{category.carpet.color}}"><img src="/public/image/CarpetColor/{{category.carpet.color}}.jpg" width="40px" height="40px"></a></p>
                             <p>Flooring:&nbsp;{{category.flooring.name}} - {{category.flooring.details}}</p>
                             <p>Wall Panel:&nbsp;{{category.panel.name}} - {{category.panel.details}}</p>
                             <p>Recieption:&nbsp;{{category.recieption.name}} 
@@ -263,7 +263,7 @@
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-sm-6">
-                                        Carpet-{{category.carpet.name}}-{{category.carpet.color}}
+                                        Carpet-{{category.carpet.name}}-<a class="colorTooltip" target="_blank" href="/public/image/CarpetColor/{{category.carpet.color}}.jpg" data-toggle="tooltip" title="{{category.carpet.color}}"><img src="/public/image/CarpetColor/{{category.carpet.color}}.jpg" width="30px" height="30px"></a>
                                     </div>
                                     <div class="input-group input-group-sm col-sm-4">
                                         <input class="form-control num" type="text" id="Carpet--{{boothNum}}--{{category.carpet.name}}-{{category.carpet.color}}" onkeyup="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required />
@@ -518,6 +518,11 @@
             });
         });*/
         //const table = document.getElementsByTagName()
+        $(".colorTooltip").each(function() {
+            var str1 = $(this).attr("title");
+            str1 = str1.replace("_", " ");
+            $(this).attr("title", str1);
+        });
         $(".fileReview").each(function() {
             var str = $(this).html();
             var s = str.split("_+_");
