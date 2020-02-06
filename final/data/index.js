@@ -7,6 +7,7 @@ const progress = require("./progress");
 const price = require("./price");
 const contract = require("./contract");
 const categories = require("./categories");
+const vendorPriceSheet = require("./vendorPriceSheet");
 
 module.exports = {
     comments: comments,
@@ -17,5 +18,6 @@ module.exports = {
     progress: progress,
     price: price,
     contract: contract,
-    categories: categories
+    categories: categories,
+    vendorPriceSheet: vendorPriceSheet
 }

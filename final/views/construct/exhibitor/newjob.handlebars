@@ -61,17 +61,25 @@
             </div>
             <div class="card-body">
                 <div class="form-row">
-                    <div class="col-md-4 mb-2">
+                    <div class="col-md-12 mb-2">
                         <label for="size">Booth Size:</label>
-                        <div class="form-inline">
-                        <label for="size1" class="sr-only">Booth Size left:</label>
-                        <input id="size1" type="text" class="form-control col-md-5" name="size1" placeholder="length" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required></input>
-                        <span>&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
-                        <label for="size2" class="sr-only">Booth Size right:</label>
-                        <input id="size2" type="text" class="form-control col-md-5" name="size2" placeholder="width" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required></input>
-                        <div class="invalid-feedback">
-                            This can't be empty.
-                        </div>
+                        <div class="input-group">
+                            <!--<label for="size1" class="sr-only">Booth Size left:</label>-->
+                            <input id="size1" type="text" class="form-control col-md-3" name="size1" placeholder="length" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required></input>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">&nbsp;ft</span>
+                            </div>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                            </div>
+                            <!--<label for="size2" class="sr-only">Booth Size right:</label>-->
+                            <input id="size2" type="text" class="form-control col-md-3" name="size2" placeholder="width" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required></input>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">&nbsp;ft</span>
+                            </div>
+                            <div class="invalid-feedback">
+                                This can't be empty.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -83,16 +91,12 @@
                         <div class="card-body">
                             <div class="form-row mb-4" id="carpetOptions">
                                 <div class="form-check form-check-inline col-xl-2">
-                                    <input class="form-check-input" type="radio" name="carpetOption" id="carpetLight" value="Light+m<sup>2</sup>" required>
-                                    <label class="form-check-label" for="carpetLight">Light</label>
+                                    <input class="form-check-input" type="radio" name="carpetOption" id="carpetStandard" value="Standard+m<sup>2</sup>" required>
+                                    <label class="form-check-label" for="carpetStandard">Standard</label>
                                 </div>
                                 <div class="form-check form-check-inline col-xl-2">
-                                    <input class="form-check-input" type="radio" name="carpetOption" id="carpetMiddle" value="Middle+m<sup>2</sup>">
-                                    <label class="form-check-label" for="carpetMiddle">Middle</label>
-                                </div>
-                                <div class="form-check form-check-inline col-xl-2">
-                                    <input class="form-check-input" type="radio" name="carpetOption" id="carpetHigh" value="High+m<sup>2</sup>">
-                                    <label class="form-check-label" for="carpetHigh">High</label>
+                                    <input class="form-check-input" type="radio" name="carpetOption" id="carpetPremium" value="Premium+m<sup>2</sup>">
+                                    <label class="form-check-label" for="carpetPremium">Premium</label>
                                     <div class="invalid-tooltip">
                                         This can't be empty.
                                     </div>
@@ -111,55 +115,55 @@
                                 <div class="form-check form-check-inline col-xl-2 mb-2">
                                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Red 2">
                                     <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetRed2" value="Red_2" required>
-                                    <label class="form-check-label" for="carpetRed"><img src="/public/image/CarpetColor/Red_2.jpg" width="40px" height="40px"></label>
+                                    <label class="form-check-label" for="carpetRed2"><img src="/public/image/CarpetColor/Red_2.jpg" width="40px" height="40px"></label>
                                     </span>
                                 </div>
                                 <div class="form-check form-check-inline col-xl-2 mb-2">
                                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Blue">
                                     <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetBlue" value="Blue" required>
-                                    <label class="form-check-label" for="carpetRed"><img src="/public/image/CarpetColor/Blue.jpg" width="40px" height="40px"></label>
+                                    <label class="form-check-label" for="carpetBlue"><img src="/public/image/CarpetColor/Blue.jpg" width="40px" height="40px"></label>
                                     </span>
                                 </div>
                                 <div class="form-check form-check-inline col-xl-2 mb-2">
                                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Navy Blue">
                                     <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetNavyBlue" value="Navy_Blue" required>
-                                    <label class="form-check-label" for="carpetRed"><img src="/public/image/CarpetColor/Navy_Blue.jpg" width="40px" height="40px"></label>
+                                    <label class="form-check-label" for="carpetNavyBlue"><img src="/public/image/CarpetColor/Navy_Blue.jpg" width="40px" height="40px"></label>
                                     </span>
                                 </div>
                                 <div class="form-check form-check-inline col-xl-2 mb-2">
                                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Sand">
                                     <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetSand" value="Sand" required>
-                                    <label class="form-check-label" for="carpetRed"><img src="/public/image/CarpetColor/Sand.jpg" width="40px" height="40px"></label>
+                                    <label class="form-check-label" for="carpetSand"><img src="/public/image/CarpetColor/Sand.jpg" width="40px" height="40px"></label>
                                     </span>
                                 </div>
                                 <div class="form-check form-check-inline col-xl-2 mb-2">
                                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Light Grey">
                                     <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetLightGrey" value="Light_Grey" required>
-                                    <label class="form-check-label" for="carpetRed"><img src="/public/image/CarpetColor/Light_Grey.jpg" width="40px" height="40px"></label>
+                                    <label class="form-check-label" for="carpetLightGrey"><img src="/public/image/CarpetColor/Light_Grey.jpg" width="40px" height="40px"></label>
                                     </span>
                                 </div>
                                 <div class="form-check form-check-inline col-xl-2 mb-2">
                                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Dark Grey">
                                     <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetDarkGrey" value="Dark_Grey" required>
-                                    <label class="form-check-label" for="carpetRed"><img src="/public/image/CarpetColor/Dark_Grey.jpg" width="40px" height="40px"></label>
+                                    <label class="form-check-label" for="carpetDarkGrey"><img src="/public/image/CarpetColor/Dark_Grey.jpg" width="40px" height="40px"></label>
                                     </span>
                                 </div>
                                 <div class="form-check form-check-inline col-xl-2 mb-2">
                                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Black">
                                     <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetBlack" value="Black" required>
-                                    <label class="form-check-label" for="carpetRed"><img src="/public/image/CarpetColor/Black.jpg" width="40px" height="40px"></label>
+                                    <label class="form-check-label" for="carpetBlack"><img src="/public/image/CarpetColor/Black.jpg" width="40px" height="40px"></label>
                                     </span>
                                 </div>
                                 <div class="form-check form-check-inline col-xl-2 mb-2">
                                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Dark Green">
                                     <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetDarkGreen" value="Dark_Green" required>
-                                    <label class="form-check-label" for="carpetRed"><img src="/public/image/CarpetColor/Dark_Green.jpg" width="40px" height="40px"></label>
+                                    <label class="form-check-label" for="carpetDarkGreen"><img src="/public/image/CarpetColor/Dark_Green.jpg" width="40px" height="40px"></label>
                                     </span>
                                 </div>
                                 <div class="form-check form-check-inline col-xl-2 mb-2">
                                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Light Green">
                                     <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetLightGreen" value="Light_Green" required>
-                                    <label class="form-check-label" for="carpetRed"><img src="/public/image/CarpetColor/Light_Green.jpg" width="40px" height="40px"></label>
+                                    <label class="form-check-label" for="carpetLightGreen"><img src="/public/image/CarpetColor/Light_Green.jpg" width="40px" height="40px"></label>
                                     </span>
                                     <div class="invalid-tooltip">
                                         This can't be empty.
@@ -168,7 +172,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card border-light col-xl-12 mb-3">
+                    <!--<div class="card border-light col-xl-12 mb-3">
                         <div class="card-header">
                             <h5>Flooring</h5>
                         </div>
@@ -195,13 +199,13 @@
                                     <input class="form-check-input" type="radio" name="flooringDetail" id="floorPlain" value="Plain">
                                     <label class="form-check-label" for="floorPlain">Plain</label>
                                 </div>
-                                <!--<div class="col-xl-3">
+                                <div class="col-xl-3">
                                     <label for="floorOther" class="sr-only">Other</label>
                                     <input class="form-control" id="floorOther" type="text" placeholder="Other...">
-                                </div>-->
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="card border-light col-xl-12 mb-3">
                         <div class="card-header">
                             <h5>Wall Panel</h5>
@@ -216,15 +220,18 @@
                                     <input class="form-check-input" type="radio" name="panelOption" id="panelLatexPaint" value="Latex&nbsp;Paint+m<sup>2</sup>">
                                     <label class="form-check-label" for="panelLatexPaint">Latex Paint</label>
                                 </div>
-                                <div class="form-check form-check-inline col-xl-2">
+                                <!--<div class="form-check form-check-inline col-xl-2">
                                     <input class="form-check-input" type="radio" name="panelOption" id="panelGraphic" value="Graphic+m<sup>2</sup>">
                                     <label class="form-check-label" for="panelGraphic">Graphic</label>
-                                </div>
+                                </div>-->
                                 <div class="form-check form-check-inline col-xl-2">
                                     <input class="form-check-input" type="radio" name="panelOption" id="panelLaminate" value="Laminate+m<sup>2</sup>">
                                     <label class="form-check-label" for="panelLaminate">Laminate</label>
+                                    <div class="invalid-tooltip">
+                                        This can't be empty.
+                                    </div>
                                 </div>
-                                <div class="form-check form-check-inline col-xl-2">
+                                <!--<div class="form-check form-check-inline col-xl-2">
                                     <input class="form-check-input" type="radio" name="panelOption" id="panelFoamBoard" value="Foam&nbsp;Board+m<sup>2</sup>">
                                     <label class="form-check-label" for="panelFoamBoard">Foam Board</label>
                                 </div>
@@ -234,7 +241,7 @@
                                     <div class="invalid-tooltip">
                                         This can't be empty.
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                             <div class="form-row mb-3" id="panelDetails">
                                 <div class="form-check form-check-inline col-xl-3">
@@ -248,7 +255,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card border-light col-xl-6 mb-3">
+                    <!--<div class="card border-light col-xl-6 mb-3">
                         <div class="card-header">
                             <h5>Recieption</h5>
                         </div>
@@ -343,38 +350,113 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="card border-light col-xl-12 mb-3">
                         <div class="card-header">
                             <h5>Lighting</h5>
                         </div>
                         <div class="card-body">
-                            <div class="form-row mb-3" id="lightingOptions">
-                                <div class="form-check form-check-inline col-xl-2">
-                                    <input class="form-check-input" type="checkbox" id="lightSpotlight" value="Spotlight+piece">
-                                    <label class="form-check-label" for="lightSpotlight">Spotlight</label>
+                            <div id="lightingOptions">
+                                <div class="form-row mb-2">
+                                    <div class="form-check form-check-inline col-md-4">
+                                        <input class="form-check-input" type="checkbox" id="lightSpotlight" value="Spotlight+piece">
+                                        <label class="form-check-label" for="lightSpotlight">Spotlight</label>
+                                    </div>
+                                    <div class="form-check form-check-inline col-md-4 lightingDetail">
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            </div>
+                                            <input class="form-control" type="text" id="QuantitySpotlight" placeholder="Quantity" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">piece</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-check form-check-inline col-xl-2">
-                                    <input class="form-check-input" type="checkbox" id="lightDownlight" value="Downlight+piece">
-                                    <label class="form-check-label" for="lightDownlight">Downlight</label>
+                                <div class="form-row mb-2">
+                                    <div class="form-check form-check-inline col-md-4">
+                                        <input class="form-check-input" type="checkbox" id="lightDownlight" value="Downlight+piece">
+                                        <label class="form-check-label" for="lightDownlight">Downlight</label>
+                                    </div>
+                                    <div class="form-check form-check-inline col-md-4 lightingDetail">
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            </div>
+                                            <input class="form-control" type="text" id="QuantityDownlight" placeholder="Quantity" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">piece</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-check form-check-inline col-xl-2">
-                                    <input class="form-check-input" type="checkbox" id="lightLEDStrip" value="LED&nbsp;Strip+piece">
-                                    <label class="form-check-label" for="lightLEDStrip">LED Strip</label>
+                                <div class="form-row mb-2">
+                                    <div class="form-check form-check-inline col-md-4">
+                                        <input class="form-check-input" type="checkbox" id="lightLEDStrip" value="LED&nbsp;Strip+piece">
+                                        <label class="form-check-label" for="lightLEDStrip">LED Strip</label>
+                                    </div>
+                                    <div class="form-check form-check-inline col-md-4 lightingDetail">
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            </div>
+                                            <input class="form-control" type="text" id="QuantityLEDStrip" placeholder="Quantity" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">piece</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-check form-check-inline col-xl-2">
-                                    <input class="form-check-input" type="checkbox" id="lightLighttube" value="Light&nbsp;Tube+piece">
-                                    <label class="form-check-label" for="lightLighttube">Light Tube</label>
+                                <div class="form-row mb-2">
+                                    <div class="form-check form-check-inline col-md-4">
+                                        <input class="form-check-input" type="checkbox" id="lightLighttube" value="Light&nbsp;Tube+piece">
+                                        <label class="form-check-label" for="lightLighttube">Light Tube</label>
+                                    </div>
+                                    <div class="form-check form-check-inline col-md-4 lightingDetail">
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            </div>
+                                            <input class="form-control" type="text" id="QuantityLighttube" placeholder="Quantity" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">piece</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-check form-check-inline col-xl-2">
-                                    <input class="form-check-input" type="checkbox" id="lightChandelier" value="Chandelier+piece">
-                                    <label class="form-check-label" for="lightChandelier">Chandelier</label>
+                                <div class="form-row mb-2">
+                                    <div class="form-check form-check-inline col-md-4">
+                                        <input class="form-check-input" type="checkbox" id="lightChandelier" value="Chandelier+piece">
+                                        <label class="form-check-label" for="lightChandelier">Chandelier</label>
+                                    </div>
+                                    <div class="form-check form-check-inline col-md-4 lightingDetail">
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            </div>
+                                            <input class="form-control" type="text" id="QuantityChandelier" placeholder="Quantity" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">piece</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-check form-check-inline col-xl-2">
-                                    <input class="form-check-input" type="checkbox" id="lightTracklight" value="Track&nbsp;Light+piece">
-                                    <label class="form-check-label" for="lightTracklight">Track Light</label>
-                                    <div class="invalid-tooltip">
-                                        This can't be empty.
+                                <div class="form-row mb-2">
+                                    <div class="form-check form-check-inline col-md-4">
+                                        <input class="form-check-input" type="checkbox" id="lightTracklight" value="Track&nbsp;Light+piece">
+                                        <label class="form-check-label" for="lightTracklight">Track Light</label>
+                                    </div>
+                                    <div class="form-check form-check-inline col-md-4 lightingDetail">
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            </div>
+                                            <input class="form-control" type="text" id="QuantityTracklight" placeholder="Quantity" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">piece</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -406,50 +488,223 @@
                             <h5>Graphic</h5>
                         </div>
                         <div class="card-body">
-                            <div class="form-row mb-3" id="graphicOptions">
-                                <div class="form-check form-check-inline col-xl-2">
-                                    <input class="form-check-input" type="checkbox" id="graphicGraphic" value="Graphic+m<sup>2</sup>">
-                                    <label class="form-check-label" for="graphicGraphic">Graphic</label>
+                            <div id="graphicOptions">
+                                <div class="form-row mb-2">
+                                    <div class="form-check form-check-inline col-md-4">
+                                        <input class="form-check-input" type="checkbox" id="graphicGraphic" value="Graphic+m<sup>2</sup>">
+                                        <label class="form-check-label" for="graphicGraphic">Graphic</label>
+                                    </div>
+                                    <div class="form-check form-check-inline col-md-4 graphicDetail">
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            </div>
+                                            <input class="form-control" type="text" id="QuantityGraphic" placeholder="Quantity" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">m<sup>2</sup></span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-check form-check-inline col-xl-2">
-                                    <input class="form-check-input" type="checkbox" id="graphicDecals" value="Decals+m<sup>2</sup>">
-                                    <label class="form-check-label" for="graphicDecals">Decals</label>
+                                <div class="form-row mb-2">
+                                    <div class="form-check form-check-inline col-md-4">
+                                        <input class="form-check-input" type="checkbox" id="graphicDecals" value="Decals+m<sup>2</sup>">
+                                        <label class="form-check-label" for="graphicDecals">Decals</label>
+                                    </div>
+                                    <div class="form-check-inline col-md-4 graphicDetail">
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            </div>
+                                            <input class="form-control" type="text" id="QuantityDecals" placeholder="Quantity" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">m<sup>2</sup></span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-check form-check-inline col-xl-2">
-                                    <input class="form-check-input" type="checkbox" id="graphic3DLetter" value="3D&nbsp;Letter+m<sup>2</sup>">
-                                    <label class="form-check-label" for="graphic3DLetter">3D Letter</label>
+                                <div class="form-row mb-2">
+                                    <div class="form-check form-check-inline col-md-4">
+                                        <input class="form-check-input" type="checkbox" id="graphic3DLetter" value="3D&nbsp;Letter+m<sup>2</sup>">
+                                        <label class="form-check-label" for="graphic3DLetter">3D Letter</label>
+                                    </div>
+                                    <div class="form-check-inline col-md-4 graphicDetail">
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            </div>
+                                            <input class="form-control" type="text" id="Quantity3DLetter" placeholder="Quantity" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">m<sup>2</sup></span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-check form-check-inline col-xl-2">
-                                    <input class="form-check-input" type="checkbox" id="graphic3DLightingletter" value="3D&nbsp;Lighting&nbsp;Letter+m<sup>2</sup>">
-                                    <label class="form-check-label" for="graphic3DLightingletter">3D Lighting Letter</label>
+                                <div class="form-row mb-2">
+                                    <div class="form-check form-check-inline col-md-4">
+                                        <input class="form-check-input" type="checkbox" id="graphic3DLightingletter" value="3D&nbsp;Lighting&nbsp;Letter+m<sup>2</sup>">
+                                        <label class="form-check-label" for="graphic3DLightingletter">3D Lighting Letter</label>
+                                    </div>
+                                    <div class="form-check-inline col-md-4 graphicDetail">
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            </div>
+                                            <input class="form-control" type="text" id="Quantity3DLightingLetter" placeholder="Quantity" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">m<sup>2</sup></span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-check form-check-inline col-xl-2">
-                                    <input class="form-check-input" type="checkbox" id="graphicAcrylicletter" value="Acrylic&nbsp;Letter+m<sup>2</sup>">
-                                    <label class="form-check-label" for="graphicAcrylicletter">Acrylic Letter</label>
+                                <div class="form-row mb-2">
+                                    <div class="form-check form-check-inline col-md-4">
+                                        <input class="form-check-input" type="checkbox" id="graphicAcrylicletter" value="Acrylic&nbsp;Letter+m<sup>2</sup>">
+                                        <label class="form-check-label" for="graphicAcrylicletter">Acrylic Letter</label>
+                                    </div>
+                                    <div class="form-check-inline col-md-4 graphicDetail">
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            </div>
+                                            <input class="form-control" type="text" id="QuantityAcrylicLetter" placeholder="Quantity" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">m<sup>2</sup></span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-check form-check-inline col-xl-2">
-                                    <input class="form-check-input" type="checkbox" id="graphicLightbox" value="Light&nbsp;Box+in.sq">
-                                    <label class="form-check-label" for="graphicLightbox">Light Box</label>
+                                <div class="form-row mb-2">
+                                    <div class="form-check form-check-inline col-md-4">
+                                        <input class="form-check-input" type="checkbox" id="graphicLightbox" value="Light&nbsp;Box+in.sq">
+                                        <label class="form-check-label" for="graphicLightbox">Light Box</label>
+                                    </div>
+                                    <div class="form-check-inline col-md-4 graphicDetail">
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            </div>
+                                            <input class="form-control" type="text" id="QuantityLightBox" placeholder="Quantity" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">in.sq</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-check form-check-inline col-xl-2">
-                                    <input class="form-check-input" type="checkbox" id="graphicLightingpanel" value="lighting&nbsp;Panel+in.sq">
-                                    <label class="form-check-label" for="graphicLightingpanel">Lighting Panel</label>
+                                <div class="form-row mb-2">
+                                    <div class="form-check form-check-inline col-md-4">
+                                        <input class="form-check-input" type="checkbox" id="graphicLightingpanel" value="lighting&nbsp;Panel+in.sq">
+                                        <label class="form-check-label" for="graphicLightingpanel">Lighting Panel</label>
+                                    </div>
+                                    <div class="form-check-inline col-md-4 graphicDetail">
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            </div>
+                                            <input class="form-control" type="text" id="QuantityLightPanel" placeholder="Quantity" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">in.sq</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-check form-check-inline col-xl-2">
-                                    <input class="form-check-input" type="checkbox" id="graphicFrostedglassfilm" value="Frosted&nbsp;Glass&nbsp;Film+in.sq">
-                                    <label class="form-check-label" for="graphicFrostedglassfilm">Frosted Glass Film</label>
+                                <div class="form-row mb-2">
+                                    <div class="form-check form-check-inline col-md-4">
+                                        <input class="form-check-input" type="checkbox" id="graphicFrostedglassfilm" value="Frosted&nbsp;Glass&nbsp;Film+in.sq">
+                                        <label class="form-check-label" for="graphicFrostedglassfilm">Frosted Glass Film</label>
+                                    </div>
+                                    <div class="form-check-inline col-md-4 graphicDetail">
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            </div>
+                                            <input class="form-control" type="text" id="QuantityFrostedGlassFilm" placeholder="Quantity" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">in.sq</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-check form-check-inline col-xl-2">
-                                    <input class="form-check-input" type="checkbox" id="graphicFabric" value="Fabric+in.sq">
-                                    <label class="form-check-label" for="graphicFabric">Fabric</label>
-                                    <div class="invalid-tooltip">
-                                        This can't be empty.
+                                <div class="form-row mb-2">
+                                    <div class="form-check form-check-inline col-md-4">
+                                        <input class="form-check-input" type="checkbox" id="graphicFabric" value="Fabric+in.sq">
+                                        <label class="form-check-label" for="graphicFabric">Fabric</label>
+                                    </div>
+                                    <div class="form-check-inline col-md-4 graphicDetail">
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            </div>
+                                            <input class="form-control" type="text" id="QuantityFabric" placeholder="Quantity" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">in.sq</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="card border-light col-xl-12 mb-3">
+                        <div class="card-header">
+                            <h5>Display</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row mb-3" id="displayOptions">
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" name="displayOption" id="display1080pTV" value="1080p&nbsp;TV+piece">
+                                    <label class="form-check-label" for="display1080pTV">1080p TV</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" name="displayOption" id="display4KTV" value="4K&nbsp;TV+piece">
+                                    <label class="form-check-label" for="display4KTV">4K TV</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" name="displayOption" id="displaySpeaker&Mic" value="Speaker&Mic+piece">
+                                    <label class="form-check-label" for="displaySpeaker&Mic">Speaker&Mic</label>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3" id="display1080TVOptions">
+                                <div class="col-xl-2">
+                                    <b>1080p TV:&nbsp;</b>
+                                </div>
+                                <div class="col-xl-10">
+                                    <div class="input-group input-group-sm col-sm-6">
+                                        <input class="form-control" type="text" id="Size1080TV" placeholder="Size" onkeyup="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">inch.&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                        </div>
+                                        <input class="form-control" type="text" id="Quantity1080TV" placeholder="Quantity" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3" id="display4KTVOptions">
+                                <div class="col-xl-2">
+                                    <b>4K TV:&nbsp;</b>
+                                </div>
+                                <div class="col-xl-10">
+                                    <div class="input-group input-group-sm col-sm-6">
+                                        <input class="form-control" type="text" id="Size4KTV" placeholder="Size" onkeyup="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">inch.&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                        </div>
+                                        <input class="form-control" type="text" id="Quantity4KTV" placeholder="Quantity" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3" id="displaySpeakerMicOptions">
+                                <div class="col-xl-2">
+                                    <b>Speaker&Mic:&nbsp;</b>
+                                </div>
+                                <div class="col-xl-10">
+                                    <div class="col-sm-6">
+                                        <input class="form-control form-control-sm" type="text" id="QuantitySpeakerMic" placeholder="Quantity" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="card border-light col-xl-12 mb-3">
                         <div class="card-header">
                             <h5>Display</h5>
                         </div>
@@ -520,8 +775,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card border-light col-xl-12 mb-3">
+                    </div>-->
+                    <!--<div class="card border-light col-xl-12 mb-3">
                         <div class="card-header">
                             <h5>Furniture</h5>
                         </div>
@@ -587,6 +842,138 @@
                                 <div class="form-check form-check-inline col-xl-2">
                                     <input class="form-check-input" type="radio" name="furnitureChairOption" id="furnitureChairBarStool" value="Bar&nbsp;Stool">
                                     <label class="form-check-label" for="furnitureChairBarStool">Bar Stool</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                    <div class="card border-light col-xl-12 mb-3">
+                        <div class="card-header">
+                            <h5>Furniture</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row mb-3" id="furnitureOptions">
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" name="furnitureOption" id="furnitureSofa" value="Sofa+piece">
+                                    <label class="form-check-label" for="furnitureSofa">Sofa</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" name="furnitureOption" id="furnitureTable" value="Table+piece">
+                                    <label class="form-check-label" for="furnitureTable">Table</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" name="furnitureOption" id="furnitureChair" value="Chair+piece">
+                                    <label class="form-check-label" for="furnitureChair">Chair</label>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3" id="furnitureSofaOptions">
+                                <div class="col-xl-2">
+                                    <b>Sofa:&nbsp;</b>
+                                </div>
+                                <div class="col-xl-10">
+                                    <div class="form-check form-inline mb-2">
+                                        <input class="form-check-input" type="checkbox" name="furnitureSofaOption" id="furnitureSofaSingle" value="Single">
+                                        <label class="form-check-label" for="furnitureSofaSingle">Single</label>
+                                        <div id="sofaSingleNumDiv">
+                                            <span>&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            <label for="sofaSingleNum" class="sr-only"></label>
+                                            <input id="sofaSingleNum" type="text" class="form-control" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" disabled="true"></input>
+                                        </div>
+                                    </div>
+                                    <div class="form-check form-inline mb-2">
+                                        <input class="form-check-input" type="checkbox" name="furnitureSofaOption" id="furnitureSofaDouble" value="Double">
+                                        <label class="form-check-label" for="furnitureSofaDouble">Double</label>
+                                        <div id="sofaDoubleNumDiv">
+                                            <span>&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            <label for="sofaDoubleNum" class="sr-only"></label>
+                                            <input id="sofaDoubleNum" type="text" class="form-control" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" disabled="true"></input>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3" id="furnitureTableOptions">
+                                <div class="col-xl-2">
+                                    <b>Table:&nbsp;</b>
+                                </div>
+                                <div class="col-xl-10">
+                                    <div class="form-check form-inline mb-2">
+                                        <input class="form-check-input" type="checkbox" name="furnitureTableOption" id="furnitureTableCoffeeTable" value="Coffee&nbsp;Table">
+                                        <label class="form-check-label" for="furnitureTableCoffeeTable">Coffee Table</label>
+                                        <div id="tableCoffeeNumDiv">
+                                            <span>&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            <label for="tableCoffeeNum" class="sr-only"></label>
+                                            <input id="tableCoffeeNum" type="text" class="form-control" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" disabled="true"></input>
+                                        </div>
+                                    </div>
+                                    <div class="form-check form-inline mb-2">
+                                        <input class="form-check-input" type="checkbox" name="furnitureTableOption" id="furnitureTableConferenceTable" value="Conference&nbsp;Table">
+                                        <label class="form-check-label" for="furnitureTableConferenceTable">Conference Table</label>
+                                        <div id="tableConferenceNumDiv">
+                                            <span>&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            <label for="tableConferenceNum" class="sr-only"></label>
+                                            <input id="tableConferenceNum" type="text" class="form-control" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" disabled="true"></input>
+                                        </div>
+                                    </div>
+                                    <div class="form-check form-inline mb-2">
+                                        <input class="form-check-input" type="checkbox" name="furnitureTableOption" id="furnitureTableNegotiatingTable" value="Negotiating&nbsp;Table">
+                                        <label class="form-check-label" for="furnitureTableNegotiatingTable">Negotiating Table</label>
+                                        <div id="tableNeogtiatingNumDiv">
+                                            <span>&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            <label for="tableNeogotiatingNum" class="sr-only"></label>
+                                            <input id="tableNeogotiatingNum" type="text" class="form-control" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" disabled="true"></input>
+                                        </div>
+                                    </div>
+                                    <div class="form-check form-inline mb-2">
+                                        <input class="form-check-input" type="checkbox" name="furnitureTableOption" id="furnitureTableBarTable" value="Bar&nbsp;Table">
+                                        <label class="form-check-label" for="furnitureTableBarTable">Bar Table</label>
+                                        <div id="tableBarNumDiv">
+                                            <span>&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            <label for="tableBarNum" class="sr-only"></label>
+                                            <input id="tableBarNum" type="text" class="form-control" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" disabled="true"></input>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3" id="furnitureChairOptions">
+                                <div class="col-xl-2">
+                                    <b>Chair:&nbsp;</b>
+                                </div>
+                                <div class="col-xl-10">
+                                    <div class="form-check form-inline mb-2">
+                                        <input class="form-check-input" type="checkbox" name="furnitureChairOption" id="furnitureChairOfficeChair" value="Office&nbsp;Chair">
+                                        <label class="form-check-label" for="furnitureChairOfficeChair">Office Chair</label>
+                                        <div id="chairOfficeNumDiv">
+                                            <span>&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            <label for="chairOfficeNum" class="sr-only"></label>
+                                            <input id="chairOfficeNum" type="text" class="form-control" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" disabled="true"></input>
+                                        </div>
+                                    </div>
+                                    <div class="form-check form-inline mb-2">
+                                        <input class="form-check-input" type="checkbox" name="furnitureChairOption" id="furnitureChairNegotiatingChairH" value="Negotiating&nbsp;Chair&nbsp;(H)">
+                                        <label class="form-check-label" for="furnitureChairNegotiatingChairH">Negotiating Chair (H)</label>
+                                        <div id="chairNeogotiatingHNumDiv">
+                                            <span>&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            <label for="chairNeogotiatingHNum" class="sr-only"></label>
+                                            <input id="chairNeogotiatingHNum" type="text" class="form-control" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" disabled="true"></input>
+                                        </div>
+                                    </div>
+                                    <div class="form-check form-inline mb-2">
+                                        <input class="form-check-input" type="checkbox" name="furnitureChairOption" id="furnitureChairNegotiatingChairL" value="Negotiating&nbsp;Chair&nbsp;(L)">
+                                        <label class="form-check-label" for="furnitureChairNegotiatingChairL">Negotiating Chair (L)</label>
+                                        <div id="chairNeogotiatingLNumDiv">
+                                            <span>&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            <label for="chairNeogotiatingLNum" class="sr-only"></label>
+                                            <input id="chairNeogotiatingLNum" type="text" class="form-control" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" disabled="true"></input>
+                                        </div>
+                                    </div>
+                                    <div class="form-check form-inline mb-2">
+                                        <input class="form-check-input" type="checkbox" name="furnitureChairOption" id="furnitureChairBarStool" value="Bar&nbsp;Stool">
+                                        <label class="form-check-label" for="furnitureChairBarStool">Bar Stool</label>
+                                        <div id="chairBarStoolNumDiv">
+                                            <span>&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            <label for="chairBarStoolNum" class="sr-only"></label>
+                                            <input id="chairBarStoolNum" type="text" class="form-control" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" disabled="true"></input>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -874,15 +1261,10 @@
     var boothIdEmpty = false;
     var artistEmpty = false;
     var contentEmpty = false;
-    var recieptionSize1 = "";
-    var recieptionSize2 = "";
-    var recieptionSize3 = "";
-    var showcaseSize1 = "";
-    var showcaseSize2 = "";
-    var showcaseSize3 = "";
     var lighting = {};
     var graphic = {};
     var accessories = {};
+    var furniture = {};
     var electricFile;
     var designFile;
     var datas = {
@@ -891,27 +1273,10 @@
             unit: "",
             color: ""
         },
-        flooring: {
-            name: "",
-            unit: "",
-            details: ""
-        },
         panel: {
             name: "",
             unit: "",
             details: ""
-        },
-        recieption: {
-            name: "",
-            unit: "",
-            details: "",
-            size: ""
-        },
-        showcase: {
-            name: "",
-            unit: "",
-            details: "",
-            size: ""
         },
         lighting: {
             details: []
@@ -923,14 +1288,10 @@
             details: []
         },
         display: {
-            name: "",
-            unit: "",
-            details: ""
+            details: []
         },
         furniture: {
-            name: "",
-            unit: "",
-            details: ""
+            details: []
         },
         accessories: {
             details: []
@@ -957,6 +1318,8 @@
                 else {
                     event.preventDefault();
                     $("#modifytabDia").modal('show');
+                    $(this).find(':button[type=submit]').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
+                    $(this).find(':button[type=submit]').prop('disabled', true);
                 }
                 form.classList.add('was-validated');
             }, false);
@@ -1099,7 +1462,7 @@
     $("input[type='radio'][name='carpetColorOption']").change(function() {
         datas.carpet.color = this.value;
     });
-    $("input[type='radio'][name='flooringOption']").change(function() {
+    /*$("input[type='radio'][name='flooringOption']").change(function() {
         datas.flooring.name = this.value.split("+")[0];
         datas.flooring.unit = this.value.split("+")[1];
         $("#flooringDetails").show();
@@ -1109,7 +1472,7 @@
     });
     $("input[type='radio'][name='flooringDetail']").change(function() {
         datas.flooring.details = this.value;
-    });
+    });*/
 
     $("input[type='radio'][name='panelOption']").change(function() {
         datas.panel.name = this.value.split("+")[0];
@@ -1123,7 +1486,7 @@
         datas.panel.details = this.value;
     });
 
-    $("input[type='radio'][name='recieptionOption']").change(function() {
+    /*$("input[type='radio'][name='recieptionOption']").change(function() {
         datas.recieption.name = this.value;
         if(this.value == "Yes") {
             $("#recieptionDetails").show();
@@ -1181,17 +1544,39 @@
     });
     $("input[id='showcaseSize3']").change(function() {
         showcaseSize3 = this.value;
-    });
+    });*/
 
     $("input[type='checkbox'][id^='light']").change(function() {
         var pre = this.value.split("+")[0];
         var post = this.value.split("+")[1];
         if(this.checked) {
-            lighting[pre] = post;
+            $(this).parent().parent().find(".lightingDetail").show();
+            $(this).parent().parent().find("input[type='text']").prop("required", true);
+            datas.lighting.details.push({name: pre, unit: post, num: 0.0});
         }
         else {
-            delete lighting[pre];
+            $(this).parent().parent().find("input[type='text']").val("");
+            $(this).parent().parent().find("input[type='text']").removeAttr("required");
+            for(var i = 0; i < datas["lighting"]["details"].length; i++) {
+                if(datas["lighting"]["details"][i]["name"] == pre) {
+                    datas.lighting.details.splice(i, 1);
+                    break;
+                }
+            }
+            $(this).parent().parent().find(".lightingDetail").hide();
         }
+        console.log(datas.lighting);
+    });
+    $(".lightingDetail").each(function() {
+        $(this).find("input[type='text']").parent().parent().find("input[type='text']").change(function() {
+            var num = this.value;
+            var name = $(this).parent().parent().parent().find("input[type='checkbox']").val().split("+")[0];
+            for(var i = 0; i < datas["lighting"]["details"].length; i++) {
+                if(datas["lighting"]["details"][i]["name"] == name) {
+                    datas["lighting"]["details"][i]["num"] = parseFloat(num);
+                }
+            }
+        });
     });
 
     $("input[id='electricUpload']").change(function() {
@@ -1208,47 +1593,144 @@
         var pre = this.value.split("+")[0];
         var post = this.value.split("+")[1];
         if(this.checked) {
-            graphic[pre] = post;
+            $(this).parent().parent().find(".graphicDetail").show();
+            $(this).parent().parent().find("input[type='text']").prop("required", true);
+            datas.graphic.details.push({name: pre, unit: post, num: 0.0});
         }
         else {
-            delete graphic[pre];
+            $(this).parent().parent().find("input[type='text']").val("");
+            $(this).parent().parent().find("input[type='text']").removeAttr("required");
+            for(var i = 0; i < datas["graphic"]["details"].length; i++) {
+                if(datas["graphic"]["details"][i]["name"] == pre) {
+                    datas.graphic.details.splice(i, 1);
+                    break;
+                }
+            }
+            $(this).parent().parent().find(".graphicDetail").hide();
         }
     });
+    $(".graphicDetail").each(function() {
+        $(this).find("input[type='text']").parent().parent().find("input[type='text']").change(function() {
+            var num = this.value;
+            var name = $(this).parent().parent().parent().find("input[type='checkbox']").val().split("+")[0];
+            for(var i = 0; i < datas["graphic"]["details"].length; i++) {
+                if(datas["graphic"]["details"][i]["name"] == name) {
+                    datas["graphic"]["details"][i]["num"] = parseFloat(num);
+                }
+            }
+        });
+    });
 
-    $("input[type='radio'][name='displayOption']").change(function() {
-        datas.display.name = this.value.split("+")[0];
-        datas.display.unit = this.value.split("+")[1];
+    $("input[type='checkbox'][name='displayOption']").change(function() {
         if(this.id == "display1080pTV") {
-            $("#display1080TVOptions").show();
-            $("#display4KTVOptions").hide();
-            $("input[name='display1080TVOption']").prop("checked", false);
-            $("input[name='display1080TVOption']:eq(0)").prop("checked", true);
-            datas.display.details = "42'";
+            if(this.checked) {
+                $("#display1080TVOptions").show();
+                $("#display1080TVOptions").find("input[type='text']").val("");
+                $("#display1080TVOptions").find("input[type='text']").prop("required", true);
+                datas.display.details.push({name: "1080p TV", unit: "piece", size: 0.0, num: 0.0});
+            }
+            else {
+                for(var i = 0; i < datas["display"]["details"].length; i++) {
+                    if(datas["display"]["details"][i]["name"] == "1080p TV") {
+                        datas.display.details.splice(i, 1);
+                        break;
+                    }
+                }
+                $("#display1080TVOptions").hide();
+            }
         }
         else 
         if(this.id == "display4KTV") {
-            $("#display4KTVOptions").show();
-            $("#display1080TVOptions").hide();
-            $("input[name='display4KTVOption']").prop("checked", false);
-            $("input[name='display4KTVOption']:eq(0)").prop("checked", true);
-            datas.display.details = "42'";
+            if(this.checked) {
+                $("#display4KTVOptions").show();
+                $("#display4KTVOptions").find("input[type='text']").val("");
+                $("#display4KTVOptions").find("input[type='text']").prop("required", true);
+                datas.display.details.push({name: "4K TV", unit: "piece", size: 0.0, num: 0.0});
+            }
+            else {
+                for(var i = 0; i < datas["display"]["details"].length; i++) {
+                    if(datas["display"]["details"][i]["name"] == "4K TV") {
+                        datas.display.details.splice(i, 1);
+                        break;
+                    }
+                }
+                $("#display4KTVOptions").hide();
+            }
         }
-        else {
-            $("#display1080TVOptions").hide();
-            $("#display4KTVOptions").hide();
-            datas.display.details = "";
+        else 
+        if(this.id == "displaySpeaker&Mic") {
+            if(this.checked) {
+                $("#displaySpeakerMicOptions").show();
+                $("#displaySpeakerMicOptions").find("input[type='text']").val("");
+                $("#displaySpeakerMicOptions").find("input[type='text']").prop("required", true);
+                datas.display.details.push({name: "Speaker&Mic", unit: "piece", num: 0.0});
+            }
+            else {
+                for(var i = 0; i < datas["display"]["details"].length; i++) {
+                    if(datas["display"]["details"][i]["name"] == "Speaker&Mic") {
+                        datas.display.details.splice(i, 1);
+                        break;
+                    }
+                }
+                $("#displaySpeakerMicOptions").hide();
+            }
         }
         //console.log(datas.display);
     });
+    $("#Size1080TV").change(function() {
+        var size = this.value;
+        for(var i = 0; i < datas["display"]["details"].length; i++) {
+            if(datas["display"]["details"][i]["name"] == "1080p TV") {
+                datas["display"]["details"][i]["size"] = parseFloat(size);
+                break;
+            }
+        }
+    });
+    $("#Quantity1080TV").change(function() {
+        var num = this.value;
+        for(var i = 0; i < datas["display"]["details"].length; i++) {
+            if(datas["display"]["details"][i]["name"] == "1080p TV") {
+                datas["display"]["details"][i]["num"] = parseFloat(num);
+                break;
+            }
+        }
+    });
+    $("#Size4KTV").change(function() {
+        var size = this.value;
+        for(var i = 0; i < datas["display"]["details"].length; i++) {
+            if(datas["display"]["details"][i]["name"] == "4K TV") {
+                datas["display"]["details"][i]["size"] = parseFloat(size);
+                break;
+            }
+        }
+    });
+    $("#Quantity4KTV").change(function() {
+        var num = this.value;
+        for(var i = 0; i < datas["display"]["details"].length; i++) {
+            if(datas["display"]["details"][i]["name"] == "4K TV") {
+                datas["display"]["details"][i]["num"] = parseFloat(num);
+                break;
+            }
+        }
+    });
+    $("#QuantitySpeakerMic").change(function() {
+        var num = this.value;
+        for(var i = 0; i < datas["display"]["details"].length; i++) {
+            if(datas["display"]["details"][i]["name"] == "Speaker&Mic") {
+                datas["display"]["details"][i]["num"] = parseFloat(num);
+                break;
+            }
+        }
+    });
 
-    $("input[type='radio'][name='display1080TVOption']").change(function() {
+    /*$("input[type='radio'][name='display1080TVOption']").change(function() {
         datas.display.details = this.value;
     });
     $("input[type='radio'][name='display4KTVOption']").change(function() {
         datas.display.details = this.value;
-    });
+    });*/
 
-    $("input[type='radio'][name='furnitureOption']").change(function() {
+    /*$("input[type='radio'][name='furnitureOption']").change(function() {
         datas.furniture.name = this.value.split("+")[0];
         datas.furniture.unit = this.value.split("+")[1];
         if(this.id == "furnitureSofa") {
@@ -1287,16 +1769,239 @@
     });
     $("input[type='radio'][name='furnitureChairOption']").change(function() {
         datas.furniture.details = this.value;
+    });*/
+
+    $("input[type='checkbox'][name='furnitureOption']").change(function() {
+        var name = this.value.split("+")[0];
+        //var unit = this.value.split("+")[1];
+        if(this.id == "furnitureSofa") {
+            if(this.checked) {
+                //var obj = {name: name, unit: unit, details: []};
+                //datas["furniture"]["details"].push(obj);
+                $("#furnitureSofaOptions").show();
+            }
+            else {
+                /*for(var i = 0; i < datas["furniture"]["details"].length; i++) {
+                    if(datas["furniture"]["details"][i]["name"] == name) {
+                        datas["furniture"]["details"].splice(i, 1);
+                        break;
+                    }
+                }*/
+                var ind = 0;
+                while(ind < datas["furniture"]["details"].length) {
+                    if(datas["furniture"]["details"][ind]["category"] == name) {
+                        datas["furniture"]["details"].splice(ind, 1);
+                        ind --;
+                    }
+                    ind ++;
+                }
+                $("input[name='furnitureSofaOption']").prop("checked", false);
+                $("input[name='furnitureSofaOption']").parent().find("input[type='text']").attr("disabled", "true");
+                $("#furnitureSofaOptions").hide();
+            }
+        }
+        else 
+        if(this.id == "furnitureTable") {
+            if(this.checked) {
+                //var obj = {name: name, unit: unit, details: []};
+                //datas["furniture"]["details"].push(obj);
+                $("#furnitureTableOptions").show();
+            }
+            else {
+                var ind = 0;
+                while(ind < datas["furniture"]["details"].length) {
+                    if(datas["furniture"]["details"][ind]["category"] == name) {
+                        datas["furniture"]["details"].splice(ind, 1);
+                        ind --;
+                    }
+                    ind ++;
+                }
+                $("input[name='furnitureTableOption']").prop("checked", false);
+                $("input[name='furnitureTableOption']").parent().find("input[type='text']").attr("disabled", "true");
+                $("#furnitureTableOptions").hide();
+            }
+        }
+        else 
+        if(this.id == "furnitureChair") {
+            if(this.checked) {
+                //var obj = {name: name, unit: unit, details: []};
+                //datas["furniture"]["details"].push(obj);
+                $("#furnitureChairOptions").show();
+            }
+            else {
+                /*for(var i = 0; i < datas["furniture"]["details"].length; i++) {
+                    if(datas["furniture"]["details"][i]["name"] == name) {
+                        datas["furniture"]["details"].splice(i, 1);
+                        break;
+                    }
+                }*/
+                var ind = 0;
+                while(ind < datas["furniture"]["details"].length) {
+                    if(datas["furniture"]["details"][ind]["category"] == name) {
+                        datas["furniture"]["details"].splice(ind, 1);
+                        ind --;
+                    }
+                    ind ++;
+                }
+                $("input[name='furnitureChairOption']").prop("checked", false);
+                $("input[name='furnitureChairOption']").parent().find("input[type='text']").attr("disabled", "true");
+                $("#furnitureChairOptions").hide();
+            }
+        }
+        //console.log(datas.furniture);
+    });
+    $("input[type='checkbox'][name='furnitureSofaOption']").change(function() {
+        var name = this.value;
+        if(this.value == "Single") {
+            if(this.checked) {
+                /*for(var i = 0; i < datas["furniture"]["details"].length; i++) {
+                    if(datas["furniture"]["details"][i]["name"] == "Sofa") {
+                        datas["furniture"]["details"][i]["details"].push({name: name, num: 0.0});
+                    }
+                }*/
+                datas["furniture"]["details"].push({category: "Sofa", name: name, unit: "piece", num: 0.0});
+                $("#sofaSingleNum").removeAttr("disabled");
+            }
+            else {
+                /*for(var i = 0; i < datas["furniture"]["details"].length; i++) {
+                    if(datas["furniture"]["details"][i]["name"] == "Sofa") {
+                        for(var j = 0; j < datas["furniture"]["details"][i]["details"].length; j++) {
+                            if(datas["furniture"]["details"][i]["details"][j]["name"] == name) {
+                                datas["furniture"]["details"][i]["details"].splice(j, 1);
+                                break;
+                            }
+                        }
+                    }
+                }*/
+                for(var i = 0; i < datas["furniture"]["details"].length; i++) {
+                    if(datas["furniture"]["details"][i]["category"] == "Sofa" && datas["furniture"]["details"][i]["name"] == name) {
+                        datas["furniture"]["details"].splice(i, 1);
+                        break;
+                    }
+                }
+                $("#sofaSingleNum").attr("disabled", "true");
+                $("#sofaSingleNum").val("");
+            }
+        }
+        else
+        if(this.value == "Double") {
+            if(this.checked) {
+                /*for(var i = 0; i < datas["furniture"]["details"].length; i++) {
+                    if(datas["furniture"]["details"][i]["name"] == "Sofa") {
+                        datas["furniture"]["details"][i]["details"].push({name: name, num: 0.0});
+                    }
+                }*/
+                datas["furniture"]["details"].push({category: "Sofa", name: name, unit: "piece", num: 0.0});
+                $("#sofaDoubleNum").removeAttr("disabled");
+            }
+            else {
+                /*for(var i = 0; i < datas["furniture"]["details"].length; i++) {
+                    if(datas["furniture"]["details"][i]["name"] == "Sofa") {
+                        for(var j = 0; j < datas["furniture"]["details"][i]["details"].length; j++) {
+                            if(datas["furniture"]["details"][i]["details"][j]["name"] == name) {
+                                datas["furniture"]["details"][i]["details"].splice(j, 1);
+                                break;
+                            }
+                        }
+                    }
+                }*/
+                for(var i = 0; i < datas["furniture"]["details"].length; i++) {
+                    if(datas["furniture"]["details"][i]["category"] == "Sofa" && datas["furniture"]["details"][i]["name"] == name) {
+                        datas["furniture"]["details"].splice(i, 1);
+                        break;
+                    }
+                }
+                $("#sofaDoubleNum").attr("disabled", "true");
+                $("#sofaDoubleNum").val("");
+            }
+        }
+        //console.log(datas["furniture"]);
+    });
+    $("input[type='checkbox'][name='furnitureSofaOption']").parent().find("input[type='text']").each(function() {
+        $(this).change(function() {
+            var name = $(this).parent().parent().find("input[name='furnitureSofaOption']").val();
+            for(var i = 0; i < datas["furniture"]["details"].length; i++) {
+                if(datas["furniture"]["details"][i]["category"] == "Sofa" && datas["furniture"]["details"][i]["name"] == name) {
+                    datas["furniture"]["details"][i]["num"] = parseFloat(this.value);
+                }
+            }
+        });
+        //console.log(datas.furniture);
+    });
+
+    $("input[type='checkbox'][name='furnitureTableOption']").change(function() {
+        var name = this.value;
+        if(this.checked) {
+            datas["furniture"]["details"].push({category: "Table", name: name, unit: "piece", num: 0.0});
+            $(this).parent().find("input[type='text']").removeAttr("disabled");
+        }
+        else {
+            for(var i = 0; i < datas["furniture"]["details"].length; i++) {
+                if(datas["furniture"]["details"][i]["category"] == "Table" && datas["furniture"]["details"][i]["name"] == name) {
+                    datas["furniture"]["details"].splice(i, 1);
+                    break;
+                }
+            }
+            $(this).parent().find("input[type='text']").attr("disabled", "true");
+            $(this).parent().find("input[type='text']").val("");
+        }
+        //console.log(datas.furniture)
+    });
+    $("input[type='checkbox'][name='furnitureTableOption']").parent().find("input[type='text']").each(function() {
+        $(this).change(function() {
+            var name = $(this).parent().parent().find("input[name='furnitureTableOption']").val();
+            for(var i = 0; i < datas["furniture"]["details"].length; i++) {
+                if(datas["furniture"]["details"][i]["category"] == "Table" && datas["furniture"]["details"][i]["name"] == name) {
+                    datas["furniture"]["details"][i]["num"] = parseFloat(this.value);
+                }
+            }
+        });
+    });
+
+    $("input[type='checkbox'][name='furnitureChairOption']").change(function() {
+        var name = this.value;
+        if(this.checked) {
+            datas["furniture"]["details"].push({category: "Chair", name: name, unit: "piece", num: 0.0});
+            $(this).parent().find("input[type='text']").removeAttr("disabled");
+        }
+        else {
+            for(var i = 0; i < datas["furniture"]["details"].length; i++) {
+                if(datas["furniture"]["details"][i]["category"] == "Chair" && datas["furniture"]["details"][i]["name"] == name) {
+                    datas["furniture"]["details"].splice(i, 1);
+                    break;
+                }
+            }
+            $(this).parent().find("input[type='text']").attr("disabled", "true");
+            $(this).parent().find("input[type='text']").val("");
+        }
+        //console.log(datas.furniture)
+    });
+    $("input[type='checkbox'][name='furnitureChairOption']").parent().find("input[type='text']").each(function() {
+        $(this).change(function() {
+            var name = $(this).parent().parent().find("input[name='furnitureChairOption']").val();
+            for(var i = 0; i < datas["furniture"]["details"].length; i++) {
+                if(datas["furniture"]["details"][i]["category"] == "Chair" && datas["furniture"]["details"][i]["name"] == name) {
+                    datas["furniture"]["details"][i]["num"] = parseFloat(this.value);
+                }
+            }
+        });
     });
 
     $("input[type='checkbox'][id^='accessories']").change(function() {
         var pre = this.value.split("+")[0];
         var post = this.value.split("+")[1];
         if(this.checked) {
-            accessories[pre] = post;
+            //accessories[pre] = post;
+            datas.accessories.details.push({name: pre, unit: post});
         }
         else {
-            delete accessories[pre];
+            //delete accessories[pre];
+            for(var i = 0; i < datas["accessories"]["details"].length; i++) {
+                if(datas["accessories"]["details"][i]["name"] == pre) {
+                    datas.accessories.details.splice(i, 1);
+                    break;
+                }
+            }
         }
     });
     $("#designUpload").change(function(e) {
@@ -1333,9 +2038,12 @@
         $("#showcaseDetails").hide();
         $("#display1080TVOptions").hide();
         $("#display4KTVOptions").hide();
+        $("#displaySpeakerMicOptions").hide();
         $("#furnitureSofaOptions").hide();
         $("#furnitureTableOptions").hide();
         $("#furnitureChairOptions").hide();
+        $(".graphicDetail").hide();
+        $(".lightingDetail").hide();
 
         $("#furNumDiv").hide();
         $("#graNumDiv").hide();
@@ -1469,19 +2177,21 @@
         text += "<span>Show Name: " + $("#showName").val() + "</span><br/>";
         text += "<span>Start Date: " + $("#startDate").val() + "</span><br/>";
         text += "<span>End Date: " + $("#endDate").val() + "</span><br/>";
-        text += "<span>Booth Size: " + $("#size1").val() + " ✕ " + $("#size2").val() + "</span><br/>";
-        text += "<span>Carpet: " + datas.carpet.name + "-" + datas.carpet.color + "</span><br/>";
-        text += "<span>Flooring: " + datas.flooring.name + "-" + datas.flooring.details + "</span><br/>";
-        text += "<span>Wall Panel: " + datas.panel.name + "-" + datas.panel.details + "</span><br/>";
-        if(datas.recieption.name == "Yes")
+        text += "<span>Booth Size: " + ($("#size1").val() == "" ? "0" : $("#size1").val()) + " ✕ " + ($("#size2").val() == "" ? "0" : $("#size2").val()) + "</span><br/>";
+        text += "<span>Carpet: " + (datas.carpet.name == "" ? "No choice" : datas.carpet.name) + "-" + (datas.carpet.color == "" ? "No choice" : datas.carpet.color) + "</span><br/>";
+        //text += "<span>Flooring: " + datas.flooring.name + "-" + datas.flooring.details + "</span><br/>";
+        text += "<span>Wall Panel: " + (datas.panel.name =="" ? "No choice" : datas.panel.name) + "-" + (datas.panel.details == "" ? "No choice" : datas.panel.details) + "</span><br/>";
+        /*if(datas.recieption.name == "Yes")
             text += "<span>Recieption: " + datas.recieption.details + "-" + recieptionSize1.toString() + "✕" + recieptionSize2.toString() + "✕" + recieptionSize3.toString() + "</span><br/>";
         if(datas.showcase.name == "Yes")
-            text += "<span>Recieption: " + datas.showcase.details + "-" + showcaseSize1.toString() + "✕" + showcaseSize2.toString() + "✕" + showcaseSize3.toString() + "</span><br/>";
-        text += "<span>Lighting: ";
-        for(var key in lighting) {
-            text += key + " ";
+            text += "<span>Recieption: " + datas.showcase.details + "-" + showcaseSize1.toString() + "✕" + showcaseSize2.toString() + "✕" + showcaseSize3.toString() + "</span><br/>";*/
+        for(var i = 0; i < datas.lighting.details.length; i++) {
+            text += "<span>Lighting: ";
+            text += datas["lighting"]["details"][i]["name"] + "-";
+            text += datas["lighting"]["details"][i]["num"] + " ";
+            text += datas["lighting"]["details"][i]["unit"];
+            text += "</span><br/>";
         }
-        text += "</span><br/>";
         if(electricFile != undefined) {
             text += "<span>Electricity: ";
             /*var reader = new FileReader();
@@ -1491,18 +2201,45 @@
             reader.readAsDataURL(electricFile);*/
             text += "Uploaded!</span><br/>"
         }
-        text += "<span>Graphic: ";
-        for(var key in graphic) {
-            text += key + " ";
+        for(var i = 0; i < datas.graphic.details.length; i++) {
+            text += "<span>Graphic: ";
+            text += datas["graphic"]["details"][i]["name"] + "-";
+            text += datas["graphic"]["details"][i]["num"] + " ";
+            text += datas["graphic"]["details"][i]["unit"];
+            text += "</span><br/>";
         }
-        text += "</span><br/>";
-        text += "<span>Display: " + datas.display.name + "-" + datas.display.details + "</span><br/>";
-        text += "<span>Furniture: " + datas.furniture.name + "-" + datas.furniture.details + "</span><br/>";
-        text += "<span>Accessories: ";
+        for(var i = 0; i < datas.display.details.length; i++) {
+            text += "<span>Display: ";
+            text += datas["display"]["details"][i]["name"] + "-";
+            if(datas["display"]["details"][i]["name"] != "Speaker&Mic") {
+                text += datas["display"]["details"][i]["size"] + "\"-";
+            }
+            text += datas["display"]["details"][i]["num"] + " ";
+            text += datas["display"]["details"][i]["unit"];
+            text += "</span><br/>";
+        }
+        for(var i = 0; i < datas.furniture.details.length; i++) {
+            text += "<span>Furniture: ";
+            text += datas["furniture"]["details"][i]["category"] + "-";
+            text += datas["furniture"]["details"][i]["name"] + "-";
+            text += datas["furniture"]["details"][i]["num"] + " ";
+            text += datas["furniture"]["details"][i]["unit"];
+            text += "</span><br/>";
+        }
+        for(var i = 0; i < datas.accessories.details.length; i++) {
+            text += "<span>Accessories: ";
+            text += datas["accessories"]["details"][i]["name"];
+            //text += datas["accessories"]["details"][i]["num"] + " ";
+            //text += datas["furniture"]["details"][i]["unit"];
+            text += "</span><br/>";
+        }
+        //text += "<span>Display: " + datas.display.name + "-" + datas.display.details + "</span><br/>";
+        //text += "<span>Furniture: " + datas.furniture.name + "-" + datas.furniture.details + "</span><br/>";
+        /*text += "<span>Accessories: ";
         for(var key in accessories) {
-            text += key + " ";
+            text += key + ", ";
         }
-        text += "</span><br/>";
+        text += "</span><br/>";*/
         if(designFile != undefined) {
             text += "<span>Design Plan: ";
             /*var reader = new FileReader();
@@ -1524,11 +2261,11 @@
         var category = datas;
         var size1 = [];
         //$(".categories")
-        if(category.recieption.name == "Yes")
+        /*if(category.recieption.name == "Yes")
             category.recieption.size = recieptionSize1.toString() + "✕" + recieptionSize2.toString() + "✕" + recieptionSize3.toString();
         if(category.showcase.name == "Yes")
-            category.showcase.size = showcaseSize1.toString() + "✕" + showcaseSize2.toString() + "✕" + showcaseSize3.toString();
-        for(var key in lighting) {
+            category.showcase.size = showcaseSize1.toString() + "✕" + showcaseSize2.toString() + "✕" + showcaseSize3.toString();*/
+        /*for(var key in lighting) {
             category.lighting.details.push({name: key, unit: lighting[key]});
         }
         for(var key in graphic) {
@@ -1536,7 +2273,7 @@
         }
         for(var key in accessories) {
             category.accessories.details.push({name: key, unit: accessories[key]});
-        }
+        }*/
         /*if($("#Furniture").is(":checked")) {
             var obj = {"name": "Furniture","num": $("#furNum").val() == "" ? 0 : parseInt($("#furNum").val())};
             var obj1 = JSON.stringify(obj);

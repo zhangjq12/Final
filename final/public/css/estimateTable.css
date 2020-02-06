@@ -1,0 +1,29 @@
+.table-fixed {
+    width: 100%;
+    border-spacing: 0;
+}
+/*.table-fixed thead,
+.table-fixed tbody,
+.table-fixed tr,
+.table-fixed td,
+.table-fixed th {
+    display: block;
+}*/
+
+.table-fixed thead,
+.table-fixed tbody,
+.table-fixed tfoot {
+    display: block;
+}
+
+.table-fixed thead,
+.table-fixed tfoot {
+    width: 100%;
+}
+
+.table-fixed tbody {
+    height: 600px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+}

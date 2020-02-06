@@ -6,7 +6,7 @@
         <img class="card-img-top" id="topImage" src="/public/image/page/showpageimage.jpg" alt="Card image cap">
         <div class="card-body">
             <div class="row">
-                <div class="col-md-8 mb-3">
+                <div class="col-md-8 mb-3 projectDetails">
                     <div id="boothId" data-name={{boothNum}}></div>
                     <h2 class="card-title">Show Name - <span>{{showName}}</span></h2>
                     <!--<p class="card-text mb-3"><span>Categories - </span>{{category}}</p>-->
@@ -14,35 +14,43 @@
                     <h4 class="mb-3">Project Details</h4>
                     <h6 class="mb-3">Categories</h6>
                     <p>Carpet:&nbsp;{{category.carpet.name}} - <span class="d-inline-block colorTooltip" tabindex="0" data-toggle="tooltip" title="{{category.carpet.color}}"><a target="_blank" href="/public/image/CarpetColor/{{category.carpet.color}}.jpg"><img src="/public/image/CarpetColor/{{category.carpet.color}}.jpg" width="40px" height="40px"></a></span></p>
-                    <p>Flooring:&nbsp;{{category.flooring.name}} - {{category.flooring.details}}</p>
+                    <!--<p>Flooring:&nbsp;{{category.flooring.name}} - {{category.flooring.details}}</p>-->
                     <p>Wall Panel:&nbsp;{{category.panel.name}} - {{category.panel.details}}</p>
-                    <p>Recieption:&nbsp;{{category.recieption.name}} 
+                    <!--<p>Recieption:&nbsp;{{category.recieption.name}} 
                         {{#if category.recieption.details}}- {{category.recieption.details}}&nbsp;&nbsp;Size: {{category.recieption.size}} {{/if}}
                     </p>
                     <p>Showcase:&nbsp;{{category.showcase.name}} 
                         {{#if category.showcase.details}}- {{category.showcase.details}}&nbsp;&nbsp;Size: {{category.showcase.size}} {{/if}}
-                    </p>
-                    <p>Lighting:&nbsp;
-                        {{#each category.lighting.details}}
-                        {{name}}&nbsp;
-                        {{/each}}
-                    </p>
+                    </p>-->
+                    {{#each category.lighting.details}}
+                        <p>Lighting:&nbsp;
+                        {{name}} - {{num}}&nbsp;{{unit}}
+                        </p>
+                    {{/each}}
                     {{#if category.electricity.nonupload}}
                     {{else}}
                     <p>Electricity:&nbsp;<a target="_blank" href="/public/image/exhibitor/electricity/{{category.electricity.filename}}"><img src="/public/image/exhibitor/electricity/{{category.electricity.filename}}" width="100px" height="70px"></a></p>
                     {{/if}}
-                    <p>Graphic:&nbsp;
-                        {{#each category.graphic.details}}
-                        {{name}}&nbsp;
-                        {{/each}}
-                    </p>
-                    <p>Display:&nbsp;{{category.display.name}} - {{category.display.details}}</p>
-                    <p>Furniture:&nbsp;{{category.furniture.name}} - {{category.furniture.details}}</p>
-                    <p>Accessories:&nbsp;
-                        {{#each category.accessories.details}}
-                        {{name}}&nbsp;
-                        {{/each}}
-                    </p>
+                    {{#each category.graphic.details}}
+                        <p>Graphic:&nbsp;
+                        {{name}} - {{num}}&nbsp;{{unit}}
+                        </p>
+                    {{/each}}
+                    {{#each category.display.details}}
+                        <p>Display:&nbsp;
+                        {{name}} - {{num}}&nbsp;{{unit}}
+                        </p>
+                    {{/each}}
+                    {{#each category.furniture.details}}
+                        <p>Furniture:&nbsp;
+                        {{category}} - {{name}} - {{num}}&nbsp;{{unit}}
+                        </p>
+                    {{/each}}
+                    {{#each category.accessories.details}}
+                        <p>Accessories:&nbsp;
+                        {{name}}
+                        </p>
+                    {{/each}}
                     <h6 class="mb-3">Description</h6>
                     <p><a target="_blank" href="/public/image/exhibitor/designPlan/{{details.designFile.filename}}">{{../designFileName}}</a></p>
                     <div id="detailsShow" class="card-text mb-3">{{details.additionalInfo.details}}</div>
@@ -69,7 +77,6 @@
             </div>
         </div>
 
-        {{/each}}
 
         <div class="card-body">
             <h5 class="card-title">Price</h5>
@@ -83,18 +90,19 @@
                     </tr>
                 </thead>
                 <tbody class="table table-hover table-borderless">
-                    {{#each price}}
+                    {{#each ../price}}
                     <tr>
                         <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
                         <td class="align-middle" scope="row" id={{vendorId}}><a href="/info?name={{vendorName}}">{{vendorName}}</a></td>
                         <td class="align-middle">
-                            <a href="#acc{{vendorId}}" data-toggle="collapse" aria-expanded="false" aria-controls="acc{{vendorId}}">{{price.total}}</button>
+                            <a target="_blank" href="/exhibitor/estimate?id={{../boothNum}}&vendor={{vendorId}}">{{price.total}}</a>
+                            <!--<a href="#acc{{vendorId}}" data-toggle="collapse" aria-expanded="false" aria-controls="acc{{vendorId}}">{{price.total}}</a>-->
                         </td>
                         <td class="align-middle">
                             <button id={{vendorId}} class="btn btn-light">Confirm</button>
                         </td>
                     </tr>
-                    <tr>
+                    <!--<tr>
                         <td colspan="3">
                             <div id="acc{{vendorId}}" class="collapse">
                                 <div class="row">
@@ -137,7 +145,7 @@
                                 {{/each}}
                             </div>
                         </td>
-                    </tr>
+                    </tr>-->
 
 
 
@@ -145,6 +153,7 @@
                 </tbody>
             </table>
         </div>
+        {{/each}}
     </div>
 
 </div>

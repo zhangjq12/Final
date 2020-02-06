@@ -163,6 +163,33 @@ router.get("/show", async (req, res) => {
     }
 });
 
+router.get("/estimate", async (req, res) => {
+    const Head = await head(req);
+    const user = await authentication(req);
+    const boothNum = req.query.id;
+    const vendorId = req.query.vendor;
+    try {
+        if(user == null)
+            throw "error";
+        const data = await tab.getBoothNum(boothNum);
+        //console.log(data);
+        const designFileName = data[0]["details"]["designFile"]["filename"].split("_+_")[1];
+        const data2 = await price.getBoothId(boothNum);
+        var table;
+        for(var d of data2) {
+            if(d["vendorId"] == vendorId) {
+                table = d["price"];
+                break;
+            }
+        }
+        console.log(table["each"]);
+        res.render("construct/vendor/estimate", {title: "Details of " + data[0]["showName"], status: Head, voe: "exhibitor", data: data, estimateTable: table["each"], designFileName: designFileName, total: table["total"]});
+    }
+    catch(e) {
+        res.render("construct/error", {title: "Error!", status: Head});
+    }
+});
+
 router.post("/jobConfirm", async (req, res) => {
     const request = {
         id: req.body.id,
@@ -221,6 +248,14 @@ router.get("/contract", async (req, res) => {
     try {
         const data1 = await tab.getBoothNum(id);
         const data2 = await price.getBoothId(id);
+        var ind = 0;
+        while(ind < data2[0]["price"]["each"].length) {
+            if(data2[0]["price"]["each"][ind]["Total"] == "$0.00") {
+                data2[0]["price"]["each"].splice(ind, 1);
+                ind --;
+            }
+            ind ++;
+        }
         const data3 = await users.getId(data2[0]["exhibitorId"].toString());
         const data4 = await users.getId(data2[0]["vendorId"].toString());
         const size12 = data1[0]["size"].split(",");

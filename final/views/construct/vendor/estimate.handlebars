@@ -1,0 +1,294 @@
+<link href="/public/css/estimateTable.css" rel="stylesheet">
+<div class="container-fluid estimatePage" data-name="{{voe}}">
+    {{#each data}}
+    <div class="row">
+        <div class="col-12">
+            <h2>Show Name - <span id="showName">{{showName}}</span></h2>
+            <p>BoothNum - <span id="boothId">{{boothNum}}</span></p>
+            <p><span>Start Date - </span>{{date.start}}&nbsp;&nbsp;&nbsp;<span id="endDate+{{date.end}}">End Date - </span>{{date.end}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-3 showDetails">
+            <h6 class="mb-3">Categories</h6>
+            <p>Carpet:&nbsp;{{category.carpet.name}} - <span class="d-inline-block colorTooltip" tabindex="0" data-toggle="tooltip" title="{{category.carpet.color}}"><a target="_blank" href="/public/image/CarpetColor/{{category.carpet.color}}.jpg"><img src="/public/image/CarpetColor/{{category.carpet.color}}.jpg" width="40px" height="40px"></a></span></p>
+            <p>Wall Panel:&nbsp;{{category.panel.name}} - {{category.panel.details}}</p>
+            {{#each category.lighting.details}}
+                <p>Lighting:&nbsp;
+                {{name}} - {{num}}&nbsp;{{unit}}
+                </p>
+            {{/each}}
+            {{#if category.electricity.nonupload}}
+            {{else}}
+            <p>Electricity:&nbsp;<a target="_blank" href="/public/image/exhibitor/electricity/{{category.electricity.filename}}"><img src="/public/image/exhibitor/electricity/{{category.electricity.filename}}" width="100px" height="70px"></a></p>
+            {{/if}}
+            {{#each category.graphic.details}}
+                <p>Graphic:&nbsp;
+                {{name}} - {{num}}&nbsp;{{unit}}
+                </p>
+            {{/each}}
+            {{#each category.display.details}}
+                <p>Display:&nbsp;
+                {{name}} - {{num}}&nbsp;{{unit}}
+                </p>
+            {{/each}}
+            {{#each category.furniture.details}}
+                <p>Furniture:&nbsp;
+                {{category}} - {{name}} - {{num}}&nbsp;{{unit}}
+                </p>
+            {{/each}}
+            {{#each category.accessories.details}}
+                <p>Accessories:&nbsp;
+                {{name}}
+                </p>
+            {{/each}}
+            <h6 class="mb-3">Description</h6>
+            <p><a target="_blank" href="/public/image/exhibitor/designPlan/{{details.designFile.filename}}">{{../designFileName}}</a></p>
+        </div>
+        <div class="col-xl-9">
+            <form id="estimateForm">
+            <table id="estimateTable" class="table table-fixed table-bordered" cellspacing="0">
+                <thead>
+                    <tr>
+                        <!--<th scope="col"></th>-->
+                        <th scope="col" style="width: 16%">Category</th>
+                        <th scope="col" style="width: 9%">No.</th>
+                        <th scope="col" style="width: 34%">Product name</th>
+                        <th scope="col" style="width: 8%">Unit</th>
+                        <th scope="col" style="width: 11%">Price</th>
+                        <th scope="col" style="width: 11%">Quantity</th>
+                        <th scope="col" style="width: 11%">SubTotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each ../estimateTable}}
+                    <tr>
+                        <td scope="row" style="width: 16%">{{Category}}</td>
+                        <td style="width: 9%">{{Product_No}}</td>
+                        <td style="width: 34%">{{Product_name}}</td>
+                        <td style="width: 8%">{{Unit}}</td>
+                        <td style="width: 11%">
+                            <input class="form-control form-control-sm priceInput" type="text" value="{{Price}}" onkeyup="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <input class="form-control form-control-sm numInput" type="text" value="{{Quantity}}" onkeyup="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <span class="subTotal">{{Total}}</span>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5" style="width: 88%;">
+                        </td>
+                        <td style="width: 11%;">Total:</td>
+                        <td style="width: 11%;">
+                            <input type="hidden" id="author" value="{{author}}"></input>
+                            <span class="totalPriceSpan">{{../total}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">
+                            
+                        </td>
+                        <td>
+                            <button id="estimateSubmit" type="submit" class="btn btn-light">Submit</button>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+            </form>
+        </div>
+    </div>
+    {{/each}}
+</div>
+
+<div class="modal fade" id="estimateDia" tabindex="-1" role="dialog" aria-labelledby="estimateDiaTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" id="estimateDiaHeader">
+                <h5 class="modal-title" id="estimateDiaTitle">Modify Tab</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="estimateDiaBody">
+                Do you want to continue?
+            </div>
+            <div class="modal-footer" id="estimateDiaFooter">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="noEstimate" >No</button>
+                <button type="button" class="btn btn-primary" id="yesEstimate" >Yes</button>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<!--<script type="text/javascript" src="/public/js/datatables.min.js"></script>-->
+<script>
+    var $table = $('.table-fixed'),
+    $bodyCells = $table.find('tbody tr:first').children(),
+    colWidth;
+
+    // Adjust the width of thead cells when window resizes
+    $(window).resize(function() {
+        // Get the tbody columns width array
+        colWidth = $bodyCells.map(function() {
+            return $(this).width();
+        }).get();
+        
+        // Set the width of thead columns
+        $table.find('thead tr').children().each(function(i, v) {
+            $(v).width(colWidth[i]);
+        });
+    }).resize();
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    //$("#tabSubmit").prop('disabled', true);
+                    event.stopPropagation();
+                }
+                else {
+                    event.preventDefault();
+                    $("#estimateDia").modal('show');
+                    $(this).find(':button[type=submit]').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
+                    $(this).find(':button[type=submit]').prop('disabled', true);
+                }
+                form.classList.add('was-validated');
+            }, false);
+            });
+        }, false);
+    })();
+    $("#estimateForm").submit(function(e) {
+        e.preventDefault();
+        $("#estimateDia").modal("show");
+        $('#estimateSubmit').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
+        $('#estimateSubmit').prop('disabled', true);
+    })
+    $(document).ready(function() {
+        //console.log($(".estimatePage").attr("data-name"));
+        if($(".estimatePage").attr("data-name") == "exhibitor") {
+            //console.log($(".container-fluid").attr("data-name"));
+            $("input").prop("disabled", true);
+            $("button").parent().parent().hide();
+        }
+        $(".showDetails").each(function() {
+            var data = $(this).html();
+            data = data.replace(/&lt;/g, "<");
+            data = data.replace(/&gt;/g, ">");
+            data = data.replace(/&#x3D;/g, "=");
+            data = data.replace("<script>", "&lt;script&gt;");
+            data = data.replace("<style>", "&lt;style&gt;");
+            data = data.replace(/<img src/g, "<img style='max-width:100%;' src");
+            data = data.replace("&amp;nbsp;", " ");
+            $(this).html(data);
+        });
+        $(".numInput").each(function() {
+            $(this).bind('input propertychange', function() {
+                var eaprice = parseFloat($(this).parent().parent().find(".priceInput").val() == "" ? 0.00 : $(this).parent().parent().find(".priceInput").val());
+                var price = eaprice * parseFloat(this.value == "" ? 0.00 : this.value);
+                price = price.toFixed(2);
+                $(this).parent().parent().find(".subTotal").html("$" + price.toString());
+                var sum = 0;
+                $(this).parent().parent().parent().find(".subTotal").each(function() {
+                    sum += parseFloat($(this).html().split("$")[1]);
+                });
+                sum = sum.toFixed(2);
+                $(this).parent().parent().parent().parent().parent().find(".totalPriceSpan").html("$" + sum.toString());
+            });
+        });
+        $(".priceInput").each(function() {
+            $(this).bind('input propertychange', function() {
+                var eaprice = parseFloat($(this).parent().parent().find(".numInput").val() == "" ? 0.00 : $(this).parent().parent().find(".numInput").val());
+                var price = eaprice * parseFloat(this.value == "" ? 0.00 : this.value);
+                price = price.toFixed(2);
+                $(this).parent().parent().find(".subTotal").html("$" + price.toString());
+                var sum = 0;
+                $(this).parent().parent().parent().find(".subTotal").each(function() {
+                    sum += parseFloat($(this).html().split("$")[1]);
+                });
+                sum = sum.toFixed(2);
+                $(this).parent().parent().parent().parent().parent().find(".totalPriceSpan").html("$" + sum.toString());
+            });
+        });
+    });
+    $("#noEstimate").click(function() {
+        $('#estimateSubmit').html('Submit');
+        $('#estimateSubmit').prop('disabled', false);
+    });
+    $("#yesEstimate").click(function(e) {
+        e.preventDefault();
+        var boothNum = $("#boothId").html();
+        var author = $("#author").val();
+        var showName = $("#showName").html();
+        var arr = [];
+        $(".subTotal").each(function() {
+            /*var names = $(this).parent().parent().find(".numInput").attr("id").split("--");
+            var name = names[0] + "-" + names[2];
+            var num = $(this).parent().parent().find(".numInput").val();
+            var unit = $(this).parent().parent().find(".units").html();
+            var eaprice = parseFloat($(this).parent().parent().find("priceInput").val());
+            eaprice = eaprice.toFixed(2);
+            var eapriceStr = "$" + eaprice.toString();
+            var price = $(this).html();
+            var obj = {"name": name, "num": num, "unit": unit, "eachPrice": eapriceStr, "price": price};
+            arr.push(obj);*/
+            var category = $(this).parent().parent().find("td:eq(0)").html();
+            var proNo = $(this).parent().parent().find("td:eq(1)").html();
+            var proName = $(this).parent().parent().find("td:eq(2)").html();
+            var unit = $(this).parent().parent().find("td:eq(3)").html();
+            var price = $(this).parent().parent().find(".priceInput").val();
+            var quantity = $(this).parent().parent().find(".numInput").val();
+            var total = $(this).html();
+            var obj = {"Category": category, "Product_No": proNo, "Product_name": proName, "Unit": unit, "Price": price, "Quantity": quantity, "Total": total};
+            arr.push(obj);
+        }); 
+        var price1 = {"each": arr, "total": $(".totalPriceSpan").html()};
+        var price = JSON.stringify(price1);
+        var user = $("#uNameShow").attr("data-name");
+        //console.log(boothNum)
+        //console.log(price);
+        $.ajax({
+            type: "post",
+            url: "/vendor/estimate",
+            dataType: "json",
+            data: {
+                id: boothNum,
+                price: price
+            },
+            success: function(res) {
+                //alert(res);
+                var origin = window.location.hostname;
+                var ws = new WebSocket('ws://' + origin + ':8080');
+                var message = showName + "'s progress is updated! Refresh this page to check you progress!||" + user + "||" + author;
+                ws.onopen = function(e) {
+                    ws.send(message);
+                }
+                $("#estimateDiaFooter").hide();
+                $("#estimateDiaBody").html('<div class="container"><p>Create This Job Successfully!</p></br><span id="totalSecond">1</span><span id="second"> Second</span><span id="nextcontent"> later to go back to the job page!</span></div>');
+                jQuery.getScript("/public/js/autourl.js").done(function(){
+                    var fun = auto;
+                    //fun("/exhibitor/show?id=" + res["id"]);
+                    fun("/")
+                });
+            },
+            error: function(err) {
+                $("#estimateDiaFooter").hide();
+                $("#estimateDiaBody").html('<div class="container"><p>Create job failed!</p></br><span id="totalSecond">1</span><span id="second"> Second</span><span id="nextcontent"> later to go back homepage!</span></div>');
+                jQuery.getScript("/public/js/autourl.js").done(function(){
+                    var fun = auto;
+                    //fun("/exhibitor/show?id=" + res["id"]);
+                    fun("/")
+                });
+            }
+        });
+    });
+</script>

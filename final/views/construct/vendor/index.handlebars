@@ -37,36 +37,44 @@
                             <td colspan="4">
                             <div id="acc{{boothNum}}" class="collapse">
                                 <p>Carpet:&nbsp;{{category.carpet.name}} - <a class="colorTooltip" target="_blank" href="/public/image/CarpetColor/{{category.carpet.color}}.jpg" data-toggle="tooltip" title="{{category.carpet.color}}"><img src="/public/image/CarpetColor/{{category.carpet.color}}.jpg" width="40px" height="40px"></a></p>
-                                <p>Flooring:&nbsp;{{category.flooring.name}} - {{category.flooring.details}}</p>
+                                <!--<p>Flooring:&nbsp;{{category.flooring.name}} - {{category.flooring.details}}</p>-->
                                 <p>Wall Panel:&nbsp;{{category.panel.name}} - {{category.panel.details}}</p>
-                                <p>Recieption:&nbsp;{{category.recieption.name}} 
+                                <!--<p>Recieption:&nbsp;{{category.recieption.name}} 
                                     {{#if category.recieption.details}}- {{category.recieption.details}}&nbsp;&nbsp;Size: {{category.recieption.size}} {{/if}}
                                 </p>
                                 <p>Showcase:&nbsp;{{category.showcase.name}} 
                                     {{#if category.showcase.details}}- {{category.showcase.details}}&nbsp;&nbsp;Size: {{category.showcase.size}} {{/if}}
-                                </p>
-                                <p>Lighting:&nbsp;
-                                    {{#each category.lighting.details}}
-                                    {{name}}&nbsp;
-                                    {{/each}}
-                                </p>
+                                </p>-->
+                                {{#each category.lighting.details}}
+                                    <p>Lighting:&nbsp;
+                                    {{name}} - {{num}}&nbsp;{{unit}}
+                                    </p>
+                                {{/each}}
                                 {{#if category.electricity.nonupload}}
                                 {{else}}
                                 <p>Electricity:&nbsp;<a target="_blank" href="/public/image/exhibitor/electricity/{{category.electricity.filename}}"><img src="/public/image/exhibitor/electricity/{{category.electricity.filename}}" width="100px" height="70px"></a></p>
                                 {{/if}}
-                                <p>Graphic:&nbsp;
-                                    {{#each category.graphic.details}}
-                                    {{name}}&nbsp;
-                                    {{/each}}
-                                </p>
-                                <p>Display:&nbsp;{{category.display.name}} - {{category.display.details}}</p>
-                                <p>Furniture:&nbsp;{{category.furniture.name}} - {{category.furniture.details}}</p>
-                                <p>Accessories:&nbsp;
-                                    {{#each category.accessories.details}}
-                                    {{name}}&nbsp;
-                                    {{/each}}
-                                </p>
-                                <p><a class="fileReview" target="_blank" href="/public/image/exhibitor/designPlan/{{details.designFile.filename}}">{{../designFileName}}</a></p>
+                                {{#each category.graphic.details}}
+                                    <p>Graphic:&nbsp;
+                                    {{name}} - {{num}}&nbsp;{{unit}}
+                                    </p>
+                                {{/each}}
+                                {{#each category.display.details}}
+                                    <p>Display:&nbsp;
+                                    {{name}} - {{num}}&nbsp;{{unit}}
+                                    </p>
+                                {{/each}}
+                                {{#each category.furniture.details}}
+                                    <p>Furniture:&nbsp;
+                                    {{category}} - {{name}} - {{num}}&nbsp;{{unit}}
+                                    </p>
+                                {{/each}}
+                                {{#each category.accessories.details}}
+                                    <p>Accessories:&nbsp;
+                                    {{name}}
+                                    </p>
+                                {{/each}}
+                                <p><a class="fileReview" target="_blank" href="/public/image/exhibitor/designPlan/{{details.designFile.filename}}">{{details.designFile.filename}}</a></p>
                                 {{details.additionalInfo.details}}
                             </div>
                             </td>
@@ -107,36 +115,44 @@
                             <td colspan="4">
                             <div id="acc{{boothNum}}" class="collapse">
                                 <p>Carpet:&nbsp;{{category.carpet.name}} - <a class="colorTooltip" target="_blank" href="/public/image/CarpetColor/{{category.carpet.color}}.jpg" data-toggle="tooltip" title="{{category.carpet.color}}"><img src="/public/image/CarpetColor/{{category.carpet.color}}.jpg" width="40px" height="40px"></a></p>
-                                <p>Flooring:&nbsp;{{category.flooring.name}} - {{category.flooring.details}}</p>
+                                <!--<p>Flooring:&nbsp;{{category.flooring.name}} - {{category.flooring.details}}</p>-->
                                 <p>Wall Panel:&nbsp;{{category.panel.name}} - {{category.panel.details}}</p>
-                                <p>Recieption:&nbsp;{{category.recieption.name}} 
+                                <!--<p>Recieption:&nbsp;{{category.recieption.name}} 
                                     {{#if category.recieption.details}}- {{category.recieption.details}}&nbsp;&nbsp;Size: {{category.recieption.size}} {{/if}}
                                 </p>
                                 <p>Showcase:&nbsp;{{category.showcase.name}} 
                                     {{#if category.showcase.details}}- {{category.showcase.details}}&nbsp;&nbsp;Size: {{category.showcase.size}} {{/if}}
-                                </p>
-                                <p>Lighting:&nbsp;
-                                    {{#each category.lighting.details}}
-                                    {{name}}&nbsp;
-                                    {{/each}}
-                                </p>
+                                </p>-->
+                                {{#each category.lighting.details}}
+                                    <p>Lighting:&nbsp;
+                                    {{name}} - {{num}}&nbsp;{{unit}}
+                                    </p>
+                                {{/each}}
                                 {{#if category.electricity.nonupload}}
                                 {{else}}
                                 <p>Electricity:&nbsp;<a target="_blank" href="/public/image/exhibitor/electricity/{{category.electricity.filename}}"><img src="/public/image/exhibitor/electricity/{{category.electricity.filename}}" width="100px" height="70px"></a></p>
                                 {{/if}}
-                                <p>Graphic:&nbsp;
-                                    {{#each category.graphic.details}}
-                                    {{name}}&nbsp;
-                                    {{/each}}
-                                </p>
-                                <p>Display:&nbsp;{{category.display.name}} - {{category.display.details}}</p>
-                                <p>Furniture:&nbsp;{{category.furniture.name}} - {{category.furniture.details}}</p>
-                                <p>Accessories:&nbsp;
-                                    {{#each category.accessories.details}}
-                                    {{name}}&nbsp;
-                                    {{/each}}
-                                </p>
-                                <p><a class="fileReview" target="_blank" href="/public/image/exhibitor/designPlan/{{details.designFile.filename}}">{{../designFileName}}</a></p>
+                                {{#each category.graphic.details}}
+                                    <p>Graphic:&nbsp;
+                                    {{name}} - {{num}}&nbsp;{{unit}}
+                                    </p>
+                                {{/each}}
+                                {{#each category.display.details}}
+                                    <p>Display:&nbsp;
+                                    {{name}} - {{num}}&nbsp;{{unit}}
+                                    </p>
+                                {{/each}}
+                                {{#each category.furniture.details}}
+                                    <p>Furniture:&nbsp;
+                                    {{category}} - {{name}} - {{num}}&nbsp;{{unit}}
+                                    </p>
+                                {{/each}}
+                                {{#each category.accessories.details}}
+                                    <p>Accessories:&nbsp;
+                                    {{name}}
+                                    </p>
+                                {{/each}}
+                                <p><a class="fileReview" target="_blank" href="/public/image/exhibitor/designPlan/{{details.designFile.filename}}">{{details.designFile.filename}}</a></p>
                                 {{details.additionalInfo.details}}
                             </div>
                             </td>
@@ -154,7 +170,7 @@
                         <th scope="col">Show Name</th>
                         <th scope="col">End Date</th>
                         <th scope="col">Author</th>
-                        <th scope="col">Estimate Price</th>
+                        <th scope="col">Operation</th>
                     </tr>
                 </thead>
                 <tbody class="table table-hover table-borderless">
@@ -190,45 +206,53 @@
                         <td colspan="4">
                         <div id="existing{{boothNum}}" class="collapse">
                             <p>Carpet:&nbsp;{{category.carpet.name}} - <a class="colorTooltip" target="_blank" href="/public/image/CarpetColor/{{category.carpet.color}}.jpg" data-toggle="tooltip" title="{{category.carpet.color}}"><img src="/public/image/CarpetColor/{{category.carpet.color}}.jpg" width="40px" height="40px"></a></p>
-                            <p>Flooring:&nbsp;{{category.flooring.name}} - {{category.flooring.details}}</p>
+                            <!--<p>Flooring:&nbsp;{{category.flooring.name}} - {{category.flooring.details}}</p>-->
                             <p>Wall Panel:&nbsp;{{category.panel.name}} - {{category.panel.details}}</p>
-                            <p>Recieption:&nbsp;{{category.recieption.name}} 
+                            <!--<p>Recieption:&nbsp;{{category.recieption.name}} 
                                 {{#if category.recieption.details}}- {{category.recieption.details}}&nbsp;&nbsp;Size: {{category.recieption.size}} {{/if}}
                             </p>
                             <p>Showcase:&nbsp;{{category.showcase.name}} 
                                 {{#if category.showcase.details}}- {{category.showcase.details}}&nbsp;&nbsp;Size: {{category.showcase.size}} {{/if}}
-                            </p>
-                            <p>Lighting:&nbsp;
-                                {{#each category.lighting.details}}
-                                {{name}}&nbsp;
-                                {{/each}}
-                            </p>
+                            </p>-->
+                            {{#each category.lighting.details}}
+                                <p>Lighting:&nbsp;
+                                {{name}} - {{num}}&nbsp;{{unit}}
+                                </p>
+                            {{/each}}
                             {{#if category.electricity.nonupload}}
                             {{else}}
                             <p>Electricity:&nbsp;<a target="_blank" href="/public/image/exhibitor/electricity/{{category.electricity.filename}}"><img src="/public/image/exhibitor/electricity/{{category.electricity.filename}}" width="100px" height="70px"></a></p>
                             {{/if}}
-                            <p>Graphic:&nbsp;
-                                {{#each category.graphic.details}}
-                                {{name}}&nbsp;
-                                {{/each}}
-                            </p>
-                            <p>Display:&nbsp;{{category.display.name}} - {{category.display.details}}</p>
-                            <p>Furniture:&nbsp;{{category.furniture.name}} - {{category.furniture.details}}</p>
-                            <p>Accessories:&nbsp;
-                                {{#each category.accessories.details}}
-                                {{name}}&nbsp;
-                                {{/each}}
-                            </p>
+                            {{#each category.graphic.details}}
+                                <p>Graphic:&nbsp;
+                                {{name}} - {{num}}&nbsp;{{unit}}
+                                </p>
+                            {{/each}}
+                            {{#each category.display.details}}
+                                <p>Display:&nbsp;
+                                {{name}} - {{num}}&nbsp;{{unit}}
+                                </p>
+                            {{/each}}
+                            {{#each category.furniture.details}}
+                                <p>Furniture:&nbsp;
+                                {{category}} - {{name}} - {{num}}&nbsp;{{unit}}
+                                </p>
+                            {{/each}}
+                            {{#each category.accessories.details}}
+                                <p>Accessories:&nbsp;
+                                {{name}}
+                                </p>
+                            {{/each}}
                             <p><a class="fileReview" target="_blank" href="/public/image/exhibitor/designPlan/{{details.designFile.filename}}">{{details.designFile.filename}}</a></p>
                             {{details.additionalInfo.details}}
                         </div>
                         </td>
                     </tr>
-                    <tr>
+                    <!--<tr>
                         <td class="align-middle" colspan="4">
                             <div id="cat{{boothNum}}" class="collapse">
                                 <form class="estimateForm">
-                                <!--{{#each category}}
+                                {{#each category}}
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
                                         {{name}}
@@ -249,7 +273,7 @@
                                         <span class="subTotal">$0.00</span>
                                     </div>
                                 </div>
-                                {{/each}}-->
+                                {{/each}}
                                 <div class="row mb-3">
                                     <div class="col-sm-6">
                                         <h6>Category</h6>
@@ -489,7 +513,7 @@
                                 </form>
                             </div>
                         </td>
-                    </tr>
+                    </tr>-->
                     {{/each}}
                 </tbody>
             </table>
@@ -579,9 +603,8 @@
         });
         $(".showPriceDe").each(function() {
             var attr = $(this).attr("data-name");
-            attr = "cat" + attr;
             $(this).click(function() {
-                $("#" + attr).collapse('toggle');
+                $(location).attr("href", "vendor/estimate?id=" + attr);
             });
         });
 
@@ -677,7 +700,7 @@
                 });
             })
         });
-        $(".estimateForm").each(function() {
+        /*$(".estimateForm").each(function() {
             $(this).find("input[class='form-control num']").each(function() {
                 $(this).bind('input propertychange', function() {
                     var eaprice = parseFloat($(this).parent().find("input[class='form-control price']").val() == "" ? 0.00 : $(this).parent().find("input[class='form-control price']").val());
@@ -720,7 +743,7 @@
             //$(this).find("input[type='text']").bind("input propertychange", function(e) {
                 //var sum = 0;
                 //console.log(sum);
-            /*$(this).find("input[id^='price']").change(function() {
+            $(this).find("input[id^='price']").change(function() {
                 //console.log(1);
                 var sum = 0.00;
                 $(this).parent().parent().parent().find("input[id^='price']").each(function() {
@@ -733,7 +756,7 @@
                 $(this).parent().parent().parent().find(".totalPriceSpan").html("$" + sum.toString());
             });
                 //$(this).find(".totalPriceSpan").html("$&nbsp;&nbsp;" + sum.toString());
-            //});*/
+            //});
             $(this).submit(function(e) {
                 e.preventDefault();
                 var boothNum = $(this).find("input[name='id']").val();
@@ -796,6 +819,6 @@
                     }
                 });
             })
-        });
+        });*/
     });
 </script>

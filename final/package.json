@@ -33,6 +33,7 @@
     "popper.js": "^1.16.0",
     "social-share-count-js": "0.0.7",
     "ws": "^7.2.1",
+    "xlsx": "^0.15.5",
     "xss": "^1.0.6"
   },
   "devDependencies": {

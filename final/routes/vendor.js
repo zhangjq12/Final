@@ -8,6 +8,7 @@ const comments = data.comments;
 const progress = data.progress;
 const contract = data.contract;
 const price = data.price;
+const Sheet = data.vendorPriceSheet;
 const authentication = require("./authentication");
 const upload2 = require("./middleware/multer2");
 const xss = require('xss');
@@ -102,6 +103,28 @@ router.get("/", async (req, res) => {
     }
 });*/
 
+router.get("/estimate", async (req, res) => {
+    const Head = await head(req);
+    const user = await authentication(req);
+    const boothNum = req.query.id;
+    try {
+        if(user == null)
+            throw "error";
+        const data = await tab.getBoothNum(boothNum);
+        //console.log(data);
+        const designFileName = data[0]["details"]["designFile"]["filename"].split("_+_")[1];
+        const table = Sheet;
+        for(var t of table) {
+            t["Total"] = "$0.00";
+        }
+        total = "$0.00";
+        res.render("construct/vendor/estimate", {title: "Details of " + data[0]["showName"], status: Head, voe: "vendor", data: data, estimateTable: table, designFileName: designFileName, total: total});
+    }
+    catch(e) {
+        res.render("construct/error", {title: "Error!", status: Head});
+    }
+});
+
 router.post("/estimate", async (req, res) => {
     const Head = await head(req);
     const user = await authentication(req);
@@ -178,6 +201,14 @@ router.get("/contract", async (req, res) => {
     try {
         const data1 = await tab.getBoothNum(id);
         const data2 = await price.getBoothId(id);
+        var ind = 0;
+        while(ind < data2[0]["price"]["each"].length) {
+            if(data2[0]["price"]["each"][ind]["Total"] == "$0.00") {
+                data2[0]["price"]["each"].splice(ind, 1);
+                ind --;
+            }
+            ind ++;
+        }
         const data3 = await users.getId(data2[0]["exhibitorId"].toString());
         const data4 = await users.getId(data2[0]["vendorId"].toString());
         const size12 = data1[0]["size"].split(",");
