@@ -47,7 +47,7 @@
                                 </p>-->
                                 {{#each category.lighting.details}}
                                     <p>Lighting:&nbsp;
-                                    {{name}} - {{num}}&nbsp;{{unit}}
+                                    <span class="d-inline-block lightingTooltip" tabindex="0" data-toggle="tooltip" title="{{name}}"><a target="_blank" href="/public/image/Lighting/{{name}}.jpg"><img src="/public/image/Lighting/{{name}}.jpg" width="40px" height="40px"></a></span> - {{num}}&nbsp;{{unit}}
                                     </p>
                                 {{/each}}
                                 {{#if category.electricity.nonupload}}
@@ -66,7 +66,7 @@
                                 {{/each}}
                                 {{#each category.furniture.details}}
                                     <p>Furniture:&nbsp;
-                                    {{category}} - {{name}} - {{num}}&nbsp;{{unit}}
+                                    {{category}} - <span class="d-inline-block furnitureTooltip" tabindex="0" data-toggle="tooltip" title="{{name}}"><a target="_blank" href="/public/image/Furniture/{{name}}.jpg"><img src="/public/image/Furniture/{{name}}.jpg" width="40px" height="40px"></a></span> - {{num}}&nbsp;{{unit}}
                                     </p>
                                 {{/each}}
                                 {{#each category.accessories.details}}
@@ -125,7 +125,7 @@
                                 </p>-->
                                 {{#each category.lighting.details}}
                                     <p>Lighting:&nbsp;
-                                    {{name}} - {{num}}&nbsp;{{unit}}
+                                    <span class="d-inline-block lightingTooltip" tabindex="0" data-toggle="tooltip" title="{{name}}"><a target="_blank" href="/public/image/Lighting/{{name}}.jpg"><img src="/public/image/Lighting/{{name}}.jpg" width="40px" height="40px"></a></span> - {{num}}&nbsp;{{unit}}
                                     </p>
                                 {{/each}}
                                 {{#if category.electricity.nonupload}}
@@ -144,7 +144,7 @@
                                 {{/each}}
                                 {{#each category.furniture.details}}
                                     <p>Furniture:&nbsp;
-                                    {{category}} - {{name}} - {{num}}&nbsp;{{unit}}
+                                    {{category}} - <span class="d-inline-block furnitureTooltip" tabindex="0" data-toggle="tooltip" title="{{name}}"><a target="_blank" href="/public/image/Furniture/{{name}}.jpg"><img src="/public/image/Furniture/{{name}}.jpg" width="40px" height="40px"></a></span> - {{num}}&nbsp;{{unit}}
                                     </p>
                                 {{/each}}
                                 {{#each category.accessories.details}}
@@ -216,7 +216,7 @@
                             </p>-->
                             {{#each category.lighting.details}}
                                 <p>Lighting:&nbsp;
-                                {{name}} - {{num}}&nbsp;{{unit}}
+                                <span class="d-inline-block lightingTooltip" tabindex="0" data-toggle="tooltip" title="{{name}}"><a target="_blank" href="/public/image/Lighting/{{name}}.jpg"><img src="/public/image/Lighting/{{name}}.jpg" width="40px" height="40px"></a></span> - {{num}}&nbsp;{{unit}}
                                 </p>
                             {{/each}}
                             {{#if category.electricity.nonupload}}
@@ -235,7 +235,7 @@
                             {{/each}}
                             {{#each category.furniture.details}}
                                 <p>Furniture:&nbsp;
-                                {{category}} - {{name}} - {{num}}&nbsp;{{unit}}
+                                {{category}} - <span class="d-inline-block furnitureTooltip" tabindex="0" data-toggle="tooltip" title="{{name}}"><a target="_blank" href="/public/image/Furniture/{{name}}.jpg"><img src="/public/image/Furniture/{{name}}.jpg" width="40px" height="40px"></a></span> - {{num}}&nbsp;{{unit}}
                                 </p>
                             {{/each}}
                             {{#each category.accessories.details}}
@@ -546,6 +546,22 @@
             var str1 = $(this).attr("title");
             str1 = str1.replace("_", " ");
             $(this).attr("title", str1);
+        });
+        $(".lightingTooltip").each(function() {
+            var str1 = $(this).find("a").attr("href");
+            str1 = str1.toString().replace(/\s+/g, "_");
+            $(this).find("a").attr("href", str1);
+            var str2 = $(this).find("img").attr("src");
+            str2 = str2.replace(/\s+/g, "_");
+            $(this).find("img").attr("src", str1);
+        });
+        $(".furnitureTooltip").each(function() {
+            var str1 = $(this).find("a").attr("href");
+            str1 = str1.replace(/\s+/g, "_");
+            $(this).find("a").attr("href", str1);
+            var str2 = $(this).find("img").attr("src");
+            str2 = str2.replace(/\s+/g, "_");
+            $(this).find("img").attr("src", str1);
         });
         $(".fileReview").each(function() {
             var str = $(this).html();
