@@ -201,6 +201,14 @@ router.get("/contract", async (req, res) => {
     try {
         const data1 = await tab.getBoothNum(id);
         const data2 = await price.getBoothId(id);
+        var ind = 0;
+        while(ind < data2[0]["price"]["each"].length) {
+            if(data2[0]["price"]["each"][ind]["Total"] == "$0.00") {
+                data2[0]["price"]["each"].splice(ind, 1);
+                ind --;
+            }
+            ind ++;
+        }
         const data3 = await users.getId(data2[0]["exhibitorId"].toString());
         const data4 = await users.getId(data2[0]["vendorId"].toString());
         const size12 = data1[0]["size"].split(",");
