@@ -1636,6 +1636,7 @@
                         break;
                     }
                 }
+                $("#display1080TVOptions").find("input[type='text']").removeAttr("required");
                 $("#display1080TVOptions").hide();
             }
         }
@@ -1654,6 +1655,7 @@
                         break;
                     }
                 }
+                $("#display4KTVOptions").find("input[type='text']").removeAttr("required");
                 $("#display4KTVOptions").hide();
             }
         }
@@ -1672,6 +1674,7 @@
                         break;
                     }
                 }
+                $("#displaySpeakerMicOptions").find("input[type='text']").removeAttr("required");
                 $("#displaySpeakerMicOptions").hide();
             }
         }
@@ -1797,6 +1800,8 @@
                 }
                 $("input[name='furnitureSofaOption']").prop("checked", false);
                 $("input[name='furnitureSofaOption']").parent().find("input[type='text']").attr("disabled", "true");
+                $("input[name='furnitureSofaOption']").parent().find("input[type='text']").removeAttr("required");
+                $("input[name='furnitureSofaOption']").parent().find("input[type='text']").val("");
                 $("#furnitureSofaOptions").hide();
             }
         }
@@ -1818,6 +1823,8 @@
                 }
                 $("input[name='furnitureTableOption']").prop("checked", false);
                 $("input[name='furnitureTableOption']").parent().find("input[type='text']").attr("disabled", "true");
+                $("input[name='furnitureTableOption']").parent().find("input[type='text']").removeAttr("required");
+                $("input[name='furnitureTableOption']").parent().find("input[type='text']").val("");
                 $("#furnitureTableOptions").hide();
             }
         }
@@ -1845,6 +1852,8 @@
                 }
                 $("input[name='furnitureChairOption']").prop("checked", false);
                 $("input[name='furnitureChairOption']").parent().find("input[type='text']").attr("disabled", "true");
+                $("input[name='furnitureChairOption']").parent().find("input[type='text']").removeAttr("required");
+                $("input[name='furnitureChairOption']").parent().find("input[type='text']").val("");
                 $("#furnitureChairOptions").hide();
             }
         }
@@ -1861,6 +1870,7 @@
                 }*/
                 datas["furniture"]["details"].push({category: "Sofa", name: name, unit: "piece", num: 0.0});
                 $("#sofaSingleNum").removeAttr("disabled");
+                $("#sofaSingleNum").prop("required", true);
             }
             else {
                 /*for(var i = 0; i < datas["furniture"]["details"].length; i++) {
@@ -1880,6 +1890,7 @@
                     }
                 }
                 $("#sofaSingleNum").attr("disabled", "true");
+                $("#sofaSingleNum").removeAttr("required");
                 $("#sofaSingleNum").val("");
             }
         }
@@ -1893,6 +1904,7 @@
                 }*/
                 datas["furniture"]["details"].push({category: "Sofa", name: name, unit: "piece", num: 0.0});
                 $("#sofaDoubleNum").removeAttr("disabled");
+                $("#sofaDoubleNum").prop("required", true);
             }
             else {
                 /*for(var i = 0; i < datas["furniture"]["details"].length; i++) {
@@ -1912,6 +1924,7 @@
                     }
                 }
                 $("#sofaDoubleNum").attr("disabled", "true");
+                $("#sofaDoubleNum").removeAttr("required");
                 $("#sofaDoubleNum").val("");
             }
         }
@@ -1934,6 +1947,7 @@
         if(this.checked) {
             datas["furniture"]["details"].push({category: "Table", name: name, unit: "piece", num: 0.0});
             $(this).parent().find("input[type='text']").removeAttr("disabled");
+            $(this).parent().find("input[type='text']").prop("required", true);
         }
         else {
             for(var i = 0; i < datas["furniture"]["details"].length; i++) {
@@ -1943,6 +1957,7 @@
                 }
             }
             $(this).parent().find("input[type='text']").attr("disabled", "true");
+            $(this).parent().find("input[type='text']").removeAttr("required");
             $(this).parent().find("input[type='text']").val("");
         }
         //console.log(datas.furniture)
@@ -1963,6 +1978,7 @@
         if(this.checked) {
             datas["furniture"]["details"].push({category: "Chair", name: name, unit: "piece", num: 0.0});
             $(this).parent().find("input[type='text']").removeAttr("disabled");
+            $(this).parent().find("input[type='text']").prop("required", true);
         }
         else {
             for(var i = 0; i < datas["furniture"]["details"].length; i++) {
@@ -1972,6 +1988,7 @@
                 }
             }
             $(this).parent().find("input[type='text']").attr("disabled", "true");
+             $(this).parent().find("input[type='text']").removeAttr("required");
             $(this).parent().find("input[type='text']").val("");
         }
         //console.log(datas.furniture)
