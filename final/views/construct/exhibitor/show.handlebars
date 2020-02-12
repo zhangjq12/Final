@@ -13,20 +13,34 @@
                     <p class="card-text mb-3"><span>Start Date - </span>{{date.start}}&nbsp;&nbsp;&nbsp;<span id="endDate+{{date.end}}">End Date - </span>{{date.end}}</p>
                     <h4 class="mb-3">Project Details</h4>
                     <h6 class="mb-3">Categories</h6>
-                    <p>Carpet:&nbsp;{{category.carpet.name}} - <span class="d-inline-block colorTooltip" tabindex="0" data-toggle="tooltip" title="{{category.carpet.color}}"><a target="_blank" href="/public/image/CarpetColor/{{category.carpet.color}}.jpg"><img src="/public/image/CarpetColor/{{category.carpet.color}}.jpg" width="40px" height="40px"></a></span></p>
+                    <p>Carpet:&nbsp;{{category.carpet.name}} - 
+                        {{#if category.carpet.otherColor}}
+                        {{category.carpet.otherColor}}
+                        {{else}}
+                        <span class="d-inline-block colorTooltip" tabindex="0" data-toggle="tooltip" title="{{category.carpet.color}}"><a target="_blank" href="/public/image/CarpetColor/{{category.carpet.color}}.jpg"><img src="/public/image/CarpetColor/{{category.carpet.color}}.jpg" width="40px" height="40px"></a></span>
+                        {{/if}}
+                    </p>
                     <!--<p>Flooring:&nbsp;{{category.flooring.name}} - {{category.flooring.details}}</p>-->
-                    <p>Wall Panel:&nbsp;{{category.panel.name}} - {{category.panel.details}}</p>
+                    <p>Wall Panel:&nbsp;
+                        {{category.panel.name}} - {{category.panel.details}}
+                    </p>
                     <!--<p>Recieption:&nbsp;{{category.recieption.name}} 
                         {{#if category.recieption.details}}- {{category.recieption.details}}&nbsp;&nbsp;Size: {{category.recieption.size}} {{/if}}
                     </p>
                     <p>Showcase:&nbsp;{{category.showcase.name}} 
                         {{#if category.showcase.details}}- {{category.showcase.details}}&nbsp;&nbsp;Size: {{category.showcase.size}} {{/if}}
                     </p>-->
+                    {{#if category.lighting.other}}
+                        <p>Lighting:&nbsp;
+                        {{category.lighting.other.name}} - {{category.lighting.other.num}}&nbsp;{{category.lighting.other.unit}}
+                        </p>
+                    {{else}}
                     {{#each category.lighting.details}}
                         <p>Lighting:&nbsp;
                         <span class="d-inline-block lightingTooltip" tabindex="0" data-toggle="tooltip" title="{{name}}"><a target="_blank" href="/public/image/Lighting/{{name}}.jpg"><img src="/public/image/Lighting/{{name}}.jpg" width="40px" height="40px"></a></span> - {{num}}&nbsp;{{unit}}
                         </p>
                     {{/each}}
+                    {{/if}}
                     {{#if category.electricity.nonupload}}
                     {{else}}
                     <p>Electricity:&nbsp;<a target="_blank" href="/public/image/exhibitor/electricity/{{category.electricity.filename}}"><img src="/public/image/exhibitor/electricity/{{category.electricity.filename}}" width="100px" height="70px"></a></p>
@@ -36,21 +50,41 @@
                         {{name}} - {{num}}&nbsp;{{unit}}
                         </p>
                     {{/each}}
+                    {{#if category.graphic.other}}
+                        <p>Graphic:&nbsp;
+                        {{category.graphic.other.name}} - {{category.graphic.other.num}}&nbsp;{{category.graphic.other.unit}}
+                        </p>
+                    {{/if}}
                     {{#each category.display.details}}
                         <p>Display:&nbsp;
                         {{name}} - {{num}}&nbsp;{{unit}}
                         </p>
                     {{/each}}
+                    {{#if category.display.other}}
+                        <p>Display:&nbsp;
+                        {{category.display.other.name}} - {{category.display.other.num}}&nbsp;{{category.display.other.unit}}
+                        </p>
+                    {{/if}}
                     {{#each category.furniture.details}}
                         <p>Furniture:&nbsp;
                         {{category}} - <span class="d-inline-block furnitureTooltip" tabindex="0" data-toggle="tooltip" title="{{name}}"><a target="_blank" href="/public/image/Furniture/{{name}}.jpg"><img src="/public/image/Furniture/{{name}}.jpg" width="40px" height="40px"></a></span> - {{num}}&nbsp;{{unit}}
                         </p>
                     {{/each}}
+                    {{#if category.furniture.other}}
+                        <p>Furniture:&nbsp;
+                        {{category.furniture.other.name}} - {{category.furniture.other.num}}&nbsp;{{category.furniture.other.unit}}
+                        </p>
+                    {{/if}}
                     {{#each category.accessories.details}}
                         <p>Accessories:&nbsp;
                         {{name}}
                         </p>
                     {{/each}}
+                    {{#if category.accessories.other}}
+                        <p>Accessories:&nbsp;
+                        {{category.accessories.other.name}}
+                        </p>
+                    {{/if}}
                     <h6 class="mb-3">Description</h6>
                     <p><a target="_blank" href="/public/image/exhibitor/designPlan/{{details.designFile.filename}}">{{../designFileName}}</a></p>
                     <div id="detailsShow" class="card-text mb-3">{{details.additionalInfo.details}}</div>

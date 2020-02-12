@@ -165,6 +165,12 @@
                                     <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetLightGreen" value="Light_Green" required>
                                     <label class="form-check-label" for="carpetLightGreen"><img src="/public/image/CarpetColor/Light_Green.jpg" width="40px" height="40px"></label>
                                     </span>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2 mb-2">
+                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetOther" value="Other" required>
+                                    <label class="form-check-label" for="carpetOther">
+                                        <input class="form-control col-md-12" type="text" id="carpetOtherInput" placeholder="Other..." disabled>
+                                    </label>
                                     <div class="invalid-tooltip">
                                         This can't be empty.
                                     </div>
@@ -227,6 +233,12 @@
                                 <div class="form-check form-check-inline col-xl-2">
                                     <input class="form-check-input" type="radio" name="panelOption" id="panelLaminate" value="Laminate+m<sup>2</sup>">
                                     <label class="form-check-label" for="panelLaminate">Laminate</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2 mb-2">
+                                    <input class="form-check-input" type="radio" name="panelOption" id="panelOther" value="Other+m<sup>2</sup>" required>
+                                    <label class="form-check-label" for="panelOther">
+                                        <input class="form-control col-md-12" type="text" id="panelOtherInput" placeholder="Other..." disabled>
+                                    </label>
                                     <div class="invalid-tooltip">
                                         This can't be empty.
                                     </div>
@@ -459,6 +471,25 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-row mb-2">
+                                    <div class="form-check form-check-inline col-md-4">
+                                        <input class="form-check-input" type="checkbox" id="lightOther" value="Other+piece">
+                                        <label class="form-check-label" for="lightOther">
+                                            <input class="form-control col-md-12" type="text" id="lightOtherInput" placeholder="Other..." disabled>
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline col-md-4 lightingDetail">
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            </div>
+                                            <input class="form-control" type="text" id="QuantityLightOther" placeholder="Quantity" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">piece</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -642,6 +673,25 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-row mb-2">
+                                    <div class="form-check form-check-inline col-md-4">
+                                        <input class="form-check-input" type="checkbox" id="graphicOther" value="Other+in.sq">
+                                        <label class="form-check-label" for="graphicOther">
+                                            <input class="form-control col-md-12" type="text" id="graphicOtherInput" placeholder="Other..." disabled>
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline col-md-4 graphicDetail">
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">&nbsp;&nbsp;✕&nbsp;&nbsp;</span>
+                                            </div>
+                                            <input class="form-control" type="text" id="QuantityGraphicOther" placeholder="Quantity" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">in.sq</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -662,6 +712,12 @@
                                 <div class="form-check form-check-inline col-xl-2">
                                     <input class="form-check-input" type="checkbox" name="displayOption" id="displaySpeaker&Mic" value="Speaker&Mic+piece">
                                     <label class="form-check-label" for="displaySpeaker&Mic">Speaker&Mic</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" name="displayOption" id="displayOther" value="Other+piece">
+                                    <label class="form-check-label" for="displayOther">
+                                        <input class="form-control col-md-12" type="text" id="displayOtherInput" placeholder="Other..." disabled>
+                                    </label>
                                 </div>
                             </div>
                             <div class="form-row mb-3" id="display1080TVOptions">
@@ -699,6 +755,16 @@
                                 <div class="col-xl-10">
                                     <div class="col-sm-6">
                                         <input class="form-control form-control-sm" type="text" id="QuantitySpeakerMic" placeholder="Quantity" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3" id="displayOtherOptions">
+                                <div class="col-xl-2">
+                                    <b>Other:&nbsp;</b>
+                                </div>
+                                <div class="col-xl-10">
+                                    <div class="col-sm-6">
+                                        <input class="form-control form-control-sm" type="text" id="QuantityDisplayOther" placeholder="Quantity" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
                                     </div>
                                 </div>
                             </div>
@@ -864,6 +930,12 @@
                                     <input class="form-check-input" type="checkbox" name="furnitureOption" id="furnitureChair" value="Chair+piece">
                                     <label class="form-check-label" for="furnitureChair">Chair</label>
                                 </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" name="furnitureOption" id="furnitureOther" value="Other+piece">
+                                    <label class="form-check-label" for="furnitureOther">
+                                        <input class="form-control col-md-12" type="text" id="furnitureOtherInput" placeholder="Other..." disabled>
+                                    </label>
+                                </div>
                             </div>
                             <div class="form-row mb-3" id="furnitureSofaOptions">
                                 <div class="col-xl-2">
@@ -976,6 +1048,16 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-row mb-3" id="furnitureOtherOptions">
+                                <div class="col-xl-2">
+                                    <b>Other:&nbsp;</b>
+                                </div>
+                                <div class="col-xl-10">
+                                    <div class="col-sm-6">
+                                        <input class="form-control form-control-sm" type="text" id="QuantityFurnitureOther" placeholder="Quantity" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="card border-light col-xl-12 mb-3">
@@ -1011,6 +1093,12 @@
                                 <div class="form-check form-check-inline col-xl-2">
                                     <input class="form-check-input" type="checkbox" id="accessoriesTissue" value="Tissue+piece">
                                     <label class="form-check-label" for="accessoriesTissue">Tissue</label>
+                                </div>
+                                <div class="form-check form-check-inline col-xl-2">
+                                    <input class="form-check-input" type="checkbox" id="accessoriesOther" value="Other+piece">
+                                    <label class="form-check-label" for="accessoriesOther">
+                                        <input class="form-control col-md-12" type="text" id="accessoriesOtherInput" placeholder="Other..." disabled>
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -1271,7 +1359,8 @@
         carpet: {
             name: "",
             unit: "",
-            color: ""
+            color: "",
+            otherColor: ""
         },
         panel: {
             name: "",
@@ -1279,22 +1368,27 @@
             details: ""
         },
         lighting: {
-            details: []
+            details: [],
+            other: {}
         },
         electricity: {
             filename: ""
         },
         graphic: {
-            details: []
+            details: [],
+            other: {}
         },
         display: {
-            details: []
+            details: [],
+            other: {}
         },
         furniture: {
-            details: []
+            details: [],
+            other: {}
         },
         accessories: {
-            details: []
+            details: [],
+            other: {}
         }
     };
     $('#newTabs').submit(function(){
@@ -1461,7 +1555,20 @@
     });
     $("input[type='radio'][name='carpetColorOption']").change(function() {
         datas.carpet.color = this.value;
+        if(this.value == "Other") {
+            $("input[id='carpetOtherInput']").removeAttr("disabled");
+            $("input[id='carpetOtherInput']").prop("required", true);
+            $("input[id='carpetOtherInput']").val("");
+        }
+        else {
+            $("input[id='carpetOtherInput']").removeAttr("required");
+            $("input[id='carpetOtherInput']").attr("disabled", "true");
+            $("input[id='carpetOtherInput']").val("");
+        }
     });
+    $("input[id='carpetOtherInput']").change(function() {
+        datas.carpet.otherColor = this.value;
+    })
     /*$("input[type='radio'][name='flooringOption']").change(function() {
         datas.flooring.name = this.value.split("+")[0];
         datas.flooring.unit = this.value.split("+")[1];
@@ -1477,6 +1584,17 @@
     $("input[type='radio'][name='panelOption']").change(function() {
         datas.panel.name = this.value.split("+")[0];
         datas.panel.unit = this.value.split("+")[1];
+        if(this.value.split("+")[0] == "Other") {
+            $("input[id='panelOtherInput']").removeAttr("disabled");
+            $("input[id='panelOtherInput']").prop("required", true);
+            $("input[id='panelOtherInput']").val("");
+            datas.panel.name = "";
+        }
+        else {
+            $("input[id='panelOtherInput']").removeAttr("required");
+            $("input[id='panelOtherInput']").prop("disabled", true);
+            $("input[id='panelOtherInput']").val("");
+        }
         $("#panelDetails").show();
         $("input[name='panelDetail']").prop("checked", false);
         $("input[name='panelDetail']:eq(0)").prop("checked", true);
@@ -1485,6 +1603,9 @@
     $("input[type='radio'][name='panelDetail']").change(function() {
         datas.panel.details = this.value;
     });
+    $("input[id='panelOtherInput']").change(function() {
+        datas.panel.name = this.value;
+    })
 
     /*$("input[type='radio'][name='recieptionOption']").change(function() {
         datas.recieption.name = this.value;
@@ -1552,31 +1673,55 @@
         if(this.checked) {
             $(this).parent().parent().find(".lightingDetail").show();
             $(this).parent().parent().find("input[type='text']").prop("required", true);
-            datas.lighting.details.push({name: pre, unit: post, num: 0.0});
+            if(pre == "Other") {
+                $("#lightOtherInput").removeAttr("disabled");
+                $("#lightOtherInput").prop("required", true);
+                $("#lightOtherInput").val("");
+                datas.lighting.other = {name: "", unit: post, num: 0.0};
+            }
+            else {
+                datas.lighting.details.push({name: pre, unit: post, num: 0.0});
+            }
         }
         else {
             $(this).parent().parent().find("input[type='text']").val("");
             $(this).parent().parent().find("input[type='text']").removeAttr("required");
-            for(var i = 0; i < datas["lighting"]["details"].length; i++) {
-                if(datas["lighting"]["details"][i]["name"] == pre) {
-                    datas.lighting.details.splice(i, 1);
-                    break;
+            if(pre == "Other") {
+                $("#lightOtherInput").removeAttr("required");
+                $("#lightOtherInput").prop("disabled", true);
+                $("#lightOtherInput").val("");
+                datas.lighting.other = {};
+            }
+            else {
+                for(var i = 0; i < datas["lighting"]["details"].length; i++) {
+                    if(datas["lighting"]["details"][i]["name"] == pre) {
+                        datas.lighting.details.splice(i, 1);
+                        break;
+                    }
                 }
             }
             $(this).parent().parent().find(".lightingDetail").hide();
         }
-        console.log(datas.lighting);
+        //console.log(datas.lighting);
     });
     $(".lightingDetail").each(function() {
         $(this).find("input[type='text']").parent().parent().find("input[type='text']").change(function() {
             var num = this.value;
             var name = $(this).parent().parent().parent().find("input[type='checkbox']").val().split("+")[0];
-            for(var i = 0; i < datas["lighting"]["details"].length; i++) {
-                if(datas["lighting"]["details"][i]["name"] == name) {
-                    datas["lighting"]["details"][i]["num"] = parseFloat(num);
+            if(name == "Other") {
+                datas.lighting.other.num = parseFloat(num);
+            }
+            else {
+                for(var i = 0; i < datas["lighting"]["details"].length; i++) {
+                    if(datas["lighting"]["details"][i]["name"] == name) {
+                        datas["lighting"]["details"][i]["num"] = parseFloat(num);
+                    }
                 }
             }
         });
+    });
+    $("#lightOtherInput").change(function() {
+        datas.lighting.other.name = this.value;
     });
 
     $("input[id='electricUpload']").change(function() {
@@ -1595,31 +1740,56 @@
         if(this.checked) {
             $(this).parent().parent().find(".graphicDetail").show();
             $(this).parent().parent().find("input[type='text']").prop("required", true);
-            datas.graphic.details.push({name: pre, unit: post, num: 0.0});
+            if(pre == "Other") {
+                $("#graphicOtherInput").removeAttr("disabled");
+                $("#graphicOtherInput").prop("required", true);
+                $("#graphicOtherInput").val("");
+                datas.graphic.other = {name: "", unit: post, num: 0.0};
+            }
+            else {
+                datas.graphic.details.push({name: pre, unit: post, num: 0.0});
+            }
         }
         else {
             $(this).parent().parent().find("input[type='text']").val("");
             $(this).parent().parent().find("input[type='text']").removeAttr("required");
-            for(var i = 0; i < datas["graphic"]["details"].length; i++) {
-                if(datas["graphic"]["details"][i]["name"] == pre) {
-                    datas.graphic.details.splice(i, 1);
-                    break;
+            if(pre == "Other") {
+                $("#graphicOtherInput").removeAttr("required");
+                $("#graphicOtherInput").prop("disabled", true);
+                $("#graphicOtherInput").val("");
+                datas.graphic.other = {};
+            }
+            else {
+                for(var i = 0; i < datas["graphic"]["details"].length; i++) {
+                    if(datas["graphic"]["details"][i]["name"] == pre) {
+                        datas.graphic.details.splice(i, 1);
+                        break;
+                    }
                 }
             }
             $(this).parent().parent().find(".graphicDetail").hide();
         }
+        //console.log(datas.graphic)
     });
     $(".graphicDetail").each(function() {
         $(this).find("input[type='text']").parent().parent().find("input[type='text']").change(function() {
             var num = this.value;
             var name = $(this).parent().parent().parent().find("input[type='checkbox']").val().split("+")[0];
-            for(var i = 0; i < datas["graphic"]["details"].length; i++) {
-                if(datas["graphic"]["details"][i]["name"] == name) {
-                    datas["graphic"]["details"][i]["num"] = parseFloat(num);
+            if(name == "Other") {
+                datas.graphic.other.num = parseFloat(num);
+            }
+            else {
+                for(var i = 0; i < datas["graphic"]["details"].length; i++) {
+                    if(datas["graphic"]["details"][i]["name"] == name) {
+                        datas["graphic"]["details"][i]["num"] = parseFloat(num);
+                    }
                 }
             }
         });
     });
+    $("#graphicOtherInput").change(function() {
+        datas.graphic.other.name = this.value;
+    })
 
     $("input[type='checkbox'][name='displayOption']").change(function() {
         if(this.id == "display1080pTV") {
@@ -1678,8 +1848,30 @@
                 $("#displaySpeakerMicOptions").hide();
             }
         }
+        else
+        if(this.id == "displayOther") {
+            if(this.checked) {
+                $("#displayOtherOptions").show();
+                $("#displayOtherOptions").find("input[type='text']").val("");
+                $("#displayOtherOptions").find("input[type='text']").prop("required", true);
+                $("#displayOtherInput").removeAttr("disabled");
+                $("#displayOtherInput").prop("required", true);
+                datas.display.other = {name: "", unit: "piece", num: 0.0};
+            }
+            else {
+                datas.display.other = {};
+                $("#displayOtherInput").removeAttr("required");
+                $("#displayOtherInput").prop("disabled", true);
+                $("#displayOtherInput").val("");
+                $("#displayOtherOptions").find("input[type='text']").removeAttr("required");
+                $("#displayOtherOptions").hide();
+            }
+        }
         //console.log(datas.display);
     });
+    $("#displayOtherInput").change(function() {
+        datas.display.other.name = this.value;
+    })
     $("#Size1080TV").change(function() {
         var size = this.value;
         for(var i = 0; i < datas["display"]["details"].length; i++) {
@@ -1725,7 +1917,10 @@
             }
         }
     });
-
+    $("#QuantityDisplayOther").change(function() {
+        var num = this.value;
+        datas.display.other.num = parseFloat(num);
+    });
     /*$("input[type='radio'][name='display1080TVOption']").change(function() {
         datas.display.details = this.value;
     });
@@ -1857,8 +2052,32 @@
                 $("#furnitureChairOptions").hide();
             }
         }
+        else
+        if(this.id == "furnitureOther") {
+            if(this.checked) {
+                $("#furnitureOtherOptions").find("input").val("");
+                $("#furnitureOtherOptions").show();
+                $("#furnitureOtherInput").removeAttr("disabled");
+                $("#furnitureOtherInput").prop("required", true);
+                datas.furniture.other = {name: "", unit: "piece", num: 0.0};
+            }
+            else {
+                datas.furniture.other = {};
+                $("#furnitureOtherOptions").find("input").val("");
+                $("#furnitureOtherOptions").hide();
+                $("#furnitureOtherInput").removeAttr("required");
+                $("#furnitureOtherInput").prop("disabled", true);
+                $("#furnitureOtherInput").val("");
+            }
+        }
         //console.log(datas.furniture);
     });
+    $("#furnitureOtherInput").change(function() {
+        datas.furniture.other.name = this.value;
+    })
+    $("#furnitureOtherOptions").find("input").change(function() {
+        datas.furniture.other.num = parseFloat(this.value);
+    })
     $("input[type='checkbox'][name='furnitureSofaOption']").change(function() {
         var name = this.value;
         if(this.value == "Single") {
@@ -1988,7 +2207,7 @@
                 }
             }
             $(this).parent().find("input[type='text']").attr("disabled", "true");
-             $(this).parent().find("input[type='text']").removeAttr("required");
+            $(this).parent().find("input[type='text']").removeAttr("required");
             $(this).parent().find("input[type='text']").val("");
         }
         //console.log(datas.furniture)
@@ -2009,18 +2228,38 @@
         var post = this.value.split("+")[1];
         if(this.checked) {
             //accessories[pre] = post;
-            datas.accessories.details.push({name: pre, unit: post});
+            if(pre == "Other") {
+                $("#accessoriesOtherInput").removeAttr("disabled");
+                $("#accessoriesOtherInput").prop("required", true);
+                datas.accessories.other = {name: "", unit: post};
+            }
+            else {
+                datas.accessories.details.push({name: pre, unit: post});
+            }
         }
         else {
             //delete accessories[pre];
-            for(var i = 0; i < datas["accessories"]["details"].length; i++) {
-                if(datas["accessories"]["details"][i]["name"] == pre) {
-                    datas.accessories.details.splice(i, 1);
-                    break;
+            if(pre == "Other") {
+                var name = $("#accessoriesOtherInput").val();
+                datas.accessories.other = {};
+                $("#accessoriesOtherInput").removeAttr("required");
+                $("#accessoriesOtherInput").prop("disabled", true);
+                $("#accessoriesOtherInput").val("");
+            }
+            else {
+                for(var i = 0; i < datas["accessories"]["details"].length; i++) {
+                    if(datas["accessories"]["details"][i]["name"] == pre) {
+                        datas.accessories.details.splice(i, 1);
+                        break;
+                    }
                 }
             }
         }
+        //console.log(datas.accessories)
     });
+    $("#accessoriesOtherInput").change(function() {
+        datas.accessories.other.name = this.value;
+    })
     $("#designUpload").change(function(e) {
         var file = this.files[0];
         designFile = file;
@@ -2061,6 +2300,8 @@
         $("#furnitureChairOptions").hide();
         $(".graphicDetail").hide();
         $(".lightingDetail").hide();
+        $("#displayOtherOptions").hide();
+        $("#furnitureOtherOptions").hide();
 
         $("#furNumDiv").hide();
         $("#graNumDiv").hide();
@@ -2195,7 +2436,12 @@
         text += "<span>Start Date: " + $("#startDate").val() + "</span><br/>";
         text += "<span>End Date: " + $("#endDate").val() + "</span><br/>";
         text += "<span>Booth Size: " + ($("#size1").val() == "" ? "0" : $("#size1").val()) + " ✕ " + ($("#size2").val() == "" ? "0" : $("#size2").val()) + "</span><br/>";
-        text += "<span>Carpet: " + (datas.carpet.name == "" ? "No choice" : datas.carpet.name) + "-" + (datas.carpet.color == "" ? "No choice" : datas.carpet.color) + "</span><br/>";
+        if(datas.carpet.otherColor != ""){
+            text += "<span>Carpet: " + (datas.carpet.name == "" ? "No choice" : datas.carpet.name) + "-" + (datas.carpet.otherColor == "" ? "No choice" : datas.carpet.otherColor) + "</span><br/>";
+        }
+        else {
+            text += "<span>Carpet: " + (datas.carpet.name == "" ? "No choice" : datas.carpet.name) + "-" + (datas.carpet.color == "" ? "No choice" : datas.carpet.color) + "</span><br/>";
+        }
         //text += "<span>Flooring: " + datas.flooring.name + "-" + datas.flooring.details + "</span><br/>";
         text += "<span>Wall Panel: " + (datas.panel.name =="" ? "No choice" : datas.panel.name) + "-" + (datas.panel.details == "" ? "No choice" : datas.panel.details) + "</span><br/>";
         /*if(datas.recieption.name == "Yes")
@@ -2207,6 +2453,13 @@
             text += datas["lighting"]["details"][i]["name"] + "-";
             text += datas["lighting"]["details"][i]["num"] + " ";
             text += datas["lighting"]["details"][i]["unit"];
+            text += "</span><br/>";
+        }
+        if(datas.lighting.other.name != undefined) {
+            text += "<span>Lighting: ";
+            text += datas["lighting"]["other"]["name"] + "-";
+            text += datas["lighting"]["other"]["num"] + " ";
+            text += datas["lighting"]["other"]["unit"];
             text += "</span><br/>";
         }
         if(electricFile != undefined) {
@@ -2225,6 +2478,13 @@
             text += datas["graphic"]["details"][i]["unit"];
             text += "</span><br/>";
         }
+        if(datas.graphic.other.name != undefined) {
+            text += "<span>Graphic: ";
+            text += datas["graphic"]["other"]["name"] + "-";
+            text += datas["graphic"]["other"]["num"] + " ";
+            text += datas["graphic"]["other"]["unit"];
+            text += "</span><br/>";
+        }
         for(var i = 0; i < datas.display.details.length; i++) {
             text += "<span>Display: ";
             text += datas["display"]["details"][i]["name"] + "-";
@@ -2235,6 +2495,13 @@
             text += datas["display"]["details"][i]["unit"];
             text += "</span><br/>";
         }
+        if(datas.display.other.name != undefined) {
+            text += "<span>Display: ";
+            text += datas["display"]["other"]["name"] + "-";
+            text += datas["display"]["other"]["num"] + " ";
+            text += datas["display"]["other"]["unit"];
+            text += "</span><br/>";
+        }
         for(var i = 0; i < datas.furniture.details.length; i++) {
             text += "<span>Furniture: ";
             text += datas["furniture"]["details"][i]["category"] + "-";
@@ -2243,11 +2510,25 @@
             text += datas["furniture"]["details"][i]["unit"];
             text += "</span><br/>";
         }
+        if(datas.furniture.other.name != undefined) {
+            text += "<span>Furniture: ";
+            text += datas["furniture"]["other"]["name"] + "-";
+            text += datas["furniture"]["other"]["num"] + " ";
+            text += datas["furniture"]["other"]["unit"];
+            text += "</span><br/>";
+        }
         for(var i = 0; i < datas.accessories.details.length; i++) {
             text += "<span>Accessories: ";
             text += datas["accessories"]["details"][i]["name"];
             //text += datas["accessories"]["details"][i]["num"] + " ";
             //text += datas["furniture"]["details"][i]["unit"];
+            text += "</span><br/>";
+        }
+        if(datas.accessories.other.name != undefined) {
+            text += "<span>Accessories: ";
+            text += datas["accessories"]["other"]["name"];
+            //text += datas["furniture"]["other"]["num"] + " ";
+            //text += datas["furniture"]["other"]["unit"];
             text += "</span><br/>";
         }
         //text += "<span>Display: " + datas.display.name + "-" + datas.display.details + "</span><br/>";

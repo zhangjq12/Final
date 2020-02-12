@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-xl mb-3">
             <div class="mb-3">
@@ -13,6 +13,7 @@
                         <tr>
                             <!--<th scope="col"></th>-->
                             <th scope="col">Show Name</th>
+                            <th scope="col">Booth Num</th>
                             <th scope="col">Start Date</th>
                             <th scope="col">End Date</th>
                             <th scope="col">Progress</th>
@@ -23,6 +24,7 @@
                         <tr>
                             <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
                             <td scope="row"><a href="/exhibitor/show?id={{boothNum}}">{{showName}}</a></td>
+                            <td>{{boothNum}}</td>
                             <td>{{date.start}}</td>
                             <td>{{date.end}}</td>
                             <td>
@@ -43,6 +45,7 @@
                     <tr>
                         <!--<th scope="col"></th>-->
                         <th scope="col">Show Name</th>
+                        <th scope="col">Booth Num</th>
                         <th scope="col">Start Date</th>
                         <th scope="col">End Date</th>
                         <th scope="col">Progress</th>
@@ -53,6 +56,7 @@
                     <tr>
                         <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
                         <td scope="row"><a href="/exhibitor/show?id={{boothNum}}">{{showName}}</a></td>
+                        <td>{{boothNum}}</td>
                         <td>{{date.start}}</td>
                         <td>{{date.end}}</td>
                         <td>
