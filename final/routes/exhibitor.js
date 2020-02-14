@@ -182,7 +182,15 @@ router.get("/estimate", async (req, res) => {
                 break;
             }
         }
-        console.log(table["each"]);
+        var ind = 0;
+        while(ind < table["each"].length) {
+            if(table["each"][ind]["Total"] == "$0.00") {
+                table["each"].splice(ind, 1);
+                ind --;
+            }
+            ind ++;
+        }
+        //console.log(table["each"]);
         res.render("construct/vendor/estimate", {title: "Details of " + data[0]["showName"], status: Head, voe: "exhibitor", data: data, estimateTable: table["each"], designFileName: designFileName, total: table["total"]});
     }
     catch(e) {

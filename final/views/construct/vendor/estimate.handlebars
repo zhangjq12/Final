@@ -328,7 +328,7 @@
                     ws.send(message);
                 }
                 $("#estimateDiaFooter").hide();
-                $("#estimateDiaBody").html('<div class="container"><p>Create This Job Successfully!</p></br><span id="totalSecond">1</span><span id="second"> Second</span><span id="nextcontent"> later to go back to the job page!</span></div>');
+                $("#estimateDiaBody").html('<div class="container"><p>Estimate Successfully!</p></br><span id="totalSecond">1</span><span id="second"> Second</span><span id="nextcontent"> later to go back to the job page!</span></div>');
                 jQuery.getScript("/public/js/autourl.js").done(function(){
                     var fun = auto;
                     //fun("/exhibitor/show?id=" + res["id"]);
@@ -337,7 +337,7 @@
             },
             error: function(err) {
                 $("#estimateDiaFooter").hide();
-                $("#estimateDiaBody").html('<div class="container"><p>Create job failed!</p></br><span id="totalSecond">1</span><span id="second"> Second</span><span id="nextcontent"> later to go back homepage!</span></div>');
+                $("#estimateDiaBody").html('<div class="container"><p>Estimate failed!</p></br><span id="totalSecond">1</span><span id="second"> Second</span><span id="nextcontent"> later to go back homepage!</span></div>');
                 jQuery.getScript("/public/js/autourl.js").done(function(){
                     var fun = auto;
                     //fun("/exhibitor/show?id=" + res["id"]);
