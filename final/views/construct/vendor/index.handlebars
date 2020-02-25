@@ -48,16 +48,15 @@
                                 <p>Wall Panel:&nbsp;
                                     {{category.panel.name}} - {{category.panel.details}}
                                 </p>
-                                {{#if category.lighting.other}}
-                                    <p>Lighting:&nbsp;
-                                    {{category.lighting.other.name}} - {{category.lighting.other.num}}&nbsp;{{category.lighting.other.unit}}
-                                    </p>
-                                {{else}}
                                 {{#each category.lighting.details}}
                                     <p>Lighting:&nbsp;
                                     <span class="d-inline-block lightingTooltip" tabindex="0" data-toggle="tooltip" title="{{name}}"><a target="_blank" href="/public/image/Lighting/{{name}}.jpg"><img src="/public/image/Lighting/{{name}}.jpg" width="40px" height="40px"></a></span> - {{num}}&nbsp;{{unit}}
                                     </p>
                                 {{/each}}
+                                {{#if category.lighting.other.name}}
+                                    <p>Lighting:&nbsp;
+                                    {{category.lighting.other.name}} - {{category.lighting.other.num}}&nbsp;{{category.lighting.other.unit}}
+                                    </p>
                                 {{/if}}
                                 {{#if category.electricity.nonupload}}
                                 {{else}}
@@ -68,7 +67,7 @@
                                     {{name}} - {{num}}&nbsp;{{unit}}
                                     </p>
                                 {{/each}}
-                                {{#if category.graphic.other}}
+                                {{#if category.graphic.other.name}}
                                     <p>Graphic:&nbsp;
                                     {{category.graphic.other.name}} - {{category.graphic.other.num}}&nbsp;{{category.graphic.other.unit}}
                                     </p>
@@ -78,7 +77,7 @@
                                     {{name}} - {{num}}&nbsp;{{unit}}
                                     </p>
                                 {{/each}}
-                                {{#if category.display.other}}
+                                {{#if category.display.other.name}}
                                     <p>Display:&nbsp;
                                     {{category.display.other.name}} - {{category.display.other.num}}&nbsp;{{category.display.other.unit}}
                                     </p>
@@ -88,7 +87,7 @@
                                     {{category}} - <span class="d-inline-block furnitureTooltip" tabindex="0" data-toggle="tooltip" title="{{name}}"><a target="_blank" href="/public/image/Furniture/{{name}}.jpg"><img src="/public/image/Furniture/{{name}}.jpg" width="40px" height="40px"></a></span> - {{num}}&nbsp;{{unit}}
                                     </p>
                                 {{/each}}
-                                {{#if category.furniture.other}}
+                                {{#if category.furniture.other.name}}
                                     <p>Furniture:&nbsp;
                                     {{category.furniture.other.name}} - {{category.furniture.other.num}}&nbsp;{{category.furniture.other.unit}}
                                     </p>
@@ -98,7 +97,7 @@
                                     {{name}}
                                     </p>
                                 {{/each}}
-                                {{#if category.accessories.other}}
+                                {{#if category.accessories.other.name}}
                                     <p>Accessories:&nbsp;
                                     {{category.accessories.other.name}}
                                     </p>
@@ -155,16 +154,15 @@
                                 <p>Wall Panel:&nbsp;
                                     {{category.panel.name}} - {{category.panel.details}}
                                 </p>
-                                {{#if category.lighting.other}}
-                                    <p>Lighting:&nbsp;
-                                    {{category.lighting.other.name}} - {{category.lighting.other.num}}&nbsp;{{category.lighting.other.unit}}
-                                    </p>
-                                {{else}}
                                 {{#each category.lighting.details}}
                                     <p>Lighting:&nbsp;
                                     <span class="d-inline-block lightingTooltip" tabindex="0" data-toggle="tooltip" title="{{name}}"><a target="_blank" href="/public/image/Lighting/{{name}}.jpg"><img src="/public/image/Lighting/{{name}}.jpg" width="40px" height="40px"></a></span> - {{num}}&nbsp;{{unit}}
                                     </p>
                                 {{/each}}
+                                {{#if category.lighting.other.name}}
+                                    <p>Lighting:&nbsp;
+                                    {{category.lighting.other.name}} - {{category.lighting.other.num}}&nbsp;{{category.lighting.other.unit}}
+                                    </p>
                                 {{/if}}
                                 {{#if category.electricity.nonupload}}
                                 {{else}}
@@ -175,7 +173,7 @@
                                     {{name}} - {{num}}&nbsp;{{unit}}
                                     </p>
                                 {{/each}}
-                                {{#if category.graphic.other}}
+                                {{#if category.graphic.other.name}}
                                     <p>Graphic:&nbsp;
                                     {{category.graphic.other.name}} - {{category.graphic.other.num}}&nbsp;{{category.graphic.other.unit}}
                                     </p>
@@ -185,7 +183,7 @@
                                     {{name}} - {{num}}&nbsp;{{unit}}
                                     </p>
                                 {{/each}}
-                                {{#if category.display.other}}
+                                {{#if category.display.other.name}}
                                     <p>Display:&nbsp;
                                     {{category.display.other.name}} - {{category.display.other.num}}&nbsp;{{category.display.other.unit}}
                                     </p>
@@ -195,7 +193,7 @@
                                     {{category}} - <span class="d-inline-block furnitureTooltip" tabindex="0" data-toggle="tooltip" title="{{name}}"><a target="_blank" href="/public/image/Furniture/{{name}}.jpg"><img src="/public/image/Furniture/{{name}}.jpg" width="40px" height="40px"></a></span> - {{num}}&nbsp;{{unit}}
                                     </p>
                                 {{/each}}
-                                {{#if category.furniture.other}}
+                                {{#if category.furniture.other.name}}
                                     <p>Furniture:&nbsp;
                                     {{category.furniture.other.name}} - {{category.furniture.other.num}}&nbsp;{{category.furniture.other.unit}}
                                     </p>
@@ -205,7 +203,7 @@
                                     {{name}}
                                     </p>
                                 {{/each}}
-                                {{#if category.accessories.other}}
+                                {{#if category.accessories.other.name}}
                                     <p>Accessories:&nbsp;
                                     {{category.accessories.other.name}}
                                     </p>
@@ -275,16 +273,15 @@
                             <p>Wall Panel:&nbsp;
                                 {{category.panel.name}} - {{category.panel.details}}
                             </p>
-                            {{#if category.lighting.other}}
-                                <p>Lighting:&nbsp;
-                                {{category.lighting.other.name}} - {{category.lighting.other.num}}&nbsp;{{category.lighting.other.unit}}
-                                </p>
-                            {{else}}
                             {{#each category.lighting.details}}
                                 <p>Lighting:&nbsp;
                                 <span class="d-inline-block lightingTooltip" tabindex="0" data-toggle="tooltip" title="{{name}}"><a target="_blank" href="/public/image/Lighting/{{name}}.jpg"><img src="/public/image/Lighting/{{name}}.jpg" width="40px" height="40px"></a></span> - {{num}}&nbsp;{{unit}}
                                 </p>
                             {{/each}}
+                            {{#if category.lighting.other.name}}
+                                <p>Lighting:&nbsp;
+                                {{category.lighting.other.name}} - {{category.lighting.other.num}}&nbsp;{{category.lighting.other.unit}}
+                                </p>
                             {{/if}}
                             {{#if category.electricity.nonupload}}
                             {{else}}
@@ -295,7 +292,7 @@
                                 {{name}} - {{num}}&nbsp;{{unit}}
                                 </p>
                             {{/each}}
-                            {{#if category.graphic.other}}
+                            {{#if category.graphic.other.name}}
                                 <p>Graphic:&nbsp;
                                 {{category.graphic.other.name}} - {{category.graphic.other.num}}&nbsp;{{category.graphic.other.unit}}
                                 </p>
@@ -305,7 +302,7 @@
                                 {{name}} - {{num}}&nbsp;{{unit}}
                                 </p>
                             {{/each}}
-                            {{#if category.display.other}}
+                            {{#if category.display.other.name}}
                                 <p>Display:&nbsp;
                                 {{category.display.other.name}} - {{category.display.other.num}}&nbsp;{{category.display.other.unit}}
                                 </p>
@@ -315,7 +312,7 @@
                                 {{category}} - <span class="d-inline-block furnitureTooltip" tabindex="0" data-toggle="tooltip" title="{{name}}"><a target="_blank" href="/public/image/Furniture/{{name}}.jpg"><img src="/public/image/Furniture/{{name}}.jpg" width="40px" height="40px"></a></span> - {{num}}&nbsp;{{unit}}
                                 </p>
                             {{/each}}
-                            {{#if category.furniture.other}}
+                            {{#if category.furniture.other.name}}
                                 <p>Furniture:&nbsp;
                                 {{category.furniture.other.name}} - {{category.furniture.other.num}}&nbsp;{{category.furniture.other.unit}}
                                 </p>
@@ -325,7 +322,7 @@
                                 {{name}}
                                 </p>
                             {{/each}}
-                            {{#if category.accessories.other}}
+                            {{#if category.accessories.other.name}}
                                 <p>Accessories:&nbsp;
                                 {{category.accessories.other.name}}
                                 </p>
@@ -751,6 +748,11 @@
                 $(this).attr("aria-valuenow", "80");
             }
             else 
+            if($(this).attr("data-name") == "paychecked") {
+                $(this).attr("style", "width: 90%");
+                $(this).attr("aria-valuenow", "90");
+            }
+            else
             if($(this).attr("data-name") == "done") {
                 $(this).attr("style", "width: 100%");
                 $(this).attr("aria-valuenow", "100");
@@ -771,14 +773,14 @@
             var date3 = new Date(ddd2);
             if(date1 < date3)
                 outofdate = true;
-            if($(this).attr("data-name") == "paid" && !outofdate) {
+            if($(this).attr("data-name") == "paychecked" && !outofdate) {
                 $(this).removeAttr("style");
             }
             $(this).bind("click", function() {
                 var boothId = $(this).attr("data-link");
-                var author = $(this).attr("data-author");
-                var user = $("#uNameShow").attr("data-name");
-                var showName = $(this).attr("data-showName");
+                //var author = $(this).attr("data-author");
+                //var user = $("#uNameShow").attr("data-name");
+                //var showName = $(this).attr("data-showName");
                 $.ajax({
                     type: "post",
                     url: "/vendor/jobConfirm",
@@ -788,9 +790,12 @@
                         success: "y"
                     },
                     success: function(res) {
+                        var exhibitor = res["exhibitor"];
+                        var vendor = res["vendor"];
+                        var showname = res["showName"];
                         var origin = window.location.hostname;
                         var ws = new WebSocket('ws://' + origin + ':8080');
-                        var message = showName + "'s progress is updated! Refresh this page to check you progress!||" + user + "||" + author;
+                        var message = showname + "'s progress is updated! Refresh this page to check you progress!||" + vendor + "||" + exhibitor;
                         //alert(message);
                         ws.onopen = function(e) {
                             ws.send(message);

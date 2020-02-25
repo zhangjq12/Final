@@ -60,6 +60,40 @@ async function remove(id) {
     return promise;
 }
 
+async function getALL() {
+    var res = [];
+    var promise = new Promise(function(resolve) {
+        mongo.connect(url,(err, db) => {
+            if(err) {
+                throw "database connection failed!";
+            }
+            var find = db.collection("progress").find();
+            find.each((err, ress) => {
+                if(err) {
+                    db.close();
+                    throw "find error."
+                }
+                if(ress != null) {
+                    res.push(ress);
+                }
+                else {
+                    db.close();
+                    resolve(res);
+                }
+            });
+        });
+    })
+    promise.then(function(value) {
+        return value;
+    })
+    return promise;
+}
+
+async function getAll() {
+    const res = await getALL();
+    return res;
+}
+
 async function getID(id) {
     if(id == undefined)
         throw "parameter is missing";
@@ -421,6 +455,7 @@ module.exports = {
     getId,
     getProgressId,
     getVendorId,
+    getAll,
     modifyEprogress,
     modifyEtime,
     modifyVprogress,

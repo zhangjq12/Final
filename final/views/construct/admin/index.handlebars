@@ -1,0 +1,76 @@
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Exhibitor Name</th>
+                <th scope="col">Vendor Name</th>
+                <th scope="col">Booth Number</th>
+                <th scope="col">Exhibitor Progress</th>
+                <th scope="col">Vendor Progress</th>
+                <th scope="col">Operation</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each data}}
+            <tr>
+                <td class="align-middle ename" scope="col">
+                    {{exhibitorName}}
+                </td>
+                <td class="align-middle vname" scope="col">
+                    {{vendorName}}
+                </td>
+                <td class="align-middle" scope="col">{{boothId}}</td>
+                <td class="align-middle" scope="col">
+                    {{eprogress}}
+                </td>
+                <td class="align-middle" scope="col">
+                    {{vprogress}}
+                </td>
+                <td class="align-middle" scope="col">
+                    <button data-name="{{vprogress}}" class="btn btn-light confirmationBtn" style="display: none;">Confirm</button>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function() {
+        $(".confirmationBtn").each(function() {
+            if($(this).attr("data-name") == "paid") {
+                $(this).removeAttr("style");
+            }
+        })
+    })
+    $(".confirmationBtn").each(function() {
+        var id = $(this).parent().parent().find("td:eq(2)").html();
+        $(this).click(function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "post",
+                url: "/admin/finish", 
+                dataType: "json",
+                data: {
+                    id: id,
+                    success: "y"
+                },
+                success: function(res) {
+                    var exhibitor = res["exhibitor"];
+                    var vendor = res["vendor"];
+                    var showname = res["showName"];
+                    var origin = window.location.hostname;
+                    var ws = new WebSocket('ws://' + origin + ':8080');
+                    var message = showname + "'s progress is updated! Refresh this page to check you progress!||" + exhibitor + "||" + vendor;
+                    //alert(message);
+                    ws.onopen = function(e) {
+                        ws.send(message);
+                    }
+                    $(location).attr("href", "/admin");
+                },
+                error: function(err) {
+                    $(location).attr("href", "error");
+                }
+            });
+        });
+    })
+</script>

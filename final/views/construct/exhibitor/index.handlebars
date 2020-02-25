@@ -95,6 +95,11 @@
                 $(this).attr("aria-valuenow", "80");
             }
             else 
+            if($(this).attr("data-name") == "paychecked") {
+                $(this).attr("style", "width: 90%");
+                $(this).attr("aria-valuenow", "90");
+            }
+            else 
             if($(this).attr("data-name") == "done") {
                 $(this).attr("style", "width: 100%");
                 $(this).attr("aria-valuenow", "100");

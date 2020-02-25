@@ -14,6 +14,7 @@ const users = require("../data/users");
 const vendor = require("./vendor");
 const exhibitor = require("./exhibitor");
 const info = require("./info");
+const admin = require("./admin");
 
 
 const constructorMethod = app =>{
@@ -51,6 +52,7 @@ const constructorMethod = app =>{
     app.use("/exhibitor", exhibitor);
     app.use("/vendor", vendor);
     app.use("/info", info);
+    app.use("/admin", admin);
     app.get("/popularity", async (req, res) => {
         const Head = await head(req);
         try {
