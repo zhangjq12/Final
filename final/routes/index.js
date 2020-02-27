@@ -31,8 +31,13 @@ const constructorMethod = app =>{
                 if(venderOrNot == "vendor") {
                     res.redirect("/vendor");
                 }
-                else {
+                else 
+                if(venderOrNot == "exhibitor") {
                     res.redirect("/exhibitor");
+                }
+                else
+                if(venderOrNot == "admin") {
+                    res.redirect("/admin");
                 }
             }
         }

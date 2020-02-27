@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
     try {
         const auth = await authentication(req);
         const voe = await users.getName(auth);
-        if(voe[0]["voe"] == "vendor")
+        if(voe[0]["voe"] != "exhibitor")
             throw "error";
         const data = await tab.getAuthor(auth);
         var existdata = [];

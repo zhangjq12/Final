@@ -91,11 +91,11 @@
                 <div id="usOnly" class="form-row">
                     <div class="col-md-6 mb-3">
                         <label for="taxId">Tax ID:</label>
-                        <input id="taxId" type="text" name="taxId" class="form-control" placeholder="taxId"/>
+                        <input id="taxId" type="text" class="form-control" placeholder="taxId"/>
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="stateId">State ID:</label>
-                        <input id="stateId" type="text" name="stateId" class="form-control" placeholder="stateId"/>
+                        <input id="stateId" type="text" class="form-control" placeholder="stateId"/>
                     </div>
                 </div>
             </div>
@@ -118,6 +118,7 @@
         </div>
     </div>
 </div>
+
 <div class="modal fade" id="selectLicenseDia" tabindex="-1" role="dialog" aria-labelledby="selectLicenseDiaTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -137,8 +138,8 @@
                 </div>
                 <div class="input-group">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="licenseModify" name="license" accept="image/*" required>
-                        <label id="licenseNameLabel" class="custom-file-label" for="license">Your Image...</label>
+                        <input type="file" class="custom-file-input" id="licenseModify" accept="image/*" required>
+                        <label id="licenseNameLabel" class="custom-file-label" for="licenseModify">Your Image...</label>
                     </div>
                 </div>
                 <div class="container" id="licenseRestrict">
@@ -152,6 +153,7 @@
         </div>
     </div>
 </div> 
+
 <div class="modal fade" id="selectPersonalDia" tabindex="-1" role="dialog" aria-labelledby="selectPersonalDiaTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -171,8 +173,8 @@
                 </div>
                 <div class="input-group">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="personalModify" name="personal" accept="image/*" required>
-                        <label id="personalNameLabel" class="custom-file-label" for="personal">Your Image...</label>
+                        <input type="file" class="custom-file-input" id="personalModify" accept="image/*" required>
+                        <label id="personalNameLabel" class="custom-file-label" for="personalModify">Your Image...</label>
                     </div>
                 </div>
                 <div class="container" id="personalRestrict">
@@ -334,6 +336,10 @@
         }
         reader.readAsDataURL(licensefile);
         licenseModified = true;
+        if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch && licenseModified && personalModified)
+            $("#signUpSubmit").attr('disabled', false);
+        else
+            $("#signUpSubmit").attr('disabled', true);
         $('#selectLicenseDia').modal('hide');
     });
     document.getElementById('personalDragarea').addEventListener("drop", function(e) {
@@ -429,13 +435,23 @@
         }
         reader.readAsDataURL(personalfile);
         personalModified = true;
+        if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch && licenseModified && personalModified)
+            $("#signUpSubmit").attr('disabled', false);
+        else
+            $("#signUpSubmit").attr('disabled', true);
         $('#selectPersonalDia').modal('hide');
     });
     $("#UsCheck").click(function() {
         if($("#isUS").is(":checked")) {
             $("#usOnly").show();
+            $("#usOnly").find("input").each(function() {
+                $(this).prop("required", true);
+            });
         }
         else {
+            $("#usOnly").find("input").each(function() {
+                $(this).removeAttr("required");
+            });
             $("#usOnly").hide();
         }
     });
@@ -447,6 +463,10 @@
         passwordMin = false;
         passwordMax = false;
         conpassMatch = false;
+        licenseUpload = false;
+        personalUpload = false;
+        licenseModified = false;
+        personalModified = false;
         $("#usOnly").hide();
         /*bootstrapValidate(['#user', '#password', '#conPassword', '#first', '#last', '#email'], 'required: This can not be empty!');
         bootstrapValidate('#email', 'email: Enter a valid E-Mail!');
@@ -461,7 +481,7 @@
         bootstrapValidate(['#user', '#password', '#conPassword', '#email', '#stateId', '#taxId', '#company', '#contact'], 'required: This can not be empty!', function(isEmpty) { 
             if(isEmpty) {
                 empty = true; 
-                if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
+                if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch && licenseModified && personalModified)
                     $("#signUpSubmit").attr('disabled', false);
                 else
                     $("#signUpSubmit").attr('disabled', true);
@@ -471,13 +491,13 @@
                 $("#signUpSubmit").attr('disabled', true);
             }
         });
-        bootstrapValidate('#email', 'email: Enter a valid E-Mail!', function(isEmail) { if(isEmail) {emailValid = true; if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
+        bootstrapValidate('#email', 'email: Enter a valid E-Mail!', function(isEmail) { if(isEmail) {emailValid = true; if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch && licenseModified && personalModified)
             $("#signUpSubmit").attr('disabled', false); else
             $("#signUpSubmit").attr('disabled', true); } else {emailValid = false; $("#signUpSubmit").attr('disabled', true);}});
         bootstrapValidate('#user', 'min:6: Your username should more than 6 charactors!', function(isUser) { 
             if(isUser) {
                 userMin = true; 
-                if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
+                if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch && licenseModified && personalModified)
                     $("#signUpSubmit").attr('disabled', false); 
                 else
                     $("#signUpSubmit").attr('disabled', true);
@@ -490,7 +510,7 @@
         bootstrapValidate('#user', 'max:20: Your username should no more than 20 charactors!', function(isUser) { 
             if(isUser) {
                 userMax = true; 
-                if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
+                if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch && licenseModified && personalModified)
                     $("#signUpSubmit").attr('disabled', false); 
                 else
                     $("#signUpSubmit").attr('disabled', true);
@@ -500,13 +520,13 @@
                 $("#signUpSubmit").attr('disabled', true);
             }
         });
-        bootstrapValidate('#conPassword', 'matches: #password: The password is not match!', function(isMatched) { if(isMatched) {conpassMatch = true; if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
+        bootstrapValidate('#conPassword', 'matches: #password: The password is not match!', function(isMatched) { if(isMatched) {conpassMatch = true; if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch && licenseModified && personalModified)
             $("#signUpSubmit").attr('disabled', false); else
             $("#signUpSubmit").attr('disabled', true);} else {conpassMatch = false; $("#signUpSubmit").attr('disabled', true);}});
-        bootstrapValidate('#password', 'min:6: Your password should more than 6 charactors!', function(isPassword) { if(isPassword) {passwordMin = true; if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
+        bootstrapValidate('#password', 'min:6: Your password should more than 6 charactors!', function(isPassword) { if(isPassword) {passwordMin = true; if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch && licenseModified && personalModified)
             $("#signUpSubmit").attr('disabled', false); else
             $("#signUpSubmit").attr('disabled', true);} else {passwordMin = false; $("#signUpSubmit").attr('disabled', true);}});
-        bootstrapValidate('#password', 'max:20: Your password should no more than 20 charactors!', function(isPassword) { if(isPassword) {passwordMax = true; if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch)
+        bootstrapValidate('#password', 'max:20: Your password should no more than 20 charactors!', function(isPassword) { if(isPassword) {passwordMax = true; if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch && licenseModified && personalModified)
             $("#signUpSubmit").attr('disabled', false); else
             $("#signUpSubmit").attr('disabled', true);} else {passwordMax = false; $("#signUpSubmit").attr('disabled', true);}});
 

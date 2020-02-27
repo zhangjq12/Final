@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
     try {
         const data = await tab.getAll();
         const user = await users.getName(auth);
-        if(user[0]["voe"] == "exhibitor")
+        if(user[0]["voe"] != "vendor")
             throw "error";
         var datajobs = [];
         var dataprogress = [];

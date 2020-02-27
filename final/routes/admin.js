@@ -13,8 +13,12 @@ const authentication = require("./authentication");
 const xss = require('xss');
 
 router.get("/", async (req, res) => {
-    const Head = head(req);
+    const Head = await head(req);
     try {
+        const auth = await authentication(req);
+        const voe = await users.getName(auth);
+        if(voe[0]["voe"] != "admin")
+            throw "error";
         const data1 = await progress.getAll();
         var data = [];
         for(var i = 0; i < data1.length; i++) {
