@@ -1,0 +1,445 @@
+<div class="container">
+    <form id="requestForm" data-name="{{showName}}">
+        <div class="card border-light mb-3">
+            <h4 class="card-header">Requests and Complaints for Vendor</h4>
+            <div class="card-body">
+                <div class="card border-light mb-3">
+                    <h6 class="card-header">Carpet</h6>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="form-check form-check-inline col-md-3">
+                                <input class="form-check-input" type="checkbox" id="carpet_Check">
+                                <label class="form-check-label" for="carpet_Check">Complaints or Requests</label>
+                            </div>
+                            <div class="form-group col-md-8 collapseDiv">
+                                <div class="form-group">
+                                    <label for="reasonCarpet">Reason:</label>
+                                    <textarea class="form-control" id="reasonCarpet" rows="3"></textarea>
+                                </div>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label col-sm-3 pt-0">Upload Proofs:<br/><small>At most 5 multiple images</small></legend>
+                                        <div class="col-sm-9">
+                                            <div class="file-loading">
+                                                <input type="file" multiple data-msg-placeholder="Upload proofs...">
+                                                <div class="invalid-feedback">
+                                                    This can't be empty.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-light mb-3">
+                    <h6 class="card-header">Wall Panel</h6>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="form-check form-check-inline col-md-3">
+                                <input class="form-check-input" type="checkbox" id="panel_Check">
+                                <label class="form-check-label" for="panel_Check">Complaints or Requests</label>
+                            </div>
+                            <div class="form-group col-md-8 collapseDiv">
+                                <div class="form-group">
+                                    <label for="reasonPanel">Reason:</label>
+                                    <textarea class="form-control" id="reasonPanel" rows="3"></textarea>
+                                </div>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label col-sm-3 pt-0">Upload Proofs:<br/><small>At most 5 multiple images</small></legend>
+                                        <div class="col-sm-9">
+                                            <div class="file-loading">
+                                                <input type="file" multiple data-msg-placeholder="Upload proofs...">
+                                                <div class="invalid-feedback">
+                                                    This can't be empty.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-light mb-3">
+                    <h6 class="card-header">Lighting</h6>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="form-check form-check-inline col-md-3">
+                                <input class="form-check-input" type="checkbox" id="lighting_Check">
+                                <label class="form-check-label" for="lighting_Check">Complaints or Requests</label>
+                            </div>
+                            <div class="form-group col-md-8 collapseDiv">
+                                <div class="form-group">
+                                    <label for="reasonLighting">Reason:</label>
+                                    <textarea class="form-control" id="reasonLighting" rows="3"></textarea>
+                                </div>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label col-sm-3 pt-0">Upload Proofs:<br/><small>At most 5 multiple images</small></legend>
+                                        <div class="col-sm-9">
+                                            <div class="file-loading">
+                                                <input type="file" multiple data-msg-placeholder="Upload proofs...">
+                                                <div class="invalid-feedback">
+                                                    This can't be empty.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-light mb-3">
+                    <h6 class="card-header">Electricity</h6>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="form-check form-check-inline col-md-3">
+                                <input class="form-check-input" type="checkbox" id="electricity_Check">
+                                <label class="form-check-label" for="electricity_Check">Complaints or Requests</label>
+                            </div>
+                            <div class="form-group col-md-8 collapseDiv">
+                                <div class="form-group">
+                                    <label for="reasonElectricity">Reason:</label>
+                                    <textarea class="form-control" id="reasonElectricity" rows="3"></textarea>
+                                </div>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label col-sm-3 pt-0">Upload Proofs:<br/><small>At most 5 multiple images</small></legend>
+                                        <div class="col-sm-9">
+                                            <div class="file-loading">
+                                                <input type="file" multiple data-msg-placeholder="Upload proofs...">
+                                                <div class="invalid-feedback">
+                                                    This can't be empty.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-light mb-3">
+                    <h6 class="card-header">Graphic</h6>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="form-check form-check-inline col-md-3">
+                                <input class="form-check-input" type="checkbox" id="graphic_Check">
+                                <label class="form-check-label" for="graphic_Check">Complaints or Requests</label>
+                            </div>
+                            <div class="form-group col-md-8 collapseDiv">
+                                <div class="form-group">
+                                    <label for="reasonGraphic">Reason:</label>
+                                    <textarea class="form-control" id="reasonGraphic" rows="3"></textarea>
+                                </div>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label col-sm-3 pt-0">Upload Proofs:<br/><small>At most 5 multiple images</small></legend>
+                                        <div class="col-sm-9">
+                                            <div class="file-loading">
+                                                <input type="file" multiple data-msg-placeholder="Upload proofs...">
+                                                <div class="invalid-feedback">
+                                                    This can't be empty.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-light mb-3">
+                    <h6 class="card-header">Display</h6>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="form-check form-check-inline col-md-3">
+                                <input class="form-check-input" type="checkbox" id="display_Check">
+                                <label class="form-check-label" for="display_Check">Complaints or Requests</label>
+                            </div>
+                            <div class="form-group col-md-8 collapseDiv">
+                                <div class="form-group">
+                                    <label for="reasonDisplay">Reason:</label>
+                                    <textarea class="form-control" id="reasonDisplay" rows="3"></textarea>
+                                </div>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label col-sm-3 pt-0">Upload Proofs:<br/><small>At most 5 multiple images</small></legend>
+                                        <div class="col-sm-9">
+                                            <div class="file-loading">
+                                                <input type="file" multiple data-msg-placeholder="Upload proofs...">
+                                                <div class="invalid-feedback">
+                                                    This can't be empty.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-light mb-3">
+                    <h6 class="card-header">Furniture</h6>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="form-check form-check-inline col-md-3">
+                                <input class="form-check-input" type="checkbox" id="furniture_Check">
+                                <label class="form-check-label" for="furniture_Check">Complaints or Requests</label>
+                            </div>
+                            <div class="form-group col-md-8 collapseDiv">
+                                <div class="form-group">
+                                    <label for="reasonFurniture">Reason:</label>
+                                    <textarea class="form-control" id="reasonFurniture" rows="3"></textarea>
+                                </div>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label col-sm-3 pt-0">Upload Proofs:<br/><small>At most 5 multiple images</small></legend>
+                                        <div class="col-sm-9">
+                                            <div class="file-loading">
+                                                <input type="file" multiple data-msg-placeholder="Upload proofs...">
+                                                <div class="invalid-feedback">
+                                                    This can't be empty.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-light mb-3">
+                    <h6 class="card-header">Accessories</h6>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="form-check form-check-inline col-md-3">
+                                <input class="form-check-input" type="checkbox" id="accessories_Check">
+                                <label class="form-check-label" for="accessories_Check">Complaints or Requests</label>
+                            </div>
+                            <div class="form-group col-md-8 collapseDiv">
+                                <div class="form-group">
+                                    <label for="reasonAccessories">Reason:</label>
+                                    <textarea class="form-control" id="reasonAccessories" rows="3"></textarea>
+                                </div>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label col-sm-3 pt-0">Upload Proofs:<br/><small>At most 5 multiple images</small></legend>
+                                        <div class="col-sm-9">
+                                            <div class="file-loading">
+                                                <input type="file" multiple data-msg-placeholder="Upload proofs...">
+                                                <div class="invalid-feedback">
+                                                    This can't be empty.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-light mb-3">
+                    <h6 class="card-header">Show Site</h6>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="form-check form-check-inline col-md-3">
+                                <input class="form-check-input" type="checkbox" id="showsite_Check">
+                                <label class="form-check-label" for="showsite_Check">Complaints or Requests</label>
+                            </div>
+                            <div class="form-group col-md-8 collapseDiv">
+                                <div class="form-group">
+                                    <label for="reasonShowsite">Reason:</label>
+                                    <textarea class="form-control" id="reasonShowsite" rows="3"></textarea>
+                                </div>
+                                <fieldset class="form-group">
+                                    <div class="row">
+                                        <legend class="col-form-label col-sm-3 pt-0">Upload Proofs:<br/><small>At most 5 multiple images</small></legend>
+                                        <div class="col-sm-9">
+                                            <div class="file-loading">
+                                                <input type="file" multiple data-msg-placeholder="Upload proofs...">
+                                                <div class="invalid-feedback">
+                                                    This can't be empty.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="offset-5 col-1">
+                    <button id="requestSubmitBtn" type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    var data = {
+        carpet: {
+            checked: "",
+            reason: "",
+            filename: []
+        },
+        panel: {
+            checked: "",
+            reason: "",
+            filename: []
+        },
+        lighting: {
+            checked: "",
+            reason: "",
+            filename: []
+        },
+        electricity: {
+            checked: "",
+            reason: "",
+            filename: []
+        },
+        graphic: {
+            checked: "",
+            reason: "",
+            filename: []
+        },
+        display: {
+            checked: "",
+            reason: "",
+            filename: []
+        },
+        furniture: {
+            checked: "",
+            reason: "",
+            filename: []
+        },
+        accessories: {
+            checked: "",
+            reason: "",
+            filename: []
+        },
+        showsite: {
+            checked: "",
+            reason: "",
+            filename: []
+        }
+    };
+    var uploadFiles = {
+        carpet: {
+            file: undefined
+        },
+        panel: {
+            file: undefined
+        },
+        lighting: {
+            file: undefined
+        },
+        electricity: {
+            file: undefined
+        },
+        graphic: {
+            file: undefined
+        },
+        display: {
+            file: undefined
+        },
+        furniture: {
+            file: undefined
+        },
+        accessories: {
+            file: undefined
+        },
+        showsite: {
+            file: undefined
+        }
+    }
+    $("#requestForm").children().children(".card-body").find(".card").each(function() {
+        var key = $(this).find("input[type='checkbox']").attr("id").split("_")[0];
+        $(this).find("input[type='file']").change(function() {
+            var file = this.files;
+            uploadFiles[key]["file"]= file;
+        });
+        $(this).find("textarea").change(function() {
+            data[key]["reason"] = $(this).val();
+        });
+        $(this).find("input[type='checkbox']").change(function() {
+            if(this.checked) {
+                $(this).parent().parent().find("div.collapseDiv").show();
+                $(this).parent().parent().find("input[type='file']").prop("required", true);
+                $(this).parent().parent().find("textarea").prop("required", true);
+                data[key]["checked"] = "y";
+            }
+            else {
+                $(this).parent().parent().find("div.collapseDiv").hide();
+                $(this).parent().parent().find("textarea").val("");
+                $(this).parent().parent().find("input[type='file']").fileinput("clear");
+                $(this).parent().parent().find("input[type='file']").removeAttr("required");
+                $(this).parent().parent().find("textarea").removeAttr("required");
+                data[key]["checked"] = "";
+                data[key]["reason"] = "";
+                uploadFiles[key]["file"] = undefined;
+            }
+        })
+    });
+    $(document).ready(function() {
+        $("#requestForm").children().children(".card-body").find(".card").each(function() {
+            $(this).find(".collapseDiv").each(function() {
+                $(this).hide();
+            });
+            $(this).find("input[type='file']").fileinput({
+                uploadUrl: "#",
+                theme: "fas",
+                showUpload: false,
+                showRemove : true,
+                dropZoneEnabled: false,
+                maxFileCount: 5,
+                layoutTemplates: {
+                    actionUpload: ''
+                }
+            });
+        });
+    });
+    $("#requestSubmitBtn").click(function(e) {
+        e.preventDefault();
+        var formData = new FormData();
+        var showName = $("#requestForm").attr("data-name");
+        var details = JSON.stringify(data);
+        formData.append("showName", showName);
+        formData.append("details", details);
+        for(var key in uploadFiles) {
+            if(uploadFiles[key]["file"] != undefined) {
+                for(var c of uploadFiles[key]["file"]) {
+                    formData.append(key, c);
+                }
+            }
+        }
+        $.ajax({
+            method: "post",
+            url: "/exhibitor/requests",
+            dataType: "json",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(res) {
+                var aftersale = res["aftersale"];
+                var showName = res["showName"];
+                var exhibitor = res["exhibitor"];
+                var origin = window.location.hostname;
+                var ws = new WebSocket('ws://' + origin + ':8080');
+                var message1 = showName + "'s status is updated! Refresh this page to check you progress!||" + exhibitor + "||" + aftersale;
+                //alert(message);
+                ws.onopen = function(e) {
+                    ws.send(message1);
+                }
+                $(location).attr("href", "/exhibitor");
+            },
+            error: function(err) {
+                $(location).attr("href", "/error");
+            }
+        });
+    })
+</script>

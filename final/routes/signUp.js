@@ -22,6 +22,7 @@ router.post("/", upload.fields([{name: "personal", maxCount: 1}, {name: "license
         email: xss(req.body.email),
         CompanyInfo: xss(req.body.company),
         ContactInfo: xss(req.body.contact),
+        Address: xss(req.body.address),
         StateId: xss(req.body.stateId),
         TaxId: xss(req.body.taxId),
         voe: xss(req.body.voe)
@@ -37,7 +38,7 @@ router.post("/", upload.fields([{name: "personal", maxCount: 1}, {name: "license
         }
         else
         if(data.length == 0 && data2.length == 0) {
-            const result = await users.create(request["user"], request["password"], request["email"], request["CompanyInfo"], request["ContactInfo"], license, personal, request["StateId"], request["TaxId"], request["voe"]);
+            const result = await users.create(request["user"], request["password"], request["email"], request["CompanyInfo"], request["ContactInfo"], request["Address"], license, personal, request["StateId"], request["TaxId"], request["voe"]);
             const hashedCookie = key.encrypt(request["user"], 'base64');
             req.session.user = hashedCookie;
             res.send({"user": request["user"], "status": "success"});

@@ -15,6 +15,8 @@ const vendor = require("./vendor");
 const exhibitor = require("./exhibitor");
 const info = require("./info");
 const admin = require("./admin");
+const aftersale = require("./aftersale");
+const manage = require("./manage");
 
 
 const constructorMethod = app =>{
@@ -39,6 +41,14 @@ const constructorMethod = app =>{
                 if(venderOrNot == "admin") {
                     res.redirect("/admin");
                 }
+                else
+                if(venderOrNot == "manager") {
+                    res.redirect("/manage");
+                }
+                else
+                if(venderOrNot == "aftersale") {
+                    res.redirect("/aftersale");
+                }
             }
         }
         catch(e) {
@@ -58,6 +68,8 @@ const constructorMethod = app =>{
     app.use("/vendor", vendor);
     app.use("/info", info);
     app.use("/admin", admin);
+    app.use("/aftersale", aftersale);
+    app.use("/manage", manage);
     app.get("/popularity", async (req, res) => {
         const Head = await head(req);
         try {

@@ -16,6 +16,9 @@ const progress = data.progress;
 const https = require('https');
 const fs = require('fs');
 
+app.use("/public", express.static(__dirname + "/public"));
+app.use("/views", express.static(__dirname + "/views"));
+
 var wss = new webSocket.Server({port: 8080});
 var usersSocket = {};
 
@@ -47,12 +50,9 @@ wss.on('connection', async function connection(ws) {
 
 keyFile.push(key);
 
-app.use("/public", express.static(__dirname + "/public"));
-app.use("/views", express.static(__dirname + "/views"));
-
-app.use(bodyParser.json({
+/*app.use(bodyParser.json({
     limit: "50mb"
-}));
+}));*/
 app.use(bodyParser.urlencoded({
     extended : true
 }));
@@ -81,7 +81,7 @@ var Logging = async (req, res, next) => {
 }
 
 app.use(Logging);
-app.use(express.json({limit: '50mb'}));
+//app.use(express.json({limit: '50mb'}));
 
 
 configRoutes(app);

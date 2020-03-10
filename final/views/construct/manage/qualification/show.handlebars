@@ -1,0 +1,69 @@
+<div class="container">
+    {{#each data}}
+    <div class="row mb-3">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-4">
+                    <h5>User Id:</h5>
+                </div>
+                <div class="col-6" id="userId">{{userId}}</div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <h5>Company Name:</h5>
+                </div>
+                <div class="col-6">
+                    {{companyInfo}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <h5>Address:</h5>
+                </div>
+                <div class="col-6">
+                    {{address}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <h5>Contact Number:</h5>
+                </div>
+                <div class="col-6">
+                    {{contactInfo}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <h5>E-mail:</h5>
+                </div>
+                <div class="col-6">
+                    {{email}}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row mb-2">
+                <img style="width: 200px; height: 100px" src="/public/image/license/{{license}}" alt="licence">
+            </div>
+            <div class="row mb-2">
+                <img style="width: 200px; height: 100px" src="/public/image/personal/{{personal}}" alt="personal">
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <h3>Details</h3>
+        <div class="row">
+            <div class="col-4">
+                <h5>Estimate Price:</h5>
+            </div>
+            <div class="col-6">{{estimatePrice}}</div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <h5>Details:</h5>
+            </div>
+            <div class="col-6">{{detailsInfo}}</div>
+        </div>
+    </div>
+    {{/each}}
+</div>

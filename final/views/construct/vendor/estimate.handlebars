@@ -5,7 +5,8 @@
         <div class="col-12">
             <h2>Show Name - <span id="showName">{{showName}}</span></h2>
             <p>BoothNum - <span id="boothId">{{boothNum}}</span></p>
-            <p><span>Start Date - </span>{{date.start}}&nbsp;&nbsp;&nbsp;<span id="endDate+{{date.end}}">End Date - </span>{{date.end}}</p>
+            <p><span>Start Date - </span>{{date.start}}</p>
+            <p><span id="endDate+{{date.end}}">End Date - </span>{{date.end}}</p>
         </div>
     </div>
     <div class="row">
@@ -75,8 +76,21 @@
                 {{category.accessories.other.name}}
                 </p>
             {{/if}}
+            {{#each category.showsite.details}}
+                <p>Show Site:&nbsp;
+                {{name}}
+                </p>
+            {{/each}}
+            {{#if category.showsite.other.name}}
+                <p>Show Site:&nbsp;
+                {{category.showsite.other.name}}
+                </p>
+            {{/if}}
             <h6 class="mb-3">Description</h6>
-            <p><a target="_blank" href="/public/image/exhibitor/designPlan/{{details.designFile.filename}}">{{../designFileName}}</a></p>
+            {{#each details.designFile.filename}}
+            <p><a target="_blank" href="/public/image/exhibitor/designPlan/{{name}}">{{fileName}}</a></p>
+            {{/each}}
+            <div class="showDetails">{{details.additionalInfo.details}}</div>
         </div>
         <div class="col-xl-9">
             <form id="estimateForm">
@@ -84,17 +98,18 @@
                 <thead>
                     <tr>
                         <!--<th scope="col"></th>-->
-                        <th scope="col" style="width: 16%">Category</th>
-                        <th scope="col" style="width: 9%">No.</th>
-                        <th scope="col" style="width: 34%">Product name</th>
-                        <th scope="col" style="width: 8%">Unit</th>
-                        <th scope="col" style="width: 11%">Price</th>
-                        <th scope="col" style="width: 11%">Quantity</th>
-                        <th scope="col" style="width: 11%">SubTotal</th>
+                        <th scope="col">#</th>
+                        <th style="width: 16%">Category</th>
+                        <th style="width: 9%">No.</th>
+                        <th style="width: 34%">Product name</th>
+                        <th style="width: 8%">Unit</th>
+                        <th style="width: 11%">Price</th>
+                        <th style="width: 11%">Quantity</th>
+                        <th style="width: 11%">SubTotal</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each ../estimateTable}}
+                    <!--{{#each ../estimateTable}}
                     <tr>
                         <td scope="row" style="width: 16%">{{Category}}</td>
                         <td style="width: 9%">{{Product_No}}</td>
@@ -110,11 +125,78 @@
                             <span class="subTotal">{{Total}}</span>
                         </td>
                     </tr>
+                    {{/each}}-->
+                    <tr>
+                        <!--<th scope="col"></th>-->
+                        <th scope="col">#</th>
+                        <th style="width: 16%"></th>
+                        <th style="width: 9%"></th>
+                        <th style="width: 34%"></th>
+                        <th style="width: 8%"></th>
+                        <th style="width: 11%"></th>
+                        <th style="width: 11%"></th>
+                        <th style="width: 11%"></th>
+                    </tr>
+                    <tr>
+                        <!--<th scope="row">#</th>-->
+                        <td colspan="8" class="headCollapse" style="width:100%;">
+                            <div class="container-fluid">
+                                <a class="btn btn-link" style="width: 100%;" data-toggle="collapse" aria-expanded="false" aria-controls="flooringCollapse" href="#flooringCollapse">Flooring</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {{#if ../estimateTable.Flooring}}
+                    {{#each ../estimateTable.Flooring}}
+                    <tr class="collapse" id="flooringCollapse">
+                        <th scope="row"></th>
+                        <td style="width: 16%">{{Category}}</td>
+                        <td style="width: 9%">{{Product_No}}</td>
+                        <td style="width: 34%">{{Product_name}}</td>
+                        <td style="width: 8%">{{Unit}}</td>
+                        <td style="width: 11%">
+                            <input class="form-control form-control-sm priceInput" type="text" value="{{Price}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <input class="form-control form-control-sm numInput" type="text" value="{{Quantity}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <span class="subTotal">{{Total}}</span>
+                        </td>
+                    </tr>
                     {{/each}}
+                    {{/if}}
+                    <tr>
+                        <td colspan="8" class="headCollapse">
+                            <div class="container-fluid">
+                                <a class="btn btn-link" style="width: 100%;" data-toggle="collapse" aria-expanded="false" aria-controls="riggingCollapse" href="#riggingCollapse">Rigging</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {{#if ../estimateTable.Rigging}}
+                    {{#each ../estimateTable.Rigging}}
+                    <tr class="collapse" id="riggingCollapse">
+                        <th scope="row"></th>
+                        <td style="width: 16%">{{Category}}</td>
+                        <td style="width: 9%">{{Product_No}}</td>
+                        <td style="width: 34%">{{Product_name}}</td>
+                        <td style="width: 8%">{{Unit}}</td>
+                        <td style="width: 11%">
+                            <input class="form-control form-control-sm priceInput" type="text" value="{{Price}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <input class="form-control form-control-sm numInput" type="text" value="{{Quantity}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <span class="subTotal">{{Total}}</span>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    {{/if}}
                 </tbody>
                 <tfoot>
                     <tr>
                         <td colspan="5" style="width: 88%;">
+                            {{../note}}
                         </td>
                         <td style="width: 11%;">Total:</td>
                         <td style="width: 11%;">
@@ -278,9 +360,12 @@
         $('#estimateSubmit').html('Submit');
         $('#estimateSubmit').prop('disabled', false);
     });
+    $("#estimateDia").on('hidden.bs.modal', function() {
+        $('#estimateSubmit').html('Submit');
+        $('#estimateSubmit').prop('disabled', false);
+    })
     $("#yesEstimate").click(function(e) {
         e.preventDefault();
-        var boothNum = $("#boothId").html();
         var author = $("#author").val();
         var showName = $("#showName").html();
         var arr = [];
@@ -315,7 +400,7 @@
             url: "/vendor/estimate",
             dataType: "json",
             data: {
-                id: boothNum,
+                id: showName,
                 price: price
             },
             success: function(res) {

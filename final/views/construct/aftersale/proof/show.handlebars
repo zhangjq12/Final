@@ -1,0 +1,54 @@
+<div class="container">
+    {{#each proof}}
+    <div class="row mb-3">
+        <div class="col-md-2">
+            <h5>Bill Images:</h5>
+        </div>
+        <div class="col-md-10">
+            {{#each bills}}
+            <a target="_blank" href="/public/image/Proofs/bills/{{fileName}}"><img src="/public/image/Proofs/bills/{{fileName}}" height="200px" width="100px" alt="{{fileName}}"></a>
+            {{/each}}
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-2">
+            <h5>Finshed Images:</h5>
+        </div>
+        <div class="col-md-10">
+            {{#each finished}}
+            <a target="_blank" href="/public/image/Proofs/finished/{{fileName}}"><img src="/public/image/Proofs/finished/{{fileName}}" height="200px" width="100px" alt="{{fileName}}"></a>
+            {{/each}}
+        </div>
+    </div>
+    <button class="btn btn-primary confirmBtn" data-name="{{showName}}" type="button">Confirm</button>
+    {{/each}}
+</div>
+<script>
+    $(".confirmBtn").click(function() {
+        var showName = $(this).attr("data-name");
+        $.ajax({
+            type: "post",
+            url: "/aftersale/proof", 
+            dataType: "json",
+            data: {
+                showName: showName
+            },
+            success: function(res) {
+                var admin = res["admin"];
+                var aftersale = res["aftersale"];
+                var showname = res["showName"];
+                var origin = window.location.hostname;
+                var ws = new WebSocket('ws://' + origin + ':8080');
+                var message1 = showname + "'s progress is updated! Refresh this page to check you progress!||" + aftersale + "||" + admin;
+                //alert(message);
+                ws.onopen = function(e) {
+                    ws.send(message1);
+                }
+                $(location).attr("href", "/aftersale");
+            },
+            error: function(err) {
+                $(location).attr("href", "error");
+            }
+        });
+    })
+</script>

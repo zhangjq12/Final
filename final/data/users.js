@@ -5,8 +5,8 @@ const passwordHash = require('password-hash');
 
 const url = "mongodb://127.0.0.1:27017/Final";
 
-async function create(userName, password, email, companyInfo, contactInfo, license, personal, stateId, taxId, voe) {
-    if(userName == undefined || password == undefined || companyInfo == undefined || email == undefined || contactInfo == undefined || license == undefined || personal == undefined || voe == undefined)
+async function create(userName, password, email, companyInfo, contactInfo, address, license, personal, stateId, taxId, voe) {
+    if(userName == undefined || password == undefined || companyInfo == undefined || email == undefined || contactInfo == undefined || address == undefined || license == undefined || personal == undefined || voe == undefined)
         throw "parameters are missing.";
     var result = [];
     const hashedPassword = passwordHash.generate(password);
@@ -15,7 +15,7 @@ async function create(userName, password, email, companyInfo, contactInfo, licen
             if(err) {
                 throw "database connection failed!";
             }
-            db.collection('user').insert({"userName": userName, "hashedPassword": hashedPassword, "email": email, "favoriteTabs":[], "dislike":[], "portrait": "defaultHead.jpg", "companyInfo": companyInfo, "contactInfo": contactInfo, "license": license, "personal": personal, "stateId": stateId, "taxId": taxId, "voe": voe}, (err, res) => {
+            db.collection('user').insert({"userName": userName, "hashedPassword": hashedPassword, "email": email, "favoriteTabs":[], "dislike":[], "portrait": "defaultHead.jpg", "companyInfo": companyInfo, "contactInfo": contactInfo, "address": address, "license": license, "personal": personal, "stateId": stateId, "taxId": taxId, "voe": voe}, (err, res) => {
                 if(err) {
                     db.close();
                     throw "insert error";

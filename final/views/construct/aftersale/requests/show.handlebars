@@ -1,0 +1,204 @@
+<div class="container">
+    {{#if requests.details.carpet.checked}}
+    <div class="row">
+        <div class="col-md-2">
+            Carpet
+        </div>
+        <div class="col-md-10">
+            <h5>Reason:</h5>
+            <p>{{requests.details.carpet.reason}}</p>
+            <h5>Proof</h5>
+            {{#each requests.details.carpet.filename}}
+            <a target="_blank" href="/public/image/Requests/carpet/{{name}}">{{name}}</a>
+            {{/each}}
+        </div>
+    </div>
+    {{/if}}
+    {{#if requests.details.panel.checked}}
+    <div class="row">
+        <div class="col-md-2">
+            Wall Panel
+        </div>
+        <div class="col-md-10">
+            <h5>Reason:</h5>
+            <p>{{requests.details.panel.reason}}</p>
+            <h5>Proof</h5>
+            {{#each requests.details.panel.filename}}
+            <a target="_blank" href="/public/image/Requests/panel/{{name}}">{{name}}</a>
+            {{/each}}
+        </div>
+    </div>
+    {{/if}}
+    {{#if requests.details.lighting.checked}}
+    <div class="row">
+        <div class="col-md-2">
+            Lighting
+        </div>
+        <div class="col-md-10">
+            <h5>Reason:</h5>
+            <p>{{requests.details.lighting.reason}}</p>
+            <h5>Proof</h5>
+            {{#each requests.details.lighting.filename}}
+            <a target="_blank" href="/public/image/Requests/lighting/{{name}}">{{name}}</a>
+            {{/each}}
+        </div>
+    </div>
+    {{/if}}
+    {{#if requests.details.electricity.checked}}
+    <div class="row">
+        <div class="col-md-2">
+            Electricity
+        </div>
+        <div class="col-md-10">
+            <h5>Reason:</h5>
+            <p>{{requests.details.electricity.reason}}</p>
+            <h5>Proof</h5>
+            {{#each requests.details.electricity.filename}}
+            <a target="_blank" href="/public/image/Requests/electricity/{{name}}">{{name}}</a>
+            {{/each}}
+        </div>
+    </div>
+    {{/if}}
+    {{#if requests.details.graphic.checked}}
+    <div class="row">
+        <div class="col-md-2">
+            Graphic
+        </div>
+        <div class="col-md-10">
+            <h5>Reason:</h5>
+            <p>{{requests.details.graphic.reason}}</p>
+            <h5>Proof</h5>
+            {{#each requests.details.graphic.filename}}
+            <a target="_blank" href="/public/image/Requests/graphic/{{name}}">{{name}}</a>
+            {{/each}}
+        </div>
+    </div>
+    {{/if}}
+    {{#if requests.details.display.checked}}
+    <div class="row">
+        <div class="col-md-2">
+            Display
+        </div>
+        <div class="col-md-10">
+            <h5>Reason:</h5>
+            <p>{{requests.details.display.reason}}</p>
+            <h5>Proof</h5>
+            {{#each requests.details.display.filename}}
+            <a target="_blank" href="/public/image/Requests/display/{{name}}">{{name}}</a>
+            {{/each}}
+        </div>
+    </div>
+    {{/if}}
+    {{#if requests.details.furniture.checked}}
+    <div class="row">
+        <div class="col-md-2">
+            Furniture
+        </div>
+        <div class="col-md-10">
+            <h5>Reason:</h5>
+            <p>{{requests.details.furniture.reason}}</p>
+            <h5>Proof</h5>
+            {{#each requests.details.furniture.filename}}
+            <a target="_blank" href="/public/image/Requests/furniture/{{name}}">{{name}}</a>
+            {{/each}}
+        </div>
+    </div>
+    {{/if}}
+    {{#if requests.details.accessories.checked}}
+    <div class="row">
+        <div class="col-md-2">
+            Accessories
+        </div>
+        <div class="col-md-10">
+            <h5>Reason:</h5>
+            <p>{{requests.details.accessories.reason}}</p>
+            <h5>Proof</h5>
+            {{#each requests.details.accessories.filename}}
+            <a target="_blank" href="/public/image/Requests/accessories/{{name}}">{{name}}</a>
+            {{/each}}
+        </div>
+    </div>
+    {{/if}}
+    {{#if requests.details.showsite.checked}}
+    <div class="row">
+        <div class="col-md-2">
+            Show Site
+        </div>
+        <div class="col-md-10">
+            <h5>Reason:</h5>
+            <p>{{requests.details.showsite.reason}}</p>
+            <h5>Proof</h5>
+            {{#each requests.details.showsite.filename}}
+            <a target="_blank" href="/public/image/Requests/showsite/{{name}}">{{name}}</a>
+            {{/each}}
+        </div>
+    </div>
+    {{/if}}
+    <button data-name="{{showName}}" data-link="{{progress.eprogress}}" class="btn btn-primary" id="acceptRequestsBtn" style="display: none;">Accept</button>
+    <button data-name="{{showName}}" class="btn btn-primary" id="finishRequestsBtn" style="display: none;">Finish</button>
+</div>
+<script>
+    $(document).ready(function() {
+        var progress = $("#acceptRequestsBtn").attr("data-link");
+        if(progress == "Complaint") {
+            $("#acceptRequestsBtn").removeAttr("style");
+        }
+        else
+        if(progress == "Complaint Processing") {
+            $("#finishRequestsBtn").removeAttr("style");
+        }
+    });
+    $("#acceptRequestsBtn").click(function() {
+        var showName = $(this).attr("data-name");
+        $.ajax({
+            method: "post",
+            url: "/aftersale/requests/processing",
+            dataType: "json",
+            data: {
+                showName: showName
+            },
+            success: function(res) {
+                var aftersale = res["aftersale"];
+                var showName = res["showName"];
+                var origin = window.location.hostname;
+                var ws = new WebSocket('ws://' + origin + ':8080');
+                var message1 = showName + "'s status is updated! Refresh this page to check you progress!||" + aftersale + "||" + aftersale;
+                //alert(message);
+                ws.onopen = function(e) {
+                    ws.send(message1);
+                }
+                $(location).attr("href", "/aftersale");
+            },
+            error: function(err) {
+                $(loaction).attr("href", "/error");
+            }
+        });
+    });
+    $("#finishRequestsBtn").click(function() {
+        var showName = $(this).attr("data-name");
+        $.ajax({
+            method: "post",
+            url: "/aftersale/requests/solved",
+            dataType: "json",
+            data: {
+                showName: showName
+            },
+            success: function(res) {
+                var aftersale = res["aftersale"];
+                var showName = res["showName"];
+                var exhibitor = res["exhibitor"];
+                var origin = window.location.hostname;
+                var ws = new WebSocket('ws://' + origin + ':8080');
+                var message1 = showName + "'s status is updated! Refresh this page to check you progress!||" + aftersale + "||" + exhibitor;
+                //alert(message);
+                ws.onopen = function(e) {
+                    ws.send(message1);
+                }
+                $(location).attr("href", "/aftersale");
+            },
+            error: function(err) {
+                $(loaction).attr("href", "/error");
+            }
+        });
+    });
+</script>

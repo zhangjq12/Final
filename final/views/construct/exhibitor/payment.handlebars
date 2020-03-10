@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="/public/css/payment.css">
 <div class="container">
     <div class="row">
+        <form id="paySuccess">
         <div id="body">
             <div id="card-success" class="hidden">
                 <i class="fa fa-check"></i>
@@ -56,23 +57,20 @@
                 <!--- end card back --->
                 <input type="text" id="card-token" />
                 {{!-- <button type="button" id="card-btn">Submit</button> --}}
-                <div class="payment-row row" data-name="{{boothNum}}">
-                    <form id="paySuccess">
+                <div class="payment-row row" data-name="{{showName}}">
                         <button class="btn btn-light" type="button" onclick="history.go(-1);" id="card-btn1">Back</button>
                         <button class="btn btn-light" type="submit" id="card-btn2">Submit</button>
-                    </form>
                 </div>
 
             </div>
             <!--- end form container --->
 
-            <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-            <script src="https://use.fontawesome.com/f1e0bf0cbc.js"></script>
 
 
 
 
         </div>
+        </form>
     </div>
 
 
@@ -83,6 +81,8 @@
         </form>
     </div> --}}
 </div>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script src="https://use.fontawesome.com/f1e0bf0cbc.js"></script>
 <script>
     $("#paySuccess").submit(function (e) {
         e.preventDefault();

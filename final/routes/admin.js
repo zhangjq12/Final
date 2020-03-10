@@ -50,25 +50,57 @@ router.get("/", async (req, res) => {
     }
 });
 
-router.post("/finish", async (req, res) => {
+router.post("/confirmExh", async (req, res) => {
     const request = {
-        id: req.body.id,
-        success: req.body.success
+        id: req.body.id
     }
     //console.log(request);
     try {
-        if(request["success"] != "y")
-            throw "error";
-        const data1 = await progress.getBoothId(request["id"]);
+        const data1 = await progress.getShowName(request["id"]);
         for(var i = 0; i < data1.length; i++) {
-            const res1 = await progress.modifyEprogress(data1[i]["_id"].toString(), "paychecked");
-            const res2 = await progress.modifyVprogress(data1[i]["_id"].toString(), "paychecked");
+            const res1 = await progress.modifyVprogress(data1[i]["_id"].toString(), "30% Paid");
+            const res2 = await progress.modifyEprogress(data1[i]["_id"].toString(), "done");
         }
-        const data3 = await price.getBoothId(request["id"]);
-        const data4 = await users.getId(data3[0]["vendorId"].toString());
-        const data5 = await users.getId(data3[0]["exhibitorId"].toString());
-        const booth = await tab.getBoothNum(request["id"]);
-        res.send({success: "success", showName: booth[0]["showName"], vendor: data4[0]["userName"], exhibitor: data5[0]["userName"]});
+        const data3 = await users.getId(data1[0]["exhibitorId"].toString());
+        const data4 = await users.getId(data1[0]["vendorId"].toString());
+        res.send({success: "success", showName: request["id"], admin: "administrator", exhibitor: data3[0]["userName"], vendor: data4[0]["userName"]});
+    }
+    catch(e) {
+        res.send({error: "error"});
+    }
+});
+
+router.post("/proof/manager", async (req, res) => {
+    const request = {
+        id: req.body.id
+    }
+    //console.log(request);
+    try {
+        const data1 = await progress.getShowName(request["id"]);
+        for(var i = 0; i < data1.length; i++) {
+            const res1 = await progress.modifyVprogress(data1[i]["_id"].toString(), "Proved by Finance");
+        }
+        res.send({success: "success", showName: request["id"], admin: "administrator", manager: "manager"});
+    }
+    catch(e) {
+        res.send({error: "error"});
+    }
+});
+
+router.post("/proof/vendor", async (req, res) => {
+    const request = {
+        id: req.body.id
+    }
+    //console.log(request);
+    try {
+        const data1 = await progress.getShowName(request["id"]);
+        for(var i = 0; i < data1.length; i++) {
+            if(data1[0]["vprogress"] == "Proved by Manager") {
+                const res2 = await progress.modifyVprogress(data1[i]["_id"].toString(), "done");
+            }
+        }
+        const data4 = await users.getId(data1[0]["vendorId"].toString());
+        res.send({success: "success", showName: request["id"], vendor: data4[0]["userName"], admin: "administrator"});
     }
     catch(e) {
         res.send({error: "error"});

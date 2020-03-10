@@ -6,8 +6,8 @@ const tab = require("./tab");
 
 const url = "mongodb://127.0.0.1:27017/Final";
 
-async function create(boothId, exhibitorId, vendorId, price) {
-    if(boothId == undefined || exhibitorId == undefined || vendorId == undefined || price == undefined)
+async function create(showName, exhibitorId, vendorId, price) {
+    if(showName == undefined || exhibitorId == undefined || vendorId == undefined || price == undefined)
         throw "parameters are missing.";
     var result = [];
     var promise = new Promise(function(resolve) {
@@ -15,7 +15,7 @@ async function create(boothId, exhibitorId, vendorId, price) {
             if(err) {
                 throw "database connection failed!";
             }
-            db.collection('price').insert({"boothId": boothId, "exhibitorId": exhibitorId, "vendorId": vendorId, "price": price}, (err, res) => {
+            db.collection('price').insert({"showName": showName, "exhibitorId": exhibitorId, "vendorId": vendorId, "price": price}, (err, res) => {
                 if(err) {
                     db.close();
                     throw "insert error";
@@ -126,10 +126,10 @@ async function getId(id) {
     return res;
 }
 
-async function getBoothID(id) {
-    if(id == undefined)
+async function getShowNAME(name) {
+    if(name == undefined)
         throw "parameter is missing";
-    if(typeof id != 'string')
+    if(typeof name != 'string')
         throw "parameter is error format";
     var res = [];
     var promise = new Promise(function(resolve) {
@@ -137,7 +137,7 @@ async function getBoothID(id) {
             if(err) {
                 throw "database connection failed!";
             }
-            var find = db.collection("price").find({"boothId": id});
+            var find = db.collection("price").find({"showName": name});
             find.each((err, ress) => {
                 if(err) {
                     db.close();
@@ -159,8 +159,8 @@ async function getBoothID(id) {
     return promise;
 }
 
-async function getBoothId(id) {
-    const res = await getBoothID(id);
+async function getShowName(name) {
+    const res = await getShowNAME(name);
     return res;
 }
 
@@ -272,7 +272,7 @@ async function modifyPrice(id, price) {
 module.exports = {
     create,
     remove,
-    getBoothId,
+    getShowName,
     getExhibitorId,
     getId,
     getVendorId,

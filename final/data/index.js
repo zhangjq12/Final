@@ -8,6 +8,10 @@ const price = require("./price");
 const contract = require("./contract");
 const categories = require("./categories");
 const vendorPriceSheet = require("./vendorPriceSheet");
+const proof = require("./proof");
+const requests = require("./requests");
+const vendorDetails = require("./vendor");
+const vendorStars = require("./vendorStars");
 
 module.exports = {
     comments: comments,
@@ -19,5 +23,9 @@ module.exports = {
     price: price,
     contract: contract,
     categories: categories,
-    vendorPriceSheet: vendorPriceSheet
+    vendorPriceSheet: vendorPriceSheet,
+    proof: proof,
+    requests: requests,
+    vendorDetails: vendorDetails,
+    vendorStars: vendorStars
 }

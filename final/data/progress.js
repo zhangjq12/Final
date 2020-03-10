@@ -6,9 +6,9 @@ const tab = require("./tab");
 
 const url = "mongodb://127.0.0.1:27017/Final";
 
-async function create(progressId, boothId, exhibitorId, vendorId, etime, vtime, eprogress, vprogress) {
+async function create(progressId, showName, exhibitorId, vendorId, etime, vtime, eprogress, vprogress) {
     //console.log({progressId, boothId, exhibitorId, vendorId, etime, vtime, eprogress, vprogress});
-    if(progressId == undefined || boothId == undefined || exhibitorId == undefined || vendorId == undefined || etime == undefined || vtime == undefined || eprogress == undefined || vprogress == undefined)
+    if(progressId == undefined || showName == undefined || exhibitorId == undefined || vendorId == undefined || etime == undefined || vtime == undefined || eprogress == undefined || vprogress == undefined)
         throw "parameters are missing.";
     var result = [];
     var promise = new Promise(function(resolve) {
@@ -16,7 +16,7 @@ async function create(progressId, boothId, exhibitorId, vendorId, etime, vtime, 
             if(err) {
                 throw "database connection failed!";
             }
-            db.collection("progress").insert({"progressId": progressId, "boothId": boothId, "exhibitorId": exhibitorId, "vendorId": vendorId, "etime": etime, "vtime": vtime, "eprogress": eprogress, "vprogress": vprogress}, (err, res) => {
+            db.collection("progress").insert({"progressId": progressId, "showName": showName, "exhibitorId": exhibitorId, "vendorId": vendorId, "etime": etime, "vtime": vtime, "eprogress": eprogress, "vprogress": vprogress}, (err, res) => {
                 if(err) {
                     db.close();
                     throw "insert error";
@@ -175,10 +175,10 @@ async function getProgressId(id) {
     return res;
 }
 
-async function getBoothID(id) {
-    if(id == undefined)
+async function getShowNAME(name) {
+    if(name == undefined)
         throw "parameter is missing";
-    if(typeof id != 'string')
+    if(typeof name != 'string')
         throw "parameter is error format";
     var res = [];
     var promise = new Promise(function(resolve) {
@@ -186,7 +186,7 @@ async function getBoothID(id) {
             if(err) {
                 throw "database connection failed!";
             }
-            var find = db.collection("progress").find({"boothId": id});
+            var find = db.collection("progress").find({"showName": name});
             find.each((err, ress) => {
                 if(err) {
                     db.close();
@@ -208,10 +208,9 @@ async function getBoothID(id) {
     return promise;
 }
 
-async function getBoothId(id) {
-    const res = await getBoothID(id);
-    if(res.length == 0)
-        throw "no such data";
+async function getShowName(name) {
+    const res = await getShowNAME(name);
+    //console.log(res);
     return res;
 }
 
@@ -450,7 +449,7 @@ async function modifyVprogress(id, vprogress) {
 module.exports = {
     create,
     remove,
-    getBoothId,
+    getShowName,
     getExhibitorId,
     getId,
     getProgressId,

@@ -19,7 +19,7 @@
                 <td class="align-middle vname" scope="col">
                     {{vendorName}}
                 </td>
-                <td class="align-middle" scope="col">{{boothId}}</td>
+                <td class="align-middle" scope="col">{{showName}}</td>
                 <td class="align-middle" scope="col">
                     {{eprogress}}
                 </td>
@@ -27,7 +27,9 @@
                     {{vprogress}}
                 </td>
                 <td class="align-middle" scope="col">
-                    <button data-name="{{vprogress}}" class="btn btn-light confirmationBtn" style="display: none;">Confirm</button>
+                    <button data-name="{{eprogress}}" class="btn btn-light confirmationExhBtn" style="display: none;">Confirm Paid by Exhibitor</button>
+                    <button data-name="{{vprogress}}" class="btn btn-light confirmationProofManagerBtn" style="display: none;">Confirm Proof to Manager</button>
+                    <button data-name="{{vprogress}}" class="btn btn-light confirmationProofVendorBtn" style="display: none;">Confirm Proof and Pay</button>
                 </td>
             </tr>
             {{/each}}
@@ -36,34 +38,43 @@
 </div>
 <script>
     $(document).ready(function() {
-        $(".confirmationBtn").each(function() {
+        $(".confirmationExhBtn").each(function() {
             if($(this).attr("data-name") == "paid") {
                 $(this).removeAttr("style");
             }
-        })
+        });
+        $(".confirmationProofManagerBtn").each(function() {
+            if($(this).attr("data-name") == "Proved by Service") {
+                $(this).removeAttr("style");
+            }
+        });
+        $(".confirmationProofVendorBtn").each(function() {
+            if($(this).attr("data-name") == "Proved by Manager") {
+                $(this).removeAttr("style");
+            }
+        });
     })
-    $(".confirmationBtn").each(function() {
+    $(".confirmationExhBtn").each(function() {
         var id = $(this).parent().parent().find("td:eq(2)").html();
         $(this).click(function(e) {
             e.preventDefault();
             $.ajax({
                 type: "post",
-                url: "/admin/finish", 
+                url: "/admin/confirmExh", 
                 dataType: "json",
                 data: {
-                    id: id,
-                    success: "y"
+                    id: id
                 },
                 success: function(res) {
-                    var exhibitor = res["exhibitor"];
-                    var vendor = res["vendor"];
+                    var admin = res["admin"];
+                    var manager = res["manager"];
                     var showname = res["showName"];
                     var origin = window.location.hostname;
                     var ws = new WebSocket('ws://' + origin + ':8080');
-                    var message = showname + "'s progress is updated! Refresh this page to check you progress!||" + exhibitor + "||" + vendor;
+                    var message1 = showname + "'s progress is updated! Refresh this page to check you progress!||" + admin + "||" + manager;
                     //alert(message);
                     ws.onopen = function(e) {
-                        ws.send(message);
+                        ws.send(message1);
                     }
                     $(location).attr("href", "/admin");
                 },
@@ -72,5 +83,68 @@
                 }
             });
         });
-    })
+    });
+    $(".confirmationProofManagerBtn").each(function() {
+        var id = $(this).parent().parent().find("td:eq(2)").html();
+        $(this).click(function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "post",
+                url: "/admin/proof/manager", 
+                dataType: "json",
+                data: {
+                    id: id
+                },
+                success: function(res) {
+                    var admin = res["admin"];
+                    var vendor = res["vendor"];
+                    var showname = res["showName"];
+                    var origin = window.location.hostname;
+                    var ws = new WebSocket('ws://' + origin + ':8080');
+                    var message1 = showname + "'s progress is updated! Refresh this page to check you progress!||" + admin + "||" + vendor;
+                    //alert(message);
+                    ws.onopen = function(e) {
+                        ws.send(message1);
+                    }
+                    $(location).attr("href", "/admin");
+                },
+                error: function(err) {
+                    $(location).attr("href", "error");
+                }
+            });
+        });
+    });
+    $(".confirmationProofVendorBtn").each(function() {
+        var id = $(this).parent().parent().find("td:eq(2)").html();
+        $(this).click(function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "post",
+                url: "/admin/proof/vendor", 
+                dataType: "json",
+                data: {
+                    id: id
+                },
+                success: function(res) {
+                    var admin = res["admin"];
+                    var vendor = res["vendor"];
+                    var exhibitor = res["exhibitor"];
+                    var showname = res["showName"];
+                    var origin = window.location.hostname;
+                    var ws = new WebSocket('ws://' + origin + ':8080');
+                    var message1 = showname + "'s progress is updated! Refresh this page to check you progress!||" + admin + "||" + vendor;
+                    var message2 = showname + "'s progress is updated! Refresh this page to check you progress!||" + admin + "||" + exhibitor;
+                    //alert(message);
+                    ws.onopen = function(e) {
+                        ws.send(message1);
+                        ws.send(message2);
+                    }
+                    $(location).attr("href", "/admin");
+                },
+                error: function(err) {
+                    $(location).attr("href", "error");
+                }
+            });
+        });
+    });
 </script>

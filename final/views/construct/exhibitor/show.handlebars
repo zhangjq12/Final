@@ -6,10 +6,13 @@
         <img class="card-img-top" id="topImage" src="/public/image/page/showpageimage.jpg" alt="Card image cap">
         <div class="card-body">
             <div class="row">
-                <div class="col-md-8 mb-3 projectDetails">
-                    <div id="boothId" data-name={{boothNum}}></div>
+                <div class="col-md-6 mb-3 projectDetails">
+                    <div id="boothId" data-name="{{showName}}"></div>
+                    <div class="mb-5">
                     <h2 class="card-title">Show Name - <span>{{showName}}</span></h2>
-                    <p class="card-text mb-3"><span>Start Date - </span>{{date.start}}&nbsp;&nbsp;&nbsp;<span id="endDate+{{date.end}}">End Date - </span>{{date.end}}</p>
+                    <p class="card-text"><span>Start Date - </span>{{date.start}}&nbsp;&nbsp;&nbsp;<span id="endDate+{{date.end}}">End Date - </span>{{date.end}}</p>
+                    </div>
+                    <div>
                     <h4 class="mb-3">Project Details</h4>
                     <h6 class="mb-3">Categories</h6>
                     <p>Carpet:&nbsp;{{category.carpet.name}} - 
@@ -76,18 +79,31 @@
                         {{category.accessories.other.name}}
                         </p>
                     {{/if}}
+                    {{#each category.showsite.details}}
+                        <p>Show Site:&nbsp;
+                        {{name}}
+                        </p>
+                    {{/each}}
+                    {{#if category.showsite.other.name}}
+                        <p>Show Site:&nbsp;
+                        {{category.showsite.other.name}}
+                        </p>
+                    {{/if}}
                     <h6 class="mb-3">Description</h6>
-                    <p><a target="_blank" href="/public/image/exhibitor/designPlan/{{details.designFile.filename}}">{{../designFileName}}</a></p>
+                    {{#each details.designFile.filename}}
+                    <p><a target="_blank" href="/public/image/exhibitor/designPlan/{{name}}">{{fileName}}</a></p>
+                    {{/each}}
                     <div id="detailsShow" class="card-text mb-3">{{details.additionalInfo.details}}</div>
                     <div class="next-step">
                     
+                    </div>
                     </div>
                 </div>
         <!--</div>
 
         <div class="card-body col-md-4 mb-3">-->
-                <div class="col-md-4 mb-3">
-                <div id="exhiProgressColumn">
+                <div class="col-md-6 mb-3">
+                <div id="exhiProgressColumn" class="offset-md-4 mb-5">
                     <div class="mb-4 border-0" id="exhiProgressBar">
                         <p id="statusText"></p>
                         <div class="progress" data-name="{{progress}}">
@@ -98,86 +114,86 @@
                     </div>
 
                 </div>
+                <div class="card-body">
+                    <h5 class="card-title">Price</h5>
+                    <table id="priceTable" class="table table-hover">
+                        <thead>
+                            <tr>
+                                <!--<th scope="col"></th>-->
+                                <th scope="col">Vendor Name</th>
+                                <th scope="col">Estimate Price</th>
+                                <th scope="col">Operation</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table table-hover table-borderless">
+                            {{#each ../price}}
+                            <tr>
+                                <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
+                                <td class="align-middle" scope="row" id={{vendorId}}><a href="/info?name={{vendorName}}">{{vendorCompany}}</a></td>
+                                <td class="align-middle">
+                                    <a target="_blank" href="/exhibitor/estimate?id={{../showName}}&vendor={{vendorId}}">{{price.total}}</a>
+                                    <!--<a href="#acc{{vendorId}}" data-toggle="collapse" aria-expanded="false" aria-controls="acc{{vendorId}}">{{price.total}}</a>-->
+                                </td>
+                                <td class="align-middle">
+                                    <button id={{vendorId}} class="btn btn-light">Confirm</button>
+                                </td>
+                            </tr>
+                            <!--<tr>
+                                <td colspan="3">
+                                    <div id="acc{{vendorId}}" class="collapse">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h6>Category</h6>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <h6>Quantity✕Each Price</h6>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <h6>Price</h6>
+                                            </div>
+                                        </div>
+                                        {{#each price.each}}
+                                        {{#if unit}}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                {{name}}
+                                            </div>
+                                            <div class="col-md-4">
+                                                {{num}}&nbsp;{{unit}}&nbsp;✕&nbsp;{{eachPrice}}
+                                            </div>
+                                            <div class="col-md-2">
+                                                {{price}}
+                                            </div>
+                                        </div>
+                                        {{else}}
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                {{name}}
+                                            </div>
+                                            <div class="col-md-4">
+                                                
+                                            </div>
+                                            <div class="col-md-2">
+                                                {{price}}
+                                            </div>
+                                        </div>
+                                        {{/if}}
+                                        {{/each}}
+                                    </div>
+                                </td>
+                            </tr>-->
+
+
+
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
                 </div>
             </div>
         </div>
 
 
-        <div class="card-body">
-            <h5 class="card-title">Price</h5>
-            <table id="priceTable" class="table table-hover">
-                <thead>
-                    <tr>
-                        <!--<th scope="col"></th>-->
-                        <th scope="col">Vendor Name</th>
-                        <th scope="col">Estimate Price</th>
-                        <th scope="col">Operation</th>
-                    </tr>
-                </thead>
-                <tbody class="table table-hover table-borderless">
-                    {{#each ../price}}
-                    <tr>
-                        <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
-                        <td class="align-middle" scope="row" id={{vendorId}}><a href="/info?name={{vendorName}}">{{vendorName}}</a></td>
-                        <td class="align-middle">
-                            <a target="_blank" href="/exhibitor/estimate?id={{../boothNum}}&vendor={{vendorId}}">{{price.total}}</a>
-                            <!--<a href="#acc{{vendorId}}" data-toggle="collapse" aria-expanded="false" aria-controls="acc{{vendorId}}">{{price.total}}</a>-->
-                        </td>
-                        <td class="align-middle">
-                            <button id={{vendorId}} class="btn btn-light">Confirm</button>
-                        </td>
-                    </tr>
-                    <!--<tr>
-                        <td colspan="3">
-                            <div id="acc{{vendorId}}" class="collapse">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <h6>Category</h6>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <h6>Quantity✕Each Price</h6>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <h6>Price</h6>
-                                    </div>
-                                </div>
-                                {{#each price.each}}
-                                {{#if unit}}
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        {{name}}
-                                    </div>
-                                    <div class="col-md-4">
-                                        {{num}}&nbsp;{{unit}}&nbsp;✕&nbsp;{{eachPrice}}
-                                    </div>
-                                    <div class="col-md-2">
-                                        {{price}}
-                                    </div>
-                                </div>
-                                {{else}}
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        {{name}}
-                                    </div>
-                                    <div class="col-md-4">
-                                        
-                                    </div>
-                                    <div class="col-md-2">
-                                        {{price}}
-                                    </div>
-                                </div>
-                                {{/if}}
-                                {{/each}}
-                            </div>
-                        </td>
-                    </tr>-->
-
-
-
-                    {{/each}}
-                </tbody>
-            </table>
-        </div>
         {{/each}}
     </div>
 
@@ -360,6 +376,24 @@
                             $("#statusText").text("Paid, Wait For Vendor's Confirmation: 90% completed");
                         }
                         else
+                        if ($("div.progress").attr("data-name") == "Complaint") {
+                            $(".progress-bar").attr("style", "width: 0%");
+                            $(".progress-bar").attr("aria-valuenow", "0");
+                            $("#statusText").text("Wait for Service Accepting Your Requests: 0% completed");
+                        }
+                        else
+                        if ($("div.progress").attr("data-name") == "Complaint Processing") {
+                            $(".progress-bar").attr("style", "width: 50%");
+                            $(".progress-bar").attr("aria-valuenow", "50");
+                            $("#statusText").text("Your Requests Are In Processing: 50% completed");
+                        }
+                        else
+                        if ($("div.progress").attr("data-name") == "Complaint Solved") {
+                            $(".progress-bar").attr("style", "width: 100%");
+                            $(".progress-bar").attr("aria-valuenow", "100");
+                            $("#statusText").text("Your Requests Are Solved: 100% completed");
+                        }
+                        else
                             if ($("div.progress").attr("data-name") == "done") {
                                 $(".progress-bar").attr("style", "width: 100%");
                                 $(".progress-bar").attr("aria-valuenow", "100");
@@ -385,14 +419,14 @@
         }
         $("#priceTable tbody button").each(function () {
             $(this).bind("click", function () {
-                var id = $("#boothId").attr("data-name");
+                var showname = $("#boothId").attr("data-name");
                 var vid = $(this).attr("id");
                 $.ajax({
                     type: "post",
                     url: "/exhibitor/jobConfirm",
                     dataType: "json",
                     data: {
-                        id: id,
+                        showName: showname,
                         vendorId: vid
                     },
                     success: function (res) {
@@ -405,7 +439,7 @@
                         ws.onopen = function (e) {
                             ws.send(message);
                         }
-                        $(location).attr("href", "/exhibitor/show?id=" + id);
+                        $(location).attr("href", "/exhibitor/show?id=" + showname);
                     },
                     error: function (err) {
                         $(location).attr("href", "error");

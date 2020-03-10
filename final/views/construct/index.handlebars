@@ -1,40 +1,153 @@
+<link rel="stylesheet" href="../../public/css/numberAnimate.css">
 <div class="container-fluid">
-    <div class="imageContainer1">
-        <img id="exhibitorImg" border="0" alt="exhibitorImage" src="/public/image/page/exhibitor.jpg" />
-        <div class="overlay">
-            <div class="text">As an exhibitor. <br />Need help to exhibit your idea? <br /><a class="signUpLink" href="/signup">Sign Up</a> To Explore!<br /><br />
-                <h6>Already a memeber? <a class="btn btn-warning" href="#" data-toggle="modal" data-target="#signin">Sign in.</a></h6>
+    <div class="row align-items-center divSmoove" style="height: 500px;">
+        <div class="col-2 col-sm-2 col-md-1 col-lg-1">
+            <img class="d-md-none" src="/public/image/page/cabin.png">
+            <img class="d-none d-md-inline">
+        </div>
+        <div class="col-8 col-sm-8 col-md-6 col-lg-5">
+            <h3 class="display-3 mb-3">Welcome!</h3>
+            <p class="mb-3" style="font-family: sans-serif;">dasdadda dsa  dsa fasfasdasdasd asd as sa as asdas as das a as a dasdas dsadasd a as dasd asd asd as das das das as das sad sad asd asd asd as da a dad as s das dad dsadasdad.</p>
+            <button id="exhibitorTabBtn" class="btn btn-primary col-12 col-md-5 mb-3 navBtn" navto="exhibitorTab">Be a Exhibitor</button>
+            <button id="vendorTabBtn" class="btn btn-outline-primary col-12 col-md-5 mb-3 navBtn" navto="vendorTab">Be a Vendor</button>
+        </div>
+        <div class="col-2 col-sm-2 col-md-5 col-lg-6">
+            <img class="d-md-none" src="/public/image/page/carpet.png">
+            <img class="d-none d-md-inline" src="/public/image/page/mirror.png">
+        </div>
+    </div>
+    <div class="row bg-dark align-items-center" style="height: 150px;">
+        <div class="d-none d-md-inline col-md-4 text-center">
+            <!--<div class="row">
+                <div class="align-self-center" id="exhibitorCountNum">
+                </div>
             </div>
+            <div class="row">
+            <div class="align-self-center text-white">
+                Exhibitors
+            </div>
+            </div>-->
+            <span class="align-middle" id="exhibitorCountNum">
+            </span>
+            <span class="text-light">
+                Exhibitors
+            </span>
+        </div>
+        <div class="col-sm-6 col-md-4 text-center">
+            <span class="align-middle" id="showsCountNum">
+            </span>
+            <span class="text-light">
+                Shows
+            </span>
+        </div>
+        <div class="d-none d-sm-inline col-sm-6 col-md-4 text-center">
+            <span class="align-middle" id="vendorCountNum">
+            </span>
+            <span class="text-light">
+                Vendors
+            </span>
+        </div>
+    </div>
+    <div class="row align-items-center divSmoove" id="exhibitorTab" style="height: 500px;">
+        <div class="offset-md-1 col-md-3">
+            <h3 class="display-3 mb-3">Be a exhibitor</h3>
+            <p class="mb-3" style="font-family: sans-serif;">dasdadda dsa  dsa fasfasdasdasd asd as sa as asdas as das a as a dasdas dsadasd a as dasd asd asd as das das das as das sad sad asd asd asd as da a dad as s das dad dsadasdad.</p>
+            <button id="exhibitorSignInBtn" class="btn btn-outline-primary col-12 col-md-5 mb-3">Sign In</button>
+            <button id="exhibitorSignUpBtn" class="btn btn-primary col-12 col-md-5 mb-3">Sign Up</button>
+        </div>
+        <div class="col-md-6">
 
         </div>
     </div>
-    <div class="imageContainer2">
-        <img id="vendorImg" border="0" alt="vendorImage" src="/public/image/page/vendor.jpg" />
-        <div class="overlay">
-            <div class="text">As a vendor. <br />Eager to implement people's idea? <br /><a class="signUpLink" href="/signup">Sign
-                    Up</a> To Explore!<br /><br />
-                <h6>Already a memeber? <a class="btn btn-warning" href="#" data-toggle="modal" data-target="#signin">Sign in.</a></h6>
+    <div class="row align-items-center divSmoove" id="vendorTab" style="height: 500px;">
+        <div class="col-md-7">
+
+        </div>
+        <div class="col-md-3">
+            <h3 class="display-3 mb-3">Be a vendor</h3>
+            <p class="mb-3" style="font-family: sans-serif;">dasdadda dsa  dsa fasfasdasdasd asd as sa as asdas as das a as a dasdas dsadasd a as dasd asd asd as das das das as das sad sad asd asd asd as da a dad as s das dad dsadasdad.</p>
+            <button id="vendorSignInBtn" class="btn btn-outline-primary col-12 col-md-5 mb-3">Sign In</button>
+            <button id="vendorSignUpBtn" class="btn btn-primary col-12 col-md-5 mb-3">Sign Up</button>
+        </div>
+    </div>
+    <div class="row align-items-center bg-dark" style="height: 150px;">
+        <span class="col text-light text-center">
+            1. Post Jobs
+        </span>
+        <span class="col">
+            <hr class="my-4 bg-light">
+        </span>
+       <span class="col text-light text-center">
+            2. Sign Contract
+        </span>
+        <span class="col">
+            <hr class="my-4 bg-light">
+        </span>
+        <span class="col text-light text-center">
+            3. Pay the Bills
+        </span>
+        <span class="col">
+            <hr class="my-4 bg-light">
+        </span>
+        <span class="col text-light text-center">
+            4. Finish
+        </span>
+    </div>
+    <div class="row align-items-center divSmoove" style="height: 500px;">
+        <div class="col-2 col-md-3">
+
+        </div>
+        <div class="col-8 col-md-6">
+            <h3 class="display-3 mb-3 text-center">About us</h3>
+            <p class="mb-3" style="font-family: sans-serif;">dasdadda dsa  dsa fasfasdasdasd asd as sa as asdas as das a as a dasdas dsadasd a as dasd asd asd as das das das as das sad sad asd asd asd as da a dad as s das dad dsadasdad.</p>
+            <div class="text-center">
+                <button id="aboutUsBtn" class="btn btn-outline-primary col-12 col-md-5 mb-3">About Us</button>
             </div>
         </div>
+        <div class="col-2 col-md-3">
+            
+        </div>
     </div>
+    <div class="row align-items-center divSmoove" style="height: 500px;">
 
-    <div class="textContainer" id="messenger">
-        <div class="introText">
-            <h1 id="h1"><span id="I">I</span>ntroduction</h1>
-            <h4>An exhibition, in the most general sense, is an organised presentation and display of a selection of
-                items. In practice, exhibitions usually occur within a cultural or educational setting such.</h4>
-        </div>
-        <div class="detailText">
-            <h1 id="h1"><span id="D">D</span>etails</h1>
-            <h4>An exhibition, in the most general sense, is an organised presentation and display of a selection of
-                items. In practice, exhibitions usually occur within a cultural or educational setting such.</h4>
-        </div>
     </div>
-    <script>
-        $(document).ready(function () {
-            $('.textContainer').smoove({
-                offset: '30%'
-            });
-        })
-    </script>
 </div>
+<script src="../../public/js/numberAnimate.js"></script>
+<script>
+    /*$("#exhibitorTabBtn").click(function() {
+        $(location).attr("href", "#exhibitorTab");
+    });
+    $("#vendorTabBtn").click(function() {
+        $(location).attr("href", "#vendorTab");
+    });*/
+    $('.navBtn').click(function() {
+	    var navto = $(this).attr('navto');
+        if(navto != "#") {
+            var $div = $('#' + navto);
+            var top = $div.offset().top || 0;
+            $('html,body').animate({
+                'scroll-top': top - 70
+                }, 500);
+        }
+        else {
+            $('html,body').animate({
+                'scroll-top': 0
+            }, 500);
+        }
+	});
+    $(".divSmoove").smoove({
+        offset: '30%'
+    });
+    $("#exhibitorCountNum").numberAnimate({
+        num: 400,
+        speed: 2000
+    });
+    $("#showsCountNum").numberAnimate({
+        num: 1000,
+        speed: 2000
+    });
+    $("#vendorCountNum").numberAnimate({
+        num: 600,
+        speed: 2000
+    });
+</script>

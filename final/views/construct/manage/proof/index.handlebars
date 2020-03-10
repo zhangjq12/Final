@@ -1,0 +1,74 @@
+<div class="container">
+    <nav class="nav nav-tabs">
+        <a class="nav-item nav-link" href="/manage/qualification">Qualification</a>
+        <a class="nav-item nav-link active disabled" href="/manage/proof">Proof</a>
+    </nav>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Exhibitor Name</th>
+                <th scope="col">Vendor Name</th>
+                <th scope="col">Booth Number</th>
+                <th scope="col">Exhibitor Progress</th>
+                <th scope="col">Vendor Progress</th>
+                <th scope="col">Total Price</th>
+                <th scope="col">Operation</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each data}}
+            <tr>
+                <td class="align-middle ename" scope="col">
+                    <a href="/info?name={{exhibitorName}}">{{exhibitorName}}</a>
+                </td>
+                <td class="align-middle vname" scope="col">
+                    <a href="/info?name={{vendorName}}">{{vendorName}}</a>
+                </td>
+                <td class="align-middle" scope="col">{{showName}}</td>
+                <td class="align-middle" scope="col">
+                    {{eprogress}}
+                </td>
+                <td class="align-middle" scope="col">
+                    {{vprogress}}
+                </td>
+                <td class="align-middle" scope="col">
+                    <a target="_blank" href="/exhibitor/estimate?id={{showName}}&vendor={{vendorId}}">{{price}}</a>
+                </td>
+                <td class="align-middle" scope="col">
+                    <button data-name="{{vprogress}}" class="btn btn-light confirmationProofBtn">Confirm</button>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+<script>
+    $("tbody tr").each(function() {
+        var showName = $(this).find("td:eq(2)").html();
+        $(this).find("button").click(function() {
+            $.ajax({
+                method: "post",
+                url: "/manage/proof",
+                dataType: "json",
+                data: {
+                    showName: showName
+                },
+                success: function(res) {
+                    var manager = res["manager"];
+                    var admin = res["admin"];
+                    var origin = window.location.hostname;
+                    var ws = new WebSocket('ws://' + origin + ':8080');
+                    var message1 = showName + "'s status is updated! Refresh this page to check you progress!||" + manager + "||" + admin;
+                    //alert(message);
+                    ws.onopen = function(e) {
+                        ws.send(message1);
+                    }
+                    $(location).attr("href", "/manage");
+                },
+                error: function(err) {
+                    $(location).attr("href", "error");
+                }
+            })
+        });
+    });
+</script>

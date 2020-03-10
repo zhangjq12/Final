@@ -1,0 +1,108 @@
+<div class="container">
+    <div class="row mb-3">
+        {{#each data}}
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-4">
+                    <h5>User Id:</h5>
+                </div>
+                <div class="col-6" id="userId">{{userId}}</div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <h5>Company Name:</h5>
+                </div>
+                <div class="col-6">
+                    {{companyInfo}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <h5>Address:</h5>
+                </div>
+                <div class="col-6">
+                    {{address}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <h5>Contact Number:</h5>
+                </div>
+                <div class="col-6">
+                    {{contactInfo}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <h5>E-mail:</h5>
+                </div>
+                <div class="col-6">
+                    {{email}}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row mb-2">
+                <img style="width: 200px; height: 100px" src="/public/image/license/{{license}}" alt="licence">
+            </div>
+            <div class="row mb-2">
+                <img style="width: 200px; height: 100px" src="/public/image/personal/{{personal}}" alt="personal">
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="col-12 mb-3">
+        <form id="reviewVendor">
+            <div class="form-group row">
+                <label for="estimateVendorPrice" class="col-sm-3 col-form-label">Estimate Price:</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="estimateVendorPrice" placeholder="Price">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="vendorDetails" class="col-sm-3 col-form-label">Details:</label>
+                <div class="col-sm-9">
+                    <textarea id="vendorDetails" class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="offset-sm-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary">Confirm</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $("#reviewVendor").submit(function() {
+        var price = $("#estimateVendorPrice").val();
+        var info = $("#vendorDetails").val();
+        var id = $("#userId").html();
+        $.ajax({
+            method: "post",
+            url: "/manage/qualification",
+            dataType: "json",
+            data: {
+                id: id,
+                info: info,
+                estimatePrice: price
+            },
+            success: function(res) {
+                var manager = res["manager"];
+                var email = res["email"];
+                var vendor = res["vendor"];
+                var origin = window.location.hostname;
+                var ws = new WebSocket('ws://' + origin + ':8080');
+                var message1 = "Your account status is updated! Refresh this page to check you progress!||" + manager + "||" + vendor;
+                //alert(message);
+                ws.onopen = function(e) {
+                    ws.send(message1);
+                }
+                $(location).attr("href", "/manage");
+            },
+            error: function(err) {
+                $(location).attr("href", "error");
+            }
+        })
+    });
+</script>

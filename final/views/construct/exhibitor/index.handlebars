@@ -1,44 +1,12 @@
+<link rel="stylesheet" href="../../../public/css/jquery.raty.css">
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-xl mb-3">
-            <div class="mb-3">
-                <h4>New Job</h4>
-                <p>Post your requirements and make your exhibition perfect!</p>
-                <a class="btn btn-light" href="/exhibitor/newjob">Post New Job</a>
-            </div>
-            <div class="mb-3">
-                <h4>Jobs Out of Date</h4>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <!--<th scope="col"></th>-->
-                            <th scope="col">Show Name</th>
-                            <th scope="col">Booth Num</th>
-                            <th scope="col">Start Date</th>
-                            <th scope="col">End Date</th>
-                            <th scope="col">Progress</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table table-hover table-borderless">
-                        {{#each invaliddata}}
-                        <tr>
-                            <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
-                            <td scope="row"><a href="/exhibitor/show?id={{boothNum}}">{{showName}}</a></td>
-                            <td>{{boothNum}}</td>
-                            <td>{{date.start}}</td>
-                            <td>{{date.end}}</td>
-                            <td>
-                                <div class="progress">
-                                    <div class="progress-bar" data-name="{{progress}}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </td>
-                        </tr>
-                        {{/each}}
-                    </tbody>
-                </table>
-            </div>
+    <div class="container mb-3">
+        <div class="col-12">
+            <a class="btn btn-primary col-12" href="/exhibitor/newjob"><b>Post New Job</b></a>
         </div>
-        <div class="col-xl mb-3">
+    </div>
+    <div class="container">
+        <div class="col-12 mb-3" style="height: 500px; overflow:auto;">
             <h4>Existing Jobs</h4>
             <table class="table table-hover">
                 <thead>
@@ -55,7 +23,7 @@
                     {{#each existdata}}
                     <tr>
                         <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
-                        <td scope="row"><a href="/exhibitor/show?id={{boothNum}}">{{showName}}</a></td>
+                        <td scope="row"><a href="/exhibitor/show?id={{showName}}">{{showName}}</a></td>
                         <td>{{boothNum}}</td>
                         <td>{{date.start}}</td>
                         <td>{{date.end}}</td>
@@ -69,45 +37,194 @@
                 </tbody>
             </table>
         </div>
+        <div class="col-12 mb-3" style="height: 500px; overflow:auto;">
+            <!--<div class="mb-3">
+                <h4>New Job</h4>
+                <p>Post your requirements and make your exhibition perfect!</p>
+                <a class="btn btn-light" href="/exhibitor/newjob">Post New Job</a>
+            </div>-->
+            <div class="mb-3">
+                <h4>Jobs Done</h4>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <!--<th scope="col"></th>-->
+                            <th scope="col">Show Name</th>
+                            <th scope="col">Booth Num</th>
+                            <th scope="col">Progress</th>
+                            <th scope="col">Requests</th>
+                            <th scope="col">Comments</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table table-hover table-borderless">
+                        {{#each datadone}}
+                        <tr>
+                            <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
+                            <td scope="row" class="align-middle"><a href="/exhibitor/show?id={{showName}}">{{showName}}</a></td>
+                            <td class="align-middle">{{boothNum}}</td>
+                            <td class="align-middle">
+                                <div class="progress">
+                                    <div class="progress-bar" data-name="{{progress}}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td class="align-middle">
+                                <button class="btn btn-light btn-sm requestGetBtn" style="display: none;" data-name="{{progress}}">Request</button>
+                            </td>
+                            <td class="align-middle">
+                                <button class="btn btn-light btn-sm" data-toggle="collapse" aria-expanded="false" aria-controls="comment{{showNameLink}}" href="#comment{{showNameLink}}">Comment</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="collapse" colspan="5" id="comment{{showNameLink}}">
+                                <form class="commentsForm" id="form_{{showName}}">
+                                    <div class="form-group row mb-3">
+                                        <div class="col-md-2">
+                                            Rating:
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="stars" data-name="{{stars}}">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="Comments{{showNameLink}}" class="col-md-2 col-form-label">Your Comments:</label>
+                                        <textarea id="Comments{{showNameLink}}" class="form-control col-md-8" rows="3" data-content="{{comments}}"></textarea>
+                                    </div>
+                                    <div class="offset-md-2 col-md-9">
+                                        <button type="button" class="btn btn-primary commentConfirmBtn">Confirm</button>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 
+<script type="text/javascript" src="../../../public/js/jquery.raty.js"></script>
 <script>
     $(document).ready(function() {
         $(".progress-bar").each(function() {
             if($(this).attr("data-name") == "waitContract") {
                 $(this).attr("style", "width: 20%");
                 $(this).attr("aria-valuenow", "20");
+                $(this).attr("data-toggle", "tooltip");
+                $(this).attr("data-placement", "top");
+                $(this).attr("title", "20%");
             }
             else 
             if($(this).attr("data-name") == "waitOppoContract") {
                 $(this).attr("style", "width: 40%");
                 $(this).attr("aria-valuenow", "40");
+                $(this).attr("data-toggle", "tooltip");
+                $(this).attr("data-placement", "top");
+                $(this).attr("title", "40%");
             }
             else 
             if($(this).attr("data-name") == "waitPayment") {
                 $(this).attr("style", "width: 60%");
                 $(this).attr("aria-valuenow", "60");
+                $(this).attr("data-toggle", "tooltip");
+                $(this).attr("data-placement", "top");
+                $(this).attr("title", "60%");
             }
             else 
             if($(this).attr("data-name") == "paid") {
                 $(this).attr("style", "width: 80%");
                 $(this).attr("aria-valuenow", "80");
+                $(this).attr("data-toggle", "tooltip");
+                $(this).attr("data-placement", "top");
+                $(this).attr("title", "80%");
             }
             else 
             if($(this).attr("data-name") == "paychecked") {
                 $(this).attr("style", "width: 90%");
                 $(this).attr("aria-valuenow", "90");
+                $(this).attr("data-toggle", "tooltip");
+                $(this).attr("data-placement", "top");
+                $(this).attr("title", "90%");
             }
             else 
             if($(this).attr("data-name") == "done") {
                 $(this).attr("style", "width: 100%");
                 $(this).attr("aria-valuenow", "100");
+                $(this).attr("data-toggle", "tooltip");
+                $(this).attr("data-placement", "top");
+                $(this).attr("title", "100%");
+            }
+            else 
+            if($(this).attr("data-name") == "Complaint Processing") {
+                $(this).attr("style", "width: 50%");
+                $(this).attr("aria-valuenow", "50");
+                $(this).attr("data-toggle", "tooltip");
+                $(this).attr("data-placement", "top");
+                $(this).attr("title", "50%");
+            }
+            else 
+            if($(this).attr("data-name") == "Complaint Solved") {
+                $(this).attr("style", "width: 100%");
+                $(this).attr("aria-valuenow", "100");
+                $(this).attr("data-toggle", "tooltip");
+                $(this).attr("data-placement", "top");
+                $(this).attr("title", "100%");
             }
             else {
                 $(this).attr("style", "width: 0%");
                 $(this).attr("aria-valuenow", "0");
+                $(this).attr("data-toggle", "tooltip");
+                $(this).attr("data-placement", "top");
+                $(this).attr("title", "0%");
             }
+        });
+        $(".stars").raty({
+            hints: ['bad', 'poor', 'regular', 'good', 'gorgeous'],
+            path: "../../../public/image/stars/",
+            half: true,
+            halfShow: true,
+        });
+        $(".stars").each(function() {
+            var stars = $(this).attr("data-name") == "" ? 0 : parseFloat($(this).attr("data-name"));
+            $(this).raty('score', stars);
+        });
+        $("textarea").each(function() {
+            $(this).val($(this).attr("data-content"));
+        });
+    });
+    $(".commentsForm").each(function() {
+        var showName = $(this).attr("id").split("_")[1];
+        $(".commentConfirmBtn").click(function(e) {
+            e.preventDefault();
+            var stars = $(this).parent().parent().find(".stars").raty("score");
+            var comment = $(this).parent().parent().find("textarea").val();
+            $.ajax({
+                method: "post",
+                url: "/exhibitor/comment",
+                dataType: "json",
+                data: {
+                    showName: showName,
+                    stars: stars,
+                    comment: comment
+                },
+                success: function(res) {
+                    $(location).attr("href", "/exhibitor");
+                },
+                error: function(err) {
+                    $(location).attr("href", "/error");
+                }
+            });
+        });
+    });
+    $(".requestGetBtn").each(function() {
+        var showName = $(this).parent().parent().find("a").html();
+        if($(this).attr("data-name") == "done") {
+            $(this).removeAttr("style");
+        }
+        $(this).click(function() {
+            $(location).attr("href", "/exhibitor/requests?id=" + showName);
         });
     });
 </script>

@@ -1,224 +1,8 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xl mb-3">
-            <h4>Jobs In Progress</h4>
-            <table id="jobProgressTable" class="table table-hover">
-                <thead>
-                    <tr>
-                        <!--<th scope="col"></th>-->
-                        <th scope="col">Show Name</th>
-                        <th scope="col">Booth Num</th>
-                        <th scope="col">End Date</th>
-                        <th scope="col">Progress</th>
-                        <th scope="col">Operation</th>
-                    </tr>
-                </thead>
-                <tbody class="table table-hover table-borderless">
-                    {{#each dataprogress}}
-                        <!--<div class="author" data-name="{{author}}"></div>-->
-                        <tr>
-                            <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
-                            <td scope="row">
-                                <!--<a href="/vendor/#acc{{boothNum}}" data-toggle="collapse" data-parent="#accordion">{{showName}}</a>-->
-                                <button class="btn btn-link showProgressNameBtn" data-name="{{boothNum}}">{{showName}}</button>
-                                <!--<a href="javascript:void(0);" data-toggle="popover" data-html="true" data-placement="bottom" data-trigger="focus" title="Details" data-content='{{details}}'>{{showName}}</a>-->
-                            </td>
-                            <td class="align-middle">{{boothNum}}</td>
-                            <td class="align-middle endDate">{{date.end}}</td>
-                            <td class="align-middle">
-                                <div class="progress">
-                                    <div class="progress-bar" data-name="{{progress}}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </td>
-                            <td class="align-middle">
-                                <button data-name="{{progress}}" data-link="/vendor/contract?id={{boothNum}}" class="btn-small btn-light contractbtn" style="display: none;">Contract</button>
-                                <button data-name="{{progress}}" data-author="{{author}}" data-link="{{boothNum}}" data-showName="{{showName}}" class="btn-small btn-light paidbtn" style="display: none;">Confirm</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="4">
-                            <div id="acc{{boothNum}}" class="collapse">
-                                <p>Carpet:&nbsp;{{category.carpet.name}} - 
-                                    {{#if category.carpet.otherColor}}
-                                    {{category.carpet.otherColor}}
-                                    {{else}}
-                                    <span class="d-inline-block colorTooltip" tabindex="0" data-toggle="tooltip" title="{{category.carpet.color}}"><a target="_blank" href="/public/image/CarpetColor/{{category.carpet.color}}.jpg"><img src="/public/image/CarpetColor/{{category.carpet.color}}.jpg" width="40px" height="40px"></a></span>
-                                    {{/if}}
-                                </p>
-                                <p>Wall Panel:&nbsp;
-                                    {{category.panel.name}} - {{category.panel.details}}
-                                </p>
-                                {{#each category.lighting.details}}
-                                    <p>Lighting:&nbsp;
-                                    <span class="d-inline-block lightingTooltip" tabindex="0" data-toggle="tooltip" title="{{name}}"><a target="_blank" href="/public/image/Lighting/{{name}}.jpg"><img src="/public/image/Lighting/{{name}}.jpg" width="40px" height="40px"></a></span> - {{num}}&nbsp;{{unit}}
-                                    </p>
-                                {{/each}}
-                                {{#if category.lighting.other.name}}
-                                    <p>Lighting:&nbsp;
-                                    {{category.lighting.other.name}} - {{category.lighting.other.num}}&nbsp;{{category.lighting.other.unit}}
-                                    </p>
-                                {{/if}}
-                                {{#if category.electricity.nonupload}}
-                                {{else}}
-                                <p>Electricity:&nbsp;<a target="_blank" href="/public/image/exhibitor/electricity/{{category.electricity.filename}}"><img src="/public/image/exhibitor/electricity/{{category.electricity.filename}}" width="100px" height="70px"></a></p>
-                                {{/if}}
-                                {{#each category.graphic.details}}
-                                    <p>Graphic:&nbsp;
-                                    {{name}} - {{num}}&nbsp;{{unit}}
-                                    </p>
-                                {{/each}}
-                                {{#if category.graphic.other.name}}
-                                    <p>Graphic:&nbsp;
-                                    {{category.graphic.other.name}} - {{category.graphic.other.num}}&nbsp;{{category.graphic.other.unit}}
-                                    </p>
-                                {{/if}}
-                                {{#each category.display.details}}
-                                    <p>Display:&nbsp;
-                                    {{name}} - {{num}}&nbsp;{{unit}}
-                                    </p>
-                                {{/each}}
-                                {{#if category.display.other.name}}
-                                    <p>Display:&nbsp;
-                                    {{category.display.other.name}} - {{category.display.other.num}}&nbsp;{{category.display.other.unit}}
-                                    </p>
-                                {{/if}}
-                                {{#each category.furniture.details}}
-                                    <p>Furniture:&nbsp;
-                                    {{category}} - <span class="d-inline-block furnitureTooltip" tabindex="0" data-toggle="tooltip" title="{{name}}"><a target="_blank" href="/public/image/Furniture/{{name}}.jpg"><img src="/public/image/Furniture/{{name}}.jpg" width="40px" height="40px"></a></span> - {{num}}&nbsp;{{unit}}
-                                    </p>
-                                {{/each}}
-                                {{#if category.furniture.other.name}}
-                                    <p>Furniture:&nbsp;
-                                    {{category.furniture.other.name}} - {{category.furniture.other.num}}&nbsp;{{category.furniture.other.unit}}
-                                    </p>
-                                {{/if}}
-                                {{#each category.accessories.details}}
-                                    <p>Accessories:&nbsp;
-                                    {{name}}
-                                    </p>
-                                {{/each}}
-                                {{#if category.accessories.other.name}}
-                                    <p>Accessories:&nbsp;
-                                    {{category.accessories.other.name}}
-                                    </p>
-                                {{/if}}
-                                <p><a class="fileReview" target="_blank" href="/public/image/exhibitor/designPlan/{{details.designFile.filename}}">{{details.designFile.filename}}</a></p>
-                                {{details.additionalInfo.details}}
-                            </div>
-                            </td>
-                        </tr>
-                    {{/each}}
-                </tbody>
-            </table>
-            <h4>Jobs Done</h4>
-            <table id="jobDoneTable" class="table table-hover">
-                <thead>
-                    <tr>
-                        <!--<th scope="col"></th>-->
-                        <th scope="col">Show Name</th>
-                        <th scope="col">Booth Num</th>
-                        <th scope="col">End Date</th>
-                        <th scope="col">Author</th>
-                        <th scope="col">Progress</th>
-                    </tr>
-                </thead>
-                <tbody class="table table-hover table-borderless">
-                    {{#each datadone}}
-                        <!--<div class="author" data-name="{{author}}"></div>-->
-                        <tr>
-                            <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
-                            <td scope="row">
-                                <!--<a href="/vendor/#acc{{boothNum}}" data-toggle="collapse" data-parent="#accordion">{{showName}}</a>-->
-                                <button class="btn btn-link showProgressNameBtn" data-name="{{boothNum}}">{{showName}}</button>
-                                <!--<a href="javascript:void(0);" data-toggle="popover" data-html="true" data-placement="bottom" data-trigger="focus" title="Details" data-content='{{details}}'>{{showName}}</a>-->
-                            </td>
-                            <td class="align-middle">{{boothNum}}</td>
-                            <td class="align-middle">{{date.end}}</td>
-                            <td class="align-middle"><a href="/info?name={{author}}">{{author}}</a></td>
-                            <td class="align-middle">
-                                <div class="progress">
-                                    <div class="progress-bar" data-name="{{progress}}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="4">
-                            <div id="acc{{boothNum}}" class="collapse">
-                                <p>Carpet:&nbsp;{{category.carpet.name}} - 
-                                    {{#if category.carpet.otherColor}}
-                                    {{category.carpet.otherColor}}
-                                    {{else}}
-                                    <span class="d-inline-block colorTooltip" tabindex="0" data-toggle="tooltip" title="{{category.carpet.color}}"><a target="_blank" href="/public/image/CarpetColor/{{category.carpet.color}}.jpg"><img src="/public/image/CarpetColor/{{category.carpet.color}}.jpg" width="40px" height="40px"></a></span>
-                                    {{/if}}
-                                </p>
-                                <p>Wall Panel:&nbsp;
-                                    {{category.panel.name}} - {{category.panel.details}}
-                                </p>
-                                {{#each category.lighting.details}}
-                                    <p>Lighting:&nbsp;
-                                    <span class="d-inline-block lightingTooltip" tabindex="0" data-toggle="tooltip" title="{{name}}"><a target="_blank" href="/public/image/Lighting/{{name}}.jpg"><img src="/public/image/Lighting/{{name}}.jpg" width="40px" height="40px"></a></span> - {{num}}&nbsp;{{unit}}
-                                    </p>
-                                {{/each}}
-                                {{#if category.lighting.other.name}}
-                                    <p>Lighting:&nbsp;
-                                    {{category.lighting.other.name}} - {{category.lighting.other.num}}&nbsp;{{category.lighting.other.unit}}
-                                    </p>
-                                {{/if}}
-                                {{#if category.electricity.nonupload}}
-                                {{else}}
-                                <p>Electricity:&nbsp;<a target="_blank" href="/public/image/exhibitor/electricity/{{category.electricity.filename}}"><img src="/public/image/exhibitor/electricity/{{category.electricity.filename}}" width="100px" height="70px"></a></p>
-                                {{/if}}
-                                {{#each category.graphic.details}}
-                                    <p>Graphic:&nbsp;
-                                    {{name}} - {{num}}&nbsp;{{unit}}
-                                    </p>
-                                {{/each}}
-                                {{#if category.graphic.other.name}}
-                                    <p>Graphic:&nbsp;
-                                    {{category.graphic.other.name}} - {{category.graphic.other.num}}&nbsp;{{category.graphic.other.unit}}
-                                    </p>
-                                {{/if}}
-                                {{#each category.display.details}}
-                                    <p>Display:&nbsp;
-                                    {{name}} - {{num}}&nbsp;{{unit}}
-                                    </p>
-                                {{/each}}
-                                {{#if category.display.other.name}}
-                                    <p>Display:&nbsp;
-                                    {{category.display.other.name}} - {{category.display.other.num}}&nbsp;{{category.display.other.unit}}
-                                    </p>
-                                {{/if}}
-                                {{#each category.furniture.details}}
-                                    <p>Furniture:&nbsp;
-                                    {{category}} - <span class="d-inline-block furnitureTooltip" tabindex="0" data-toggle="tooltip" title="{{name}}"><a target="_blank" href="/public/image/Furniture/{{name}}.jpg"><img src="/public/image/Furniture/{{name}}.jpg" width="40px" height="40px"></a></span> - {{num}}&nbsp;{{unit}}
-                                    </p>
-                                {{/each}}
-                                {{#if category.furniture.other.name}}
-                                    <p>Furniture:&nbsp;
-                                    {{category.furniture.other.name}} - {{category.furniture.other.num}}&nbsp;{{category.furniture.other.unit}}
-                                    </p>
-                                {{/if}}
-                                {{#each category.accessories.details}}
-                                    <p>Accessories:&nbsp;
-                                    {{name}}
-                                    </p>
-                                {{/each}}
-                                {{#if category.accessories.other.name}}
-                                    <p>Accessories:&nbsp;
-                                    {{category.accessories.other.name}}
-                                    </p>
-                                {{/if}}
-                                <p><a class="fileReview" target="_blank" href="/public/image/exhibitor/designPlan/{{details.designFile.filename}}">{{details.designFile.filename}}</a></p>
-                                {{details.additionalInfo.details}}
-                            </div>
-                            </td>
-                        </tr>
-                    {{/each}}
-                </tbody>
-            </table>
-        </div>
-        <div class="col-xl mb-3">
+        <div class="col-lg-6 mb-3">
             <h4>Existing Jobs</h4>
+            <div class="col-12 mb-3" style="height: 650px; overflow:auto;">
             <table id="jobExistingTable" class="table table-hover">
                 <thead>
                     <tr>
@@ -235,12 +19,13 @@
                     <tr>
                         <td scope="row">
                             <!--<a href="/vendor/#acc{{boothNum}}" data-toggle="collapse" data-parent="#accordion">{{showName}}</a>-->
-                            <button class="btn btn-link showExistingNameBtn" data-name="{{boothNum}}">{{showName}}</button>
+                            <!--<button class="btn btn-link showExistingNameBtn" data-name="{{showNameLink}}">{{showName}}</button>-->
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#existing{{showNameLink}}" aria-expanded="false" aria-controls="existing{{showNameLink}}">{{showName}}</button>
                             <!--<a href="javascript:void(0);" data-toggle="popover" data-html="true" data-placement="bottom" data-trigger="focus" title="Details" data-content='{{details}}'>{{showName}}</a>-->
                         </td>
                         <td class="align-middle">{{boothNum}}</td>
                         <td class="align-middle">{{date.end}}</td>
-                        <td class="align-middle"><a href="/info?name={{author}}">{{author}}</a></td>
+                        <td class="align-middle"><a href="/info?name={{author}}">{{companyInfo}}</a></td>
                         <td class="align-middle">
                             <!--<form class="estimateForm">
                                 <input type="hidden" name="id" value="{{boothNum}}"></input>
@@ -257,12 +42,11 @@
                                     </div>
                                 </div>
                             </form>-->
-                            <button class="btn btn-link showPriceDe" data-name="{{boothNum}}">Estimate</button>
+                            <button class="btn btn-link showPriceDe" data-name="{{showName}}">Estimate</button>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="4">
-                        <div id="existing{{boothNum}}" class="collapse">
+                        <td colspan="5" id="existing{{showNameLink}}" class="collapse">
                             <p>Carpet:&nbsp;{{category.carpet.name}} - 
                                 {{#if category.carpet.otherColor}}
                                 {{category.carpet.otherColor}}
@@ -327,9 +111,20 @@
                                 {{category.accessories.other.name}}
                                 </p>
                             {{/if}}
-                            <p><a class="fileReview" target="_blank" href="/public/image/exhibitor/designPlan/{{details.designFile.filename}}">{{details.designFile.filename}}</a></p>
+                            {{#each category.showsite.details}}
+                                <p>Show Site:&nbsp;
+                                {{name}}
+                                </p>
+                            {{/each}}
+                            {{#if category.showsite.other.name}}
+                                <p>Show Site:&nbsp;
+                                {{category.showsite.other.name}}
+                                </p>
+                            {{/if}}
+                            {{#each details.designFile.filename}}
+                            <p><a class="fileReview" target="_blank" href="/public/image/exhibitor/designPlan/{{name}}">{{name}}</a></p>
+                            {{/each}}
                             {{details.additionalInfo.details}}
-                        </div>
                         </td>
                     </tr>
                     <!--<tr>
@@ -601,6 +396,248 @@
                     {{/each}}
                 </tbody>
             </table>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-3">
+        <h4>Jobs In Progress</h4>
+        <div class="col-12 mb-3" style="height: 300px; overflow:auto;">
+            <table id="jobProgressTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <!--<th scope="col"></th>-->
+                        <th scope="col">Show Name</th>
+                        <th scope="col">Booth Num</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Progress</th>
+                        <th scope="col">Operation</th>
+                    </tr>
+                </thead>
+                <tbody class="table table-hover table-borderless">
+                    {{#each dataprogress}}
+                        <!--<div class="author" data-name="{{author}}"></div>-->
+                        <tr>
+                            <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
+                            <td scope="row">
+                                <!--<a href="/vendor/#acc{{boothNum}}" data-toggle="collapse" data-parent="#accordion">{{showName}}</a>-->
+                                <button class="btn btn-link showProgressNameBtn" data-name="{{showNameLink}}">{{showName}}</button>
+                                <!--<a href="javascript:void(0);" data-toggle="popover" data-html="true" data-placement="bottom" data-trigger="focus" title="Details" data-content='{{details}}'>{{showName}}</a>-->
+                            </td>
+                            <td class="align-middle">{{boothNum}}</td>
+                            <td class="align-middle endDate">{{date.end}}</td>
+                            <td class="align-middle">
+                                <div class="progress">
+                                    <div class="progress-bar" data-name="{{progress}}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                            <td class="align-middle">
+                                <button data-name="{{progress}}" data-link="/vendor/contract?id={{showName}}" class="btn btn-sm btn-light contractbtn" style="display: none;">Contract</button>
+                                <button data-name="{{progress}}" data-link="/vendor/proof?id={{showName}}" class="btn btn-sm btn-light proofbtn" style="display: none;">Proof</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" id="acc{{showNameLink}}" class="collapse">
+                                <p>Carpet:&nbsp;{{category.carpet.name}} - 
+                                    {{#if category.carpet.otherColor}}
+                                    {{category.carpet.otherColor}}
+                                    {{else}}
+                                    <span class="d-inline-block colorTooltip" tabindex="0" data-toggle="tooltip" title="{{category.carpet.color}}"><a target="_blank" href="/public/image/CarpetColor/{{category.carpet.color}}.jpg"><img src="/public/image/CarpetColor/{{category.carpet.color}}.jpg" width="40px" height="40px"></a></span>
+                                    {{/if}}
+                                </p>
+                                <p>Wall Panel:&nbsp;
+                                    {{category.panel.name}} - {{category.panel.details}}
+                                </p>
+                                {{#each category.lighting.details}}
+                                    <p>Lighting:&nbsp;
+                                    <span class="d-inline-block lightingTooltip" tabindex="0" data-toggle="tooltip" title="{{name}}"><a target="_blank" href="/public/image/Lighting/{{name}}.jpg"><img src="/public/image/Lighting/{{name}}.jpg" width="40px" height="40px"></a></span> - {{num}}&nbsp;{{unit}}
+                                    </p>
+                                {{/each}}
+                                {{#if category.lighting.other.name}}
+                                    <p>Lighting:&nbsp;
+                                    {{category.lighting.other.name}} - {{category.lighting.other.num}}&nbsp;{{category.lighting.other.unit}}
+                                    </p>
+                                {{/if}}
+                                {{#if category.electricity.nonupload}}
+                                {{else}}
+                                <p>Electricity:&nbsp;<a target="_blank" href="/public/image/exhibitor/electricity/{{category.electricity.filename}}"><img src="/public/image/exhibitor/electricity/{{category.electricity.filename}}" width="100px" height="70px"></a></p>
+                                {{/if}}
+                                {{#each category.graphic.details}}
+                                    <p>Graphic:&nbsp;
+                                    {{name}} - {{num}}&nbsp;{{unit}}
+                                    </p>
+                                {{/each}}
+                                {{#if category.graphic.other.name}}
+                                    <p>Graphic:&nbsp;
+                                    {{category.graphic.other.name}} - {{category.graphic.other.num}}&nbsp;{{category.graphic.other.unit}}
+                                    </p>
+                                {{/if}}
+                                {{#each category.display.details}}
+                                    <p>Display:&nbsp;
+                                    {{name}} - {{num}}&nbsp;{{unit}}
+                                    </p>
+                                {{/each}}
+                                {{#if category.display.other.name}}
+                                    <p>Display:&nbsp;
+                                    {{category.display.other.name}} - {{category.display.other.num}}&nbsp;{{category.display.other.unit}}
+                                    </p>
+                                {{/if}}
+                                {{#each category.furniture.details}}
+                                    <p>Furniture:&nbsp;
+                                    {{category}} - <span class="d-inline-block furnitureTooltip" tabindex="0" data-toggle="tooltip" title="{{name}}"><a target="_blank" href="/public/image/Furniture/{{name}}.jpg"><img src="/public/image/Furniture/{{name}}.jpg" width="40px" height="40px"></a></span> - {{num}}&nbsp;{{unit}}
+                                    </p>
+                                {{/each}}
+                                {{#if category.furniture.other.name}}
+                                    <p>Furniture:&nbsp;
+                                    {{category.furniture.other.name}} - {{category.furniture.other.num}}&nbsp;{{category.furniture.other.unit}}
+                                    </p>
+                                {{/if}}
+                                {{#each category.accessories.details}}
+                                    <p>Accessories:&nbsp;
+                                    {{name}}
+                                    </p>
+                                {{/each}}
+                                {{#if category.accessories.other.name}}
+                                    <p>Accessories:&nbsp;
+                                    {{category.accessories.other.name}}
+                                    </p>
+                                {{/if}}
+                                {{#each category.showsite.details}}
+                                    <p>Show Site:&nbsp;
+                                    {{name}}
+                                    </p>
+                                {{/each}}
+                                {{#if category.showsite.other.name}}
+                                    <p>Show Site:&nbsp;
+                                    {{category.showsite.other.name}}
+                                    </p>
+                                {{/if}}
+                                {{#each details.designFile.filename}}
+                                <p><a class="fileReview" target="_blank" href="/public/image/exhibitor/designPlan/{{name}}">{{name}}</a></p>
+                                {{/each}}
+                                {{details.additionalInfo.details}}
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        <h4>Jobs Done</h4>
+        <div class="col-12 mb-3" style="height: 300px; overflow:auto;">
+            <table id="jobDoneTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <!--<th scope="col"></th>-->
+                        <th scope="col">Show Name</th>
+                        <th scope="col">Booth Num</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Progress</th>
+                    </tr>
+                </thead>
+                <tbody class="table table-hover table-borderless">
+                    {{#each datadone}}
+                        <!--<div class="author" data-name="{{author}}"></div>-->
+                        <tr>
+                            <!--<td><img src="/public/image/vendor/{{Avatar}}" style="height: 30px; width: 30px;"></td>-->
+                            <td scope="row">
+                                <!--<a href="/vendor/#acc{{boothNum}}" data-toggle="collapse" data-parent="#accordion">{{showName}}</a>-->
+                                <button class="btn btn-link showProgressNameBtn" data-name="{{showNameLink}}">{{showName}}</button>
+                                <!--<a href="javascript:void(0);" data-toggle="popover" data-html="true" data-placement="bottom" data-trigger="focus" title="Details" data-content='{{details}}'>{{showName}}</a>-->
+                            </td>
+                            <td class="align-middle">{{boothNum}}</td>
+                            <td class="align-middle">{{date.end}}</td>
+                            <td class="align-middle"><a href="/info?name={{author}}">{{companyInfo}}</a></td>
+                            <td class="align-middle">
+                                <div class="progress">
+                                    <div class="progress-bar" data-name="{{progress}}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" id="acc{{showNameLink}}" class="collapse">
+                                <p>Carpet:&nbsp;{{category.carpet.name}} - 
+                                    {{#if category.carpet.otherColor}}
+                                    {{category.carpet.otherColor}}
+                                    {{else}}
+                                    <span class="d-inline-block colorTooltip" tabindex="0" data-toggle="tooltip" title="{{category.carpet.color}}"><a target="_blank" href="/public/image/CarpetColor/{{category.carpet.color}}.jpg"><img src="/public/image/CarpetColor/{{category.carpet.color}}.jpg" width="40px" height="40px"></a></span>
+                                    {{/if}}
+                                </p>
+                                <p>Wall Panel:&nbsp;
+                                    {{category.panel.name}} - {{category.panel.details}}
+                                </p>
+                                {{#each category.lighting.details}}
+                                    <p>Lighting:&nbsp;
+                                    <span class="d-inline-block lightingTooltip" tabindex="0" data-toggle="tooltip" title="{{name}}"><a target="_blank" href="/public/image/Lighting/{{name}}.jpg"><img src="/public/image/Lighting/{{name}}.jpg" width="40px" height="40px"></a></span> - {{num}}&nbsp;{{unit}}
+                                    </p>
+                                {{/each}}
+                                {{#if category.lighting.other.name}}
+                                    <p>Lighting:&nbsp;
+                                    {{category.lighting.other.name}} - {{category.lighting.other.num}}&nbsp;{{category.lighting.other.unit}}
+                                    </p>
+                                {{/if}}
+                                {{#if category.electricity.nonupload}}
+                                {{else}}
+                                <p>Electricity:&nbsp;<a target="_blank" href="/public/image/exhibitor/electricity/{{category.electricity.filename}}"><img src="/public/image/exhibitor/electricity/{{category.electricity.filename}}" width="100px" height="70px"></a></p>
+                                {{/if}}
+                                {{#each category.graphic.details}}
+                                    <p>Graphic:&nbsp;
+                                    {{name}} - {{num}}&nbsp;{{unit}}
+                                    </p>
+                                {{/each}}
+                                {{#if category.graphic.other.name}}
+                                    <p>Graphic:&nbsp;
+                                    {{category.graphic.other.name}} - {{category.graphic.other.num}}&nbsp;{{category.graphic.other.unit}}
+                                    </p>
+                                {{/if}}
+                                {{#each category.display.details}}
+                                    <p>Display:&nbsp;
+                                    {{name}} - {{num}}&nbsp;{{unit}}
+                                    </p>
+                                {{/each}}
+                                {{#if category.display.other.name}}
+                                    <p>Display:&nbsp;
+                                    {{category.display.other.name}} - {{category.display.other.num}}&nbsp;{{category.display.other.unit}}
+                                    </p>
+                                {{/if}}
+                                {{#each category.furniture.details}}
+                                    <p>Furniture:&nbsp;
+                                    {{category}} - <span class="d-inline-block furnitureTooltip" tabindex="0" data-toggle="tooltip" title="{{name}}"><a target="_blank" href="/public/image/Furniture/{{name}}.jpg"><img src="/public/image/Furniture/{{name}}.jpg" width="40px" height="40px"></a></span> - {{num}}&nbsp;{{unit}}
+                                    </p>
+                                {{/each}}
+                                {{#if category.furniture.other.name}}
+                                    <p>Furniture:&nbsp;
+                                    {{category.furniture.other.name}} - {{category.furniture.other.num}}&nbsp;{{category.furniture.other.unit}}
+                                    </p>
+                                {{/if}}
+                                {{#each category.accessories.details}}
+                                    <p>Accessories:&nbsp;
+                                    {{name}}
+                                    </p>
+                                {{/each}}
+                                {{#if category.accessories.other.name}}
+                                    <p>Accessories:&nbsp;
+                                    {{category.accessories.other.name}}
+                                    </p>
+                                {{/if}}
+                                {{#each category.showsite.details}}
+                                    <p>Show Site:&nbsp;
+                                    {{name}}
+                                    </p>
+                                {{/each}}
+                                {{#if category.showsite.other.name}}
+                                    <p>Show Site:&nbsp;
+                                    {{category.showsite.other.name}}
+                                    </p>
+                                {{/if}}
+                                {{#each details.designFile.filename}}
+                                <p><a class="fileReview" target="_blank" href="/public/image/exhibitor/designPlan/{{name}}">{{name}}</a></p>
+                                {{/each}}
+                                {{details.additionalInfo.details}}
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
         </div>
     </div>
 </div>
@@ -731,38 +768,91 @@
             if($(this).attr("data-name") == "waitContract") {
                 $(this).attr("style", "width: 20%");
                 $(this).attr("aria-valuenow", "20");
+                $(this).attr("data-toggle", "tooltip");
+                $(this).attr("data-placement", "top");
+                $(this).attr("title", "20%");
             }
             else 
             if($(this).attr("data-name") == "waitOppoContract") {
                 $(this).attr("style", "width: 40%");
                 $(this).attr("aria-valuenow", "40");
+                $(this).attr("data-toggle", "tooltip");
+                $(this).attr("data-placement", "top");
+                $(this).attr("title", "40%");
             }
             else 
             if($(this).attr("data-name") == "waitPayment") {
                 $(this).attr("style", "width: 60%");
                 $(this).attr("aria-valuenow", "60");
+                $(this).attr("data-toggle", "tooltip");
+                $(this).attr("data-placement", "top");
+                $(this).attr("title", "60%");
             }
             else 
             if($(this).attr("data-name") == "paid") {
                 $(this).attr("style", "width: 80%");
                 $(this).attr("aria-valuenow", "80");
+                $(this).attr("data-toggle", "tooltip");
+                $(this).attr("data-placement", "top");
+                $(this).attr("title", "80%");
             }
             else 
-            if($(this).attr("data-name") == "paychecked") {
+            if($(this).attr("data-name") == "30% Paid") {
                 $(this).attr("style", "width: 90%");
                 $(this).attr("aria-valuenow", "90");
+                $(this).attr("data-toggle", "tooltip");
+                $(this).attr("data-placement", "top");
+                $(this).attr("title", "90%");
+            }
+            else 
+            if($(this).attr("data-name") == "Proof Uploaded") {
+                $(this).attr("style", "width: 92%");
+                $(this).attr("aria-valuenow", "92");
+                $(this).attr("data-toggle", "tooltip");
+                $(this).attr("data-placement", "top");
+                $(this).attr("title", "92%");
+            }
+            else 
+            if($(this).attr("data-name") == "Proved by Service") {
+                $(this).attr("style", "width: 94%");
+                $(this).attr("aria-valuenow", "94");
+                $(this).attr("data-toggle", "tooltip");
+                $(this).attr("data-placement", "top");
+                $(this).attr("title", "94%");
+            }
+            else 
+            if($(this).attr("data-name") == "Proved by Finance") {
+                $(this).attr("style", "width: 96%");
+                $(this).attr("aria-valuenow", "96");
+                $(this).attr("data-toggle", "tooltip");
+                $(this).attr("data-placement", "top");
+                $(this).attr("title", "96%");
+            }
+            else 
+            if($(this).attr("data-name") == "Proved by Manager") {
+                $(this).attr("style", "width: 98%");
+                $(this).attr("aria-valuenow", "98");
+                $(this).attr("data-toggle", "tooltip");
+                $(this).attr("data-placement", "top");
+                $(this).attr("title", "98%");
             }
             else
             if($(this).attr("data-name") == "done") {
                 $(this).attr("style", "width: 100%");
                 $(this).attr("aria-valuenow", "100");
+                $(this).attr("data-toggle", "tooltip");
+                $(this).attr("data-placement", "top");
+                $(this).attr("title", "100%");
             }
             else {
                 $(this).attr("style", "width: 0%");
                 $(this).attr("aria-valuenow", "0");
+                $(this).attr("data-toggle", "tooltip");
+                $(this).attr("data-placement", "top");
+                $(this).attr("title", "00%");
             }
         });
-        $(".paidbtn").each(function() {
+        $(".proofbtn").each(function() {
             var outofdate = false;
             var date1 = new Date($(this).parent().parent().find(".endDate").html());
             var date2 = new Date();
@@ -773,20 +863,22 @@
             var date3 = new Date(ddd2);
             if(date1 < date3)
                 outofdate = true;
-            if($(this).attr("data-name") == "paychecked" && !outofdate) {
+            if($(this).attr("data-name") == "30% Paid" && !outofdate) {
                 $(this).removeAttr("style");
             }
             $(this).bind("click", function() {
-                var boothId = $(this).attr("data-link");
+                var link = $(this).attr("data-link");
+                $(location).attr("href", link);
+                //var boothId = $(this).attr("data-link");
                 //var author = $(this).attr("data-author");
                 //var user = $("#uNameShow").attr("data-name");
-                //var showName = $(this).attr("data-showName");
+                /*var showName = $(this).attr("data-link");
                 $.ajax({
                     type: "post",
                     url: "/vendor/jobConfirm",
                     dataType: "json",
                     data: {
-                        id: boothId,
+                        id: showName,
                         success: "y"
                     },
                     success: function(res) {
@@ -805,7 +897,7 @@
                     error: function(err) {
                         $(location).attr("href", "error");
                     }
-                });
+                });*/
             })
         });
         /*$(".estimateForm").each(function() {

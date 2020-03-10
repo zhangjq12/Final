@@ -1,0 +1,52 @@
+<div class="container">
+    <nav class="nav nav-tabs">
+        <a class="nav-item nav-link active disabled" href="/manage/qualification">Qualification</a>
+        <a class="nav-item nav-link" href="/manage/proof">Proof</a>
+    </nav>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">User Id</th>
+                <th scope="col">User Name</th>
+                <th scope="col">Company Info</th>
+                <th scope="col">Operation</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each data}}
+            <tr>
+                <td class="align-middle" scope="col">{{userId}}</td>
+                <td class="align-middle" scope="col">{{userName}}</td>
+                <td class="align-middle" scope="col">{{companyInfo}}</td>
+                <td class="align-middle" scope="col">
+                    <button class="btn btn-light showBtn">Show Details</button>
+                    <button class="btn btn-light estimateBtn" data-name="{{approved}}" style="display: none;">Estimate</button>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function() {
+        $(".estimateBtn").each(function() {
+            if($(this).attr("data-name") == "n") {
+                $(this).removeAttr("style");
+            }
+        })
+    })
+
+    $(".showBtn").each(function() {
+        var link = $(this).parent().parent().find("td:eq(0)").html();
+        $(this).click(function() {
+            $(location).attr("href", "/manage/qualification/show?id=" + link);
+        })
+    })
+
+    $(".estimateBtn").each(function() {
+        var link = $(this).parent().parent().find("td:eq(0)").html();
+        $(this).click(function() {
+            $(location).attr("href", "/manage/qualification/estimate?id=" + link);
+        })
+    })
+</script>

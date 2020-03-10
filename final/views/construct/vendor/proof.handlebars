@@ -1,0 +1,116 @@
+<div class="container">
+    <form id="proofUpload" data-name="{{showName}}">
+        <div class="card border-light mb-3">
+            <h5 class="card-header">Upload Proofs</h4>
+            <div class="card-body">
+                <div class="col-12">
+                    <fieldset class="form-group">
+                        <div class="row">
+                            <legend class="col-form-label col-sm-3 pt-0">Upload Bills:<br/><small>At most 5 multiple images</small></legend>
+                            <div class="col-sm-9">
+                                <!--<div class="form-row mb-3 custom-file">-->
+                                <div class="file-loading">
+                                    <input id="billsUpload" type="file" multiple data-msg-placeholder="Upload Bills..." required>
+                                    <!--<label for="designUpload" class="custom-file-label">Upload Design Plan:</label>-->
+                                    <div class="invalid-feedback">
+                                        This can't be empty.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col-12">
+                    <fieldset class="form-group">
+                        <div class="row">
+                            <legend class="col-form-label col-sm-3 pt-0">Upload Finished Views:<br/><small>At most 20 Multiple images</small></legend>
+                            <div class="col-sm-9">
+                                <!--<div class="form-row mb-3 custom-file">-->
+                                <div class="file-loading">
+                                    <input id="finishedUpload" type="file" multiple data-msg-placeholder="Upload Views..." required>
+                                    <!--<label for="designUpload" class="custom-file-label">Upload Design Plan:</label>-->
+                                    <div class="invalid-feedback">
+                                        This can't be empty.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <button type="button" class="btn btn-primary" id="submitProofBtn">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    var bills;
+    var finished;
+    $(document).ready(function() {
+        $("#billsUpload").fileinput({
+            uploadUrl: "#",
+            theme: "fas",
+            showUpload: false,
+            showRemove : true,
+            dropZoneEnabled: false,
+            maxFileCount: 5,
+            layoutTemplates: {
+                actionUpload: ''
+            }
+        });
+        $("#finishedUpload").fileinput({
+            uploadUrl: "#",
+            theme: "fas",
+            showUpload: false,
+            showRemove : true,
+            dropZoneEnabled: false,
+            maxFileCount: 20,
+            layoutTemplates: {
+                actionUpload: ''
+            }
+        });
+    });
+    $("#billsUpload").change(function() {
+        var files = this.files;
+        bills = files;
+    });
+    $("#finishedUpload").change(function() {
+        var files = this.files;
+        finished = files;
+    });
+    $("#submitProofBtn").click(function(e) {
+        e.preventDefault();
+        var formData = new FormData();
+        var showName = $("#proofUpload").attr("data-name");
+        formData.append("showName", showName);
+        for(var c of bills) {
+            formData.append("bills", c);
+        }
+        for(var c of finished) {
+            formData.append("finished", c);
+        }
+        $.ajax({
+            method: "post",
+            url: "/vendor/proof",
+            dataType: "json",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(res) {
+                var aftersale = res["aftersale"];
+                var showName = res["showName"];
+                var vendor = res["vendor"];
+                var origin = window.location.hostname;
+                var ws = new WebSocket('ws://' + origin + ':8080');
+                var message1 = showName + "'s status is updated! Refresh this page to check you progress!||" + vendor + "||" + aftersale;
+                //alert(message);
+                ws.onopen = function(e) {
+                    ws.send(message1);
+                }
+                $(location).attr("href", "/vendor");
+            },
+            error: function(err) {
+                $(location).attr("href", "/error");
+            }
+        });
+    });
+</script>
