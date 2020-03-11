@@ -135,6 +135,25 @@
             }, 500);
         }
 	});
+    $("#exhibitorSignInBtn").click(function(e) {
+        e.preventDefault();
+        $("#signin").modal('show');
+    });
+    $("#vendorSignInBtn").click(function(e) {
+        e.preventDefault();
+        $("#signin").modal('show');
+    });
+    $("#exhibitorSignUpBtn").click(function(e) {
+        e.preventDefault();
+        $(location).attr("href", "/signup?name=exhibitor");
+    });
+    $("#vendorSignUpBtn").click(function(e) {
+        e.preventDefault();
+        $(location).attr("href", "/signup?name=vendor");
+    });
+    $("#aboutUsBtn").click(function(e) {
+        $(location).attr("href", "/aboutus");
+    });
     $(".divSmoove").smoove({
         offset: '30%'
     });

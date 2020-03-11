@@ -42,7 +42,7 @@
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
                         <label for="voe">Your Role:</label>
-                        <select id="voe" name="voe" class="form-control">
+                        <select id="voe" name="voe" class="form-control" data-name="{{voe}}">
                             <option id="vendorOption" value="vendor">Vendor</option>
                             <option id="exhibitorOption" value="exhibitor">Exhibitor</option>
                         </select>
@@ -472,6 +472,8 @@
         licenseModified = false;
         personalModified = false;
         $("#usOnly").hide();
+        $("#voe").attr("data-name") == "vendor" ? $("#vendorOption").attr("selected", "selected") : $("#exhibitorOption").attr("selected", "selected");
+
         /*bootstrapValidate(['#user', '#password', '#conPassword', '#first', '#last', '#email'], 'required: This can not be empty!');
         bootstrapValidate('#email', 'email: Enter a valid E-Mail!');
         bootstrapValidate('#user', 'min:6: Your username should more than 6 charactors!|max:20: Your username should no more than 20 charactors!');

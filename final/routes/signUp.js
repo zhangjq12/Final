@@ -10,6 +10,12 @@ const upload = require("../routes/middleware/multer3");
 
 router.get("/", async (req, res) => {
     const Head = await head(req);
+    const voe = req.query.name;
+    res.render("construct/signup", {title: "Sign Up", status: Head, license: "defaultHead.jpg", personal: "defaultHead.jpg", voe: voe});
+});
+
+router.get("/", async (req, res) => {
+    const Head = await head(req);
     res.render("construct/signup", {title: "Sign Up", status: Head, license: "defaultHead.jpg", personal: "defaultHead.jpg"});
 });
 
