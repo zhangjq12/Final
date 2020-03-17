@@ -1,0 +1,16 @@
+.subnav-link:link,
+.subnav-link:visited {
+    text-decoration: none;
+    color: gray;
+}
+.subnav-link:hover,
+.subnav-link:active,
+#aboutusNav .active {
+    font-weight: bold;
+    color: black;
+    border-style: none none solid none;
+    border-width: 5px;
+    border-color: rgb(0, 140, 255);
+    text-decoration: none;
+}
+
