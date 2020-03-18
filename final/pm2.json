@@ -28,8 +28,7 @@
         "min_uptime": "60s",                        
         "max_restarts": 30,                         
         "autorestart": true,                       
-        "cron_restart": "",                         
-        "restart_delay": "60s",
+        "cron_restart": "",
         "env": {
             "NODE_ENV": "production"
         }
