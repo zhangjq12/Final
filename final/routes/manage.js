@@ -99,7 +99,7 @@ router.get("/qualification/estimate", async (req, res) => {
         }
         const data1 = await users.getId(id);
         const userName = data1[0]["userName"];
-        const data = [{userId: data1[0]["_id"].toString(), userName: data1[0]["userName"], email: data1[0]["email"], companyInfo: data1[0]["companyInfo"], contactInfo: data1[0]["contactInfo"], address: data1[0]["address"], licence: data1[0]["licence"], personal: data1[0]["personal"], taxId: data1[0]["taxId"], stateId: data1[0]["stateId"]}]
+        const data = [{userId: data1[0]["_id"].toString(), userName: data1[0]["userName"], email: data1[0]["email"], companyInfo: data1[0]["companyInfo"], contactInfo: data1[0]["contactInfo"], address: data1[0]["address"], license: data1[0]["license"], personal: data1[0]["personal"], taxId: data1[0]["taxId"], stateId: data1[0]["stateId"]}]
         res.render("construct/manage/qualification/estimate", {title: "Qualification of " + userName, status: Head, data: data});
     }
     catch(e) {
