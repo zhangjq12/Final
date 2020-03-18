@@ -1,0 +1,37 @@
+{
+    "apps": {
+        "name": "expohunter",
+        "script": "./bin/www",
+        "cwd": "./",                                
+        "args": "", 
+        "interpreter": "",                          
+        "interpreter_args": "",                    
+        "watch": [
+            "data",
+            "routes",
+            "public/js",
+            "public/css",
+            "views"
+        ],                              
+        "ignore_watch": [                           
+            "node_modules",
+            "logs",
+            "public/image"
+        ],
+        "exec_mode": "fork",                
+        "instances": "fork",                             
+        "max_memory_restart": 8,                    
+        "error_file": "./logs/app-err.log",         
+        "out_file": "./logs/app-out.log",           
+        "merge_logs": true,                         
+        "log_date_format": "YYYY-MM-DD HH:mm:ss",   
+        "min_uptime": "60s",                        
+        "max_restarts": 30,                         
+        "autorestart": true,                       
+        "cron_restart": "",                         
+        "restart_delay": "60s",
+        "env": {
+            "NODE_ENV": "production"
+        }
+    }
+}
