@@ -13,6 +13,7 @@ const requests = require("./requests");
 const vendorDetails = require("./vendor");
 const vendorStars = require("./vendorStars");
 const contactus = require("./contactus");
+const calendar = require("./calendar");
 
 module.exports = {
     comments: comments,
@@ -29,5 +30,6 @@ module.exports = {
     requests: requests,
     vendorDetails: vendorDetails,
     vendorStars: vendorStars,
-    contactus: contactus
+    contactus: contactus,
+    calendar: calendar
 }
