@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="../../public/css/aboutus.css">
 <div class="container-fluid" id="aboutus-container" data-link="{{tab}}">
-    <div class="row align-items-center text-center" style="background-image: url('/public/image/page/guyInJacket.jpg'); height:500px; background-size: cover; background-repeat: no-repeat; background-position: center; height: 300px">
+    <div class="row align-items-center text-center mb-4" style="background-image: url('/public/image/page/guyInJacket.jpg'); height:500px; background-size: cover; background-repeat: no-repeat; background-position: center;">
         <div class="col-12">
         <h5 class="display-3 mb-3" style="color: white; font-weight: bold; text-shadow: 0.1em 0.1em 0.2em black">About Us</h5>
         <p class="mb-3" style="color: white; text-shadow: 0.1em 0.1em 0.2em black">dsjakd sadahjahsjl sahl asdlahdashd sagdashd hsdhajdh adha</p>
@@ -8,10 +8,10 @@
         </div>
     </div>
     <nav class="nav col-12 offset-md-2 col-md-8 justify-content-center nav-justified mb-3" id="aboutusNav" role="tablist">
-        <a class="nav-item subnav-link" id="getstarted" href="#tab1"><img src="../../public/image/Furniture/Single.jpg" height="150px" width="150px"><br/>Get Started<br/><small>Find your steps</small></a> 
-        <a class="nav-item subnav-link" id="showcalendar" href="#tab2"><img src="../../public/image/Furniture/Single.jpg" height="150px" width="150px"><br/>Show Calendar<br/><small>Check out the next show</small></a> 
-        <!--<a class="nav-item subnav-link" id="tab3" href="#tab3"><img src="../../public/image/Furniture/Single.jpg" width="100%"><br/>Third<br/><small>good to use</small></a> -->
-        <a class="nav-item subnav-link" id="contactus" href="#tab4"><img src="../../public/image/Furniture/Single.jpg" height="150px" width="150px"><br/>Contact Us<br/><small>Thanks for contacting us</small></a> 
+        <a class="nav-item subnav-link" id="getstarted" href="#tab1"><i class="fas fa-biking fa-7x mb-2"></i><br/>Get Started<br/><small>Find your steps</small></a> 
+        <a class="nav-item subnav-link" id="showcalendar" href="#tab2"><i class="fas fa-calendar-alt fa-7x mb-2"></i><br/>Show Calendar<br/><small>Check out the next show</small></a> 
+        <a class="nav-item subnav-link" id="introduction" href="#tab3"><i class="fas fa-person-booth fa-7x mb-2"></i><br/>Introduction<br/><small>How's our company going</small></a>
+        <a class="nav-item subnav-link" id="contactus" href="#tab4"><i class="fas fa-handshake fa-7x mb-2"></i><br/>Contact Us<br/><small>Thanks for contacting us</small></a> 
         <!--<a class="subnav-link col-2 active" id="subtab1" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">First</a>
         <a class="subnav-link col-2" id="subtab2" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Second</a>
         <a class="subnav-link col-2" id="subtab3" data-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false">Third</a>
@@ -40,7 +40,7 @@
 
             </table>
         </div>
-        <!--<div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="subtab3">
+        <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="subtab3">
             <div class="row align-items-center" style="height: 500px;">
                 <div class="col-12 offset-md-2 col-md-8">
                     <h5 class="display-3 text-center mb-3">Title3</h5>
@@ -56,7 +56,7 @@
                     <p class="mb-3">dsjakd sadahjahsjl sahl asdlahdashd sagdashd hsdhajdh adha</p>
                 </div>
             </div>
-        </div>-->
+        </div>
         <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="subtab4">
             <div class="offset-2 col-8 shadow" style="border-style: solid; border-color: lightgray; border-width: 1px">
                 <form id="suggestionsForm">
@@ -79,8 +79,6 @@
     </div>
 </div>
 <script>
-    //var table = {{{table}}};
-    //console.log(table);
     $(document).ready(function() {
         var tab = $("#aboutus-container").attr("data-link");
         if(tab == "")

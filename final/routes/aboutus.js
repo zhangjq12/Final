@@ -7,7 +7,8 @@ const calendar = data.calendar;
 router.get("/", async (req, res) => {
     const Head = await head(req);
     const tab = req.query.tab;
-    res.render("construct/aboutus", {title: "About Us", status: Head, tab: tab, table: calendar});
+    const cal = JSON.stringify(calendar);
+    res.render("construct/aboutus", {title: "About Us", status: Head, tab: tab, table: cal});
 });
 
 module.exports = router;
