@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="../../public/css/aboutus.css">
-<div class="container-fluid">
+<div class="container-fluid" id="aboutus-container" data-link="{{tab}}">
     <div class="row align-items-center text-center" style="background-image: url('/public/image/page/guyInJacket.jpg'); height:500px; background-size: cover; background-repeat: no-repeat; background-position: center; height: 300px">
         <div class="col-12">
         <h5 class="display-3 mb-3" style="color: white; font-weight: bold; text-shadow: 0.1em 0.1em 0.2em black">About Us</h5>
@@ -7,11 +7,11 @@
         <button class="btn btn-primary">Get Started</button>
         </div>
     </div>
-    <nav class="nav col-12 offset-md-2 col-md-8 justify-content-center nav-justified" id="aboutusNav" role="tablist">
-        <a class="nav-item subnav-link" href="#tab1"><img src="../../public/image/Furniture/Single.jpg" width="100%"><br/>First<br/><small>good to use</small></a> 
-        <a class="nav-item subnav-link" href="#tab2"><img src="../../public/image/Furniture/Single.jpg" width="100%"><br/>Second<br/><small>good to use</small></a> 
-        <a class="nav-item subnav-link" href="#tab3"><img src="../../public/image/Furniture/Single.jpg" width="100%"><br/>Third<br/><small>good to use</small></a> 
-        <a class="nav-item subnav-link" href="#tab4"><img src="../../public/image/Furniture/Single.jpg" width="100%"><br/>Fourth<br/><small>good to use</small></a> 
+    <nav class="nav col-12 offset-md-2 col-md-8 justify-content-center nav-justified mb-3" id="aboutusNav" role="tablist">
+        <a class="nav-item subnav-link" id="getstarted" href="#tab1"><img src="../../public/image/Furniture/Single.jpg" height="150px" width="150px"><br/>Get Started<br/><small>Find your steps</small></a> 
+        <a class="nav-item subnav-link" id="showcalendar" href="#tab2"><img src="../../public/image/Furniture/Single.jpg" height="150px" width="150px"><br/>Show Calendar<br/><small>Check out the next show</small></a> 
+        <!--<a class="nav-item subnav-link" id="tab3" href="#tab3"><img src="../../public/image/Furniture/Single.jpg" width="100%"><br/>Third<br/><small>good to use</small></a> -->
+        <a class="nav-item subnav-link" id="contactus" href="#tab4"><img src="../../public/image/Furniture/Single.jpg" height="150px" width="150px"><br/>Contact Us<br/><small>Thanks for contacting us</small></a> 
         <!--<a class="subnav-link col-2 active" id="subtab1" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true">First</a>
         <a class="subnav-link col-2" id="subtab2" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false">Second</a>
         <a class="subnav-link col-2" id="subtab3" data-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false">Third</a>
@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="subtab3">
+        <!--<div class="tab-pane fade" id="tab3" role="tabpanel" aria-labelledby="subtab3">
             <div class="row align-items-center" style="height: 500px;">
                 <div class="col-12 offset-md-2 col-md-8">
                     <h5 class="display-3 text-center mb-3">Title3</h5>
@@ -68,32 +68,61 @@
                     <p class="mb-3">dsjakd sadahjahsjl sahl asdlahdashd sagdashd hsdhajdh adha</p>
                 </div>
             </div>
-        </div>
+        </div>-->
         <div class="tab-pane fade" id="tab4" role="tabpanel" aria-labelledby="subtab4">
-            <div class="row align-items-center" style="height: 500px;">
-                <div class="col-12 offset-md-2 col-md-8">
-                    <h5 class="display-3 text-center mb-3">Title4</h5>
-                    <p class="mb-3">dsjakd sadahjahsjl sahl asdlahdashd sagdashd hsdhajdh adha</p>
-                </div>
-            </div>
-            <div class="row align-items-center" style="background-image: url('/public/image/page/guyInJacket.jpg'); height:500px; background-size: cover; background-repeat: no-repeat; background-position: center; height: 300px">
-                
-            </div>
-            <div class="row align-items-center" style="height: 500px; background-color: lightgray;">
-                <div class="col-12 offset-md-2 col-md-8">
-                    <h5 class="display-3 text-center mb-3">Title4</h5>
-                    <p class="mb-3">dsjakd sadahjahsjl sahl asdlahdashd sagdashd hsdhajdh adha</p>
-                </div>
+            <div class="offset-2 col-8 shadow" style="border-style: solid; border-color: lightgray; border-width: 1px">
+                <form id="suggestionsForm">
+                    <h3 class="display-3 mb-3 text-center">Contact Us</h3>
+                    <div class="contactUsAlert container-fluid"></div>
+                    <div class="form-group">
+                        <label for="sugName">Your Name:</label>
+                        <input type="text" id="contactName" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactText">Your Messages:</label>
+                        <textarea class="form-control" id="contactText" rows="4"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button id="contactSubmit" class="btn btn-primary col-12 col-md-5 mb-3">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
 <script>
     $(document).ready(function() {
-        $("#aboutusNav a:eq(0)").tab('show');
+        var tab = $("#aboutus-container").attr("data-link");
+        if(tab == "")
+            $("#aboutusNav a:eq(0)").tab('show');
+        else
+            $("#" + tab).tab('show');
     })
     $('#aboutusNav a').on('click', function (e) {
         e.preventDefault();
         $(this).tab('show');
+    });
+    $("#suggestionsForm").submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: "/contactus",
+            method: "post",
+            dataType: "json",
+            data: {
+                name: $("#contactName").val(),
+                message: $("#contactText").val()
+            },
+            success: function(res) {
+                $(".contactUsAlert").html('<div class="alert alert-success alert-dismissible fade show" role="alert">\
+                <p>Your comments has been sent! Thanks for your advice!</p>\
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">\
+                    <span aria-hidden="true">&times;</span>\
+                </button>\
+                </div>');
+            },
+            error: function(err) {
+                $(location).attr("href", "/error");
+            }
+        });
     });
 </script>

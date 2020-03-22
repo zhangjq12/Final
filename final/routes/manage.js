@@ -8,6 +8,7 @@ const vendorInfo = data.vendorDetails;
 const requests = data.requests;
 const proofs = data.proof;
 const price = data.price;
+const contactus = data.contactus;
 const head = require("./head");
 const authentication = require("./authentication");
 const xss = require('xss');
@@ -43,6 +44,23 @@ router.get("/proof", async (req, res) => {
         res.render("construct/error", {title: "error", status: Head});
     }
 });
+
+router.get("/contactus", async (req, res) => {
+    const Head = await head(req);
+    try {
+        const auth = await authentication(req);
+        const voe = await users.getName(auth);
+        if(voe[0]["voe"] != "manager") {
+            throw "error";
+        }
+        const data = await contactus.getAll();
+        res.render("construct/manage/contactus/index", {title: "Contact Us", status: Head, data: data});
+    }
+    catch (e) {
+        res.render("construct/error", {title: "error", status: Head});
+    }
+});
+
 router.get("/qualification", async (req, res) => {
     const Head = await head(req);
     try {

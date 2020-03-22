@@ -18,6 +18,7 @@ const admin = require("./admin");
 const aftersale = require("./aftersale");
 const manage = require("./manage");
 const aboutus = require("./aboutus");
+const contactus = require("./contactus");
 
 
 const constructorMethod = app =>{
@@ -72,6 +73,7 @@ const constructorMethod = app =>{
     app.use("/aftersale", aftersale);
     app.use("/manage", manage);
     app.use("/aboutus", aboutus);
+    app.use("/contactus", contactus);
     app.get("/popularity", async (req, res) => {
         const Head = await head(req);
         try {

@@ -4,7 +4,8 @@ const head = require("./head");
 
 router.get("/", async (req, res) => {
     const Head = await head(req);
-    res.render("construct/aboutus", {title: "About Us", status: Head});
+    const tab = req.query.tab;
+    res.render("construct/aboutus", {title: "About Us", status: Head, tab: tab});
 });
 
 module.exports = router;

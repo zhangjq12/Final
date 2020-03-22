@@ -12,6 +12,7 @@ const proof = require("./proof");
 const requests = require("./requests");
 const vendorDetails = require("./vendor");
 const vendorStars = require("./vendorStars");
+const contactus = require("./contactus");
 
 module.exports = {
     comments: comments,
@@ -27,5 +28,6 @@ module.exports = {
     proof: proof,
     requests: requests,
     vendorDetails: vendorDetails,
-    vendorStars: vendorStars
+    vendorStars: vendorStars,
+    contactus: contactus
 }

@@ -1,0 +1,28 @@
+<div class="container">
+    <nav class="nav nav-tabs">
+        <a class="nav-item nav-link" href="/manage/qualification">Qualification</a>
+        <a class="nav-item nav-link" href="/manage/proof">Proof</a>
+        <a class="nav-item nav-link active disabled" href="/manage/contactus">Contact Us</a>
+    </nav>
+    <div class="container-fluid">
+        <table class="table table-hover">
+            <tbody class="table table-hover table-borderless">
+                {{#each data}}
+                <tr>
+                    <td scope="row">
+                        <div class="media">
+                            <div class="media-body">
+                                <h5 class="mt-0">{{name}}</h5>
+                                {{comment}}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    
+</script>
