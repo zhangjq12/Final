@@ -157,6 +157,8 @@ router.get("/estimate", async (req, res) => {
         for(var t of table) {
             category[t["Category"]].push(t);
         }
+        category.Main_Structures = category["Main Structures"];
+        delete category["Main Structures"];
         total = "$0.00";
         res.render("construct/vendor/estimate", {title: "Details of " + data[0]["showName"], status: Head, voe: "vendor", data: data, estimateTable: category, total: total, note: "44455667"});
     }

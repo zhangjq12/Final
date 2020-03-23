@@ -2,7 +2,7 @@
 <div class="container-fluid estimatePage" data-name="{{voe}}">
     {{#each data}}
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 text-center">
             <h2>Show Name - <span id="showName">{{showName}}</span></h2>
             <p>BoothNum - <span id="boothId">{{boothNum}}</span></p>
             <p><span>Start Date - </span>{{date.start}}</p>
@@ -175,6 +175,249 @@
                     {{#if ../estimateTable.Rigging}}
                     {{#each ../estimateTable.Rigging}}
                     <tr class="collapse" id="riggingCollapse">
+                        <th scope="row"></th>
+                        <td style="width: 16%">{{Category}}</td>
+                        <td style="width: 9%">{{Product_No}}</td>
+                        <td style="width: 34%">{{Product_name}}</td>
+                        <td style="width: 8%">{{Unit}}</td>
+                        <td style="width: 11%">
+                            <input class="form-control form-control-sm priceInput" type="text" value="{{Price}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <input class="form-control form-control-sm numInput" type="text" value="{{Quantity}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <span class="subTotal">{{Total}}</span>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    {{/if}}
+                    <tr>
+                        <td colspan="8" class="headCollapse">
+                            <div class="container-fluid">
+                                <a class="btn btn-link" style="width: 100%;" data-toggle="collapse" aria-expanded="false" aria-controls="mainStructuresCollapse" href="#mainStructuresCollapse">Main Structures</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {{#if ../estimateTable.Main_Structures}}
+                    {{#each ../estimateTable.Main_Structures}}
+                    <tr class="collapse" id="mainStructuresCollapse">
+                        <th scope="row"></th>
+                        <td style="width: 16%">{{Category}}</td>
+                        <td style="width: 9%">{{Product_No}}</td>
+                        <td style="width: 34%">{{Product_name}}</td>
+                        <td style="width: 8%">{{Unit}}</td>
+                        <td style="width: 11%">
+                            <input class="form-control form-control-sm priceInput" type="text" value="{{Price}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <input class="form-control form-control-sm numInput" type="text" value="{{Quantity}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <span class="subTotal">{{Total}}</span>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    {{/if}}
+                    <tr>
+                        <td colspan="8" class="headCollapse">
+                            <div class="container-fluid">
+                                <a class="btn btn-link" style="width: 100%;" data-toggle="collapse" aria-expanded="false" aria-controls="electricalCollapse" href="#electricalCollapse">Electrical</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {{#if ../estimateTable.Electrical}}
+                    {{#each ../estimateTable.Electrical}}
+                    <tr class="collapse" id="electricalCollapse">
+                        <th scope="row"></th>
+                        <td style="width: 16%">{{Category}}</td>
+                        <td style="width: 9%">{{Product_No}}</td>
+                        <td style="width: 34%">{{Product_name}}</td>
+                        <td style="width: 8%">{{Unit}}</td>
+                        <td style="width: 11%">
+                            <input class="form-control form-control-sm priceInput" type="text" value="{{Price}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <input class="form-control form-control-sm numInput" type="text" value="{{Quantity}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <span class="subTotal">{{Total}}</span>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    {{/if}}
+                    <tr>
+                        <td colspan="8" class="headCollapse">
+                            <div class="container-fluid">
+                                <a class="btn btn-link" style="width: 100%;" data-toggle="collapse" aria-expanded="false" aria-controls="electricityCollapse" href="#electricityCollapse">Electricity</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {{#if ../estimateTable.Electricity}}
+                    {{#each ../estimateTable.Electricity}}
+                    <tr class="collapse" id="electricityCollapse">
+                        <th scope="row"></th>
+                        <td style="width: 16%">{{Category}}</td>
+                        <td style="width: 9%">{{Product_No}}</td>
+                        <td style="width: 34%">{{Product_name}}</td>
+                        <td style="width: 8%">{{Unit}}</td>
+                        <td style="width: 11%">
+                            <input class="form-control form-control-sm priceInput" type="text" value="{{Price}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <input class="form-control form-control-sm numInput" type="text" value="{{Quantity}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <span class="subTotal">{{Total}}</span>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    {{/if}}
+                    <tr>
+                        <td colspan="8" class="headCollapse">
+                            <div class="container-fluid">
+                                <a class="btn btn-link" style="width: 100%;" data-toggle="collapse" aria-expanded="false" aria-controls="graphicCollapse" href="#graphicCollapse">Graphic</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {{#if ../estimateTable.Graphic}}
+                    {{#each ../estimateTable.Graphic}}
+                    <tr class="collapse" id="graphicCollapse">
+                        <th scope="row"></th>
+                        <td style="width: 16%">{{Category}}</td>
+                        <td style="width: 9%">{{Product_No}}</td>
+                        <td style="width: 34%">{{Product_name}}</td>
+                        <td style="width: 8%">{{Unit}}</td>
+                        <td style="width: 11%">
+                            <input class="form-control form-control-sm priceInput" type="text" value="{{Price}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <input class="form-control form-control-sm numInput" type="text" value="{{Quantity}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <span class="subTotal">{{Total}}</span>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    {{/if}}
+                    <tr>
+                        <td colspan="8" class="headCollapse">
+                            <div class="container-fluid">
+                                <a class="btn btn-link" style="width: 100%;" data-toggle="collapse" aria-expanded="false" aria-controls="displayCollapse" href="#displayCollapse">Display</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {{#if ../estimateTable.Display}}
+                    {{#each ../estimateTable.Display}}
+                    <tr class="collapse" id="displayCollapse">
+                        <th scope="row"></th>
+                        <td style="width: 16%">{{Category}}</td>
+                        <td style="width: 9%">{{Product_No}}</td>
+                        <td style="width: 34%">{{Product_name}}</td>
+                        <td style="width: 8%">{{Unit}}</td>
+                        <td style="width: 11%">
+                            <input class="form-control form-control-sm priceInput" type="text" value="{{Price}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <input class="form-control form-control-sm numInput" type="text" value="{{Quantity}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <span class="subTotal">{{Total}}</span>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    {{/if}}
+                    <tr>
+                        <td colspan="8" class="headCollapse">
+                            <div class="container-fluid">
+                                <a class="btn btn-link" style="width: 100%;" data-toggle="collapse" aria-expanded="false" aria-controls="furnitureCollapse" href="#furnitureCollapse">Furniture</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {{#if ../estimateTable.Furniture}}
+                    {{#each ../estimateTable.Furniture}}
+                    <tr class="collapse" id="furnitureCollapse">
+                        <th scope="row"></th>
+                        <td style="width: 16%">{{Category}}</td>
+                        <td style="width: 9%">{{Product_No}}</td>
+                        <td style="width: 34%">{{Product_name}}</td>
+                        <td style="width: 8%">{{Unit}}</td>
+                        <td style="width: 11%">
+                            <input class="form-control form-control-sm priceInput" type="text" value="{{Price}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <input class="form-control form-control-sm numInput" type="text" value="{{Quantity}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <span class="subTotal">{{Total}}</span>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    {{/if}}
+                    <tr>
+                        <td colspan="8" class="headCollapse">
+                            <div class="container-fluid">
+                                <a class="btn btn-link" style="width: 100%;" data-toggle="collapse" aria-expanded="false" aria-controls="shippingCollapse" href="#shippingCollapse">Shipping</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {{#if ../estimateTable.Shipping}}
+                    {{#each ../estimateTable.Shipping}}
+                    <tr class="collapse" id="shippingCollapse">
+                        <th scope="row"></th>
+                        <td style="width: 16%">{{Category}}</td>
+                        <td style="width: 9%">{{Product_No}}</td>
+                        <td style="width: 34%">{{Product_name}}</td>
+                        <td style="width: 8%">{{Unit}}</td>
+                        <td style="width: 11%">
+                            <input class="form-control form-control-sm priceInput" type="text" value="{{Price}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <input class="form-control form-control-sm numInput" type="text" value="{{Quantity}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <span class="subTotal">{{Total}}</span>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    {{/if}}
+                    <tr>
+                        <td colspan="8" class="headCollapse">
+                            <div class="container-fluid">
+                                <a class="btn btn-link" style="width: 100%;" data-toggle="collapse" aria-expanded="false" aria-controls="accessoriesCollapse" href="#accessoriesCollapse">Accessories</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {{#if ../estimateTable.Accessories}}
+                    {{#each ../estimateTable.Accessories}}
+                    <tr class="collapse" id="accessoriesCollapse">
+                        <th scope="row"></th>
+                        <td style="width: 16%">{{Category}}</td>
+                        <td style="width: 9%">{{Product_No}}</td>
+                        <td style="width: 34%">{{Product_name}}</td>
+                        <td style="width: 8%">{{Unit}}</td>
+                        <td style="width: 11%">
+                            <input class="form-control form-control-sm priceInput" type="text" value="{{Price}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <input class="form-control form-control-sm numInput" type="text" value="{{Quantity}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <span class="subTotal">{{Total}}</span>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    {{/if}}
+                    <tr>
+                        <td colspan="8" class="headCollapse">
+                            <div class="container-fluid">
+                                <a class="btn btn-link" style="width: 100%;" data-toggle="collapse" aria-expanded="false" aria-controls="plantsCollapse" href="#plantsCollapse">Plants</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {{#if ../estimateTable.Plants}}
+                    {{#each ../estimateTable.Plants}}
+                    <tr class="collapse" id="plantsCollapse">
                         <th scope="row"></th>
                         <td style="width: 16%">{{Category}}</td>
                         <td style="width: 9%">{{Product_No}}</td>

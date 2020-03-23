@@ -88,7 +88,7 @@
             <div class="card-header">
                 <label id="UsCheck" class="btn btn-light" for="isUS">
                     <input type="checkbox" id="isUS" autocomplete="off">
-                    US Company Only*
+                    US Company Only <span style="color: red;">*</span>
                 </label>
             </div>
             <div class="card-body">
@@ -99,7 +99,7 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="stateId">State ID:</label>
-                        <input id="stateId" type="text" class="form-control" placeholder="stateId"/>
+                        <input id="stateId" type="text" class="form-control" placeholder="stateId" onKeyPress="if((event.keyCode<48 || event.keyCode>57))event.returnValue=false"/>
                     </div>
                 </div>
             </div>
@@ -484,7 +484,7 @@
             $(this).find(':button[type=submit]').prop('disabled', true);
         });*/
     });
-        bootstrapValidate(['#user', '#password', '#conPassword', '#email', '#stateId', '#taxId', '#company', '#contact', '#address'], 'required: This can not be empty!', function(isEmpty) { 
+        bootstrapValidate(['#user', '#password', '#conPassword', '#email', '#company', '#contact', '#address'], 'required: This can not be empty!', function(isEmpty) { 
             if(isEmpty) {
                 empty = true; 
                 if(empty && emailValid && userMin && userMax && passwordMin && passwordMax && conpassMatch && licenseModified && personalModified)
