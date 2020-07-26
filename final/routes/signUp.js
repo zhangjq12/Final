@@ -25,7 +25,13 @@ router.post("/", upload.fields([{name: "personal", maxCount: 1}, {name: "license
         user: xss(req.body.user),
         password: xss(req.body.password),
         conPassword: xss(req.body.conPassword),
-        email: xss(req.body.email)
+        email: xss(req.body.email),
+        CompanyInfo: xss(req.body.company),
+        ContactInfo: xss(req.body.contact),
+        Address: xss(req.body.address),
+        StateId: xss(req.body.stateId),
+        TaxId: xss(req.body.taxId),
+        voe: xss(req.body.voe)
     }
     const personal = req.files["personal"][0].filename;
     const license = req.files["license"][0].filename;
@@ -44,8 +50,9 @@ router.post("/", upload.fields([{name: "personal", maxCount: 1}, {name: "license
             res.send({"user": request["user"], "status": "success"});
             //res.render("construct/user/success", {title: "Sign Up Successful!", status: Head, user: request["user"], operation: ", Welcome the new User!"});
         }
-        else
+        else {
             res.send({"user": request["user"], "status": "notmatched"});
+        }
             //res.render("construct/signup", {title: "Sign Up", status: Head, error: "Username exists!"});
     }
     catch(e) {
