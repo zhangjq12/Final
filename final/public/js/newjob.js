@@ -1120,7 +1120,7 @@ $(document).ready(function(){
         showUpload: false,
         showRemove : true,
         dropZoneEnabled: false,
-        maxFileCount: 5,
+        maxFileCount: 10,
         layoutTemplates: {
             actionUpload: ''
         }
@@ -1140,11 +1140,19 @@ $(document).ready(function(){
 $("#nomodify").click(function() {
     $('#tabSubmit').html('Submit');
     $('#tabSubmit').prop('disabled', false);
+    $('#yesmodify').show();
+    $("#modifytabDiaBody").html('Do you want to continue?');
+    $("#yesmodify").html('Yes');
+    $('#yesmodify').prop('disabled', false);
 });
 $("#modifytabDia").on('hidden.bs.modal', function() {
     $('#tabSubmit').html('Submit');
     $('#tabSubmit').prop('disabled', false);
-})
+    $('#yesmodify').show();
+    $("#modifytabDiaBody").html('Do you want to continue?');
+    $("#yesmodify").html('Yes');
+    $('#yesmodify').prop('disabled', false);
+});
 //$("#previewDia").modal('toggle');
 $("#preView").click(function(e) {
     e.preventDefault();
@@ -1399,7 +1407,7 @@ $("#yesmodify").click(function(e) {
             //if(id == "") {
             if(res["success"] == "success") {
                 $("#modifytabDiaFooter").hide();
-                $("#modifytabDiaBody").html('<div class="container"><p>Create This Job Successfully!</p></br><span id="totalSecond">1</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back to the job page!</span></div>');
+                $("#modifytabDiaBody").html('<div class="container"><p>Create This Job Successfully!</p></br><span id="totalSecond">1</span><span id="second"> Second</span><span id="nextcontent"> later to go back to the job page!</span></div>');
                 jQuery.getScript("/public/js/autourl.js").done(function(){
                     var fun = auto;
                     //fun("/exhibitor/show?id=" + res["id"]);
@@ -1407,13 +1415,13 @@ $("#yesmodify").click(function(e) {
                 });
             }
             else {
-                $("#modifytabDiaFooter").hide();
-                $("#modifytabDiaBody").html('<div class="container"><p>Job exists! Create failed!</p></br><span id="totalSecond">1</span><span id="second"> Seconds</span><span id="nextcontent"> later to go back to the job page!</span></div>');
-                jQuery.getScript("/public/js/autourl.js").done(function(){
+                $("#yesmodify").hide();
+                $("#modifytabDiaBody").html('<div class="container"><p>Job exists! Create failed!</p></div>');
+                /*jQuery.getScript("/public/js/autourl.js").done(function(){
                     var fun = auto;
                     //fun("/exhibitor/show?id=" + res["id"]);
                     fun("/")
-                });
+                });*/
             }
             /*}
             else {

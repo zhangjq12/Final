@@ -4,19 +4,20 @@
         <div class="card border-light mb-3">
             <div class="card-header">
                 <h4>Show Info</h4>
+                <small>item with <span style="color: red;">(*)</span> must be filled</small>
             </div>
             <div class="card-body">
                 <div class="container" id="author" data-name={{author}}></div>
                 <div class="form-row">
                     <div class="col-md-6 mb-2">
-                        <label for="boothId">Booth Number:</label>
+                        <label for="boothId">Booth Number:<span style="color: red;">(*)</span></label>
                         <input id="boothId" type="text" class="form-control" name="boothId" value="{{boothId}}" required></input>
                         <div class="invalid-feedback">
                             This can't be empty.
                         </div>
                     </div>
                     <div class="col-md-6 mb-2">
-                        <label for="showName">Show Name:</label>
+                        <label for="showName">Show Name:<span style="color: red;">(*)</span></label>
                         <input id="showName" type="text" class="form-control" name="showName" value="{{showName}}" required></input>
                         <div class="invalid-feedback">
                             This can't be empty.
@@ -41,13 +42,13 @@
                     </div>
                 </div>-->
                     <div class="input-daterange input-group" id="dateStartEnd" data-provide="datepicker">
-                        <label for="startDate">Start Date&nbsp;</label>
+                        <label for="startDate">Start Date<span style="color: red;">(*)</span>&nbsp;</label>
                         <input id="startDate" type="text" class="input-md form-control" name="startDate" data-placement="bottom" required/>
                         <div class="input-group-prepend">
                             <span class="input-group-text">to</span>
                         </div>
                         <input id="endDate" type="text" class="input-md form-control" name="endDate" required/>
-                        <label for="endDate">&nbsp;End Date</label>
+                        <label for="endDate">&nbsp;End Date<span style="color: red;">(*)</span></label>
                         <div class="invalid-feedback">
                             This can't be empty.
                         </div>
@@ -58,11 +59,12 @@
         <div class="card border-light mb-3">
             <div class="card-header">
                 <h4>Booth Info</h4>
+                <small>item with <span style="color: red;">(*)</span> must be filled</small>
             </div>
             <div class="card-body">
                 <div class="form-row">
                     <div class="col-md-12 mb-2">
-                        <label for="size">Booth Size:</label>
+                        <label for="size">Booth Size:<span style="color: red;">(*)</span></label>
                         <div class="input-group">
                             <!--<label for="size1" class="sr-only">Booth Size left:</label>-->
                             <input id="size1" type="text" class="form-control col-md-3" name="size1" placeholder="length" onkeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" required></input>
@@ -91,7 +93,7 @@
                         <div class="card-body">
                             <div class="form-row mb-4" id="carpetOptions">
                                 <div class="form-check form-check-inline col-xl-2">
-                                    <input class="form-check-input" type="radio" name="carpetOption" id="carpetStandard" value="Standard+m<sup>2</sup>" required>
+                                    <input class="form-check-input" type="radio" name="carpetOption" id="carpetStandard" value="Standard+m<sup>2</sup>">
                                     <label class="form-check-label" for="carpetStandard">Standard</label>
                                 </div>
                                 <div class="form-check form-check-inline col-xl-2">
@@ -108,66 +110,66 @@
                             <div class="form-row mb-3" id="carpetColor">
                                 <div class="form-check form-check-inline col-xl-2 mb-2">
                                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Red">
-                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetRed" value="Red" required>
+                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetRed" value="Red">
                                     <label class="form-check-label" for="carpetRed"><img src="/public/image/CarpetColor/Red.jpg" width="40px" height="40px"></label>
                                     </span>
                                 </div>
                                 <div class="form-check form-check-inline col-xl-2 mb-2">
                                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Red 2">
-                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetRed2" value="Red_2" required>
+                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetRed2" value="Red_2">
                                     <label class="form-check-label" for="carpetRed2"><img src="/public/image/CarpetColor/Red_2.jpg" width="40px" height="40px"></label>
                                     </span>
                                 </div>
                                 <div class="form-check form-check-inline col-xl-2 mb-2">
                                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Blue">
-                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetBlue" value="Blue" required>
+                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetBlue" value="Blue">
                                     <label class="form-check-label" for="carpetBlue"><img src="/public/image/CarpetColor/Blue.jpg" width="40px" height="40px"></label>
                                     </span>
                                 </div>
                                 <div class="form-check form-check-inline col-xl-2 mb-2">
                                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Navy Blue">
-                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetNavyBlue" value="Navy_Blue" required>
+                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetNavyBlue" value="Navy_Blue">
                                     <label class="form-check-label" for="carpetNavyBlue"><img src="/public/image/CarpetColor/Navy_Blue.jpg" width="40px" height="40px"></label>
                                     </span>
                                 </div>
                                 <div class="form-check form-check-inline col-xl-2 mb-2">
                                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Sand">
-                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetSand" value="Sand" required>
+                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetSand" value="Sand">
                                     <label class="form-check-label" for="carpetSand"><img src="/public/image/CarpetColor/Sand.jpg" width="40px" height="40px"></label>
                                     </span>
                                 </div>
                                 <div class="form-check form-check-inline col-xl-2 mb-2">
                                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Light Grey">
-                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetLightGrey" value="Light_Grey" required>
+                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetLightGrey" value="Light_Grey">
                                     <label class="form-check-label" for="carpetLightGrey"><img src="/public/image/CarpetColor/Light_Grey.jpg" width="40px" height="40px"></label>
                                     </span>
                                 </div>
                                 <div class="form-check form-check-inline col-xl-2 mb-2">
                                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Dark Grey">
-                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetDarkGrey" value="Dark_Grey" required>
+                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetDarkGrey" value="Dark_Grey">
                                     <label class="form-check-label" for="carpetDarkGrey"><img src="/public/image/CarpetColor/Dark_Grey.jpg" width="40px" height="40px"></label>
                                     </span>
                                 </div>
                                 <div class="form-check form-check-inline col-xl-2 mb-2">
                                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Black">
-                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetBlack" value="Black" required>
+                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetBlack" value="Black">
                                     <label class="form-check-label" for="carpetBlack"><img src="/public/image/CarpetColor/Black.jpg" width="40px" height="40px"></label>
                                     </span>
                                 </div>
                                 <div class="form-check form-check-inline col-xl-2 mb-2">
                                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Dark Green">
-                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetDarkGreen" value="Dark_Green" required>
+                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetDarkGreen" value="Dark_Green">
                                     <label class="form-check-label" for="carpetDarkGreen"><img src="/public/image/CarpetColor/Dark_Green.jpg" width="40px" height="40px"></label>
                                     </span>
                                 </div>
                                 <div class="form-check form-check-inline col-xl-2 mb-2">
                                     <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Light Green">
-                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetLightGreen" value="Light_Green" required>
+                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetLightGreen" value="Light_Green">
                                     <label class="form-check-label" for="carpetLightGreen"><img src="/public/image/CarpetColor/Light_Green.jpg" width="40px" height="40px"></label>
                                     </span>
                                 </div>
                                 <div class="form-check form-check-inline col-xl-2 mb-2">
-                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetOther" value="Other" required>
+                                    <input class="form-check-input" type="radio" name="carpetColorOption" id="carpetOther" value="Other">
                                     <label class="form-check-label" for="carpetOther">
                                         <input class="form-control form-control-sm col-md-12" type="text" id="carpetOtherInput" placeholder="Other..." disabled>
                                     </label>
@@ -219,7 +221,7 @@
                         <div class="card-body">
                             <div class="form-row mb-3" id="panelOptions">
                                 <div class="form-check form-check-inline col-xl-2">
-                                    <input class="form-check-input" type="radio" name="panelOption" id="panelOilPaint" value="Oil&nbsp;Paint+m<sup>2</sup>" required>
+                                    <input class="form-check-input" type="radio" name="panelOption" id="panelOilPaint" value="Oil&nbsp;Paint+m<sup>2</sup>">
                                     <label class="form-check-label" for="panelOilPaint">Oil Paint</label>
                                 </div>
                                 <div class="form-check form-check-inline col-xl-2">
@@ -235,7 +237,7 @@
                                     <label class="form-check-label" for="panelLaminate">Laminate</label>
                                 </div>
                                 <div class="form-check form-check-inline col-xl-2 mb-2">
-                                    <input class="form-check-input" type="radio" name="panelOption" id="panelOther" value="Other+m<sup>2</sup>" required>
+                                    <input class="form-check-input" type="radio" name="panelOption" id="panelOther" value="Other+m<sup>2</sup>">
                                     <label class="form-check-label" for="panelOther">
                                         <input class="form-control form-control-sm col-md-12" type="text" id="panelOtherInput" placeholder="Other..." disabled>
                                     </label>
@@ -1294,11 +1296,12 @@
         <div class="card border-light mb-3">
             <div class="card-header">
                 <h4>Details</h4>
+                <small>item with <span style="color: red;">(*)</span> must be filled</small>
             </div>
             <div class="card-body">
             <fieldset class="form-group">
                 <div class="row">
-                    <legend class="col-form-label col-sm-3 pt-0">Upload Design Plan:<br/><small>Any types of file</small></legend>
+                    <legend class="col-form-label col-sm-3 pt-0">Upload Design Plan:<span style="color: red;">(*)</span><br/><small>Any types of file</small></legend>
                     <div class="col-sm-9">
                         <!--<div class="form-row mb-3 custom-file">-->
                         <div class="file-loading">

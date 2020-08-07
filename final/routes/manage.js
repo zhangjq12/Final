@@ -180,7 +180,7 @@ router.post("/qualification", async (req, res) => {
             const res2 = await vendorInfo.modifyInfo(request["id"], request["info"]);
             const res3 = await vendorInfo.modifyInfo(request["id"], request["estimatePrice"]);
         }
-        const vendor = await users.getId(data[0]["vendorId"].toString());
+        const vendor = await users.getId(request["id"].toString());
         res.send({success: "success", manager: "manager", vendor: vendor[0]["userName"], email: vendor[0]["email"]});
     }
     catch(e) {

@@ -95,30 +95,6 @@ router.post("/newjob", newjobUpload.fields([{name: "elec", maxCount: 1}, {name: 
     try {
         //console.log(typeof request["category"]);
         //console.log(request["category"]);
-        var elecFile;
-        if(req.files["elec"] != undefined)
-            elecFile = req.files["elec"][0].filename;
-        else
-            elecFile = "";
-        const dsgnFiles = req.files["dsgn"];
-        //console.log(dsgnFiles.length);
-        var dsgnFilesName = [];
-        for(var c of dsgnFiles) {
-            const obj = {name: c.filename};
-            dsgnFilesName.push(obj);
-        }
-        var date = JSON.parse(request["date"]);
-        var category = JSON.parse(request["category"]);
-        var details = JSON.parse(request["details"]);
-        //console.log(details);
-        //console.log(elecFile);
-        if(elecFile == "") {
-            category["electricity"]["nonupload"] = "yes";
-            category["electricity"].filename = "";
-        }
-        else
-            category["electricity"].filename = elecFile;
-        details["designFile"].filename = dsgnFilesName;
 
         request["showName"] = request["showName"].replace(/(^\s*)|(\s*$)/g, "");
         //console.log(category.electricity);
@@ -133,6 +109,30 @@ router.post("/newjob", newjobUpload.fields([{name: "elec", maxCount: 1}, {name: 
         //console.log(category);
         const data = await tab.getName(request["showName"]);
         if(data.length == 0) {
+            var elecFile;
+            if(req.files["elec"] != undefined)
+                elecFile = req.files["elec"][0].filename;
+            else
+                elecFile = "";
+            const dsgnFiles = req.files["dsgn"];
+            //console.log(dsgnFiles.length);
+            var dsgnFilesName = [];
+            for(var c of dsgnFiles) {
+                const obj = {name: c.filename};
+                dsgnFilesName.push(obj);
+            }
+            var date = JSON.parse(request["date"]);
+            var category = JSON.parse(request["category"]);
+            var details = JSON.parse(request["details"]);
+            //console.log(details);
+            //console.log(elecFile);
+            if(elecFile == "") {
+                category["electricity"]["nonupload"] = "yes";
+                category["electricity"].filename = "";
+            }
+            else
+                category["electricity"].filename = elecFile;
+            details["designFile"].filename = dsgnFilesName;
             const data = await tab.create(request["boothId"], request["showName"], date, request["author"], request["size"], category, details);
             const author = await users.getName(request["author"]);
             const time = new Date();
@@ -218,6 +218,12 @@ router.get("/estimate", async (req, res) => {
                 break;
             }
         }
+        const extraFiles = table["extraFilesName"];
+        var extraNames = [];
+        for(var i = 0; i < extraFiles.length; i++) {
+            const filename = extraFiles[i]["name"].split("_+_")[1];
+            extraNames.push({"name": extraFiles[i]["name"], "fileName": filename});
+        }
         var ind = 0;
         while(ind < table["each"].length) {
             if(table["each"][ind]["Total"] == "$0.00") {
@@ -226,12 +232,20 @@ router.get("/estimate", async (req, res) => {
             }
             ind ++;
         }
-        var category = {"Flooring": [], "Rigging": [], "Main Structures": [], "Electrical": [], "Electricity": [], "Graphic": [], "Display": [], "Furniture": [], "Shipping": [], "Accessories": [], "Plants": []};
+        console.log("1");
+        var category = {"Flooring": [], "Rigging": [], "Main Structures": [], "Electrical": [], "Electricity": [], "Graphic": [], "Display": [], "Furniture": [], "Shipping": [], "Accessories": [], "Plants": [], "extra": {Price: "", FileName: [], Total: "$0.00"}};
+        console.log("1.5");
         for(var t of table["each"]) {
+            console.log(t);
             category[t["Category"]].push(t);
         }
+        console.log("2");
+        category["extra"]["Price"] = table["extraPrice"];
+        category["extra"]["FileName"] = extraNames;
+        category["extra"]["Total"] = "$" + parseFloat(table["extraPrice"] == "" ? 0.00 : table["extraPrice"]).toFixed(2).toString();
+        console.log(category);
         //console.log(table["each"]);
-        res.render("construct/vendor/estimate", {title: "Details of " + data[0]["showName"], status: Head, voe: "exhibitor", data: data, estimateTable: category, total: table["total"], note: "11112233"});
+        res.render("construct/vendor/estimate", {title: "Details of " + data[0]["showName"], status: Head, voe: "exhibitor", data: data, estimateTable: category, total: table["total"]});
     }
     catch(e) {
         res.render("construct/error", {title: "Error!", status: Head});

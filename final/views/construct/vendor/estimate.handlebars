@@ -438,8 +438,33 @@
                 </tbody>
                 <tfoot>
                     <tr>
+                        <td style="width: 11%">
+                            Extra Items Upload:
+                        </td>
+                        <td colspan="3" style="width: 88%">
+                            <div id="extraDiv">
+                                <div class="file-loading">
+                                    <input id="extraUpload" type="file" multiple data-msg-placeholder="Upload Design Plan...">
+                                    <!--<label for="designUpload" class="custom-file-label">Upload Design Plan:</label>-->
+                                </div>
+                            </div>
+                            <div id="extraFiles">
+                                {{#each ../estimateTable/extra/FileName}}
+                                <span><a target="_blank" href="/public/image/Estimate/extra/{{name}}">{{fileName}}</a></span>
+                                {{/each}}
+                            </div>
+                        </td>
+                        <td colspan="2" style="width: 22%">
+                            <label for="extraPriceInput">Total:</label>
+                            <input id="extraPriceInput" class="form-control form-control-sm extraInput" type="text" value="{{../estimateTable/extra/Price}}" onKeyPress="if((event.keyCode<48 || event.keyCode>57) && event.keyCode!=46 || /\.\d\d$/.test(value))event.returnValue=false" />
+                        </td>
+                        <td style="width: 11%">
+                            <span class="extraTotal">{{../estimateTable/extra/Total}}</span>
+                        </td>
+                    </tr>
+                    <tr>
                         <td colspan="5" style="width: 88%;">
-                            {{../note}}
+                            
                         </td>
                         <td style="width: 11%;">Total:</td>
                         <td style="width: 11%;">
@@ -485,6 +510,7 @@
 
 <!--<script type="text/javascript" src="/public/js/datatables.min.js"></script>-->
 <script>
+    var extraFile;
     var $table = $('.table-fixed'),
     $bodyCells = $table.find('tbody tr:first').children(),
     colWidth;
@@ -531,12 +557,34 @@
         $('#estimateSubmit').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting...');
         $('#estimateSubmit').prop('disabled', true);
     })
+    $("#extraUpload").change(function(e) {
+        var file = this.files;
+        extraFile = file;
+        if(this.files) {
+            $("#extraPriceInput").prop("required", true);
+        }
+        else {
+            $("#extraPriceInput").removeAttr("required");
+        }
+    });
     $(document).ready(function() {
+        $("#estimateTable").find("tbody").css("color", "gray");
+        $("#extraPriceInput").parent().parent().css("color", "gray");
         //console.log($(".estimatePage").attr("data-name"));
         if($(".estimatePage").attr("data-name") == "exhibitor") {
-            //console.log($(".container-fluid").attr("data-name"));
+            //console.log($(".estimatePage").attr("data-name"));
+            $("#extraDiv").attr("style", "display: none;");
+            //console.log($("#extraDiv").attr("style"));
+            $("#extraFiles").attr("style", "display: block;");
+            $("table").find(".collapse").addClass("show");
             $("input").prop("disabled", true);
             $("button").parent().parent().hide();
+        }
+        else
+        if($(".estimatePage").attr("data-name") == "vendor") {
+            //console.log($(".container-fluid").attr("data-name"));
+            $("#extraDiv").attr("style", "display: block;");
+            $("#extraFiles").attr("style", "display: none;");
         }
         $(".colorTooltip").each(function() {
             var str1 = $(this).attr("title");
@@ -570,6 +618,17 @@
             data = data.replace("&amp;nbsp;", " ");
             $(this).html(data);
         });
+         $("#extraUpload").fileinput({
+            uploadUrl: "#",
+            theme: "fas",
+            showUpload: false,
+            showRemove : true,
+            dropZoneEnabled: false,
+            maxFileCount: 10,
+            layoutTemplates: {
+                actionUpload: ''
+            }
+        });
         $(".numInput").each(function() {
             $(this).bind('input propertychange', function() {
                 var eaprice = parseFloat($(this).parent().parent().find(".priceInput").val() == "" ? 0.00 : $(this).parent().parent().find(".priceInput").val());
@@ -577,11 +636,18 @@
                 price = price.toFixed(2);
                 $(this).parent().parent().find(".subTotal").html("$" + price.toString());
                 var sum = 0;
-                $(this).parent().parent().parent().find(".subTotal").each(function() {
+                $(this).parent().parent().parent().parent().find(".subTotal").each(function() {
                     sum += parseFloat($(this).html().split("$")[1]);
                 });
+                sum += parseFloat($(this).parent().parent().parent().parent().find(".extraInput").val() == "" ? 0.00 : $(this).parent().parent().parent().parent().find(".extraInput").val());
                 sum = sum.toFixed(2);
                 $(this).parent().parent().parent().parent().parent().find(".totalPriceSpan").html("$" + sum.toString());
+                if($(this).parent().parent().find(".subTotal").html() != "$0.00") {
+                    $(this).parent().parent().css("color", "black");
+                }
+                else {
+                    $(this).parent().parent().css("color", "gray");
+                }
             });
         });
         $(".priceInput").each(function() {
@@ -591,11 +657,44 @@
                 price = price.toFixed(2);
                 $(this).parent().parent().find(".subTotal").html("$" + price.toString());
                 var sum = 0;
-                $(this).parent().parent().parent().find(".subTotal").each(function() {
+                $(this).parent().parent().parent().parent().find(".subTotal").each(function() {
                     sum += parseFloat($(this).html().split("$")[1]);
                 });
+                sum += parseFloat($(this).parent().parent().parent().parent().find(".extraInput").val() == "" ? 0.00 : $(this).parent().parent().parent().parent().find(".extraInput").val());
                 sum = sum.toFixed(2);
                 $(this).parent().parent().parent().parent().parent().find(".totalPriceSpan").html("$" + sum.toString());
+                if($(this).parent().parent().find(".subTotal").html() != "$0.00") {
+                    $(this).parent().parent().css("color", "black");
+                }
+                else {
+                    $(this).parent().parent().css("color", "gray");
+                }
+            });
+        });
+        $(".extraInput").each(function() {
+            $(this).bind('input propertychange', function() {
+                var price = parseFloat(this.value == "" ? 0.00 : this.value);
+                price = price.toFixed(2);
+                $(this).parent().parent().find(".extraTotal").html("$" + price.toString());
+                var sum = 0;
+                $(this).parent().parent().parent().parent().find(".subTotal").each(function() {
+                    sum += parseFloat($(this).html().split("$")[1]);
+                });
+                sum += parseFloat(this.value == "" ? 0.00 : this.value);
+                sum = sum.toFixed(2);
+                $(this).parent().parent().parent().parent().parent().find(".totalPriceSpan").html("$" + sum.toString());
+                if($(this).parent().parent().find(".extraTotal").html() != "$0.00") {
+                    $(this).parent().parent().css("color", "black");
+                }
+                else {
+                    $(this).parent().parent().css("color", "gray");
+                }
+                if(this.value != "") {
+                    $("#extraUpload").prop("required", true);
+                }
+                else {
+                    $("#extraUpload").removeAttr("required");
+                }
             });
         });
     });
@@ -609,6 +708,7 @@
     })
     $("#yesEstimate").click(function(e) {
         e.preventDefault();
+        var formData = new FormData();
         var author = $("#author").val();
         var showName = $("#showName").html();
         var arr = [];
@@ -633,8 +733,22 @@
             var obj = {"Category": category, "Product_No": proNo, "Product_name": proName, "Unit": unit, "Price": price, "Quantity": quantity, "Total": total};
             arr.push(obj);
         }); 
-        var price1 = {"each": arr, "total": $(".totalPriceSpan").html()};
-        var price = JSON.stringify(price1);
+        formData.append("id", showName);
+        var arr1 = JSON.stringify(arr);
+        formData.append("each", arr1);
+        if(extraFile != undefined) {
+            for(var c of extraFile) {
+                formData.append('extra', c);
+            }
+            formData.append("extraPrice", $(".extraInput").val());
+        }
+        else {
+            formData.append('extra', undefined);
+            formData.append("extraPrice", "");
+        }
+        formData.append("total", $(".totalPriceSpan").html());
+        /*var price1 = {"each": arr, "total": $(".totalPriceSpan").html()};
+        var price = JSON.stringify(price1);*/
         var user = $("#uNameShow").attr("data-name");
         //console.log(boothNum)
         //console.log(price);
@@ -642,10 +756,9 @@
             type: "post",
             url: "/vendor/estimate",
             dataType: "json",
-            data: {
-                id: showName,
-                price: price
-            },
+            data: formData,
+            contentType: false,
+            processData: false,
             success: function(res) {
                 //alert(res);
                 var origin = window.location.hostname;

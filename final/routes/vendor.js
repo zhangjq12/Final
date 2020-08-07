@@ -13,6 +13,7 @@ const proof = data.proof;
 const vendorInfo = data.vendorDetails;
 const authentication = require("./authentication");
 const upload2 = require("./middleware/multer2");
+const extraUpload = require("./middleware/extraMulter");
 const proofUpload = require("./middleware/proofMulter");
 const xss = require('xss');
 const ObjectID = require('mongodb').ObjectID;
@@ -153,30 +154,44 @@ router.get("/estimate", async (req, res) => {
         for(var t of table) {
             t["Total"] = "$0.00";
         }
-        var category = {"Flooring": [], "Rigging": [], "Main Structures": [], "Electrical": [], "Electricity": [], "Graphic": [], "Display": [], "Furniture": [], "Shipping": [], "Accessories": [], "Plants": []};
+        var category = {"Flooring": [], "Rigging": [], "Main Structures": [], "Electrical": [], "Electricity": [], "Graphic": [], "Display": [], "Furniture": [], "Shipping": [], "Accessories": [], "Plants": [], "extra": {Price: "", FileName: [], Total: "$0.00"}};
         for(var t of table) {
             category[t["Category"]].push(t);
         }
         category.Main_Structures = category["Main Structures"];
         delete category["Main Structures"];
         total = "$0.00";
-        res.render("construct/vendor/estimate", {title: "Details of " + data[0]["showName"], status: Head, voe: "vendor", data: data, estimateTable: category, total: total, note: "44455667"});
+        res.render("construct/vendor/estimate", {title: "Details of " + data[0]["showName"], status: Head, voe: "vendor", data: data, estimateTable: category, total: total});
     }
     catch(e) {
         res.render("construct/error", {title: "Error!", status: Head});
     }
 });
 
-router.post("/estimate", async (req, res) => {
+router.post("/estimate", extraUpload.fields([{name: "extra", maxCount: 10}]), async (req, res) => {
     const user = await authentication(req);
     const request = {
-        showName: req.body.id,
-        price: req.body.price
+        showName: xss(req.body.id),
+        each: xss(req.body.each),
+        extraPrice: xss(req.body.extraPrice),
+        total: xss(req.body.total)
     }
     //console.log(request);
     try {
         //console.log(request);
-        var pri = JSON.parse(request["price"]);
+        var extraFilesName = [];
+        var extraFiles;
+        if(req.files["extra"] == undefined) {
+            extraFiles = undefined;
+        }
+        else {
+            extraFiles = req.files["extra"];
+            for(var c of extraFiles) {
+                const obj = {name: c.filename};
+                extraFilesName.push(obj);
+            }
+        }
+        var pri = {"each": JSON.parse(request["each"]), "extraFilesName": extraFilesName, "extraPrice": request["extraPrice"], "total": request["total"]}
         //console.log(pri);
         const data = await price.getShowName(request["showName"]);
         const data1 = await tab.getName(request["showName"]);

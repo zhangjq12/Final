@@ -4,6 +4,7 @@
         <div class="card border-light mb-3">
             <div class="card-header">
                 <h4>Show Info</h4>
+                <small>item with <span style="color: red;">(*)</span> must be filled</small>
             </div>
             <div class="card-body">
                 <div class="form-row">
@@ -11,55 +12,55 @@
                         <p id="signUpError"></p>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="user">User Name:</label>
+                        <label for="user">User Name:<span style="color: red;">(*)</span></label>
                         <input id="user" type="text" name="user" class="form-control" placeholder="Username" />
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="company">Company Info:</label>
+                        <label for="company">Company Info:<span style="color: red;">(*)</span></label>
                         <input id="company" type="text" name="company" class="form-control" placeholder="CompanyInfo" />
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label for="password">Password:</label>
+                        <label for="password">Password:<span style="color: red;">(*)</span></label>
                         <input id="password" type="password" name="password" class="form-control" placeholder="Password"/>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="contact">Contact Info:</label>
+                        <label for="contact">Contact Info:<span style="color: red;">(*)</span></label>
                         <input id="contact" type="text" name="contact" class="form-control" placeholder="ContactInfo" />
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label for="conPassword">Confirm Password:</label>
+                        <label for="conPassword">Confirm Password:<span style="color: red;">(*)</span></label>
                         <input id="conPassword" type="password" name="conPassword" class="form-control" placeholder="Confirm"/>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="address">Address:</label>
+                        <label for="address">Address:<span style="color: red;">(*)</span></label>
                         <input id="address" type="text" name="address" class="form-control" placeholder="Address"/>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-6 mb-3">
-                        <label for="voe">Your Role:</label>
+                        <label for="voe">Your Role:<span style="color: red;">(*)</span></label>
                         <select id="voe" name="voe" class="form-control" data-name="{{voe}}">
                             <option id="vendorOption" value="vendor">Vendor</option>
                             <option id="exhibitorOption" value="exhibitor">Exhibitor</option>
                         </select>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label for="email">Email:</label>
+                        <label for="email">Email:<span style="color: red;">(*)</span></label>
                         <input id="email" type="email" name="email" class="form-control" placeholder="Email"/>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-md-6 mb-2 align-self-center text-center">
-                        <label for="license">License copy:</label></br>
+                        <label for="license">License copy:<span style="color: red;">(*)</span></label></br>
                         <img id="license" class="mr-3" src="/public/image/license/{{license}}" width="100" height="100" alt="licenseCopy"></br></br>
                         <button id="selectLicense" type="button" data-toggle="modal" data-target="#selectLicenseDia" class="btn btn-primary">Select Image:</button>
                     </div>
                     <div class="col-md-6 mb-2 align-self-center text-center">
-                        <label for="personal">Personal copy:</label></br>
+                        <label for="personal">Personal copy:<span style="color: red;">(*)</span></label></br>
                         <img id="personal" class="mr-3" src="/public/image/personal/{{personal}}" width="100" height="100" alt="Personal"></br></br>
                         <button id="selectPersonal" type="button" data-toggle="modal" data-target="#selectPersonalDia" class="btn btn-primary">Select Image:</button>
                     </div>
@@ -88,7 +89,7 @@
             <div class="card-header">
                 <label id="UsCheck" class="btn btn-light" for="isUS">
                     <input type="checkbox" id="isUS" autocomplete="off">
-                    US Company Only <span style="color: red;">*</span>
+                    US Company Only
                 </label>
             </div>
             <div class="card-body">
