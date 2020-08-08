@@ -8,6 +8,9 @@ body {
     display: flex;
     flex-direction: column;
     font-family: sans-serif;
+    background-color: #eeeded;
+    background-image: url(/public/image/page/wallpaper1.jpg);
+    background-repeat: repeat;
 }
 
 main {
@@ -22,7 +25,7 @@ main {
 }
 
 footer {
-    background-color: #ffffff;
+    background-color: #eeeded;
     text-align: center;
 }
 

@@ -3,6 +3,7 @@ const router = express.Router();
 const data = require("../data");
 const users = data.users;
 const stars = data.vendorStars;
+const vendor = data.vendorDetails;
 const head = require("./head");
 const authentication = require("./authentication");
 const upload = require("./middleware/multer");
@@ -18,6 +19,8 @@ router.get("/", async (req, res) => {
             const datas = await users.getName(user);
             if(datas[0]["voe"] == "vendor") {
                 const id = datas[0]["_id"];
+                const details = await vendor.getId(id.toString());
+                datas[0]["details"] = details[0]["info"];
                 const ratings = await stars.getId(id);
                 var totalRating = 0.0;
                 for(var i = 0; i < ratings.length; i++) {

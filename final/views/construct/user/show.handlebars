@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="padding-top: 50px;">
     {{#each data}}
         <div class="row">
                 <!--<h5>User Name:</h5> <p>{{userName}}</p>
@@ -43,6 +43,16 @@
                         {{email}}
                     </div>
                 </div>
+                {{#if details}}
+                <div class="row">
+                    <div class="col-4">
+                        <h5>Details:</h5>
+                    </div>
+                    <div class="col-6">
+                        {{details}}
+                    </div>
+                </div>
+                {{/if}}
             </div>
             <div class="col-3 mb-3">
                 <img style="width: 200px; height: 100px" src="/public/image/license/{{license}}">

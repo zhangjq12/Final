@@ -1,5 +1,5 @@
 <link href="/public/css/estimateTable.css" rel="stylesheet">
-<div class="container-fluid estimatePage" data-name="{{voe}}">
+<div class="container-fluid estimatePage" data-name="{{voe}}" style="padding-top: 50px;">
     {{#each data}}
     <div class="row">
         <div class="col-12 text-center">
@@ -9,8 +9,8 @@
             <p><span id="endDate+{{date.end}}">End Date - </span>{{date.end}}</p>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xl-3 showDetails">
+    <div class="row justify-content-center">
+        <div class="col-6 col-xl-3 showDetails">
             <h6 class="mb-3">Categories</h6>
             <p>Carpet:&nbsp;{{category.carpet.name}} - 
                 {{#if category.carpet.otherColor}}
@@ -92,7 +92,7 @@
             {{/each}}
             <div class="showDetails">{{details.additionalInfo.details}}</div>
         </div>
-        <div class="col-xl-9">
+        <div class="col-xl-9 bg-white">
             <form id="estimateForm">
             <table id="estimateTable" class="table table-fixed table-bordered" cellspacing="0">
                 <thead>

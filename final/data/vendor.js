@@ -68,7 +68,7 @@ async function getAll() {
 async function getID(id) {
     if(id == undefined)
         throw "parameter is missing";
-    var res = [];
+    var res = [];  
     var promise = new Promise(function(resolve) {
         mongo.connect(url,(err, db) => {
             if(err) {
