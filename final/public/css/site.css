@@ -16,17 +16,16 @@ body {
 main {
     flex: 1 0 auto;
     padding-top: 20px;
-    padding-bottom: 20px;
 }
 
 #footer {
     flex-shrink: 0;
-    padding: 20px;
 }
 
 footer {
     background-color: #eeeded;
     text-align: center;
+    padding: 20px;
 }
 
 #avatarArea {
