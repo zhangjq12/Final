@@ -1,40 +1,45 @@
 <div class="container" style="padding-top: 50px;">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">Exhibitor Name</th>
-                <th scope="col">Vendor Name</th>
-                <th scope="col">Booth Number</th>
-                <th scope="col">Exhibitor Progress</th>
-                <th scope="col">Vendor Progress</th>
-                <th scope="col">Operation</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each data}}
-            <tr>
-                <td class="align-middle ename" scope="col">
-                    {{exhibitorName}}
-                </td>
-                <td class="align-middle vname" scope="col">
-                    {{vendorName}}
-                </td>
-                <td class="align-middle" scope="col">{{showName}}</td>
-                <td class="align-middle" scope="col">
-                    {{eprogress}}
-                </td>
-                <td class="align-middle" scope="col">
-                    {{vprogress}}
-                </td>
-                <td class="align-middle" scope="col">
-                    <button data-name="{{eprogress}}" class="btn btn-light confirmationExhBtn" style="display: none;">Confirm Paid by Exhibitor</button>
-                    <button data-name="{{vprogress}}" class="btn btn-light confirmationProofManagerBtn" style="display: none;">Confirm Proof to Manager</button>
-                    <button data-name="{{vprogress}}" class="btn btn-light confirmationProofVendorBtn" style="display: none;">Confirm Proof and Pay</button>
-                </td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
+    <div class="row">
+        <h4>Finance System</h4>
+    </div>
+    <div class="row bg-white">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Exhibitor Name</th>
+                    <th scope="col">Vendor Name</th>
+                    <th scope="col">Booth Number</th>
+                    <th scope="col">Exhibitor Progress</th>
+                    <th scope="col">Vendor Progress</th>
+                    <th scope="col">Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tr>
+                    <td class="align-middle ename" scope="col">
+                        {{exhibitorName}}
+                    </td>
+                    <td class="align-middle vname" scope="col">
+                        {{vendorName}}
+                    </td>
+                    <td class="align-middle" scope="col">{{showName}}</td>
+                    <td class="align-middle" scope="col">
+                        {{eprogress}}
+                    </td>
+                    <td class="align-middle" scope="col">
+                        {{vprogress}}
+                    </td>
+                    <td class="align-middle" scope="col">
+                        <button data-name="{{eprogress}}" class="btn btn-light confirmationExhBtn" style="display: none;">Confirm Paid by Exhibitor</button>
+                        <button data-name="{{vprogress}}" class="btn btn-light confirmationProofManagerBtn" style="display: none;">Confirm Proof to Manager</button>
+                        <button data-name="{{vprogress}}" class="btn btn-light confirmationProofVendorBtn" style="display: none;">Confirm Proof and Pay</button>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
 </div>
 <script>
     $(document).ready(function() {

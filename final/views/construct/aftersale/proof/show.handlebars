@@ -1,27 +1,34 @@
 <div class="container" style="padding-top: 50px;">
-    {{#each proof}}
-    <div class="row mb-3">
-        <div class="col-md-2">
-            <h5>Bill Images:</h5>
+     <div class="card border-light mb-3">
+        <div class="card-header">
+            <h4>Proofs</h4>
         </div>
-        <div class="col-md-10">
-            {{#each bills}}
-            <a target="_blank" href="/public/image/Proofs/bills/{{fileName}}"><img src="/public/image/Proofs/bills/{{fileName}}" height="200px" width="100px" alt="{{fileName}}"></a>
+        <div class="card-body">
+            {{#each proof}}
+            <div class="row mb-3">
+                <div class="col-md-2">
+                    <h5>Bill Images:</h5>
+                </div>
+                <div class="col-md-10">
+                    {{#each bills}}
+                    <a target="_blank" href="/public/image/Proofs/bills/{{fileName}}"><img src="/public/image/Proofs/bills/{{fileName}}" height="200px" width="100px" alt="{{fileName}}"></a>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-2">
+                    <h5>Finshed Images:</h5>
+                </div>
+                <div class="col-md-10">
+                    {{#each finished}}
+                    <a target="_blank" href="/public/image/Proofs/finished/{{fileName}}"><img src="/public/image/Proofs/finished/{{fileName}}" height="200px" width="100px" alt="{{fileName}}"></a>
+                    {{/each}}
+                </div>
+            </div>
+            <button class="btn btn-primary confirmBtn" data-name="{{showName}}" type="button">Confirm</button>
             {{/each}}
         </div>
     </div>
-    <div class="row mb-3">
-        <div class="col-md-2">
-            <h5>Finshed Images:</h5>
-        </div>
-        <div class="col-md-10">
-            {{#each finished}}
-            <a target="_blank" href="/public/image/Proofs/finished/{{fileName}}"><img src="/public/image/Proofs/finished/{{fileName}}" height="200px" width="100px" alt="{{fileName}}"></a>
-            {{/each}}
-        </div>
-    </div>
-    <button class="btn btn-primary confirmBtn" data-name="{{showName}}" type="button">Confirm</button>
-    {{/each}}
 </div>
 <script>
     $(".confirmBtn").click(function() {

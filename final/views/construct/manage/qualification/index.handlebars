@@ -4,29 +4,31 @@
         <a class="nav-item nav-link" href="/manage/proof">Proof</a>
         <a class="nav-item nav-link" href="/manage/contactus">Contact Us</a>
     </nav>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">User Id</th>
-                <th scope="col">User Name</th>
-                <th scope="col">Company Info</th>
-                <th scope="col">Operation</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each data}}
-            <tr>
-                <td class="align-middle" scope="col">{{userId}}</td>
-                <td class="align-middle" scope="col">{{userName}}</td>
-                <td class="align-middle" scope="col">{{companyInfo}}</td>
-                <td class="align-middle" scope="col">
-                    <button class="btn btn-light showBtn">Show Details</button>
-                    <button class="btn btn-light estimateBtn" data-name="{{approved}}" style="display: none;">Estimate</button>
-                </td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
+    <div class="row bg-white">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">User Id</th>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Company Info</th>
+                    <th scope="col">Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tr>
+                    <td class="align-middle" scope="col">{{userId}}</td>
+                    <td class="align-middle" scope="col">{{userName}}</td>
+                    <td class="align-middle" scope="col">{{companyInfo}}</td>
+                    <td class="align-middle" scope="col">
+                        <button class="btn btn-light showBtn">Show Details</button>
+                        <button class="btn btn-light estimateBtn" data-name="{{approved}}" style="display: none;">Estimate</button>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
 </div>
 <script>
     $(document).ready(function() {

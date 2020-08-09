@@ -4,44 +4,46 @@
         <a class="nav-item nav-link active disabled" href="/manage/proof">Proof</a>
         <a class="nav-item nav-link" href="/manage/contactus">Contact Us</a>
     </nav>
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">Exhibitor Name</th>
-                <th scope="col">Vendor Name</th>
-                <th scope="col">Booth Number</th>
-                <th scope="col">Exhibitor Progress</th>
-                <th scope="col">Vendor Progress</th>
-                <th scope="col">Total Price</th>
-                <th scope="col">Operation</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each data}}
-            <tr>
-                <td class="align-middle ename" scope="col">
-                    <a href="/info?name={{exhibitorName}}">{{exhibitorName}}</a>
-                </td>
-                <td class="align-middle vname" scope="col">
-                    <a href="/info?name={{vendorName}}">{{vendorName}}</a>
-                </td>
-                <td class="align-middle" scope="col">{{showName}}</td>
-                <td class="align-middle" scope="col">
-                    {{eprogress}}
-                </td>
-                <td class="align-middle" scope="col">
-                    {{vprogress}}
-                </td>
-                <td class="align-middle" scope="col">
-                    <a target="_blank" href="/exhibitor/estimate?id={{showName}}&vendor={{vendorId}}">{{price}}</a>
-                </td>
-                <td class="align-middle" scope="col">
-                    <button data-name="{{vprogress}}" class="btn btn-light confirmationProofBtn">Confirm</button>
-                </td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
+    <div class="row bg-white">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Exhibitor Name</th>
+                    <th scope="col">Vendor Name</th>
+                    <th scope="col">Booth Number</th>
+                    <th scope="col">Exhibitor Progress</th>
+                    <th scope="col">Vendor Progress</th>
+                    <th scope="col">Total Price</th>
+                    <th scope="col">Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tr>
+                    <td class="align-middle ename" scope="col">
+                        <a href="/info?name={{exhibitorName}}">{{exhibitorName}}</a>
+                    </td>
+                    <td class="align-middle vname" scope="col">
+                        <a href="/info?name={{vendorName}}">{{vendorName}}</a>
+                    </td>
+                    <td class="align-middle" scope="col">{{showName}}</td>
+                    <td class="align-middle" scope="col">
+                        {{eprogress}}
+                    </td>
+                    <td class="align-middle" scope="col">
+                        {{vprogress}}
+                    </td>
+                    <td class="align-middle" scope="col">
+                        <a target="_blank" href="/exhibitor/estimate?id={{showName}}&vendor={{vendorId}}">{{price}}</a>
+                    </td>
+                    <td class="align-middle" scope="col">
+                        <button data-name="{{vprogress}}" class="btn btn-light confirmationProofBtn">Confirm</button>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
 </div>
 <script>
     $("tbody tr").each(function() {
