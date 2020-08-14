@@ -232,18 +232,18 @@ router.get("/estimate", async (req, res) => {
             }
             ind ++;
         }
-        console.log("1");
+        //console.log("1");
         var category = {"Flooring": [], "Rigging": [], "Main Structures": [], "Electrical": [], "Electricity": [], "Graphic": [], "Display": [], "Furniture": [], "Shipping": [], "Accessories": [], "Plants": [], "extra": {Price: "", FileName: [], Total: "$0.00"}};
-        console.log("1.5");
+        //console.log("1.5");
         for(var t of table["each"]) {
-            console.log(t);
+            //console.log(t);
             category[t["Category"]].push(t);
         }
-        console.log("2");
+        //console.log("2");
         category["extra"]["Price"] = table["extraPrice"];
         category["extra"]["FileName"] = extraNames;
         category["extra"]["Total"] = "$" + parseFloat(table["extraPrice"] == "" ? 0.00 : table["extraPrice"]).toFixed(2).toString();
-        console.log(category);
+        //console.log(category);
         //console.log(table["each"]);
         res.render("construct/vendor/estimate", {title: "Details of " + data[0]["showName"], status: Head, voe: "exhibitor", data: data, estimateTable: category, total: table["total"]});
     }
